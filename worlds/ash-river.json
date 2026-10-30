@@ -1129,6 +1129,33 @@
       }
     },
     {
+      "id": "physics_text",
+      "name": "a graduate physics textbook",
+      "kind": "item",
+      "at": [25, 82, 1],
+      "props": {
+        "teaches": "science"
+      }
+    },
+    {
+      "id": "medic_manual",
+      "name": "a field medic's manual",
+      "kind": "item",
+      "at": [25, 75, 1],
+      "props": {
+        "teaches": "medicine"
+      }
+    },
+    {
+      "id": "engineering_text",
+      "name": "the city engineer's handbook",
+      "kind": "item",
+      "at": [25, 68, 1],
+      "props": {
+        "teaches": "engineering"
+      }
+    },
+    {
       "id": "pulse_rifle",
       "name": "the army's prototype pulse rifle",
       "kind": "item",
@@ -1480,7 +1507,7 @@
       "id": "horde_mill",
       "name": "a horde on Mill St",
       "kind": "threat",
-      "at": [45, 91, 0],
+      "at": [20, 91, 0],
       "props": {
         "owner": "gus",
         "strength": 1,
@@ -1665,7 +1692,7 @@
       "playable": true,
       "category": "skilled",
       "narrative": "repair",
-      "at": [133, 85, 0],
+      "at": [137, 91, 0],
       "life": {
         "objective": {
           "text": "Get home to Harbor Street",
@@ -2323,7 +2350,7 @@
       "text": "Inside the case, in foam: a rifle that hums."
     }
   ],
-  "deadline": 1200,
+  "deadline": 1800,
   "milestones": [
     {
       "id": "lab.power",
