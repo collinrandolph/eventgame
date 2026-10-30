@@ -1,9 +1,14 @@
 ﻿// Ash River, three endings: the generation rules applied to a real world.
+// Endings and life plans replay the saved witnesses (worlds/ash-river.witness.json),
+// so these tests take seconds; `npm run check:full` re-proves them from scratch.
 import { describe as group, expect, it } from "vitest";
-import { checkLifePlan, checkMilestones, checkStructure, proveEnding, singleLifeReach } from "../src/lifecheck.js";
+import { checkMilestones, checkStructure, singleLifeReach, skillGaps } from "../src/lifecheck.js";
+import { loadWitnesses, replay, worldHash } from "../src/witness.js";
 import { loadWorld } from "../src/world.js";
 
-const w = loadWorld("worlds/ash-river.json");
+const file = "worlds/ash-river.json";
+const w = loadWorld(file);
+const lock = loadWitnesses(file, w);
 
 group("Ash River (three endings)", () => {
   it("meets every generation rule", () => {
@@ -23,19 +28,37 @@ group("Ash River (three endings)", () => {
     for (const e of checkMilestones(w).endings) expect(e.gates.length, e.name).toBeGreaterThanOrEqual(3);
   }, 120_000);
 
+  // Uses the reach cached by `npm run check` while the world is unchanged; otherwise searches (~2 min per life).
   it("no single life can unlock more than two milestones", () => {
-    for (const p of w.def.people.filter((x) => x.playable)) expect(singleLifeReach(w, p.id).length, p.name).toBeLessThanOrEqual(2);
-  }, 300_000);
+    const cached = lock.reach?.hash === worldHash(file) ? lock.reach.lives : null;
+    for (const p of w.def.people.filter((x) => x.playable)) {
+      expect((cached?.[p.id] ?? singleLifeReach(w, p.id)).length, p.name).toBeLessThanOrEqual(2);
+    }
+  }, 3_600_000);
 
-  for (const e of ["contact", "destroy", "sever"]) {
-    it(`${e} is provable by composing lives`, () => {
-      expect(proveEnding(w, "timed", e).status).toBe("reachable");
-    }, 300_000);
+  it("no skill is required anywhere (every skill has a stand-in or another mechanism)", () => {
+    for (const g of skillGaps(w)) expect([...g.endings, ...g.milestones], g.skill).toEqual([]);
+  }, 120_000);
+
+  for (const mode of ["timed", "untimed"] as const) {
+    for (const e of ["contact", "destroy", "sever"]) {
+      it(`${e} (${mode}): the saved witness replays to the ending`, () => {
+        const steps = lock.entries[`ending:${mode}:${e}`];
+        expect(steps, "no witness saved: run npm run check").toBeDefined();
+        const r = replay(w, mode, steps);
+        expect(r.ok, r.reason).toBe(true);
+        expect(r.state.ended).toEqual({ kind: "ending", ending: e });
+      });
+    }
   }
 
-  it("tier-1 lives' planned paths work played first", () => {
-    for (const id of ["omar", "ken", "park", "gus", "lou", "mae", "priya", "marta", "dana"]) {
-      expect(checkLifePlan(w, "timed", id).ok, id).toBe(true);
+  it("every life's planned path replays to its mission", () => {
+    for (const p of w.def.people.filter((x) => x.life)) {
+      const steps = lock.entries[`plan:${p.id}`];
+      expect(steps, `${p.id}: no witness saved`).toBeDefined();
+      const r = replay(w, "timed", steps);
+      expect(r.ok, `${p.id}: ${r.reason}`).toBe(true);
+      expect(r.state.missions.some((m) => m.owner === p.id && m.status === "complete"), p.id).toBe(true);
     }
-  }, 120_000);
+  });
 });

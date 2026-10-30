@@ -7,6 +7,7 @@
   "scripts": {
     "play": "tsx src/cli/play.ts",
     "check": "tsx src/cli/check.ts",
+    "check:full": "tsx src/cli/check.ts --full",
     "viz": "tsx src/cli/viz.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"

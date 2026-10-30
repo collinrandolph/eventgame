@@ -7,7 +7,7 @@
 import { evalCond } from "./engine.js";
 import { assignLife, prepareNextLife } from "./lives.js";
 import { relaxedCondReachable, relaxedCondReachableByActor, relaxedReachable, relaxedReachableByActor } from "./relaxed.js";
-import { solve } from "./solver.js";
+import { type Step, solve } from "./solver.js";
 import { goalTargets } from "./targets.js";
 import type { Mode, State, WorldDef } from "./types.js";
 import { SKILLS } from "./types.js";
@@ -26,6 +26,8 @@ export interface PlanReport {
   name: string;
   ok: boolean;
   steps: PlanStep[];
+  /** Replayable steps (prerequisite lives, then this life's plan). */
+  witness?: Step[];
 }
 
 /** Where a life's mission points: its objective's targets, then its destination. */
@@ -43,9 +45,60 @@ export function startLife(w: World, mode: Mode, pid: string): State {
   return assignLife(w, prepareNextLife(w, initialState(w, mode)).state, pid).state;
 }
 
+/**
+ * Lives that must come before this one for its story event to be possible:
+ * the first producers of the tier-1 milestones its tier-2 milestone needs.
+ */
+export function prerequisiteLives(w: World, pid: string): string[] {
+  const feeds = w.people.get(pid)?.life?.subobjectives.find((s) => s.story)?.feeds ?? "";
+  const m = (w.def.milestones ?? []).find((x) => `milestone:${x.id}` === feeds);
+  const lives = storyLives(w);
+  return [...new Set((m?.requires ?? []).map((r) => (lives.get(r) ?? []).find((q) => q !== pid)).filter((q): q is string => !!q))];
+}
+
+/**
+ * Play one life to its end from `s`: its subobjectives in order (as far as they
+ * go), then its mission, or any other legal end. Never ends the run on the way.
+ */
+export function playLife(w: World, s0: State, pid: string, maxNodes = 8_000): { state: State; steps: Step[]; path: string[] } | null {
+  let s = assignLife(w, prepareNextLife(w, s0).state, pid).state;
+  const steps: Step[] = [{ life: pid }];
+  const path: string[] = [`[life ${s.lives}: ${nameOf(w, pid)}]`];
+  const ctx = { self: pid, bind: {} };
+  for (const sub of w.people.get(pid)?.life?.subobjectives ?? []) {
+    if (!s.actor || evalCond(w, s, sub.done, ctx)) continue;
+    const r = solve(w, s, { withinLife: true, goal: (x) => !x.ended && evalCond(w, x, sub.done, ctx), targets: goalTargets(w, s, sub.done, pid), maxNodes });
+    if (r.status !== "reachable") break;
+    steps.push(...r.steps!);
+    path.push(...r.path!);
+    s = r.state!;
+  }
+  if (s.actor) {
+    const mission = (x: State) => !x.ended && x.missions.some((m) => m.owner === pid && m.status === "complete");
+    const done = solve(w, s, { withinLife: true, goal: mission, targets: missionTargets(w, s, pid), maxNodes });
+    const threats = Object.keys(s.things).filter((id) => w.things.get(id)?.kind === "threat" && s.things[id].props.active && s.things[id].location);
+    const end = done.status === "reachable" ? done : solve(w, s, { withinLife: true, goal: (x) => !x.ended && !x.actor, targets: threats.map((id) => s.things[id].location!), maxNodes });
+    if (end.status !== "reachable") return null;
+    steps.push(...end.steps!);
+    path.push(...end.path!);
+    s = end.state!;
+  }
+  return { state: s, steps, path };
+}
+
 export function checkLifePlan(w: World, mode: Mode, pid: string, maxNodes = 20_000): PlanReport {
   const life = w.people.get(pid)!.life!;
-  let s = startLife(w, mode, pid);
+  // Tier-2 story events need tier-1 milestones first: play those lives before this one.
+  let pre = initialState(w, mode);
+  const witness: Step[] = [];
+  for (const q of prerequisiteLives(w, pid)) {
+    const r = playLife(w, pre, q);
+    if (!r) return { person: pid, name: nameOf(w, pid), ok: false, steps: [{ sub: `before:${q}`, text: `play ${nameOf(w, q)} first`, status: "failed" }] };
+    pre = r.state;
+    witness.push(...r.steps);
+  }
+  let s = assignLife(w, prepareNextLife(w, pre).state, pid).state;
+  witness.push({ life: pid });
   const steps: PlanStep[] = [];
   const ctx = { self: pid, bind: {} };
   const targets = [
@@ -73,9 +126,10 @@ export function checkLifePlan(w: World, mode: Mode, pid: string, maxNodes = 20_0
       return { person: pid, name: nameOf(w, pid), ok: false, steps };
     }
     steps.push({ sub: t.sub, text: t.text, status: "done", ticks: r.state.tick - start, steps: r.path!.length });
+    witness.push(...r.steps!);
     s = r.state;
   }
-  return { person: pid, name: nameOf(w, pid), ok: true, steps };
+  return { person: pid, name: nameOf(w, pid), ok: true, steps, witness };
 }
 
 export interface EndingProof {
@@ -87,6 +141,8 @@ export interface EndingProof {
   finisher?: string;
   /** Where the composition ended (the stuck state when unknown). */
   state?: State;
+  /** Replayable steps of the whole playthrough. */
+  steps?: Step[];
 }
 
 /**
@@ -101,39 +157,34 @@ export function proveEnding(w: World, mode: Mode, ending: string, order?: string
   const lives = order ?? w.def.people.filter((p) => p.playable).map((p) => p.id);
   let s = initialState(w, mode);
   const path: string[] = [];
+  const steps: Step[] = [];
   const reached = (x: State) => x.ended?.kind === "ending" && x.ended.ending === ending;
+  const endCond = w.def.endings.find((e) => e.id === ending)!.when;
   for (const pid of lives) {
     if (s.ended || !s.people[pid].alive || s.played.includes(pid)) continue;
-    s = assignLife(w, prepareNextLife(w, s).state, pid).state;
-    path.push(`[life ${s.lives}: ${nameOf(w, pid)}]`);
     // 1. Can this life finish the ending?
-    const endCond = w.def.endings.find((e) => e.id === ending)!.when;
-    const finish = relaxedReachableByActor(w, s, ending) ? solve(w, s, { withinLife: true, goal: reached, targets: goalTargets(w, s, endCond, pid), maxNodes: maxNodes * 4 }) : { status: "unreachable" as const };
-    if (finish.status === "reachable" && "path" in finish) return { status: "reachable", path: [...path, ...finish.path!], ticks: finish.state!.tick, finisher: pid };
-    // 2. Otherwise follow its planned path (its story event is what moves the world on)...
-    const life = w.people.get(pid)!.life;
-    const ctx = { self: pid, bind: {} };
-    for (const sub of life?.subobjectives ?? []) {
-      if (!s.actor || evalCond(w, s, sub.done, ctx)) continue;
-      const r = solve(w, s, { withinLife: true, goal: (x) => !x.ended && evalCond(w, x, sub.done, ctx), targets: goalTargets(w, s, sub.done, pid), maxNodes });
-      if (r.status !== "reachable") break;
-      path.push(...r.path!);
-      s = r.state!;
+    const started = assignLife(w, prepareNextLife(w, s).state, pid).state;
+    const finish = relaxedReachableByActor(w, started, ending)
+      ? solve(w, started, { withinLife: true, goal: reached, targets: goalTargets(w, started, endCond, pid), maxNodes: maxNodes * 4 })
+      : null;
+    if (finish?.status === "reachable") {
+      return {
+        status: "reachable",
+        path: [...path, `[life ${started.lives}: ${nameOf(w, pid)}]`, ...finish.path!],
+        steps: [...steps, { life: pid }, ...finish.steps!],
+        ticks: finish.state!.tick,
+        finisher: pid,
+      };
     }
-    // 3. ...and end the life: its mission if possible, any legal end otherwise.
-    if (s.actor) {
-      // Never end the run on the way: another ending here would rule out the one being proved.
-      const mission = (x: State) => !x.ended && x.missions.some((m) => m.owner === pid && m.status === "complete");
-      const done = solve(w, s, { withinLife: true, goal: mission, targets: missionTargets(w, s, pid), maxNodes });
-      const threats = Object.keys(s.things).filter((id) => w.things.get(id)?.kind === "threat" && s.things[id].props.active && s.things[id].location);
-      const end = done.status === "reachable" ? done : solve(w, s, { withinLife: true, goal: (x) => !x.ended && !x.actor, targets: threats.map((id) => s.things[id].location!), maxNodes });
-      if (end.status !== "reachable") return { status: "unknown", path, state: s };
-      path.push(...end.path!);
-      s = end.state!;
-    }
-    if (reached(s)) return { status: "reachable", path, ticks: s.tick, finisher: pid };
+    // 2. Otherwise play its planned path (its story event is what moves the world on) and end it.
+    const r = playLife(w, s, pid, maxNodes);
+    if (!r) return { status: "unknown", path, state: started, steps };
+    path.push(...r.path);
+    steps.push(...r.steps);
+    s = r.state;
+    if (reached(s)) return { status: "reachable", path, steps, ticks: s.tick, finisher: pid };
   }
-  return { status: "unknown", path };
+  return { status: "unknown", path, steps };
 }
 
 /** What the endings can depend on, by kind: clues, circuits, barriers, things, facts. */
@@ -326,4 +377,20 @@ export function checkStructure(w: World): RuleCheck[] {
     add(need.length >= 2 && fromLives.size >= 2 && reachable && real, `${o.kind} "${o.name}": reachable, gated by 2+ milestones from different lives`, need.join(" + "));
   }
   return checks;
+}
+/**
+ * Fast skill check: with nobody having a skill, which endings and milestones
+ * does the relaxed check prove impossible? Any hit means the skill is required
+ * somewhere (no stand-in item or other mechanism), which breaks "experts are shortcuts".
+ */
+export function skillGaps(w: World): { skill: string; endings: string[]; milestones: string[] }[] {
+  return skillsInUse(w).map((skill) => {
+    const ww = withoutSkill(w, skill);
+    const s = initialState(ww, "timed");
+    return {
+      skill,
+      endings: ww.def.endings.filter((e) => !relaxedReachable(ww, s, e.id)).map((e) => e.name),
+      milestones: (ww.def.milestones ?? []).filter((m) => !relaxedCondReachable(ww, s, { fact: m.id })).map((m) => m.id),
+    };
+  });
 }

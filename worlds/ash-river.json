@@ -2024,14 +2024,14 @@
       "at": [16, 42, 0],
       "life": {
         "objective": {
-          "text": "Make your last run to the fuel depot",
+          "text": "Make your last run: rig a tanker in the depot yard",
           "done": {
-            "at": ["self", "#depot"]
+            "fact": "tanker.rigged"
           }
         },
         "destination": {
-          "at": "depot",
-          "text": "Stay at the depot"
+          "at": "yard",
+          "text": "Stay with the tankers"
         },
         "obstacle": {
           "text": "The Ash River Bridge gives way as you reach it."

@@ -15,7 +15,7 @@ import { activeThreatAt, describe, listActions, passable, step, stepMut } from "
 import { assignLife, pool, prepareNextLife } from "./lives.js";
 import { distances } from "./nav.js";
 import { relaxedMissionReachable, relaxedReachable } from "./relaxed.js";
-import type { State } from "./types.js";
+import type { Action, State } from "./types.js";
 import { type World, nameOf } from "./world.js";
 
 export interface SolveOpts {
@@ -44,6 +44,8 @@ export interface SolveResult {
   nodes: number;
   /** The state where the goal was reached. */
   state?: State;
+  /** Replayable primitive steps from the start state to it. */
+  steps?: Step[];
 }
 
 /** Compact identity for a state (SHA-1 of stateKey): the search keeps one per state it has seen. */
@@ -119,15 +121,21 @@ interface Node {
   key: string;
 }
 
-/** Apply every available solverAuto rule (first binding each time) until none remain. Mutates `s`, which must be private. */
-function autoApply(w: World, s: State): State {
+/** One replayable step of a proof: start a life, or take one primitive action. */
+export type Step = { life: string } | { act: Action };
+
+/** Apply every available solverAuto rule (first binding each time) until none remain. Mutates `s`, which must be private. Records what it did. */
+function autoApply(w: World, s: State, rec: Step[]): State {
   for (let guard = 0; guard < 100 && s.actor && !s.ended; guard++) {
     const a = listActions(w, s).find((x) => x.kind === "rule" && w.rules.get(x.rule)!.solverAuto);
     if (!a) break;
     stepMut(w, s, a);
+    rec.push({ act: a });
   }
   return s;
 }
+
+type Succ = { state: State; label: string; steps: Step[] };
 
 /** Locations named literally ("#id") in goals, endings or rules: places that matter just by being there. */
 const namedCache = new WeakMap<World, Set<string>>();
@@ -168,7 +176,7 @@ function isStop(w: World, s: State, loc: string): boolean {
  * on the current passability. Each hop is applied with step(), so hazards,
  * triggers and followers behave exactly as if the moves were made one by one.
  */
-function travel(w: World, s: State): { state: State; label: string }[] {
+function travel(w: World, s: State): Succ[] {
   const me = s.people[s.actor!];
   const inVehicle = me.vehicle !== null;
   const best = new Map<string, number>([[me.location, 0]]);
@@ -191,7 +199,7 @@ function travel(w: World, s: State): { state: State; label: string }[] {
     }
   }
   const who = nameOf(w, s.actor);
-  const out: { state: State; label: string }[] = [];
+  const out: Succ[] = [];
   for (const dest of best.keys()) {
     if (dest === me.location || !isStop(w, s, dest)) continue;
     const hops: string[] = [];
@@ -202,6 +210,7 @@ function travel(w: World, s: State): { state: State; label: string }[] {
       at = c.a === at ? c.b : c.a;
     }
     const cur = structuredClone(s);
+    const steps: Step[] = [];
     let moved = false;
     for (const cid of hops) {
       if (!cur.actor || cur.ended) break;
@@ -209,31 +218,36 @@ function travel(w: World, s: State): { state: State; label: string }[] {
       if (!passable(w, cur, cid, inCar)) break; // the route closed mid-trip (e.g. a collapse): stop where we are
       const c = w.connections.get(cid)!;
       const here = cur.people[cur.actor].location;
-      stepMut(w, cur, { kind: "move", conn: cid, to: c.a === here ? c.b : c.a, ticks: inCar ? Math.ceil(c.ticks / 2) : c.ticks });
+      const mv: Action = { kind: "move", conn: cid, to: c.a === here ? c.b : c.a, ticks: inCar ? Math.ceil(c.ticks / 2) : c.ticks };
+      stepMut(w, cur, mv);
+      steps.push({ act: mv });
       moved = true;
       if (activeThreatAt(w, cur, cur.people[cur.actor!]?.location ?? "")) break; // a threat stops the trip: fight or flee
     }
     if (!moved) continue;
-    out.push({ state: autoApply(w, cur), label: `${who}: ${inVehicle ? "Drive" : "Go"} to ${nameOf(w, dest)} (${cur.tick - s.tick})` });
+    out.push({ state: autoApply(w, cur, steps), steps, label: `${who}: ${inVehicle ? "Drive" : "Go"} to ${nameOf(w, dest)} (${cur.tick - s.tick})` });
   }
   return out;
 }
 
 /** Successor states, with a human-readable label for the transition. */
-export function successors(w: World, s: State): { state: State; label: string }[] {
+export function successors(w: World, s: State): Succ[] {
   if (s.ended) return [];
   if (!s.actor) {
     const prepared = prepareNextLife(w, s).state;
-    if (prepared.ended) return [{ state: prepared, label: "(run ends)" }];
-    return pool(w, prepared).map((pid) => ({
-      state: autoApply(w, assignLife(w, prepared, pid).state),
-      label: `[life ${prepared.lives}: ${nameOf(w, pid)}]`,
-    }));
+    if (prepared.ended) return [{ state: prepared, label: "(run ends)", steps: [] }];
+    return pool(w, prepared).map((pid) => {
+      const steps: Step[] = [{ life: pid }];
+      return { state: autoApply(w, assignLife(w, prepared, pid).state, steps), steps, label: `[life ${prepared.lives}: ${nameOf(w, pid)}]` };
+    });
   }
   const who = nameOf(w, s.actor);
   const acts = listActions(w, s, { forSolver: true })
     .filter((a) => a.kind !== "move" && a.kind !== "wait") // nothing runs on a timer, so waiting never helps
-    .map((a) => ({ state: autoApply(w, step(w, s, a).state), label: `${who}: ${describe(w, s, a)}` }));
+    .map((a) => {
+      const steps: Step[] = [{ act: a }];
+      return { state: autoApply(w, step(w, s, a).state, steps), steps, label: `${who}: ${describe(w, s, a)}` };
+    });
   // Inside an active threat the only options are fighting or fleeing (already in acts).
   if (activeThreatAt(w, s, s.people[s.actor].location)) return acts;
   return [...acts, ...travel(w, s)];
@@ -301,7 +315,7 @@ function search(w: World, start: State, opts: SolveOpts, weight: Weight, maxNode
       : (s.ended?.kind === "ending" && (opts.ending === undefined || s.ended.ending === opts.ending)) || (!!opts.withinLife && missionDone(s));
 
   const startKey = stateHash(start);
-  const parent = new Map<string, { from: string; label: string } | null>([[startKey, null]]);
+  const parent = new Map<string, { from: string; label: string; steps: Step[] } | null>([[startKey, null]]);
   const best = new Map<string, number>([[startKey, start.tick]]);
   const heap = new Heap<Node>();
   const targets = opts.targets ?? [];
@@ -321,14 +335,16 @@ function search(w: World, start: State, opts: SolveOpts, weight: Weight, maxNode
     nodes++;
     if (isGoal(state)) {
       const path: string[] = [];
+      const steps: Step[] = [];
       for (let k: string | undefined = key; k; ) {
         const p = parent.get(k);
         if (!p) break;
         path.unshift(p.label);
+        steps.unshift(...p.steps);
         k = p.from;
       }
       const ending = state.ended?.kind === "ending" ? state.ended.ending : undefined;
-      return { status: "reachable", ending, path, ticks: state.tick, nodes, state };
+      return { status: "reachable", ending, path, steps, ticks: state.tick, nodes, state };
     }
     if (nodes >= maxNodes) return { status: "unknown", nodes };
     if (opts.withinLife && !state.actor) continue;
@@ -336,7 +352,7 @@ function search(w: World, start: State, opts: SolveOpts, weight: Weight, maxNode
       const k = stateHash(next.state);
       if ((best.get(k) ?? Infinity) <= next.state.tick) continue;
       best.set(k, next.state.tick);
-      parent.set(k, { from: key, label: next.label });
+      parent.set(k, { from: key, label: next.label, steps: next.steps });
       heap.push(priority(next.state), { state: next.state, key: k });
     }
   }
