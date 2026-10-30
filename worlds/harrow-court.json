@@ -1,0 +1,1964 @@
+{
+  "id": "harrow-court",
+  "name": "Harrow Court (Lightless)",
+  "ruleSets": [
+    "core"
+  ],
+  "rules": [],
+  "grid": {
+    "cellMeters": 2,
+    "ticksPerCell": 0.25,
+    "floorChangeCells": 4,
+    "layers": {
+      "0": [
+        "",
+        "",
+        "",
+        "",
+        "     ###########################################################################################",
+        "     #mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#",
+        "     #mmSmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#",
+        "     #mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#",
+        "     #mmmm####################mmmmmmmmmm####################mmmmmmmmmm####################mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aSaaaaaaaaaaaaaaaa#mmmmmmmmmm#bSbbbbbbbbbbbbbbbb#mmmmmmmmmm#cScccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm#aaaaaaaaaaaaaaaaaa#mmmmmmmmmm#bbbbbbbbbbbbbbbbbb#mmmmmmmmmm#cccccccccccccccccc#mmmmm#",
+        "     #mmmm##########+#########mmmmmmmmmm##########+#########mmmmmmmmmm##########+#########mmmmm#",
+        "     #mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#",
+        "     ######+#############m#####+#####mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#############",
+        "     #ooooooooooo#qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#ddddddddddd#",
+        "     #ooooooooooo#qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#ddddddddddd#",
+        "     #ooooooooooo#qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm+ddddddddddd#",
+        "     #ooooooooooo+qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#ddddddddddd#",
+        "     #ooooooooooo#qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#ddddddddddd#",
+        "     #ooooooooooo#qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#ddddddddddd#",
+        "     #ooooooooooo#qqqqqq#m#nnnnnnnnn#mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm#ddddddddddd#",
+        "     ############################################++#####################################++######",
+        "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+        "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+        "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+        "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+      ],
+      "1": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "2": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "3": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "4": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa+kkkkkkkkkk+bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa+kkkkkkkkkk+bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "5": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "6": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "7": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "8": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb+kkkkkkkkkk+cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb+kkkkkkkkkk+cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "9": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "10": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aSaaaaaaaaaaaaaaaa#          #bSbbbbbbbbbbbbbbbb#          #cScccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          #aaaaaaaaaaaaaaaaaa#          #bbbbbbbbbbbbbbbbbb#          #cccccccccccccccccc#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "11": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "          ####################          ####################          ####################",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xSxxxxxxxxxxxxxxxx#          #ySyyyyyyyyyyyyyyyy#          #zSzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          #xxxxxxxxxxxxxxxxxx#          #yyyyyyyyyyyyyyyyyy#          #zzzzzzzzzzzzzzzzzz#",
+        "          ####################          ####################          ####################",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "-2": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff",
+        "                                                       ffffffffffffffffffffffffff###############",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff+wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwSwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                       ffffffffffffffffffffffffff#wwwwwwwwwwwww#",
+        "                                                                                 ###############",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "-1": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggSgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggSgggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "      ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "legend": {
+      "0": {
+        "h": "harrow_rd",
+        "m": "mall",
+        "a": "lobby_a",
+        "b": "lobby_b",
+        "c": "lobby_c",
+        "o": "security",
+        "q": "armory",
+        "n": "management",
+        "d": "dock"
+      },
+      "1": {
+        "a": "a1",
+        "b": "b1",
+        "c": "c1"
+      },
+      "2": {
+        "a": "a2",
+        "b": "b2",
+        "c": "c2"
+      },
+      "3": {
+        "a": "a3",
+        "b": "b3",
+        "c": "c3"
+      },
+      "4": {
+        "a": "a4",
+        "b": "b4",
+        "c": "c4",
+        "k": "bridge4"
+      },
+      "5": {
+        "a": "a5",
+        "b": "b5",
+        "c": "c5"
+      },
+      "6": {
+        "a": "a6",
+        "b": "b6",
+        "c": "c6"
+      },
+      "7": {
+        "a": "a7",
+        "b": "b7",
+        "c": "c7"
+      },
+      "8": {
+        "a": "a8",
+        "b": "b8",
+        "c": "c8",
+        "k": "bridge8"
+      },
+      "9": {
+        "a": "a9",
+        "b": "b9",
+        "c": "c9"
+      },
+      "10": {
+        "a": "a10",
+        "b": "b10",
+        "c": "c10"
+      },
+      "11": {
+        "x": "roof_a",
+        "y": "roof_b",
+        "z": "roof_c"
+      },
+      "-2": {
+        "w": "switchgear_room",
+        "f": "foundations"
+      },
+      "-1": {
+        "g": "garage"
+      }
+    },
+    "zones": [
+      {
+        "id": "harrow_rd",
+        "name": "Harrow Road",
+        "road": true
+      },
+      {
+        "id": "mall",
+        "name": "Harrow Court mall concourse"
+      },
+      {
+        "id": "lobby_a",
+        "name": "Tower A lobby"
+      },
+      {
+        "id": "lobby_b",
+        "name": "Tower B lobby"
+      },
+      {
+        "id": "lobby_c",
+        "name": "Tower C lobby"
+      },
+      {
+        "id": "security",
+        "name": "Security office"
+      },
+      {
+        "id": "armory",
+        "name": "Security lock-up"
+      },
+      {
+        "id": "management",
+        "name": "Management office"
+      },
+      {
+        "id": "dock",
+        "name": "Loading dock"
+      },
+      {
+        "id": "a1",
+        "name": "Tower A, floor 1",
+        "transit": true
+      },
+      {
+        "id": "a2",
+        "name": "Tower A, floor 2"
+      },
+      {
+        "id": "a3",
+        "name": "Tower A, floor 3"
+      },
+      {
+        "id": "a4",
+        "name": "Tower A, floor 4"
+      },
+      {
+        "id": "a5",
+        "name": "Tower A, floor 5",
+        "transit": true
+      },
+      {
+        "id": "a6",
+        "name": "Tower A, floor 6",
+        "transit": true
+      },
+      {
+        "id": "a7",
+        "name": "Tower A, floor 7",
+        "transit": true
+      },
+      {
+        "id": "a8",
+        "name": "Tower A, floor 8",
+        "transit": true
+      },
+      {
+        "id": "a9",
+        "name": "Tower A, floor 9",
+        "transit": true
+      },
+      {
+        "id": "a10",
+        "name": "Tower A, floor 10",
+        "transit": true
+      },
+      {
+        "id": "roof_a",
+        "name": "Tower A roof"
+      },
+      {
+        "id": "b1",
+        "name": "Tower B, floor 1",
+        "transit": true
+      },
+      {
+        "id": "b2",
+        "name": "Tower B, floor 2",
+        "transit": true
+      },
+      {
+        "id": "b3",
+        "name": "Tower B, floor 3",
+        "transit": true
+      },
+      {
+        "id": "b4",
+        "name": "Tower B, floor 4"
+      },
+      {
+        "id": "b5",
+        "name": "Tower B, floor 5"
+      },
+      {
+        "id": "b6",
+        "name": "Tower B, floor 6"
+      },
+      {
+        "id": "b7",
+        "name": "Tower B, floor 7",
+        "transit": true
+      },
+      {
+        "id": "b8",
+        "name": "Tower B, floor 8"
+      },
+      {
+        "id": "b9",
+        "name": "Tower B, floor 9",
+        "transit": true
+      },
+      {
+        "id": "b10",
+        "name": "Tower B, floor 10",
+        "transit": true
+      },
+      {
+        "id": "roof_b",
+        "name": "Tower B roof"
+      },
+      {
+        "id": "c1",
+        "name": "Tower C, floor 1",
+        "transit": true
+      },
+      {
+        "id": "c2",
+        "name": "Tower C, floor 2",
+        "transit": true
+      },
+      {
+        "id": "c3",
+        "name": "Tower C, floor 3",
+        "transit": true
+      },
+      {
+        "id": "c4",
+        "name": "Tower C, floor 4",
+        "transit": true
+      },
+      {
+        "id": "c5",
+        "name": "Tower C, floor 5",
+        "transit": true
+      },
+      {
+        "id": "c6",
+        "name": "Tower C, floor 6",
+        "transit": true
+      },
+      {
+        "id": "c7",
+        "name": "Tower C, floor 7"
+      },
+      {
+        "id": "c8",
+        "name": "Tower C, floor 8"
+      },
+      {
+        "id": "c9",
+        "name": "Tower C, floor 9"
+      },
+      {
+        "id": "c10",
+        "name": "Tower C, floor 10",
+        "transit": true
+      },
+      {
+        "id": "roof_c",
+        "name": "Tower C roof",
+        "props": {
+          "lightCircuit": "main"
+        }
+      },
+      {
+        "id": "bridge4",
+        "name": "Skybridge, floor 4 (A to B)",
+        "props": {
+          "lightCircuit": "main"
+        }
+      },
+      {
+        "id": "bridge8",
+        "name": "Skybridge, floor 8 (B to C)"
+      },
+      {
+        "id": "garage",
+        "name": "Parking garage",
+        "props": {
+          "lightCircuit": "emergency"
+        }
+      },
+      {
+        "id": "switchgear_room",
+        "name": "Switchgear room",
+        "props": {
+          "dark": true,
+          "lightCircuit": "main"
+        }
+      },
+      {
+        "id": "foundations",
+        "name": "The foundations",
+        "props": {
+          "dark": true
+        }
+      }
+    ],
+    "links": [
+      {
+        "at": [11, 23, 0],
+        "barrier": "security_door"
+      },
+      {
+        "at": [17, 27, 0],
+        "barrier": "lockup_door"
+      },
+      {
+        "at": [83, 26, 0],
+        "barrier": "dock_door"
+      },
+      {
+        "at": [88, 31, 0],
+        "barrier": "roller_door"
+      },
+      {
+        "at": [90, 28, -1],
+        "barrier": "blast_door"
+      },
+      {
+        "at": [12, 10, 11],
+        "barrier": "roof_door_a"
+      },
+      {
+        "at": [42, 10, 11],
+        "barrier": "roof_door_b"
+      },
+      {
+        "at": [72, 10, 11],
+        "barrier": "roof_door_c"
+      }
+    ],
+    "extraLinks": [
+      {
+        "id": "lift_a3",
+        "a": "lobby_a",
+        "b": "a3",
+        "ticks": 3,
+        "barrier": "elevator_a"
+      },
+      {
+        "id": "lift_b6",
+        "a": "lobby_b",
+        "b": "b6",
+        "ticks": 4,
+        "barrier": "elevator_b"
+      },
+      {
+        "id": "lift_b8",
+        "a": "lobby_b",
+        "b": "b8",
+        "ticks": 5,
+        "barrier": "elevator_b"
+      },
+      {
+        "id": "lift_c9",
+        "a": "lobby_c",
+        "b": "c9",
+        "ticks": 5,
+        "barrier": "elevator_c"
+      }
+    ],
+    "expect": [
+      ["harrow_rd", "mall"],
+      ["harrow_rd", "dock"],
+      ["mall", "security"],
+      ["security", "armory"],
+      ["mall", "management"],
+      ["mall", "dock"],
+      ["mall", "garage"],
+      ["garage", "switchgear_room"],
+      ["switchgear_room", "foundations"],
+      ["bridge4", "a4"],
+      ["bridge4", "b4"],
+      ["bridge8", "b8"],
+      ["bridge8", "c8"],
+      ["lobby_a", "a3"],
+      ["lobby_b", "b6"],
+      ["lobby_b", "b8"],
+      ["lobby_c", "c9"],
+      ["mall", "lobby_a"],
+      ["lobby_a", "a1"],
+      ["a10", "roof_a"],
+      ["a1", "a2"],
+      ["a2", "a3"],
+      ["a3", "a4"],
+      ["a4", "a5"],
+      ["a5", "a6"],
+      ["a6", "a7"],
+      ["a7", "a8"],
+      ["a8", "a9"],
+      ["a9", "a10"],
+      ["mall", "lobby_b"],
+      ["lobby_b", "b1"],
+      ["b10", "roof_b"],
+      ["b1", "b2"],
+      ["b2", "b3"],
+      ["b3", "b4"],
+      ["b4", "b5"],
+      ["b5", "b6"],
+      ["b6", "b7"],
+      ["b7", "b8"],
+      ["b8", "b9"],
+      ["b9", "b10"],
+      ["mall", "lobby_c"],
+      ["lobby_c", "c1"],
+      ["c10", "roof_c"],
+      ["c1", "c2"],
+      ["c2", "c3"],
+      ["c3", "c4"],
+      ["c4", "c5"],
+      ["c5", "c6"],
+      ["c6", "c7"],
+      ["c7", "c8"],
+      ["c8", "c9"],
+      ["c9", "c10"]
+    ]
+  },
+  "things": [
+    {
+      "id": "security_door",
+      "name": "the security office door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "none"
+      }
+    },
+    {
+      "id": "lockup_door",
+      "name": "the lock-up door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "all",
+        "locked": true,
+        "lockId": "lockup",
+        "pryable": true
+      }
+    },
+    {
+      "id": "dock_door",
+      "name": "the dock's service door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "none"
+      }
+    },
+    {
+      "id": "roller_door",
+      "name": "the dock's roller door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "none",
+        "owner": "sami",
+        "temporary": true
+      }
+    },
+    {
+      "id": "blast_door",
+      "name": "the sub-basement blast door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "none",
+        "closable": true,
+        "circuit": "emergency"
+      }
+    },
+    {
+      "id": "roof_door_a",
+      "name": "Tower A's roof door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "all",
+        "locked": true,
+        "lockId": "roof",
+        "pryable": true
+      }
+    },
+    {
+      "id": "roof_door_b",
+      "name": "Tower B's roof door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "all",
+        "locked": true,
+        "lockId": "roof",
+        "pryable": true
+      }
+    },
+    {
+      "id": "roof_door_c",
+      "name": "Tower C's roof door",
+      "kind": "barrier",
+      "props": {
+        "blocks": "all",
+        "locked": true,
+        "lockId": "roof",
+        "pryable": true
+      }
+    },
+    {
+      "id": "elevator_a",
+      "name": "Tower A's elevator",
+      "kind": "barrier",
+      "props": {
+        "poweredBy": "a"
+      }
+    },
+    {
+      "id": "elevator_b",
+      "name": "Tower B's elevator",
+      "kind": "barrier",
+      "props": {
+        "poweredBy": "main"
+      }
+    },
+    {
+      "id": "elevator_c",
+      "name": "Tower C's elevator",
+      "kind": "barrier",
+      "props": {
+        "poweredBy": "main"
+      }
+    },
+    {
+      "id": "headlamp",
+      "name": "Nadia's headlamp",
+      "kind": "item",
+      "location": "nadia",
+      "props": {
+        "owner": "nadia",
+        "bound": true,
+        "light": 1
+      }
+    },
+    {
+      "id": "phone",
+      "name": "Iris's phone",
+      "kind": "item",
+      "location": "iris",
+      "props": {
+        "owner": "iris",
+        "bound": true,
+        "light": 1
+      }
+    },
+    {
+      "id": "torch_1",
+      "name": "a security torch",
+      "kind": "item",
+      "at": [20, 26, 0],
+      "props": {
+        "light": 1
+      }
+    },
+    {
+      "id": "torch_2",
+      "name": "a security torch",
+      "kind": "item",
+      "at": [21, 28, 0],
+      "props": {
+        "light": 1
+      }
+    },
+    {
+      "id": "flares",
+      "name": "a box of road flares",
+      "kind": "item",
+      "at": [90, 25, 0],
+      "props": {
+        "lightCharges": 3
+      }
+    },
+    {
+      "id": "lockup_key",
+      "name": "the lock-up key",
+      "kind": "item",
+      "at": [8, 26, 0],
+      "props": {
+        "owner": "pell",
+        "bound": true,
+        "opens": "lockup"
+      }
+    },
+    {
+      "id": "master_key",
+      "name": "the master key",
+      "kind": "item",
+      "at": [22, 25, 0],
+      "props": {
+        "opens": "roof"
+      }
+    },
+    {
+      "id": "baton",
+      "name": "a baton",
+      "kind": "item",
+      "location": "pell",
+      "props": {
+        "owner": "pell",
+        "bound": true,
+        "weapon": 1
+      }
+    },
+    {
+      "id": "toolkit",
+      "name": "Nadia's toolkit",
+      "kind": "item",
+      "location": "nadia",
+      "props": {
+        "owner": "nadia",
+        "bound": true,
+        "repairs": true
+      }
+    },
+    {
+      "id": "dock_tools",
+      "name": "a toolbox",
+      "kind": "item",
+      "at": [92, 29, 0],
+      "props": {
+        "repairs": true,
+        "pries": true,
+        "weapon": 1
+      }
+    },
+    {
+      "id": "fuel_can",
+      "name": "a can of diesel",
+      "kind": "item",
+      "at": [86, 29, 0],
+      "props": {
+        "owner": "sami",
+        "bound": true,
+        "fuel": true
+      }
+    },
+    {
+      "id": "journal",
+      "name": "the construction journal",
+      "kind": "item",
+      "at": [28, 25, 0],
+      "props": {
+        "reveals": "dark.wants"
+      }
+    },
+    {
+      "id": "manual",
+      "name": "the switchgear service manual",
+      "kind": "item",
+      "at": [34, 29, 0],
+      "props": {
+        "teaches": "engineering"
+      }
+    },
+    {
+      "id": "relic",
+      "name": "the foundation stone",
+      "kind": "item",
+      "at": [78, 12, 9],
+      "props": {
+        "owner": "grace",
+        "bound": true,
+        "relic": true
+      }
+    },
+    {
+      "id": "switchgear",
+      "name": "the main switchgear",
+      "kind": "fixture",
+      "at": [88, 26, -2],
+      "props": {
+        "source": true,
+        "feeds": "main|a|emergency",
+        "online": false,
+        "skill": "engineering",
+        "tool": "repairs",
+        "yieldsFact": "power.main"
+      }
+    },
+    {
+      "id": "dock_gen",
+      "name": "the dock's emergency generator",
+      "kind": "fixture",
+      "at": [93, 25, 0],
+      "props": {
+        "source": true,
+        "feeds": "emergency",
+        "online": false,
+        "input": "fuel",
+        "consumes": true,
+        "yieldsFact": "power.reserve"
+      }
+    },
+    {
+      "id": "gen_a",
+      "name": "Tower A's backup generator",
+      "kind": "fixture",
+      "at": [25, 18, 3],
+      "props": {
+        "source": true,
+        "feeds": "a|emergency",
+        "online": false,
+        "yieldsFact": "power.reserve"
+      }
+    },
+    {
+      "id": "floodlights",
+      "name": "the garage floodlights",
+      "kind": "fixture",
+      "at": [50, 15, -1],
+      "props": {
+        "machine": true,
+        "circuit": "emergency",
+        "needsFact": "garage.surge|power.reserve",
+        "banishes": "garage",
+        "yieldsOnBanish": "garage.held",
+        "reusable": true
+      }
+    },
+    {
+      "id": "beacon",
+      "name": "the crown beacon",
+      "kind": "fixture",
+      "at": [85, 18, 11],
+      "props": {
+        "machine": true,
+        "circuit": "main",
+        "needsFact": "power.main|way.up|dark.understood",
+        "yieldsFact": "beacon.lit"
+      }
+    },
+    {
+      "id": "hollow",
+      "name": "the hollow in the foundations",
+      "kind": "fixture",
+      "at": [60, 12, -2],
+      "props": {
+        "machine": true,
+        "input": "relic",
+        "consumes": true,
+        "needsFact": "stone.found|dark.understood|lockup.open",
+        "yieldsFact": "relic.returned"
+      }
+    },
+    {
+      "id": "carvings",
+      "name": "the carvings in the footings",
+      "kind": "fixture",
+      "at": [70, 25, -2],
+      "props": {
+        "machine": true,
+        "skill": "science",
+        "yieldsFact": "dark.understood",
+        "yieldsClue": "dark.wants"
+      }
+    },
+    {
+      "id": "hum",
+      "name": "the hum in the hollow",
+      "kind": "fixture",
+      "at": [62, 14, -2],
+      "props": {
+        "machine": true,
+        "input": "relic",
+        "yieldsFact": "dark.understood",
+        "yieldsClue": "dark.wants"
+      }
+    },
+    {
+      "id": "battery_bank",
+      "name": "the roof battery bank",
+      "kind": "fixture",
+      "at": [50, 18, 11],
+      "props": {
+        "source": true,
+        "feeds": "main",
+        "online": false,
+        "input": "fuse",
+        "consumes": true,
+        "yieldsFact": "power.main"
+      }
+    },
+    {
+      "id": "fuse",
+      "name": "a spare main fuse",
+      "kind": "item",
+      "at": [33, 26, 0],
+      "props": {
+        "fuse": true
+      }
+    },
+    {
+      "id": "dark_b5",
+      "name": "the dark on floor 5",
+      "kind": "threat",
+      "at": [50, 15, 5],
+      "props": {
+        "owner": "iris",
+        "strength": 2,
+        "counter": "light",
+        "active": false
+      }
+    },
+    {
+      "id": "dark_c7",
+      "name": "the dark on floor 7",
+      "kind": "threat",
+      "at": [80, 15, 7],
+      "props": {
+        "owner": "grace",
+        "strength": 2,
+        "counter": "light",
+        "active": false
+      }
+    },
+    {
+      "id": "dark_a2",
+      "name": "the dark on floor 2",
+      "kind": "threat",
+      "at": [20, 15, 2],
+      "props": {
+        "owner": "kai",
+        "strength": 2,
+        "counter": "light",
+        "active": false
+      }
+    },
+    {
+      "id": "taken_mall",
+      "name": "the taken in the concourse",
+      "kind": "threat",
+      "at": [60, 15, 0],
+      "props": {
+        "owner": "pell",
+        "strength": 1,
+        "active": false
+      }
+    }
+  ],
+  "people": [
+    {
+      "id": "nadia",
+      "name": "Nadia Okoye",
+      "role": "building engineer",
+      "playable": true,
+      "category": "skilled",
+      "narrative": "repair",
+      "at": [15, 15, 0],
+      "abilities": [
+        "engineering"
+      ],
+      "life": {
+        "objective": {
+          "text": "Get the main switchgear back online",
+          "done": {
+            "prop": ["#switchgear", "online"],
+            "eq": true
+          }
+        },
+        "destination": {
+          "at": "security",
+          "text": "Report to the security office"
+        },
+        "obstacle": {
+          "text": "The switchgear room is deep in the dark. As the power comes back, the dark surges up into the garage."
+        },
+        "subobjectives": [
+          {
+            "id": "nadia.down",
+            "text": "Get down to the switchgear room",
+            "done": {
+              "at": ["self", "#switchgear_room"]
+            }
+          },
+          {
+            "id": "nadia.power",
+            "text": "Bring the main switchgear back",
+            "done": {
+              "prop": ["#switchgear", "online"],
+              "eq": true
+            },
+            "story": true,
+            "feeds": "milestone:power.main"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pell",
+      "name": "Pell Brandt",
+      "role": "night security",
+      "playable": true,
+      "category": "skilled",
+      "narrative": "protect",
+      "at": [10, 27, 0],
+      "abilities": ["authority", "combat"],
+      "life": {
+        "objective": {
+          "text": "Open the lock-up and get the torches out",
+          "done": {
+            "prop": ["#lockup_door", "locked"],
+            "eq": false
+          }
+        },
+        "destination": {
+          "at": "lobby_b",
+          "text": "Get to the Tower B lobby, where residents are gathering"
+        },
+        "obstacle": {
+          "text": "Something that used to be people is standing in the concourse."
+        },
+        "spawn": [
+          {
+            "set": ["#taken_mall", "active"],
+            "value": true
+          }
+        ],
+        "subobjectives": [
+          {
+            "id": "pell.key",
+            "text": "Find the lock-up key in the security office",
+            "done": {
+              "holds": ["self", "#lockup_key"]
+            }
+          },
+          {
+            "id": "pell.lockup",
+            "text": "Open the lock-up",
+            "done": {
+              "prop": ["#lockup_door", "locked"],
+              "eq": false
+            },
+            "story": true,
+            "feeds": "milestone:lockup.open"
+          }
+        ]
+      }
+    },
+    {
+      "id": "iris",
+      "name": "Dr. Iris Vane",
+      "role": "architectural historian",
+      "playable": true,
+      "category": "expert",
+      "narrative": "investigate",
+      "at": [45, 15, 6],
+      "abilities": [
+        "science"
+      ],
+      "life": {
+        "objective": {
+          "text": "Find out what the dark wants",
+          "done": {
+            "knows": "dark.wants"
+          }
+        },
+        "destination": {
+          "at": "security",
+          "text": "Tell the security office"
+        },
+        "obstacle": {
+          "text": "The dark has filled the fifth floor of Tower B. Your phone light isn't enough."
+        },
+        "spawn": [
+          {
+            "set": ["#dark_b5", "active"],
+            "value": true
+          }
+        ],
+        "subobjectives": [
+          {
+            "id": "iris.down",
+            "text": "Get down past the fifth floor",
+            "done": {
+              "not": {
+                "any": [
+                  {
+                    "at": ["self", "#b6"]
+                  },
+                  {
+                    "at": ["self", "#b5"]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "id": "iris.carvings",
+            "text": "Read the carvings in the foundations",
+            "done": {
+              "knows": "dark.wants"
+            },
+            "story": true,
+            "feeds": "milestone:dark.understood"
+          }
+        ]
+      }
+    },
+    {
+      "id": "grace",
+      "name": "Grace Holloway",
+      "role": "retired, Tower C",
+      "playable": true,
+      "category": "ordinary",
+      "narrative": "rescue",
+      "at": [75, 12, 9],
+      "life": {
+        "objective": {
+          "text": "Get Leo out of the building",
+          "done": {
+            "at": ["#leo", "#harrow_rd"]
+          }
+        },
+        "destination": {
+          "at": "harrow_rd",
+          "text": "Out onto Harrow Road"
+        },
+        "obstacle": {
+          "text": "The dark has taken Tower C's seventh floor."
+        },
+        "spawn": [
+          {
+            "set": ["#dark_c7", "active"],
+            "value": true
+          }
+        ],
+        "subobjectives": [
+          {
+            "id": "grace.stone",
+            "text": "Take Walter's stone from the cabinet",
+            "done": {
+              "holds": ["self", "#relic"]
+            },
+            "story": true,
+            "feeds": "milestone:stone.found"
+          },
+          {
+            "id": "grace.across",
+            "text": "Cross to Tower B on the eighth-floor skybridge",
+            "done": {
+              "at": ["self", "#b8"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "leo",
+      "name": "Leo Holloway",
+      "role": "Grace's grandson",
+      "playable": false,
+      "at": [76, 13, 9],
+      "props": {
+        "owner": "grace",
+        "leadable": true
+      }
+    },
+    {
+      "id": "sami",
+      "name": "Sami Reyes",
+      "role": "delivery rider",
+      "playable": true,
+      "category": "ordinary",
+      "narrative": "escape",
+      "at": [88, 27, 0],
+      "life": {
+        "objective": {
+          "text": "Get the dock's generator running so the garage lights come on",
+          "done": {
+            "prop": ["#dock_gen", "online"],
+            "eq": true
+          }
+        },
+        "destination": {
+          "at": "harrow_rd",
+          "text": "Get out onto Harrow Road"
+        },
+        "obstacle": {
+          "text": "The roller door slams down and won't budge. The only way out is back through the mall."
+        },
+        "spawn": [
+          {
+            "set": ["#roller_door", "blocks"],
+            "value": "all"
+          }
+        ],
+        "subobjectives": [
+          {
+            "id": "sami.gen",
+            "text": "Fuel and start the emergency generator",
+            "done": {
+              "prop": ["#dock_gen", "online"],
+              "eq": true
+            },
+            "story": true,
+            "feeds": "milestone:power.reserve"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kai",
+      "name": "Kai Turner",
+      "role": "teenager, Tower A",
+      "playable": true,
+      "category": "ordinary",
+      "narrative": "care",
+      "at": [15, 15, 3],
+      "life": {
+        "objective": {
+          "text": "Find your mum in the mall and bring her home",
+          "done": {
+            "at": ["#mum", "#a3"]
+          }
+        },
+        "destination": {
+          "at": "a3",
+          "text": "Back to the flat on floor 3"
+        },
+        "obstacle": {
+          "text": "The dark has filled the stairwell on floor 2."
+        },
+        "spawn": [
+          {
+            "set": ["#dark_a2", "active"],
+            "value": true
+          }
+        ],
+        "subobjectives": [
+          {
+            "id": "kai.gen",
+            "text": "Start the building's old backup generator",
+            "done": {
+              "prop": ["#gen_a", "online"],
+              "eq": true
+            },
+            "story": true,
+            "feeds": "milestone:power.reserve"
+          },
+          {
+            "id": "kai.mum",
+            "text": "Find Mum in the concourse",
+            "done": {
+              "together": ["self", "#mum"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mum",
+      "name": "Rena Turner",
+      "role": "Kai's mum",
+      "playable": false,
+      "at": [30, 25, 0],
+      "props": {
+        "owner": "kai",
+        "leadable": true
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "id": "surge",
+      "on": {
+        "rule": "operate",
+        "thing": "switchgear"
+      },
+      "when": {
+        "fact": "power.main"
+      },
+      "effects": [
+        {
+          "setLoc": ["garage", "dark"],
+          "value": true
+        },
+        {
+          "fact": "garage.surge",
+          "value": true
+        }
+      ],
+      "text": "The lights slam on overhead, and the dark surges up the stairs into the garage."
+    },
+    {
+      "id": "bridge_dark",
+      "life": "iris",
+      "on": {
+        "sub": "iris.carvings"
+      },
+      "effects": [
+        {
+          "setLoc": ["bridge4", "dark"],
+          "value": true
+        }
+      ],
+      "text": "Far above, the fourth-floor skybridge goes black. The dark knows you understand it now."
+    },
+    {
+      "id": "surge_roof",
+      "on": {
+        "rule": "operate",
+        "thing": "battery_bank"
+      },
+      "when": {
+        "fact": "power.main"
+      },
+      "effects": [
+        {
+          "setLoc": ["garage", "dark"],
+          "value": true
+        },
+        {
+          "fact": "garage.surge",
+          "value": true
+        }
+      ],
+      "text": "Every light in the complex flares at once. Far below, the dark surges up into the garage."
+    },
+    {
+      "id": "lockup_key",
+      "on": {
+        "rule": "unlock",
+        "thing": "lockup_door"
+      },
+      "effects": [
+        {
+          "fact": "lockup.open",
+          "value": true
+        }
+      ],
+      "text": "The lock-up swings open: torches, keys, and Walter's old site plans."
+    },
+    {
+      "id": "lockup_pry",
+      "on": {
+        "rule": "pry",
+        "thing": "lockup_door"
+      },
+      "effects": [
+        {
+          "fact": "lockup.open",
+          "value": true
+        }
+      ],
+      "text": "The lock-up swings open: torches, keys, and Walter's old site plans."
+    },
+    {
+      "id": "roof_key",
+      "on": {
+        "rule": "unlock",
+        "thing": "roof_door_c"
+      },
+      "effects": [
+        {
+          "fact": "way.up",
+          "value": true
+        }
+      ],
+      "text": "Cold air pours down the stairwell from Tower C's roof."
+    },
+    {
+      "id": "roof_pry",
+      "on": {
+        "rule": "pry",
+        "thing": "roof_door_c"
+      },
+      "effects": [
+        {
+          "fact": "way.up",
+          "value": true
+        }
+      ],
+      "text": "Cold air pours down the stairwell from Tower C's roof."
+    },
+    {
+      "id": "stone_lifted",
+      "on": {
+        "rule": "pick_up",
+        "thing": "relic"
+      },
+      "effects": [
+        {
+          "fact": "stone.found",
+          "value": true
+        }
+      ],
+      "text": "The stone is warm. It shouldn't be."
+    },
+    {
+      "id": "stone_taken",
+      "on": {
+        "rule": "take",
+        "thing": "relic"
+      },
+      "effects": [
+        {
+          "fact": "stone.found",
+          "value": true
+        }
+      ],
+      "text": "The stone is warm. It shouldn't be."
+    },
+    {
+      "id": "roof_dark",
+      "life": "grace",
+      "on": {
+        "sub": "grace.stone"
+      },
+      "effects": [
+        {
+          "setLoc": ["roof_c", "dark"],
+          "value": true
+        }
+      ],
+      "text": "As the stone leaves the cabinet, the building shudders. Something settles over Tower C's roof."
+    }
+  ],
+  "deadline": 900,
+  "milestones": [
+    {
+      "id": "power.main",
+      "name": "Power returns",
+      "tier": 1
+    },
+    {
+      "id": "power.reserve",
+      "name": "Reserve power",
+      "tier": 1
+    },
+    {
+      "id": "lockup.open",
+      "name": "The lock-up opens",
+      "tier": 1
+    },
+    {
+      "id": "stone.found",
+      "name": "Walter's stone is found",
+      "tier": 1
+    },
+    {
+      "id": "way.up",
+      "name": "The way to Tower C's roof",
+      "tier": 1
+    },
+    {
+      "id": "dark.understood",
+      "name": "What the dark wants is understood",
+      "tier": 2
+    },
+    {
+      "id": "garage.surge",
+      "name": "The dark surges into the garage",
+      "tier": 2,
+      "requires": [
+        "power.main"
+      ]
+    },
+    {
+      "id": "garage.held",
+      "name": "The garage is taken back",
+      "tier": 3,
+      "requires": ["garage.surge", "power.reserve"]
+    }
+  ],
+  "endings": [
+    {
+      "id": "relight",
+      "name": "Relight",
+      "when": {
+        "fact": "beacon.lit"
+      },
+      "text": "The crown beacon blazes over Harrow Court. Floor by floor, the towers light, and the dark draws back into the ground."
+    },
+    {
+      "id": "seal",
+      "name": "Seal",
+      "when": {
+        "all": [
+          {
+            "fact": "garage.held"
+          },
+          {
+            "prop": ["#blast_door", "blocks"],
+            "eq": "all"
+          }
+        ]
+      },
+      "text": "The floodlights drive it down the stairs, and the blast door booms shut over it. Below, something waits."
+    },
+    {
+      "id": "return",
+      "name": "Return",
+      "when": {
+        "fact": "relic.returned"
+      },
+      "text": "The stone settles into the hollow. The dark goes still, then quiet, then gone. What it wanted was only to be left alone."
+    }
+  ],
+  "fallbackGoals": [
+    {
+      "text": "Get to the security office",
+      "done": {
+        "at": ["self", "#security"]
+      }
+    },
+    {
+      "text": "Get out onto Harrow Road",
+      "done": {
+        "at": ["self", "#harrow_rd"]
+      }
+    }
+  ]
+}

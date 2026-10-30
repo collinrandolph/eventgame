@@ -1,0 +1,618 @@
+<title>__EVENT_TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;800&family=Chivo+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: a survey sheet. The 3D stack is the title block; the layer plans follow as numbered sheets, then the link schedule. */
+  :root {
+    --bg: #e9edf1;
+    --plate: #f6f8fa;
+    --ink: #16202b;
+    --muted: #5a6877;
+    --line: #c3ccd6;
+    --grid: rgba(22, 32, 43, 0.10);
+    --wall: #2a3441;
+    --portal: #d3761f;
+    --accent: #2563a8;
+    --scene: #dfe5eb;
+    --solid: #b9c1ca;
+    --water: #8fb3cf;
+    --display: "Chivo", "Segoe UI", system-ui, sans-serif;
+    --mono: "Chivo Mono", ui-monospace, "Cascadia Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1318; --plate: #151c23; --ink: #e2e8ee; --muted: #8b98a6; --line: #2a3440;
+      --grid: rgba(226, 232, 238, 0.08); --wall: #a3afbc; --portal: #f0a050; --accent: #6ea8e6; --scene: #10161c; --solid: #2b333c; --water: #1d3a52;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1318; --plate: #151c23; --ink: #e2e8ee; --muted: #8b98a6; --line: #2a3440;
+    --grid: rgba(226, 232, 238, 0.08); --wall: #a3afbc; --portal: #f0a050; --accent: #6ea8e6; --scene: #10161c; --solid: #2b333c; --water: #1d3a52;
+    color-scheme: dark;
+  }
+
+  html, body { background: var(--bg); color: var(--ink); }
+  body {
+    font-family: var(--display);
+    font-size: 15px;
+    line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 24px 48px;
+  }
+  main { max-width: 1240px; margin: 0 auto; display: grid; gap: 40px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: 1.2rem; font-weight: 800; }
+  h3 { font-size: 1rem; font-weight: 600; }
+  .eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); }
+
+  header { display: grid; gap: 10px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
+  .facts b { color: var(--ink); font-weight: 500; }
+  .key { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 0.85rem; }
+  .key span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 14px; height: 14px; border-radius: 2px; display: inline-block; flex: none; }
+  .sw.wall { background: var(--wall); }
+  .sw.solid { background: var(--solid); }
+  .sw.water { background: var(--water); }
+  .sw.street { background: hsl(215, 10%, 63%); }
+  .sw.portal { background: var(--portal); }
+  .sw.vert { background: var(--plate); border: 1.5px solid var(--ink); font: 600 9px/11px var(--mono); text-align: center; }
+  .sw.life { background: var(--ink); border-radius: 50%; }
+  .sw.npc { border: 1.5px solid var(--ink); border-radius: 50%; }
+  .sw.item { background: var(--accent); transform: rotate(45deg) scale(0.75); }
+
+  section { display: grid; gap: 14px; }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+
+  /* 3D stack */
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 0.85rem; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--plate); cursor: pointer; user-select: none; }
+  .chip input { accent-color: var(--accent); margin: 0; }
+  .chip:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .range { display: inline-flex; align-items: center; gap: 8px; }
+  .range input { width: 120px; accent-color: var(--accent); }
+  button {
+    font: 600 0.85rem var(--display); color: var(--ink); background: var(--plate);
+    border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #view {
+    position: relative; height: min(68vh, 640px); min-height: 360px; border: 1px solid var(--line);
+    border-radius: 8px; overflow: hidden; background: var(--scene); touch-action: none;
+  }
+  #view canvas { display: block; width: 100%; height: 100%; }
+  #labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .zlabel {
+    position: absolute; left: 0; top: 0; white-space: nowrap; font: 600 11px var(--display);
+    color: var(--ink); background: color-mix(in srgb, var(--plate) 82%, transparent);
+    padding: 1px 6px; border-radius: 3px; border-left: 3px solid var(--c);
+  }
+  #readout {
+    position: absolute; left: 10px; bottom: 10px; max-width: min(360px, calc(100% - 20px));
+    background: color-mix(in srgb, var(--plate) 92%, transparent); border: 1px solid var(--line);
+    border-radius: 6px; padding: 8px 10px; font-size: 0.82rem; pointer-events: none;
+  }
+  #hint { position: absolute; right: 10px; top: 10px; font: 0.72rem var(--mono); color: var(--muted); text-align: right; pointer-events: none; }
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--muted); }
+
+  /* 2D plans */
+  .plans { display: grid; gap: 28px; }
+  figure { margin: 0; display: grid; gap: 8px; }
+  figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--plate); }
+  .scroll svg { display: block; }
+  .zones { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--muted); }
+  .zones span { display: inline-flex; align-items: center; gap: 5px; }
+
+  #tip {
+    position: fixed; z-index: 20; pointer-events: none; max-width: 300px; font-size: 0.8rem;
+    background: var(--plate); color: var(--ink); border: 1px solid var(--line); border-radius: 6px;
+    padding: 7px 9px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+  .r-title { font-weight: 600; }
+  .r-line { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
+
+  /* links table */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--plate); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.82rem; }
+  th, td { text-align: left; padding: 6px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { font: 500 0.72rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+  tr:last-child td { border-bottom: 0; }
+  .pill { font: 500 0.7rem var(--mono); padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); }
+  .pill.road { border-color: var(--accent); color: var(--accent); }
+  .pill.bar { border-color: var(--portal); color: var(--portal); }
+
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">EVENT · spatial layer</div>
+    <h1 id="title">Grid</h1>
+    <div class="facts" id="facts"></div>
+    <div class="key" aria-label="Map key">
+      <span><i class="sw street"></i>Street</span>
+      <span><i class="sw solid"></i>Building you can't enter</span>
+      <span><i class="sw water"></i>Water</span>
+      <span><i class="sw wall"></i>Wall</span>
+      <span><i class="sw portal"></i>Door, gate or gap</span>
+      <span><i class="sw vert">S</i>Stairs, ladder (L), manhole (M)</span>
+      <span><i class="sw life"></i>Playable life</span>
+      <span><i class="sw npc"></i>Other person</span>
+      <span><i class="sw item"></i>Item, fixture or vehicle</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="stack-h">
+    <div class="sec-head">
+      <h2 id="stack-h">Layer stack</h2>
+      <div class="toolbar" id="toolbar">
+        <span id="layer-toggles" style="display:contents"></span>
+        <label class="range" for="gap">Spacing <input type="range" id="gap" min="2" max="16" step="0.5" value="7"></label>
+        <label class="chip" for="show-labels"><input type="checkbox" id="show-labels" checked>Zone names</label>
+        <label class="chip" for="show-markers"><input type="checkbox" id="show-markers" checked>People and items</label>
+        <button type="button" id="reset">Reset view</button>
+      </div>
+    </div>
+    <div id="view">
+      <div id="labels"></div>
+      <div id="hint">Drag to rotate · scroll or pinch to zoom<br>Right-drag or two fingers to pan</div>
+      <div id="readout"><span class="muted">Point at a cell to inspect it.</span></div>
+      <div id="fallback" hidden>The 3D view needs WebGL, which this browser didn't provide. The layer plans below show the same grid.</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="plans-h">
+    <div class="sec-head">
+      <h2 id="plans-h">Layer plans</h2>
+      <span class="eyebrow" id="plans-scale"></span>
+    </div>
+    <div class="plans" id="plans"></div>
+  </section>
+
+  <section aria-labelledby="links-h">
+    <div class="sec-head">
+      <h2 id="links-h">Link schedule</h2>
+      <span class="muted" style="font-size:.85rem">Every connection the kernel sees, compiled from the grid.</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Link</th><th>Between</th><th>Kind</th><th>Width</th><th>Ticks</th><th>Access</th></tr></thead>
+        <tbody id="links"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<div id="tip" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+const D = /*__EVENT_DATA__*/null;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const short = (name) => name.replace(/\s*\(.*\)$/, "");
+const m = (cells) => `${cells * D.cellMeters} m`;
+
+const zoneById = new Map(D.zones.map((z) => [z.id, z]));
+const layerName = (z) => (z === 0 ? "Ground" : z > 0 ? `Upper floor ${z}` : `Below ground ${-z}`);
+const VERT = { S: "Stairs", L: "Ladder", M: "Manhole" };
+
+function kindOf(c) {
+  if (c === " " || c === ".") return "void";
+  if (c === "%") return "solid";
+  if (c === "~") return "water";
+  if (c === "#") return "wall";
+  if (c === "+") return "portal";
+  if (VERT[c]) return "vertical";
+  return "floor";
+}
+
+// Lookups shared by both views.
+const linkAt = new Map();
+for (const l of D.links) if (l.kind !== "open") for (const [x, y, z] of l.where) linkAt.set(`${x},${y},${z}`, l);
+const markersAt = new Map();
+for (const mk of D.markers) {
+  const k = mk.at.join(",");
+  if (!markersAt.has(k)) markersAt.set(k, []);
+  markersAt.get(k).push(mk);
+}
+
+function describe(li, x, y) {
+  const L = D.layers[li];
+  const c = L.rows[y]?.[x] ?? " ";
+  const kind = kindOf(c);
+  const zi = L.zone[y]?.[x] ?? -1;
+  const zone = zi >= 0 ? D.zones[zi] : null;
+  const where = `${layerName(L.z)} · x ${m(x)}, y ${m(y)}`;
+  const plain = { wall: "Wall", void: "Solid ground / open air", solid: "Building (not enterable)", water: "Water" };
+  let title = zone ? short(zone.name) : plain[kind] ?? "Opening";
+  let lines = [where];
+  if (zone?.street) lines.push(zone.folded ? `${zone.street}: empty, folded into a link` : `${zone.street}: a stop for the solver`);
+  const link = linkAt.get(`${x},${y},${L.z}`);
+  if (kind === "vertical") title = `${VERT[c]} in ${title}`;
+  if (link) {
+    const other = (id) => short(zoneById.get(id).name);
+    if (kind === "portal") title = link.barrier ? link.barrier[0].toUpperCase() + link.barrier.slice(1) : "Open doorway";
+    lines.push(`${other(link.a)} ↔ ${other(link.b)}`);
+    lines.push(`${link.ticks} ticks · ${link.road ? "drivable" : "on foot"}${link.barrier && kind !== "portal" ? ` · ${link.barrier}` : ""}`);
+  }
+  for (const mk of markersAt.get(`${x},${y},${L.z}`) ?? []) lines.push(`● ${mk.name}${mk.note ? ` (${mk.note})` : ""}`);
+  return `<div class="r-title">${esc(title)}</div>${lines.map((l) => `<div class="r-line">${esc(l)}</div>`).join("")}`;
+}
+
+// ---------- header + link table ----------
+$("title").textContent = short(D.name);
+document.title = `${short(D.name)} Grid`;
+const places = D.zones.filter((z) => !z.street);
+const roomCount = places.reduce((s, z) => s + z.rooms, 0);
+const streetZones = D.zones.filter((z) => z.street);
+const kernelLocs = D.zones.filter((z) => !z.folded).length;
+$("facts").innerHTML = [
+  `<span><b>${D.cellMeters} m</b> cells</span>`,
+  `<span><b>${D.width} × ${D.height}</b> cells · ${m(D.width)} × ${m(D.height)}</span>`,
+  `<span><b>${D.layers.length}</b> layers</span>`,
+  `<span><b>${places.length}</b> places · ${roomCount} rooms</span>`,
+  `<span><b>${streetZones.filter((z) => z.street === "intersection").length}</b> intersections · ${streetZones.filter((z) => z.street === "segment").length} street segments</span>`,
+  `<span><b>${kernelLocs}</b> solver locations (${streetZones.filter((z) => z.folded).length} empty street pieces folded)</span>`,
+  `<span><b>${D.links.length}</b> links</span>`,
+  `<span><b>${D.ticksPerCell}</b> ticks per cell</span>`,
+  D.warnings.length ? `<span style="color:var(--portal)"><b>${D.warnings.length}</b> unplanned links</span>` : `<span>no unplanned links</span>`,
+].join("");
+$("plans-scale").textContent = `1 square = ${D.cellMeters} m · grid lines every ${m(5)}`;
+
+const KIND_LABEL = { open: "Open boundary", portal: "Door / gate", vertical: "Vertical", street: "Street run" };
+$("links").innerHTML = D.links
+  .slice()
+  .sort((a, b) => a.kind.localeCompare(b.kind) || a.id.localeCompare(b.id))
+  .map((l) => {
+    const za = zoneById.get(l.a), zb = zoneById.get(l.b);
+    const access = [l.road ? `<span class="pill road">drivable</span>` : `<span class="pill">foot</span>`, l.barrier ? `<span class="pill bar">${esc(l.barrier)}</span>` : ""].join(" ");
+    return `<tr><td class="mono">${esc(l.id)}</td><td>${esc(short(za.name))} ↔ ${esc(short(zb.name))}</td><td>${KIND_LABEL[l.kind]}</td><td class="num">${l.kind === "vertical" ? "–" : m(l.width)}</td><td class="num">${l.ticks}</td><td>${access}</td></tr>`;
+  })
+  .join("");
+
+// ---------- 2D layer plans ----------
+const PX = 13; // screen pixels per cell
+const tip = $("tip");
+function showTip(html, ev) {
+  tip.innerHTML = html;
+  tip.hidden = false;
+  const pad = 14;
+  const r = tip.getBoundingClientRect();
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  if (x + r.width > innerWidth - 8) x = ev.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = ev.clientY - r.height - pad;
+  tip.style.left = `${Math.max(8, x)}px`;
+  tip.style.top = `${Math.max(8, y)}px`;
+}
+
+D.layers.forEach((L, li) => {
+  const W = D.width, H = D.height;
+  const parts = [];
+  const fillAt = (x, y) => {
+    const kind = kindOf(L.rows[y][x]);
+    if (kind === "void") return null;
+    const zi = L.zone[y][x];
+    return kind === "wall" ? "var(--wall)" : kind === "portal" ? "var(--portal)" : kind === "solid" ? "var(--solid)" : kind === "water" ? "var(--water)" : zi >= 0 ? D.zones[zi].color : "var(--muted)";
+  };
+  for (let y = 0; y < H; y++) {
+    // One rect per horizontal run of the same fill keeps a 160-wide plan light.
+    for (let x = 0; x < W; ) {
+      const fill = fillAt(x, y);
+      let end = x + 1;
+      while (end < W && fillAt(end, y) === fill) end++;
+      if (fill) parts.push(`<rect x="${x}" y="${y}" width="${end - x + 0.02}" height="1.02" fill="${fill}"/>`);
+      x = end;
+    }
+    for (let x = 0; x < W; x++) {
+      const c = L.rows[y][x];
+      const kind = kindOf(c);
+      if (kind === "vertical") {
+        parts.push(`<rect x="${x + 0.12}" y="${y + 0.12}" width="0.76" height="0.76" fill="var(--plate)" stroke="var(--ink)" stroke-width="0.08"/>`);
+        parts.push(`<text x="${x + 0.5}" y="${y + 0.74}" font-size="0.7" text-anchor="middle" font-family="var(--mono)" font-weight="600" fill="var(--ink)">${c}</text>`);
+      }
+    }
+  }
+  const grid = [];
+  for (let x = 0; x <= W; x += 5) grid.push(`<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="var(--grid)" stroke-width="${x % 10 ? 0.04 : 0.07}"/>`);
+  for (let y = 0; y <= H; y += 5) grid.push(`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="var(--grid)" stroke-width="${y % 10 ? 0.04 : 0.07}"/>`);
+  const axis = [];
+  for (let x = 0; x <= W; x += 10) axis.push(`<text x="${x}" y="-0.7" font-size="0.85" text-anchor="middle" fill="var(--muted)" font-family="var(--mono)">${x ? m(x) : "0"}</text>`);
+  for (let y = 10; y <= H; y += 10) axis.push(`<text x="-0.6" y="${y + 0.3}" font-size="0.85" text-anchor="end" fill="var(--muted)" font-family="var(--mono)">${m(y)}</text>`);
+
+  const marks = D.markers.filter((mk) => mk.at[2] === L.z).map((mk) => {
+    const [x, y] = mk.at, cx = x + 0.5, cy = y + 0.5;
+    if (mk.kind === "life") return `<circle cx="${cx}" cy="${cy}" r="0.42" fill="var(--ink)" stroke="var(--plate)" stroke-width="0.12"/>`;
+    if (mk.kind === "npc") return `<circle cx="${cx}" cy="${cy}" r="0.36" fill="var(--plate)" stroke="var(--ink)" stroke-width="0.14"/>`;
+    if (mk.kind === "vehicle") return `<rect x="${x - 0.3}" y="${y + 0.15}" width="1.6" height="0.7" rx="0.15" fill="var(--accent)" stroke="var(--plate)" stroke-width="0.1"/>`;
+    if (mk.kind === "fixture") return `<rect x="${x + 0.18}" y="${y + 0.18}" width="0.64" height="0.64" fill="var(--plate)" stroke="var(--accent)" stroke-width="0.14"/>`;
+    return `<rect x="${cx - 0.24}" y="${cy - 0.24}" width="0.48" height="0.48" transform="rotate(45 ${cx} ${cy})" fill="var(--accent)" stroke="var(--plate)" stroke-width="0.08"/>`;
+  });
+  const labels = D.zones.filter((z) => z.z === L.z && !z.street).map((z) => {
+    const [x, y] = z.anchor;
+    return `<text x="${x + 0.5}" y="${y - 0.35}" font-size="1.05" font-weight="600" text-anchor="middle" fill="var(--ink)" stroke="var(--plate)" stroke-width="0.32" paint-order="stroke" font-family="var(--display)">${esc(short(z.name))}</text>`;
+  });
+
+  const zonesHere = D.zones.filter((z) => z.z === L.z && !z.street);
+  const fig = document.createElement("figure");
+  fig.innerHTML = `
+    <figcaption>
+      <span class="eyebrow">Sheet ${li + 1} of ${D.layers.length} · z = ${L.z}</span>
+      <h3>${layerName(L.z)}</h3>
+      <span class="muted" style="font-size:.82rem">${zonesHere.length} place${zonesHere.length === 1 ? "" : "s"}${D.zones.some((z) => z.street && z.z === L.z) ? ` · ${D.zones.filter((z) => z.street && z.z === L.z).length} street pieces` : ""} · hover for names</span>
+    </figcaption>
+    <div class="scroll"><svg viewBox="-3.2 -2 ${W + 4.4} ${H + 3.2}" width="${(W + 4.4) * PX}" height="${(H + 3.2) * PX}" role="img" aria-label="${esc(layerName(L.z))} plan">
+      ${grid.join("")}${parts.join("")}${marks.join("")}${labels.join("")}${axis.join("")}
+      <rect x="0" y="0" width="${W}" height="${H}" fill="none" stroke="var(--line)" stroke-width="0.08"/>
+    </svg></div>
+    <div class="zones">${zonesHere.map((z) => `<span><i class="sw" style="background:${z.color}"></i>${esc(short(z.name))}${z.rooms > 1 ? ` · ${z.rooms} rooms` : ""}</span>`).join("")}</div>`;
+  $("plans").appendChild(fig);
+
+  const svg = fig.querySelector("svg");
+  svg.addEventListener("pointermove", (ev) => {
+    const pt = svg.createSVGPoint();
+    pt.x = ev.clientX; pt.y = ev.clientY;
+    const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+    const x = Math.floor(p.x), y = Math.floor(p.y);
+    if (x < 0 || y < 0 || x >= W || y >= H || kindOf(L.rows[y][x]) === "void") return void (tip.hidden = true);
+    showTip(describe(li, x, y), ev);
+  });
+  svg.addEventListener("pointerleave", () => (tip.hidden = true));
+});
+
+// ---------- 3D layer stack ----------
+(function stack() {
+  const view = $("view");
+  if (typeof THREE === "undefined" || !THREE.OrbitControls) return void ($("fallback").hidden = false);
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+  } catch (e) {
+    return void ($("fallback").hidden = false);
+  }
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  view.prepend(renderer.domElement);
+
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.5, 2000);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  controls.dampingFactor = 0.12;
+  controls.screenSpacePanning = true;
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x445566, 0.85));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.55);
+  sun.position.set(-40, 120, 60);
+  scene.add(sun);
+
+  const W = D.width, H = D.height;
+  const cx = W / 2 - 0.5, cz = H / 2 - 0.5;
+  const zMin = Math.min(...D.layers.map((l) => l.z)), zMax = Math.max(...D.layers.map((l) => l.z));
+  let gap = Number($("gap").value);
+
+  const themed = []; // [material, token] pairs re-read on theme change
+  const mat = (token, extra = {}) => {
+    const m = new THREE.MeshLambertMaterial({ color: css(token), ...extra });
+    themed.push([m, token]);
+    return m;
+  };
+  const basic = (token, extra = {}) => {
+    const m = new THREE.MeshBasicMaterial({ color: css(token), ...extra });
+    themed.push([m, token]);
+    return m;
+  };
+
+  const floorGeo = new THREE.BoxGeometry(0.98, 0.14, 0.98);
+  const wallGeo = new THREE.BoxGeometry(1, 1.1, 1);
+  const portalGeo = new THREE.BoxGeometry(1, 0.4, 1);
+  const solidGeo = new THREE.BoxGeometry(1, 1.6, 1);
+  const waterGeo = new THREE.BoxGeometry(1, 0.06, 1);
+  const pickables = [];
+  const layerGroups = new Map();
+  const dummy = new THREE.Object3D();
+  const color = new THREE.Color();
+
+  D.layers.forEach((L, li) => {
+    const group = new THREE.Group();
+    const floors = [], walls = [], portals = [], solids = [], water = [];
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const k = kindOf(L.rows[y][x]);
+      if (k === "floor" || k === "vertical") floors.push([x, y]);
+      else if (k === "wall") walls.push([x, y]);
+      else if (k === "portal") portals.push([x, y]);
+      else if (k === "solid") solids.push([x, y]);
+      else if (k === "water") water.push([x, y]);
+    }
+    const inst = (geo, material, cells, yOff, colorFn) => {
+      const mesh = new THREE.InstancedMesh(geo, material, Math.max(1, cells.length));
+      mesh.count = cells.length;
+      cells.forEach(([x, y], i) => {
+        dummy.position.set(x, yOff, y);
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+        if (colorFn) mesh.setColorAt(i, colorFn(x, y));
+      });
+      mesh.userData = { li, cells };
+      group.add(mesh);
+      pickables.push(mesh);
+      return mesh;
+    };
+    inst(floorGeo, new THREE.MeshLambertMaterial({ color: 0xffffff }), floors, 0, (x, y) => {
+      const zi = L.zone[y][x];
+      return color.setStyle(zi >= 0 ? D.zones[zi].color : "#888888");
+    });
+    inst(wallGeo, mat("--wall"), walls, 0.55, null);
+    inst(portalGeo, mat("--portal"), portals, 0.2, null);
+    if (solids.length) inst(solidGeo, mat("--solid"), solids, 0.8, null);
+    if (water.length) inst(waterGeo, mat("--water", { transparent: true, opacity: 0.85 }), water, -0.04, null);
+
+    const plate = new THREE.Mesh(new THREE.PlaneGeometry(W, H), basic("--plate", { transparent: true, opacity: 0.45, depthWrite: false, side: THREE.DoubleSide }));
+    plate.rotation.x = -Math.PI / 2;
+    plate.position.set(cx, -0.12, cz);
+    group.add(plate);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(W, 0.01, H)), new THREE.LineBasicMaterial({ color: css("--muted") }));
+    themed.push([edge.material, "--muted"]);
+    edge.position.set(cx, -0.12, cz);
+    group.add(edge);
+
+    scene.add(group);
+    layerGroups.set(L.z, group);
+  });
+
+  // Shafts for stairs, ladders and manholes, spanning the gap between layers.
+  const shafts = [];
+  const shaftMat = mat("--accent", { transparent: true, opacity: 0.8 });
+  for (const l of D.links) {
+    if (l.kind !== "vertical") continue;
+    const [x, y] = l.where[0];
+    const lo = Math.min(...l.where.map((c) => c[2]));
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 1, 10), shaftMat);
+    mesh.userData = { x, y, lo };
+    scene.add(mesh);
+    shafts.push(mesh);
+  }
+
+  // People, items, fixtures, vehicles.
+  const markerGroup = new THREE.Group();
+  scene.add(markerGroup);
+  const markerMeshes = [];
+  const lifeMat = mat("--ink"), npcMat = mat("--muted"), itemMat = mat("--accent");
+  for (const mk of D.markers) {
+    let mesh;
+    if (mk.kind === "life" || mk.kind === "npc") mesh = new THREE.Mesh(new THREE.SphereGeometry(mk.kind === "life" ? 0.42 : 0.34, 16, 12), mk.kind === "life" ? lifeMat : npcMat);
+    else if (mk.kind === "vehicle") mesh = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.7, 0.9), itemMat);
+    else if (mk.kind === "fixture") mesh = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.6, 0.6), itemMat);
+    else mesh = new THREE.Mesh(new THREE.OctahedronGeometry(0.3), itemMat);
+    mesh.userData = { mk };
+    markerGroup.add(mesh);
+    markerMeshes.push(mesh);
+  }
+
+  // Zone labels as HTML, projected each frame.
+  const labelEls = D.zones.map((z) => {
+    if (z.street) return null;
+    const el = document.createElement("div");
+    el.className = "zlabel";
+    el.style.setProperty("--c", z.color);
+    el.textContent = short(z.name);
+    $("labels").appendChild(el);
+    return el;
+  });
+
+  function layout() {
+    for (const [z, g] of layerGroups) g.position.y = z * gap;
+    for (const s of shafts) {
+      const { x, y, lo } = s.userData;
+      s.position.set(x, lo * gap + gap / 2, y);
+      s.scale.y = gap;
+      s.visible = layerGroups.get(lo).visible && layerGroups.get(lo + 1)?.visible !== false;
+    }
+    for (const mesh of markerMeshes) {
+      const [x, y, z] = mesh.userData.mk.at;
+      const lift = mesh.userData.mk.kind === "vehicle" ? 0.45 : 0.6;
+      mesh.position.set(x, z * gap + lift, y);
+      mesh.visible = $("show-markers").checked && layerGroups.get(z).visible;
+    }
+  }
+
+  // Layer toggles.
+  const toggles = $("layer-toggles");
+  for (const L of D.layers) {
+    const id = `layer-${L.z}`;
+    const label = document.createElement("label");
+    label.className = "chip";
+    label.htmlFor = id;
+    label.innerHTML = `<input type="checkbox" id="${id}" checked>${L.z === 0 ? "Ground" : L.z > 0 ? `+${L.z}` : L.z}`;
+    toggles.appendChild(label);
+    label.querySelector("input").addEventListener("change", (e) => {
+      layerGroups.get(L.z).visible = e.target.checked;
+      layout();
+    });
+  }
+  $("gap").addEventListener("input", (e) => {
+    gap = Number(e.target.value);
+    layout();
+  });
+  $("show-markers").addEventListener("change", layout);
+  $("show-labels").addEventListener("change", (e) => ($("labels").hidden = !e.target.checked));
+
+  function resetView() {
+    const midY = ((zMin + zMax) / 2) * gap;
+    controls.target.set(cx, midY, cz);
+    camera.position.set(cx - W * 0.55, midY + W * 0.6, cz + H * 2.1);
+    controls.update();
+  }
+  $("reset").addEventListener("click", resetView);
+
+  function applyTheme() {
+    scene.background = new THREE.Color(css("--scene"));
+    for (const [m, token] of themed) m.color.setStyle(css(token));
+  }
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  function resize() {
+    const w = view.clientWidth, h = view.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(view);
+
+  // Picking: hover (or tap) a cell to read it out.
+  const ray = new THREE.Raycaster();
+  const ndc = new THREE.Vector2();
+  function pick(ev) {
+    const r = renderer.domElement.getBoundingClientRect();
+    ndc.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const visible = pickables.filter((p) => p.parent.visible);
+    const hit = ray.intersectObjects(visible, false)[0];
+    if (!hit || hit.instanceId === undefined) return;
+    const { li, cells } = hit.object.userData;
+    const [x, y] = cells[hit.instanceId];
+    $("readout").innerHTML = describe(li, x, y);
+  }
+  renderer.domElement.addEventListener("pointermove", (ev) => {
+    if (ev.buttons === 0) pick(ev);
+  });
+  renderer.domElement.addEventListener("click", pick);
+
+  const v = new THREE.Vector3();
+  function placeLabels() {
+    if ($("labels").hidden) return;
+    const w = view.clientWidth, h = view.clientHeight;
+    D.zones.forEach((z, i) => {
+      const el = labelEls[i];
+      if (!el) return;
+      const [x, y, zz] = z.anchor;
+      v.set(x, zz * gap + 1.4, y).project(camera);
+      const show = layerGroups.get(zz).visible && v.z < 1 && Math.abs(v.x) < 1.05 && Math.abs(v.y) < 1.05;
+      el.hidden = !show;
+      if (show) el.style.transform = `translate(${((v.x + 1) / 2) * w}px, ${((1 - v.y) / 2) * h}px) translate(-50%, -100%)`;
+    });
+  }
+
+  applyTheme();
+  layout();
+  resize();
+  resetView();
+  (function frame() {
+    controls.update();
+    renderer.render(scene, camera);
+    placeLabels();
+    requestAnimationFrame(frame);
+  })();
+})();
+</script>

@@ -1,0 +1,20 @@
+{
+  "name": "event-kernel",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "EVENT puzzle kernel: data-driven world rules, life handoffs, and a solver. No rendering.",
+  "scripts": {
+    "play": "tsx src/cli/play.ts",
+    "check": "tsx src/cli/check.ts",
+    "viz": "tsx src/cli/viz.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
