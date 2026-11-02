@@ -1,0 +1,48 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#64b5f6",
+    "L": "#37474f",
+    "O": "#fafafa",
+    "Q": "#37474f",
+    "U": "#fafafa",
+    "a": "#d9a066",
+    "h": "#64b5f6",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#d9a066",
+    "o": "#fafafa",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-scientist-coat",
+    "layer-scientist-glasses"
+  ],
+  "name": "Epidemiologist",
+  "needs": [
+    "respirator",
+    "hazmat suit"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#262626"
+    },
+    "layer-scientist-coat": {
+      "p": "#fafafa",
+      "w": "#fafafa"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    }
+  }
+}

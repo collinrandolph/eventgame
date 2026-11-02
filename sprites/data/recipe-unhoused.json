@@ -1,0 +1,53 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#4e342e",
+    "L": "#4e342e",
+    "O": "#5b6b2f",
+    "Q": "#4e342e",
+    "U": "#5b6b2f",
+    "a": "#8d5524",
+    "h": "#4e342e",
+    "k": "#000000",
+    "l": "#4e342e",
+    "n": "#8d5524",
+    "o": "#5b6b2f",
+    "p": "#4e342e",
+    "q": "#4e342e",
+    "t": "#5b6b2f",
+    "u": "#5b6b2f",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-hoodie-green",
+    "layer-scientist-coat",
+    "layer-beard-brown"
+  ],
+  "name": "Unhoused Person",
+  "needs": [
+    "beanie"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-hair-short-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-hoodie-green": {
+      "g": "#6d4c41",
+      "w": "#6d4c41"
+    },
+    "layer-scientist-coat": {
+      "p": "#4e342e",
+      "w": "#4e342e"
+    }
+  }
+}

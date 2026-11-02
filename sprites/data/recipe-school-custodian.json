@@ -1,0 +1,45 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#546e7a",
+    "O": "#546e7a",
+    "Q": "#546e7a",
+    "U": "#546e7a",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#546e7a",
+    "n": "#c68642",
+    "o": "#546e7a",
+    "p": "#546e7a",
+    "q": "#546e7a",
+    "t": "#546e7a",
+    "u": "#546e7a",
+    "y": "#3b2a20"
+  },
+  "group": "Education & community",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-jacket-zip",
+    "layer-officer-belt",
+    "layer-mustache-brown"
+  ],
+  "name": "School Custodian",
+  "needs": [
+    "key ring"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    },
+    "layer-mustache-brown": {
+      "h": "#262626"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#1a237e",
+    "O": "#1a237e",
+    "Q": "#1a237e",
+    "U": "#1a237e",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#1a237e",
+    "n": "#d9a066",
+    "o": "#1a237e",
+    "p": "#1a237e",
+    "q": "#1a237e",
+    "t": "#1a237e",
+    "u": "#1a237e",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-officer-shirt",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "Coast Guard",
+  "needs": [
+    "life vest"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#262626"
+    },
+    "layer-officer-cap": {
+      "g": "#fdd835",
+      "n": "#1a237e",
+      "u": "#1a237e"
+    },
+    "layer-officer-shirt": {
+      "g": "#fdd835"
+    }
+  }
+}

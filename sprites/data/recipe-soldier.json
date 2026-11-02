@@ -1,0 +1,48 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#5b6b2f",
+    "O": "#5b6b2f",
+    "Q": "#5b6b2f",
+    "U": "#5b6b2f",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#5b6b2f",
+    "n": "#8d5524",
+    "o": "#5b6b2f",
+    "p": "#5b6b2f",
+    "q": "#5b6b2f",
+    "t": "#5b6b2f",
+    "u": "#5b6b2f",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "Soldier",
+  "needs": [
+    "combat helmet",
+    "camo",
+    "rifle"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#5b6b2f",
+      "n": "#5b6b2f",
+      "u": "#5b6b2f"
+    },
+    "layer-officer-hair": {
+      "d": "#262626",
+      "s": "part:a"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#37474f",
+    "O": "#fafafa",
+    "Q": "#37474f",
+    "U": "#fafafa",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f6d5b5",
+    "o": "#fafafa",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white",
+    "layer-tie-navy",
+    "layer-scientist-coat",
+    "layer-scientist-glasses"
+  ],
+  "name": "Pharmacist",
+  "needs": [],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    },
+    "layer-scientist-coat": {
+      "p": "#fafafa",
+      "w": "#fafafa"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#bbdefb"
+    },
+    "layer-tie-navy": {
+      "c": "#283593"
+    }
+  }
+}

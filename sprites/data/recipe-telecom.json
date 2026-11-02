@@ -1,0 +1,47 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#37474f",
+    "O": "#ffcc80",
+    "Q": "#37474f",
+    "U": "#1565c0",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#ffcc80",
+    "o": "#ffcc80",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#1565c0",
+    "u": "#1565c0",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "Telecom Technician",
+  "needs": [
+    "hard hat",
+    "climbing harness"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fafafa",
+      "n": "#fafafa",
+      "u": "#fafafa"
+    },
+    "layer-officer-hair": {
+      "d": "#262626",
+      "s": "part:a"
+    }
+  }
+}

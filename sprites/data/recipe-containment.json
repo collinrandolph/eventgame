@@ -1,0 +1,40 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#212121",
+    "L": "#212121",
+    "O": "#fbc02d",
+    "Q": "#fbc02d",
+    "U": "#fbc02d",
+    "a": "#f1c27d",
+    "h": "#212121",
+    "k": "#000000",
+    "l": "#212121",
+    "n": "#f1c27d",
+    "o": "#fbc02d",
+    "p": "#fbc02d",
+    "q": "#fbc02d",
+    "t": "#fbc02d",
+    "u": "#fbc02d",
+    "y": "#3b2a20"
+  },
+  "group": "Event-specific",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-jacket-zip"
+  ],
+  "name": "Containment Officer",
+  "needs": [
+    "hazmat hood",
+    "respirator"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#6d4c41"
+    }
+  }
+}

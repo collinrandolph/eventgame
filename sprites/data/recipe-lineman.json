@@ -1,0 +1,52 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#8d6e63",
+    "L": "#1565c0",
+    "O": "#ef6c00",
+    "Q": "#1565c0",
+    "U": "#ef6c00",
+    "a": "#f1c27d",
+    "h": "#8d6e63",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#f1c27d",
+    "o": "#ef6c00",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#ef6c00",
+    "u": "#ef6c00",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-stripes-red",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "Utility Lineman",
+  "needs": [
+    "hard hat",
+    "hi-vis vest",
+    "climbing harness"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fbc02d",
+      "n": "#fbc02d",
+      "u": "#fbc02d"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

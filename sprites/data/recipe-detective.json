@@ -1,0 +1,52 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#37474f",
+    "O": "#b59f6b",
+    "Q": "#37474f",
+    "U": "#b59f6b",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f1c27d",
+    "o": "#b59f6b",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#b59f6b",
+    "u": "#b59f6b",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white",
+    "layer-tie-navy",
+    "layer-scientist-coat"
+  ],
+  "name": "Detective",
+  "needs": [
+    "fedora"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#3e2723"
+    },
+    "layer-scientist-coat": {
+      "p": "#b59f6b",
+      "w": "#b59f6b"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-tie-navy": {
+      "c": "#7b1f2b"
+    }
+  }
+}

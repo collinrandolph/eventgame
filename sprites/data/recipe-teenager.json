@@ -1,0 +1,43 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#1565c0",
+    "O": "#212121",
+    "Q": "#1565c0",
+    "U": "#212121",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#d9a066",
+    "o": "#212121",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#212121",
+    "u": "#212121",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-hoodie-green"
+  ],
+  "name": "Teenager",
+  "needs": [],
+  "notes": "uses the adult base; a smaller body would read younger",
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-hoodie-green": {
+      "g": "#212121",
+      "w": "#fafafa"
+    }
+  }
+}

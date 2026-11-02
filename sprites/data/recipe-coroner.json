@@ -1,0 +1,44 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#64b5f6",
+    "L": "#607d63",
+    "O": "#ffcc80",
+    "Q": "#607d63",
+    "U": "#607d63",
+    "a": "#ffcc80",
+    "h": "#64b5f6",
+    "k": "#000000",
+    "l": "#607d63",
+    "n": "#ffcc80",
+    "o": "#ffcc80",
+    "p": "#607d63",
+    "q": "#607d63",
+    "t": "#607d63",
+    "u": "#607d63",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-scientist-glasses"
+  ],
+  "name": "Coroner",
+  "needs": [
+    "apron",
+    "mask"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#c8b273",
+    "O": "#ef6c00",
+    "Q": "#c8b273",
+    "U": "#ef6c00",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#c8b273",
+    "n": "#c68642",
+    "o": "#ef6c00",
+    "p": "#c8b273",
+    "q": "#c8b273",
+    "t": "#ef6c00",
+    "u": "#ef6c00",
+    "y": "#3b2a20"
+  },
+  "group": "Civic & government",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-stripes-red"
+  ],
+  "name": "City Surveyor",
+  "needs": [
+    "hi-vis vest",
+    "hard hat",
+    "tripod"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#262626"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

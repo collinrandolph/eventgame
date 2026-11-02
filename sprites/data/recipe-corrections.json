@@ -1,0 +1,50 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#37474f",
+    "O": "#546e7a",
+    "Q": "#37474f",
+    "U": "#546e7a",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#c68642",
+    "o": "#546e7a",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#546e7a",
+    "u": "#546e7a",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-officer-shirt",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "Corrections Officer",
+  "needs": [
+    "key ring"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fdd835",
+      "n": "#37474f",
+      "u": "#37474f"
+    },
+    "layer-officer-hair": {
+      "d": "#262626",
+      "s": "part:a"
+    },
+    "layer-officer-shirt": {
+      "g": "#fdd835"
+    }
+  }
+}

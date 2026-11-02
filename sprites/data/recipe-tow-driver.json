@@ -1,0 +1,49 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#212121",
+    "L": "#283593",
+    "O": "#283593",
+    "Q": "#283593",
+    "U": "#283593",
+    "a": "#d9a066",
+    "h": "#212121",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#d9a066",
+    "o": "#283593",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-stripes-red",
+    "layer-officer-cap"
+  ],
+  "name": "Tow Truck Driver",
+  "needs": [
+    "hi-vis vest"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#ef6c00",
+      "n": "#283593",
+      "u": "#283593"
+    },
+    "layer-officer-hair": {
+      "d": "#3e2723",
+      "s": "part:a"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

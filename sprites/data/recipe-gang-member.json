@@ -1,0 +1,48 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#1565c0",
+    "O": "#c62828",
+    "Q": "#1565c0",
+    "U": "#c62828",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#c68642",
+    "o": "#c62828",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "group": "Underworld & outsiders",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-buzz-brown",
+    "layer-hoodie-green",
+    "layer-goatee-black"
+  ],
+  "name": "Gang Member",
+  "needs": [
+    "bandana"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-goatee-black": {
+      "h": "#262626"
+    },
+    "layer-hair-buzz-brown": {
+      "h": "#262626"
+    },
+    "layer-hoodie-green": {
+      "g": "#c62828",
+      "w": "#fafafa"
+    }
+  }
+}

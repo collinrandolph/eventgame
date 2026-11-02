@@ -1,0 +1,47 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#fbc02d",
+    "L": "#2e7d32",
+    "O": "#ef6c00",
+    "Q": "#ef6c00",
+    "U": "#ef6c00",
+    "a": "#8d5524",
+    "h": "#fbc02d",
+    "k": "#000000",
+    "l": "#2e7d32",
+    "n": "#8d5524",
+    "o": "#ef6c00",
+    "p": "#ef6c00",
+    "q": "#ef6c00",
+    "t": "#ef6c00",
+    "u": "#ef6c00",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-jacket-zip",
+    "layer-officer-cap"
+  ],
+  "name": "Sewer Maintenance",
+  "needs": [
+    "headlamp",
+    "waders"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#ef6c00",
+      "n": "#ef6c00",
+      "u": "#ef6c00"
+    },
+    "layer-officer-hair": {
+      "d": "#262626",
+      "s": "part:a"
+    }
+  }
+}

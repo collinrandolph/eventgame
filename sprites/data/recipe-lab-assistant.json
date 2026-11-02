@@ -1,0 +1,52 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#1565c0",
+    "O": "#fafafa",
+    "Q": "#1565c0",
+    "U": "#fafafa",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#ffcc80",
+    "o": "#fafafa",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-scientist-coat",
+    "layer-hoodie-green",
+    "layer-scientist-glasses"
+  ],
+  "name": "Lab Assistant",
+  "needs": [
+    "lanyard badge"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#a0522d"
+    },
+    "layer-hoodie-green": {
+      "g": "#9e9e9e",
+      "w": "#fafafa"
+    },
+    "layer-scientist-coat": {
+      "p": "#fafafa",
+      "w": "#fafafa"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    }
+  }
+}

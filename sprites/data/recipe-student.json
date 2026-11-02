@@ -1,0 +1,30 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#1565c0",
+    "O": "#388e3c",
+    "Q": "#1565c0",
+    "U": "#388e3c",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#d9a066",
+    "o": "#388e3c",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#388e3c",
+    "u": "#388e3c",
+    "y": "#3b2a20"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-hoodie-green",
+    "layer-hair-ponytail-blonde"
+  ],
+  "name": "Student",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

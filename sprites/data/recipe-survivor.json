@@ -1,0 +1,42 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#4e342e",
+    "O": "#c8b273",
+    "Q": "#4e342e",
+    "U": "#c8b273",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#4e342e",
+    "n": "#d9a066",
+    "o": "#c8b273",
+    "p": "#4e342e",
+    "q": "#4e342e",
+    "t": "#c8b273",
+    "u": "#c8b273",
+    "y": "#3b2a20"
+  },
+  "group": "Event-specific",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-jacket-collar",
+    "layer-beard-brown"
+  ],
+  "name": "Previous Survivor",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#e0e0e0"
+    },
+    "layer-hair-short-brown": {
+      "h": "#e0e0e0"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#283593",
+    "O": "#9e9e9e",
+    "Q": "#283593",
+    "U": "#9e9e9e",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#c68642",
+    "o": "#9e9e9e",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#9e9e9e",
+    "u": "#9e9e9e",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-stripes-red",
+    "layer-officer-cap"
+  ],
+  "name": "Gas Company Worker",
+  "needs": [
+    "hard hat",
+    "hi-vis vest",
+    "gas detector"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fbc02d",
+      "n": "#fbc02d",
+      "u": "#fbc02d"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

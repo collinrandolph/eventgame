@@ -1,0 +1,45 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#37474f",
+    "L": "#5b6b2f",
+    "O": "#212121",
+    "Q": "#5b6b2f",
+    "U": "#212121",
+    "a": "#c68642",
+    "h": "#37474f",
+    "k": "#000000",
+    "l": "#5b6b2f",
+    "n": "#c68642",
+    "o": "#212121",
+    "p": "#5b6b2f",
+    "q": "#5b6b2f",
+    "t": "#212121",
+    "u": "#212121",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-hoodie-green"
+  ],
+  "name": "Urban Explorer",
+  "needs": [
+    "headlamp",
+    "backpack"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    },
+    "layer-hoodie-green": {
+      "g": "#212121",
+      "w": "#fafafa"
+    }
+  }
+}

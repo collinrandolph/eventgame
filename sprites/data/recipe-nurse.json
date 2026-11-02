@@ -1,0 +1,38 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#5c9bd5",
+    "O": "#f1c27d",
+    "Q": "#5c9bd5",
+    "U": "#5c9bd5",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#5c9bd5",
+    "n": "#f1c27d",
+    "o": "#f1c27d",
+    "p": "#5c9bd5",
+    "q": "#5c9bd5",
+    "t": "#5c9bd5",
+    "u": "#5c9bd5",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde"
+  ],
+  "name": "Nurse",
+  "needs": [
+    "lanyard badge"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#6d4c41"
+    }
+  }
+}

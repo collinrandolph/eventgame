@@ -1,0 +1,43 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#212121",
+    "O": "#212121",
+    "Q": "#212121",
+    "U": "#212121",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#212121",
+    "n": "#ffcc80",
+    "o": "#212121",
+    "p": "#212121",
+    "q": "#212121",
+    "t": "#212121",
+    "u": "#212121",
+    "y": "#3b2a20"
+  },
+  "group": "Education & community",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white"
+  ],
+  "name": "Priest",
+  "needs": [
+    "clerical collar"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    }
+  }
+}

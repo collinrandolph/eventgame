@@ -1,0 +1,48 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#b59f6b",
+    "O": "#3f6fb5",
+    "Q": "#b59f6b",
+    "U": "#3f6fb5",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#b59f6b",
+    "n": "#f1c27d",
+    "o": "#3f6fb5",
+    "p": "#b59f6b",
+    "q": "#b59f6b",
+    "t": "#3f6fb5",
+    "u": "#3f6fb5",
+    "y": "#3b2a20"
+  },
+  "group": "Education & community",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-shirt-collar-white",
+    "layer-skirt-red",
+    "layer-scientist-glasses"
+  ],
+  "name": "Teacher",
+  "needs": [],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-skirt-red": {
+      "q": "#b59f6b"
+    }
+  }
+}

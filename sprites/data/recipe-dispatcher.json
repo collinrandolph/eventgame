@@ -1,0 +1,46 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#212121",
+    "O": "#c68642",
+    "Q": "#212121",
+    "U": "#283593",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#212121",
+    "n": "#c68642",
+    "o": "#c68642",
+    "p": "#212121",
+    "q": "#212121",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-officer-shirt",
+    "layer-scientist-glasses"
+  ],
+  "name": "Dispatcher (911)",
+  "needs": [
+    "headset"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#262626"
+    },
+    "layer-officer-shirt": {
+      "g": "#fdd835"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    }
+  }
+}

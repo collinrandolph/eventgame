@@ -1,0 +1,31 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#ffffff",
+    "L": "#2196f3",
+    "O": "#f44336",
+    "Q": "#2196f3",
+    "U": "#f44336",
+    "a": "#ffffff",
+    "h": "#ffffff",
+    "k": "#000000",
+    "l": "#2196f3",
+    "n": "#ffffff",
+    "o": "#f44336",
+    "p": "#2196f3",
+    "q": "#2196f3",
+    "t": "#f44336",
+    "u": "#f44336",
+    "y": "#2196f3"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-short-black",
+    "layer-ears",
+    "layer-jacket-collar",
+    "layer-jacket-zip"
+  ],
+  "name": "Red Jacket (layers)",
+  "savedAt": 1793604643970
+}

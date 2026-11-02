@@ -1,0 +1,45 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#283593",
+    "O": "#d9a066",
+    "Q": "#283593",
+    "U": "#bbdefb",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#d9a066",
+    "o": "#d9a066",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#bbdefb",
+    "u": "#bbdefb",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white",
+    "layer-tie-navy"
+  ],
+  "name": "Bus Driver",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#bbdefb"
+    },
+    "layer-tie-navy": {
+      "c": "#283593"
+    }
+  }
+}

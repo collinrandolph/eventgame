@@ -1,0 +1,48 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#1565c0",
+    "O": "#5b6b2f",
+    "Q": "#1565c0",
+    "U": "#5b6b2f",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#f6d5b5",
+    "o": "#5b6b2f",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#5b6b2f",
+    "u": "#5b6b2f",
+    "y": "#3b2a20"
+  },
+  "group": "Underworld & outsiders",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-jacket-collar",
+    "layer-beard-brown",
+    "layer-scientist-glasses"
+  ],
+  "name": "Conspiracy Theorist",
+  "needs": [
+    "foil hat"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#a0522d"
+    },
+    "layer-hair-short-brown": {
+      "h": "#a0522d"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    }
+  }
+}

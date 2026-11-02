@@ -1,0 +1,30 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#5c3a21",
+    "L": "#5c3a21",
+    "O": "#5c3a21",
+    "Q": "#c62828",
+    "U": "#c62828",
+    "a": "#5c3a21",
+    "h": "#5c3a21",
+    "k": "#000000",
+    "l": "#5c3a21",
+    "n": "#5c3a21",
+    "o": "#5c3a21",
+    "p": "#c62828",
+    "q": "#c62828",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-curly-black",
+    "layer-skirt-red"
+  ],
+  "name": "Shopkeeper",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

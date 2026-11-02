@@ -1,0 +1,46 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#5b6b2f",
+    "O": "#5b6b2f",
+    "Q": "#5b6b2f",
+    "U": "#5b6b2f",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#5b6b2f",
+    "n": "#ffcc80",
+    "o": "#5b6b2f",
+    "p": "#5b6b2f",
+    "q": "#5b6b2f",
+    "t": "#5b6b2f",
+    "u": "#5b6b2f",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "National Guard Medic",
+  "needs": [
+    "red-cross armband",
+    "medic bag"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#6d4c41"
+    },
+    "layer-officer-cap": {
+      "g": "#5b6b2f",
+      "n": "#5b6b2f",
+      "u": "#5b6b2f"
+    }
+  }
+}

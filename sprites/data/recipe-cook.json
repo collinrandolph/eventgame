@@ -1,0 +1,44 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#37474f",
+    "O": "#8d5524",
+    "Q": "#37474f",
+    "U": "#fafafa",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#8d5524",
+    "o": "#8d5524",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-overalls-denim"
+  ],
+  "name": "Line Cook",
+  "needs": [
+    "bandana",
+    "apron"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    },
+    "layer-overalls-denim": {
+      "v": "#fafafa"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#37474f",
+    "O": "#4e342e",
+    "Q": "#37474f",
+    "U": "#4e342e",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f6d5b5",
+    "o": "#4e342e",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#4e342e",
+    "u": "#4e342e",
+    "y": "#3b2a20"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-shirt-collar-white",
+    "layer-mustache-brown",
+    "layer-scientist-glasses"
+  ],
+  "name": "Pawnbroker",
+  "needs": [
+    "waistcoat"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-mustache-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    }
+  }
+}

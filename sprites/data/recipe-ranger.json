@@ -1,0 +1,55 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#2e7d32",
+    "O": "#c8b273",
+    "Q": "#2e7d32",
+    "U": "#c8b273",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#2e7d32",
+    "n": "#f1c27d",
+    "o": "#c8b273",
+    "p": "#2e7d32",
+    "q": "#2e7d32",
+    "t": "#c8b273",
+    "u": "#c8b273",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-officer-shirt",
+    "layer-officer-belt",
+    "layer-beard-brown",
+    "layer-officer-cap"
+  ],
+  "name": "Park Ranger",
+  "needs": [
+    "campaign hat",
+    "radio"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-officer-cap": {
+      "g": "#c8b273",
+      "n": "#2e7d32",
+      "u": "#2e7d32"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    },
+    "layer-officer-shirt": {
+      "g": "#fdd835"
+    }
+  }
+}

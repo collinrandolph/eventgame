@@ -1,0 +1,44 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#8d6e63",
+    "L": "#1565c0",
+    "O": "#ef6c00",
+    "Q": "#1565c0",
+    "U": "#ef6c00",
+    "a": "#5c3a21",
+    "h": "#8d6e63",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#5c3a21",
+    "o": "#ef6c00",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#ef6c00",
+    "u": "#ef6c00",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-buzz-brown",
+    "layer-stripes-red"
+  ],
+  "name": "Dock Worker",
+  "needs": [
+    "hi-vis vest",
+    "beanie"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-buzz-brown": {
+      "h": "#262626"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

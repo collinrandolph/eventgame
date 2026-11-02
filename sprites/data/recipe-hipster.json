@@ -1,0 +1,32 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#37474f",
+    "O": "#f6d5b5",
+    "Q": "#37474f",
+    "U": "#fafafa",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f6d5b5",
+    "o": "#f6d5b5",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-mustache-brown",
+    "layer-stripes-red"
+  ],
+  "name": "Hipster",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

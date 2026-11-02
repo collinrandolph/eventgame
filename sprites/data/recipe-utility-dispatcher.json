@@ -1,0 +1,47 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#c8b273",
+    "O": "#d9a066",
+    "Q": "#c8b273",
+    "U": "#283593",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#c8b273",
+    "n": "#d9a066",
+    "o": "#d9a066",
+    "p": "#c8b273",
+    "q": "#c8b273",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white",
+    "layer-scientist-glasses"
+  ],
+  "name": "Utility Dispatcher",
+  "needs": [
+    "headset"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#283593"
+    }
+  }
+}

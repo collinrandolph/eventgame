@@ -1,0 +1,37 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#ff7043",
+    "O": "#ff7043",
+    "Q": "#ff7043",
+    "U": "#ff7043",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#ff7043",
+    "n": "#ffcc80",
+    "o": "#ff7043",
+    "p": "#ff7043",
+    "q": "#ff7043",
+    "t": "#ff7043",
+    "u": "#ff7043",
+    "y": "#3b2a20"
+  },
+  "group": "Underworld & outsiders",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-buzz-brown"
+  ],
+  "name": "Escaped Inmate",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-buzz-brown": {
+      "h": "#6d4c41"
+    }
+  }
+}

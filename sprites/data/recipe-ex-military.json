@@ -1,0 +1,43 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#b59f6b",
+    "O": "#5b6b2f",
+    "Q": "#b59f6b",
+    "U": "#5b6b2f",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#b59f6b",
+    "n": "#f1c27d",
+    "o": "#5b6b2f",
+    "p": "#b59f6b",
+    "q": "#b59f6b",
+    "t": "#5b6b2f",
+    "u": "#5b6b2f",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-buzz-brown",
+    "layer-jacket-collar",
+    "layer-jacket-zip",
+    "layer-mustache-brown"
+  ],
+  "name": "Retiree (ex-military)",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-buzz-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-mustache-brown": {
+      "h": "#a8a8a8"
+    }
+  }
+}

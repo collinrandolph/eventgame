@@ -1,0 +1,39 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#5c3a21",
+    "L": "#eceff1",
+    "O": "#5c3a21",
+    "Q": "#eceff1",
+    "U": "#eceff1",
+    "a": "#5c3a21",
+    "h": "#5c3a21",
+    "k": "#000000",
+    "l": "#eceff1",
+    "n": "#5c3a21",
+    "o": "#5c3a21",
+    "p": "#eceff1",
+    "q": "#eceff1",
+    "t": "#eceff1",
+    "u": "#eceff1",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-buzz-brown"
+  ],
+  "name": "Psych Ward Orderly",
+  "needs": [
+    "key ring"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-buzz-brown": {
+      "h": "#262626"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#37474f",
+    "O": "#283593",
+    "Q": "#37474f",
+    "U": "#283593",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f6d5b5",
+    "o": "#283593",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-jacket-collar",
+    "layer-beard-brown"
+  ],
+  "name": "Bridge Operator",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-hair-short-brown": {
+      "h": "#a8a8a8"
+    }
+  }
+}

@@ -9,6 +9,8 @@ npm test          # grid compiler, systems, triggers, threats, lives, gating, en
 npm run check     # endings (both modes, deadline margin), skills-as-shortcuts, life plans, story events, mission-break search
 npm run viz       # write viz/<world>-viewer.html: 3D layer stack + 2D plan per layer + link schedule
 npm run play      # play in the terminal  (-- --mode untimed --seed 42)
+npm run sprites   # character sprite sheets from sprites/data/ (see sprites/README.md)
+npm run check:sprites   # missing-pixel check on every assembled character
 ```
 
 ## Layout
@@ -28,6 +30,7 @@ npm run play      # play in the terminal  (-- --mode untimed --seed 42)
 | `rules/core.json` | The shared rule library: one rule per system verb |
 | `worlds/ash-river.json` | Event 1: an alien signal over a flat street-grid city. Eight lives, three triggers, two endings |
 | `worlds/harrow-court.json` | Event 2, *Lightless*: a living dark in a 14-layer tower complex. Six lives, three triggers, three endings |
+| `src/sprites/` | Character sprites: recipe assembly (`compose.ts`), missing-pixel check (`check.ts`), PNG writer; data and sheets in `sprites/` |
 | `src/targets.ts` | Where a goal points (places, items, barriers, clue sources), for goal-directed life searches |
 
 ## Systems

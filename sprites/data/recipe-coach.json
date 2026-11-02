@@ -1,0 +1,50 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#c62828",
+    "O": "#c62828",
+    "Q": "#c62828",
+    "U": "#c62828",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#c62828",
+    "n": "#8d5524",
+    "o": "#c62828",
+    "p": "#c62828",
+    "q": "#c62828",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "group": "Education & community",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-jacket-zip",
+    "layer-stripes-red",
+    "layer-officer-cap"
+  ],
+  "name": "Coach",
+  "needs": [
+    "whistle"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fafafa",
+      "n": "#c62828",
+      "u": "#c62828"
+    },
+    "layer-officer-hair": {
+      "d": "#262626",
+      "s": "part:a"
+    },
+    "layer-stripes-red": {
+      "z": "#fafafa"
+    }
+  }
+}

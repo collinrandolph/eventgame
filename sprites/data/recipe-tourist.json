@@ -1,0 +1,53 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#f6d5b5",
+    "O": "#f6d5b5",
+    "Q": "#c8b273",
+    "U": "#00acc1",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#f6d5b5",
+    "n": "#f6d5b5",
+    "o": "#f6d5b5",
+    "p": "#c8b273",
+    "q": "#c8b273",
+    "t": "#00acc1",
+    "u": "#00acc1",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-stripes-red",
+    "layer-scientist-glasses",
+    "layer-officer-cap"
+  ],
+  "name": "Tourist",
+  "needs": [
+    "camera"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fafafa",
+      "n": "#fafafa",
+      "u": "#fafafa"
+    },
+    "layer-officer-hair": {
+      "d": "#e8c15a",
+      "s": "part:a"
+    },
+    "layer-scientist-glasses": {
+      "l": "#212121"
+    },
+    "layer-stripes-red": {
+      "z": "#fbc02d"
+    }
+  }
+}

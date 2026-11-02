@@ -1,0 +1,43 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#c8b273",
+    "O": "#f1c27d",
+    "Q": "#c8b273",
+    "U": "#c62828",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#c8b273",
+    "n": "#f1c27d",
+    "o": "#f1c27d",
+    "p": "#c8b273",
+    "q": "#c8b273",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-overalls-denim"
+  ],
+  "name": "Hardware Store Clerk",
+  "needs": [
+    "apron"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#a0522d"
+    },
+    "layer-overalls-denim": {
+      "v": "#ef6c00"
+    }
+  }
+}

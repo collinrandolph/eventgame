@@ -1,0 +1,43 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#5c3a21",
+    "L": "#37474f",
+    "O": "#6d4c41",
+    "Q": "#37474f",
+    "U": "#6d4c41",
+    "a": "#5c3a21",
+    "h": "#5c3a21",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#5c3a21",
+    "o": "#6d4c41",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#6d4c41",
+    "u": "#6d4c41",
+    "y": "#3b2a20"
+  },
+  "group": "Underworld & outsiders",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-jacket-collar",
+    "layer-jacket-zip",
+    "layer-beard-brown"
+  ],
+  "name": "Smuggler",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#262626"
+    },
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    }
+  }
+}

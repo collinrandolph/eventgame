@@ -1,0 +1,50 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#9e9e9e",
+    "O": "#4a148c",
+    "Q": "#9e9e9e",
+    "U": "#4a148c",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#9e9e9e",
+    "n": "#f6d5b5",
+    "o": "#4a148c",
+    "p": "#9e9e9e",
+    "q": "#9e9e9e",
+    "t": "#4a148c",
+    "u": "#4a148c",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-shirt-collar-white",
+    "layer-skirt-red",
+    "layer-scientist-glasses"
+  ],
+  "name": "Elderly Resident (woman)",
+  "needs": [
+    "hair bun"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#e0e0e0"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-skirt-red": {
+      "q": "#9e9e9e"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#7b1f2b",
+    "O": "#7b1f2b",
+    "Q": "#7b1f2b",
+    "U": "#7b1f2b",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#7b1f2b",
+    "n": "#ffcc80",
+    "o": "#7b1f2b",
+    "p": "#7b1f2b",
+    "q": "#7b1f2b",
+    "t": "#7b1f2b",
+    "u": "#7b1f2b",
+    "y": "#3b2a20"
+  },
+  "group": "Event-specific",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-hoodie-green",
+    "layer-scientist-coat"
+  ],
+  "name": "Cult Member",
+  "needs": [
+    "robe hood"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#262626"
+    },
+    "layer-hoodie-green": {
+      "g": "#7b1f2b",
+      "w": "#fdd835"
+    },
+    "layer-scientist-coat": {
+      "p": "#7b1f2b",
+      "w": "#7b1f2b"
+    }
+  }
+}

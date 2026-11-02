@@ -1,0 +1,43 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#4fc3f7",
+    "O": "#4fc3f7",
+    "Q": "#4fc3f7",
+    "U": "#4fc3f7",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#4fc3f7",
+    "n": "#f6d5b5",
+    "o": "#4fc3f7",
+    "p": "#4fc3f7",
+    "q": "#4fc3f7",
+    "t": "#4fc3f7",
+    "u": "#4fc3f7",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-jacket-zip",
+    "layer-scientist-glasses"
+  ],
+  "name": "Water Treatment Operator",
+  "needs": [
+    "hard hat"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#e8c15a"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    }
+  }
+}

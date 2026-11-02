@@ -1,0 +1,48 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#546e7a",
+    "O": "#90a4ae",
+    "Q": "#546e7a",
+    "U": "#90a4ae",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#546e7a",
+    "n": "#f1c27d",
+    "o": "#90a4ae",
+    "p": "#546e7a",
+    "q": "#546e7a",
+    "t": "#90a4ae",
+    "u": "#90a4ae",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white",
+    "layer-officer-belt",
+    "layer-mustache-brown"
+  ],
+  "name": "Building Superintendent",
+  "needs": [
+    "key ring"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-mustache-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#90a4ae"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#283593",
+    "O": "#283593",
+    "Q": "#283593",
+    "U": "#283593",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#c68642",
+    "o": "#283593",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-jacket-zip",
+    "layer-officer-belt",
+    "layer-officer-cap"
+  ],
+  "name": "Utility Technician",
+  "needs": [
+    "hard hat",
+    "tool belt"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#262626"
+    },
+    "layer-officer-cap": {
+      "g": "#fafafa",
+      "n": "#fafafa",
+      "u": "#fafafa"
+    }
+  }
+}

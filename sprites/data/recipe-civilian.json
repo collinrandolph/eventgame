@@ -1,0 +1,30 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffffff",
+    "L": "#03a9f4",
+    "O": "#ffffff",
+    "Q": "#03a9f4",
+    "U": "#ffffff",
+    "a": "#ffffff",
+    "h": "#ffffff",
+    "k": "#000000",
+    "l": "#03a9f4",
+    "n": "#ffffff",
+    "o": "#ffffff",
+    "p": "#03a9f4",
+    "q": "#03a9f4",
+    "t": "#ff0000",
+    "u": "#ffffff",
+    "y": "#2196f3"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-civilian-hair",
+    "layer-civilian-top"
+  ],
+  "name": "Civilian (layers)",
+  "oy": 0,
+  "savedAt": 1793605409814
+}

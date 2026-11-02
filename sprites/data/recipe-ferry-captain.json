@@ -1,0 +1,47 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#37474f",
+    "O": "#1a237e",
+    "Q": "#37474f",
+    "U": "#1a237e",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f6d5b5",
+    "o": "#1a237e",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#1a237e",
+    "u": "#1a237e",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-beard-brown",
+    "layer-officer-cap"
+  ],
+  "name": "Ferry Captain",
+  "needs": [],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#e0e0e0"
+    },
+    "layer-officer-cap": {
+      "g": "#fdd835",
+      "n": "#fafafa",
+      "u": "#fafafa"
+    },
+    "layer-officer-hair": {
+      "d": "#e0e0e0",
+      "s": "part:a"
+    }
+  }
+}

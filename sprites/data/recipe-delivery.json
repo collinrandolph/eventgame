@@ -1,0 +1,44 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#ffcc80",
+    "O": "#ffcc80",
+    "Q": "#37474f",
+    "U": "#c62828",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#ffcc80",
+    "n": "#ffcc80",
+    "o": "#ffcc80",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-officer-cap"
+  ],
+  "name": "Delivery Driver",
+  "needs": [
+    "parcel"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#6d4c41"
+    },
+    "layer-officer-cap": {
+      "g": "#fafafa",
+      "n": "#c62828",
+      "u": "#c62828"
+    }
+  }
+}

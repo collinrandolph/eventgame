@@ -1,0 +1,41 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#26a69a",
+    "O": "#c68642",
+    "Q": "#26a69a",
+    "U": "#26a69a",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#26a69a",
+    "n": "#c68642",
+    "o": "#c68642",
+    "p": "#26a69a",
+    "q": "#26a69a",
+    "t": "#26a69a",
+    "u": "#26a69a",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-beard-brown"
+  ],
+  "name": "Veterinarian",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#262626"
+    },
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#d9a066",
+    "O": "#d9a066",
+    "Q": "#283593",
+    "U": "#bbdefb",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#d9a066",
+    "n": "#d9a066",
+    "o": "#d9a066",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#bbdefb",
+    "u": "#bbdefb",
+    "y": "#3b2a20"
+  },
+  "group": "Civic & government",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-officer-shirt",
+    "layer-officer-cap"
+  ],
+  "name": "Postal Carrier",
+  "needs": [
+    "mail bag"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fafafa",
+      "n": "#283593",
+      "u": "#283593"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    },
+    "layer-officer-shirt": {
+      "g": "#283593"
+    }
+  }
+}

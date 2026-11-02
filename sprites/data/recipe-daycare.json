@@ -1,0 +1,40 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#1565c0",
+    "O": "#8d5524",
+    "Q": "#1565c0",
+    "U": "#fbc02d",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#8d5524",
+    "o": "#8d5524",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#fbc02d",
+    "u": "#fbc02d",
+    "y": "#3b2a20"
+  },
+  "group": "Education & community",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-curly-black",
+    "layer-stripes-red"
+  ],
+  "name": "Daycare Worker",
+  "needs": [],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-curly-black": {
+      "h": "#262626"
+    },
+    "layer-stripes-red": {
+      "z": "#ef6c00"
+    }
+  }
+}

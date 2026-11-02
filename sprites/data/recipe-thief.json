@@ -1,0 +1,44 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#212121",
+    "L": "#212121",
+    "O": "#212121",
+    "Q": "#212121",
+    "U": "#212121",
+    "a": "#f1c27d",
+    "h": "#212121",
+    "k": "#000000",
+    "l": "#212121",
+    "n": "#f1c27d",
+    "o": "#212121",
+    "p": "#212121",
+    "q": "#212121",
+    "t": "#212121",
+    "u": "#212121",
+    "y": "#3b2a20"
+  },
+  "group": "Underworld & outsiders",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-hoodie-green"
+  ],
+  "name": "Burglar",
+  "needs": [
+    "beanie or balaclava"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    },
+    "layer-hoodie-green": {
+      "g": "#212121",
+      "w": "#212121"
+    }
+  }
+}

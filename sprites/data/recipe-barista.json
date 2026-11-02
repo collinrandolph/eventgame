@@ -1,0 +1,31 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#212121",
+    "O": "#f6d5b5",
+    "Q": "#212121",
+    "U": "#fafafa",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#212121",
+    "n": "#f6d5b5",
+    "o": "#f6d5b5",
+    "p": "#212121",
+    "q": "#212121",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-blonde",
+    "layer-stripes-navy"
+  ],
+  "name": "Barista",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

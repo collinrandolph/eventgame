@@ -1,0 +1,40 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#64b5f6",
+    "L": "#66bb6a",
+    "O": "#d9a066",
+    "Q": "#66bb6a",
+    "U": "#66bb6a",
+    "a": "#d9a066",
+    "h": "#64b5f6",
+    "k": "#000000",
+    "l": "#66bb6a",
+    "n": "#d9a066",
+    "o": "#d9a066",
+    "p": "#66bb6a",
+    "q": "#66bb6a",
+    "t": "#66bb6a",
+    "u": "#66bb6a",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown"
+  ],
+  "name": "Surgeon",
+  "needs": [
+    "surgical cap",
+    "mask"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#6d4c41"
+    }
+  }
+}

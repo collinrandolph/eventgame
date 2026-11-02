@@ -1,0 +1,40 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#b8c4a0",
+    "L": "#1565c0",
+    "O": "#b8c4a0",
+    "Q": "#1565c0",
+    "U": "#cfd8dc",
+    "a": "#b8c4a0",
+    "h": "#b8c4a0",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#b8c4a0",
+    "o": "#b8c4a0",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#cfd8dc",
+    "u": "#cfd8dc",
+    "y": "#c62828"
+  },
+  "group": "Event-specific",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown"
+  ],
+  "name": "Infected Person",
+  "needs": [
+    "torn clothes",
+    "wounds"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#6d4c41"
+    }
+  }
+}

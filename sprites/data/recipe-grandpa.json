@@ -1,0 +1,33 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#b59f6b",
+    "O": "#795548",
+    "Q": "#b59f6b",
+    "U": "#795548",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#b59f6b",
+    "n": "#f1c27d",
+    "o": "#795548",
+    "p": "#b59f6b",
+    "q": "#b59f6b",
+    "t": "#795548",
+    "u": "#795548",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-gray",
+    "layer-beard-gray",
+    "layer-shirt-collar-white"
+  ],
+  "name": "Grandpa",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

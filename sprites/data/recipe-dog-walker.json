@@ -1,0 +1,40 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#37474f",
+    "O": "#26a69a",
+    "Q": "#37474f",
+    "U": "#26a69a",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f1c27d",
+    "o": "#26a69a",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#26a69a",
+    "u": "#26a69a",
+    "y": "#3b2a20"
+  },
+  "group": "Residents",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-jacket-zip"
+  ],
+  "name": "Dog Walker",
+  "needs": [
+    "dog",
+    "leash"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#e8c15a"
+    }
+  }
+}

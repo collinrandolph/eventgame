@@ -1,0 +1,46 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#37474f",
+    "O": "#c62828",
+    "Q": "#37474f",
+    "U": "#c62828",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#d9a066",
+    "o": "#c62828",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "group": "Media & communication",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-shirt-collar-white",
+    "layer-skirt-red"
+  ],
+  "name": "TV Reporter",
+  "needs": [
+    "microphone"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-skirt-red": {
+      "q": "#37474f"
+    }
+  }
+}

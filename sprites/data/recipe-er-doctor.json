@@ -1,0 +1,43 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#5c9bd5",
+    "O": "#fafafa",
+    "Q": "#5c9bd5",
+    "U": "#fafafa",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#5c9bd5",
+    "n": "#8d5524",
+    "o": "#fafafa",
+    "p": "#5c9bd5",
+    "q": "#5c9bd5",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-scientist-coat"
+  ],
+  "name": "ER Doctor",
+  "needs": [
+    "stethoscope"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#262626"
+    },
+    "layer-scientist-coat": {
+      "p": "#64b5f6",
+      "w": "#fafafa"
+    }
+  }
+}

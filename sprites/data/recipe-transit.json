@@ -1,0 +1,51 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#283593",
+    "O": "#283593",
+    "Q": "#283593",
+    "U": "#283593",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#8d5524",
+    "o": "#283593",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-shirt-collar-white",
+    "layer-tie-navy",
+    "layer-officer-cap"
+  ],
+  "name": "Subway Operator",
+  "needs": [],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fdd835",
+      "n": "#283593",
+      "u": "#283593"
+    },
+    "layer-officer-hair": {
+      "d": "#262626",
+      "s": "part:a"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-tie-navy": {
+      "c": "#c62828"
+    }
+  }
+}

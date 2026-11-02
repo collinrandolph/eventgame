@@ -1,0 +1,31 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#5c3a21",
+    "L": "#3f6fb5",
+    "O": "#5c3a21",
+    "Q": "#3f6fb5",
+    "U": "#c62828",
+    "a": "#5c3a21",
+    "h": "#5c3a21",
+    "k": "#000000",
+    "l": "#3f6fb5",
+    "n": "#5c3a21",
+    "o": "#5c3a21",
+    "p": "#3f6fb5",
+    "q": "#3f6fb5",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-curly-black",
+    "layer-overalls-denim"
+  ],
+  "name": "Farmer",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

@@ -1,0 +1,41 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#546e7a",
+    "O": "#546e7a",
+    "Q": "#546e7a",
+    "U": "#546e7a",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#546e7a",
+    "n": "#d9a066",
+    "o": "#546e7a",
+    "p": "#546e7a",
+    "q": "#546e7a",
+    "t": "#546e7a",
+    "u": "#546e7a",
+    "y": "#3b2a20"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-jacket-zip",
+    "layer-officer-belt"
+  ],
+  "name": "Locksmith",
+  "needs": [
+    "key ring",
+    "tool belt"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#262626"
+    }
+  }
+}

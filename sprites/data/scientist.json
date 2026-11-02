@@ -1,0 +1,90 @@
+{
+  "by": "w6hiyivg",
+  "frames": {
+    "E": [
+      "............./.....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../....kwwwwk.../...kwwkwwk.../...kskwwwk.../...kkkwwk..../.....kwwk..../.....kuk...../.....kkkk....",
+      "............./.....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../....kwwwwk.../...kwwkwwk.../...kskwwwkk../...kkkwwwkk../.....kwwwk.../....kukkuk.../....kk..kkk..",
+      "............./.....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../....kwwwwk.../....kwkwwk.../....kwkwwk.../....kskwk..../.....kwwk..../.....kuuk..../.....k.kk....",
+      ".....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../.....kwwwk.../.....kkwwk.../.....kkwwk.../.....kkskk.../.....kwkk..../.....kwwk..../.....kuk...../.....kkkk....",
+      "............./.....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../.....kwwwk.../....kkwkkk.../....kkwwsk.../.....kkkk..../.....kwwk..../....kukku..../....kk..kk...",
+      "............./.....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../.....kwwwk.../.....kwwkk.../.....kwwkk.../.....kkskk.../.....kwkkk.../.....kuuk..../.....k.kk....",
+      ".....kkkk..../...kkooookk../..kooooooook./..koooosskk../..koooossk.../..kokkkklsk../...kossslk.../....kssssk.../.....kkkk..../....kwwwwk.../...kwwkwwk.../...kskwwwk.../...kkkwwwk.../.....kwwwk.../.....kukkk.../.....kuk...../.....kkkk...."
+    ],
+    "N": [
+      "............./.....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../....kkkkk..../..kkwwwwwkk../.kwwwwwwwwwk./kskkwwwwwkksk/kk.kwwwwwk.kk/...kwwwwwk.../...kukkkuk.../..kkkk.kkkk..",
+      "............./.....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../....kkkkk..../.kkkwwwwwkk../kswwwwwwwwwk./kkkkwwwwwkksk/...kwwwwwk.kk/...kwwwwwk.../...kukkkuk.../..kkkk.kkkk..",
+      "............./.....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../....kkkkk..../..kkwwwwwkk../.kwwwwwwwwwk./.kkkwwwwwksk./...kwwwwwkk../...kwwwwwk.../..kkkkkkuk.../.......kkkk..",
+      ".....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../..kkkkkkk..../.kwwwwwwwkk../..kkwwwwwwk../...kwwwwwkk../...kwwwwwksk./...kwwwwwkk../...kukkkuk.../..kkkk.kuk.../.......kkkk..",
+      "............./.....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../....kkkkk..../..kkwwwwwkk../.kwwwwwwwwwk./kskkwwwwwkksk/kk.kwwwwwk.kk/...kwwwwwk.../...kukkkuk.../..kkkk.kkkk..",
+      "............./.....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../....kkkkk..../..kkwwwwwkk../.kwwwwwwwwwk./.kskwwwwwkkk./..kkwwwwwk.../...kwwwwwk.../...kukkkkkk../..kkkk.......",
+      ".....kkk...../...kooooook../..koooooook../..kooooooook./..kooooooook./.kskoooooksk./..koooooook../...koooook.../....kkkkkkk../..kkwwwwwwwk./..kwwwwwwkk../..kkwwwwwk.../.kskwwwwwk.../..kkwwwwwk.../...kukkkuk.../...kuk.kkkk../..kkkk......."
+    ],
+    "NE": [
+      "............./......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwwk../....kwwwwksk./....kwwwwkkk./....kwwwwk.../....kukkuk.../....kkkkkkk..",
+      "............./......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwk.../....kwwksk.../....kwwwkk.../....kwwwwk.../....kukkkuk../.....kk.kkkk.",
+      "............./......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwk.../....kwwwwk.../....kwwwksk../....kwwwwk.../.....kuuuk.../.....kkkkkk..",
+      "......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwwk../...skwwwwksk./....kwwwwkkk./....kwwwwk.../.....kuuuk.../.....kuuuk.../.....kkkkkk..",
+      "............./......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwwk../....kwwwwksk./....kwwwwkkk./....kwwwwk.../....kukkkuk../.....kk.kkkk.",
+      "............./......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwk.../....kwwwwk.../....kwwwksk../....kwwwwk.../....kukkuk.../....kkkkkk...",
+      "......kkk..../....kkoookk../...kooooook../...koooooook./...koooooook./...kooookkkk./...kooooosk../....kooosk.../.....kkkk..../....kwwwwk.../....kwwwwk.../....kwwksk.../....kwwwkk.../....kwwwk..../.....kuuuk.../.....kuuuk.../.....kkkkkk.."
+    ],
+    "NW": [
+      "............./....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../..kwwwwwk..../.kskwwwwk..../.kkkwwwwk..../...kwwwwk..../...kukkuk..../..kkkkkkk....",
+      "............./....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../...kwwwwk..../...kskwwk..../...kkwwwk..../...kwwwwk..../..kukkkuk..../.kkkk.kk.....",
+      "............./....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../...kwwwwk..../...kwwwwk..../..kskwwwk..../...kwwwwk..../...kuuuk...../..kkkkkk.....",
+      "....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../..kwwwwwk..../.kskwwwwks.../.kkkwwwwk..../...kwwwwk..../...kuuuk...../...kuuuk...../..kkkkkk.....",
+      "............./....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../..kwwwwwk..../.kskwwwwk..../.kkkwwwwk..../...kwwwwk..../..kukkkuk..../.kkkk.kk.....",
+      "............./....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../...kwwwwk..../...kwwwwk..../..kskwwwk..../...kwwwwk..../...kukkuk..../...kkkkkk....",
+      "....kkk....../..kkoookk..../..kooooook.../.koooooook.../.koooooook.../.kkkkooook.../..ksoooook.../...ksoook..../....kkkk...../...kwwwwk..../...kwwwwk..../...kskwwk..../...kkwwwk..../....kwwwk..../...kuuuk...../...kuuuk...../..kkkkkk....."
+    ],
+    "S": [
+      "............./.....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../....kkskk..../..kkwkkkwkk../.kwwwkpkwwwk./kskkwkkkwkksk/kk.kwkukwk.kk/...kwkkkwk.../...kuk.kuk.../..kkkk.kkkk..",
+      "............./.....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../....kkskk..../..kkwkkkwkk../.kwwwkpkwwwk./kskkwkkkwkksk/kk.kwkukwk.kk/...kwkkkwk.../...kuk.kuk.../..kkkk.kkkk..",
+      "............./.....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../....kkskk..../.kkkwkkkwkk../kskwwkpkwwwk./kkkkwkkkwkksk/...kwkukwk.kk/...kwkkkwk.../..kkkk.kuk.../.......kkkk..",
+      ".....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../.kk.kkskk..../.kskwkkkwkk../.kkkwkpkwwwk./...kwkkkwkksk/...kwkukwk.kk/...kwkkkwk.../...kuk.kwk.../..kkkk.kuk.../.......kkkk..",
+      "............./.....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../....kkskk..../..kkwkkkwkk../.kwwwkpkwwwk./kskkwkkkwkksk/kk.kwkukwk.kk/...kwkkkwk.../...kuk.kuk.../..kkkk.kkkk..",
+      "............./.....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../....kkskk..../..kkwkkkwkkk./.kwwwkpkwwksk/kskkwkkkwkkkk/kk.kwkukwk.../...kwkkkwk.../...kuk.kkkk../..kkkk.......",
+      ".....kkk...../...kkkookkk../..kkooooook../..koooosoook./..kosssssook./.kskllkllksk./..kslkslksk../...ksssssk.../....kkskk.kk./..kkwkkkwksk./.kwwwkpkwkkk./kskkwkkkwk.../kk.kwkukwk.../...kwkkkwk.../...kwk.kuk.../...kuk.kkkk../..kkkk......."
+    ],
+    "SE": [
+      "............./......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../...kwwkpwk.../..kskwkkwk.../..kkkwkuwk.../....kwkkwk.../....kukkuk.../....kkkkkkk..",
+      "............./......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../...kwwkpwkk../..kskwkkwksk./..kkkwkuwkk../....kwkkwk.../....kuk.kuk../.....kk.kkkk.",
+      "............./......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../....kwkpwk.../....kwkkwk.../...kskwuwk.../....kwwkwk.../.....kukuk.../.....kkkkkk..",
+      "......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../....kwkpwk.../....kwkskk.../....kwkuwk.../....kwwkwk.../.....kukuk.../.....kukuk.../.....kkkkkk..",
+      "............./......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../....kwkpwk.../....kwkksk.../....kwuwkk.../....kwkkwk.../....kuk.kuk../.....kk.kkkk.",
+      "............./......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../....kwkpwk.../....kwkkwk.../...kskwuwk.../....kwkkwk.../....kukkuk.../....kkkkkk...",
+      "......kkk..../....kkkookk../...kooooook../..kooooosook./..koosssssok./.kokkllkllk../..ksslkslkk../....ksssssk../.....kkskk.../....kwkkwk.../...kwwkpwk.../..kskwkkwk.../..kkkwkuwk.../....kwwwwk.../.....kukuk.../.....kukuk.../.....kkkkkk.."
+    ],
+    "SW": [
+      "............./....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../...kwpkwwk.../...kwkkwksk../...kwukwkkk../...kwkkwk..../...kukkuk..../..kkkkkkk....",
+      "............./....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../..kkwpkwwk.../.kskwkkwksk../..kkwukwkkk../...kwkkwk..../..kuk.kuk..../.kkkk.kk.....",
+      "............./....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../...kwpkwk..../...kwkkwk..../...kwuwksk.../...kwkwwk..../...kukuk...../..kkkkkk.....",
+      "....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../...kwpkwk..../...kkskwk..../...kwukwk..../...kwkwwk..../...kukuk...../...kukuk...../..kkkkkk.....",
+      "............./....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../...kwpkwk..../...kskkwk..../...kkwuwk..../...kwkkwk..../..kuk.kuk..../.kkkk.kk.....",
+      "............./....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../...kwpkwk..../...kwkkwk..../...kwuwksk.../...kwkkwk..../...kukkuk..../...kkkkkk....",
+      "....kkk....../..kkookkk..../..kooooook.../.koosoooook../.kosssssook../..kllkllkkok./..kklsklssk../..ksssssk..../...kkskk...../...kwkkwk..../...kwpkwwk.../...kwkkwksk../...kwukwkkk../...kwwwwk..../...kukuk...../...kukuk...../..kkkkkk....."
+    ],
+    "W": [
+      "............./....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwwk..../...kwwkwwk.../...kwwwksk.../....kwwkkk.../....kwwk...../.....kuk...../....kkkk.....",
+      "............./....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwwk..../...kwwkwwk.../..kkwwwksk.../..kkwwwkkk.../...kwwwk...../...kukkuk..../..kkk..kk....",
+      "............./....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwwk..../...kwwkwk..../...kwwkwk..../....kwksk..../....kwwk...../....kuuk...../....kk.k.....",
+      "....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwk...../...kwwkk...../...kwwkk...../...kkskk...../....kkwk...../....kwwk...../.....kuk...../....kkkk.....",
+      "............./....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwk...../...kkkwkk..../...kswwkk..../....kkkk...../....kwwk...../....ukkuk..../...kk..kk....",
+      "............./....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwk...../...kkwwk...../...kkwwk...../...kkskk...../...kkkwk...../....kuuk...../....kk.k.....",
+      "....kkkk...../..kkooookk.../.kooooooook../..kkssooook../...kssooook../..kslkkkkok../...klsssok.../...kssssk..../....kkkk...../...kwwwwk..../...kwwkwwk.../...kwwwksk.../...kwwwkkk.../...kwwwk...../...kkkuk...../.....kuk...../....kkkk....."
+    ]
+  },
+  "h": 17,
+  "name": "Scientist",
+  "palette": {
+    "k": "#000000",
+    "l": "#9fa8da",
+    "o": "#ff5722",
+    "p": "#e91e63",
+    "s": "#ffccbc",
+    "u": "#2196f3",
+    "w": "#ffffff"
+  },
+  "savedAt": 1793597786460,
+  "w": 13
+}

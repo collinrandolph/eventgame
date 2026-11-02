@@ -1,0 +1,42 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#37474f",
+    "O": "#4a148c",
+    "Q": "#37474f",
+    "U": "#4a148c",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#f1c27d",
+    "o": "#4a148c",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#4a148c",
+    "u": "#4a148c",
+    "y": "#3b2a20"
+  },
+  "group": "Education & community",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-shirt-collar-white"
+  ],
+  "name": "Social Worker",
+  "needs": [
+    "lanyard badge"
+  ],
+  "oy": 0,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#a0522d"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    }
+  }
+}

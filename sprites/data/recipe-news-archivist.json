@@ -1,0 +1,46 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#37474f",
+    "O": "#2e7d32",
+    "Q": "#37474f",
+    "U": "#2e7d32",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#ffcc80",
+    "o": "#2e7d32",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#2e7d32",
+    "u": "#2e7d32",
+    "y": "#3b2a20"
+  },
+  "group": "Media & communication",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-shirt-collar-white",
+    "layer-scientist-glasses"
+  ],
+  "name": "Newspaper Archivist",
+  "needs": [
+    "cardigan buttons"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#a8a8a8"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    }
+  }
+}

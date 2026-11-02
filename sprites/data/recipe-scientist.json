@@ -1,0 +1,32 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#ffccbc",
+    "L": "#2196f3",
+    "O": "#ffffff",
+    "Q": "#2196f3",
+    "U": "#ffffff",
+    "a": "#ffccbc",
+    "h": "#ffccbc",
+    "k": "#000000",
+    "l": "#2196f3",
+    "n": "#ffccbc",
+    "o": "#ffffff",
+    "p": "#2196f3",
+    "q": "#2196f3",
+    "t": "#ffffff",
+    "u": "#ffffff",
+    "y": "#000000"
+  },
+  "group": "Medical & science",
+  "kind": "recipe",
+  "layers": [
+    "layer-scientist-hair",
+    "layer-scientist-glasses",
+    "layer-scientist-coat"
+  ],
+  "name": "Scientist (layers)",
+  "oy": 1,
+  "savedAt": 1793605409815
+}

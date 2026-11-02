@@ -1,0 +1,33 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#3f51b5",
+    "O": "#2196f3",
+    "Q": "#3f51b5",
+    "U": "#2196f3",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#3f51b5",
+    "n": "#ffcc80",
+    "o": "#2196f3",
+    "p": "#3f51b5",
+    "q": "#3f51b5",
+    "t": "#2196f3",
+    "u": "#2196f3",
+    "y": "#000000"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-cap",
+    "layer-officer-hair",
+    "layer-officer-shirt",
+    "layer-officer-belt"
+  ],
+  "name": "Police Officer (layers)",
+  "oy": 1,
+  "savedAt": 1793605409814
+}

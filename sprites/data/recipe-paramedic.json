@@ -1,0 +1,46 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#64b5f6",
+    "L": "#283593",
+    "O": "#283593",
+    "Q": "#283593",
+    "U": "#283593",
+    "a": "#d9a066",
+    "h": "#64b5f6",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#d9a066",
+    "o": "#283593",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#283593",
+    "u": "#283593",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-ponytail-blonde",
+    "layer-officer-shirt",
+    "layer-stripes-red"
+  ],
+  "name": "Paramedic",
+  "needs": [
+    "medic bag"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-ponytail-blonde": {
+      "h": "#6d4c41"
+    },
+    "layer-officer-shirt": {
+      "g": "#fafafa"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

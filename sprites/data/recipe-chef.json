@@ -1,0 +1,32 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#ffcc80",
+    "L": "#9e9e9e",
+    "O": "#ffffff",
+    "Q": "#9e9e9e",
+    "U": "#ffffff",
+    "a": "#ffcc80",
+    "h": "#ffcc80",
+    "k": "#000000",
+    "l": "#9e9e9e",
+    "n": "#e53935",
+    "o": "#ffffff",
+    "p": "#9e9e9e",
+    "q": "#9e9e9e",
+    "t": "#ffffff",
+    "u": "#ffffff",
+    "y": "#000000"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-chef-hat",
+    "layer-chef-hair",
+    "layer-chef-coat"
+  ],
+  "name": "Chef (layers)",
+  "oy": 1,
+  "savedAt": 1793605409815
+}

@@ -10,7 +10,9 @@
     "check:full": "tsx src/cli/check.ts --full",
     "viz": "tsx src/cli/viz.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sprites": "tsx src/cli/sprites.ts export",
+    "check:sprites": "tsx src/cli/sprites.ts check"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

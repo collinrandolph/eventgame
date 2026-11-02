@@ -1,0 +1,49 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#d9a066",
+    "L": "#c8b273",
+    "O": "#d9a066",
+    "Q": "#c8b273",
+    "U": "#37474f",
+    "a": "#d9a066",
+    "h": "#d9a066",
+    "k": "#000000",
+    "l": "#c8b273",
+    "n": "#d9a066",
+    "o": "#d9a066",
+    "p": "#c8b273",
+    "q": "#c8b273",
+    "t": "#37474f",
+    "u": "#37474f",
+    "y": "#3b2a20"
+  },
+  "group": "Media & communication",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-beard-brown",
+    "layer-officer-cap"
+  ],
+  "name": "Camera Operator",
+  "needs": [
+    "shoulder camera"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-officer-cap": {
+      "g": "#212121",
+      "n": "#212121",
+      "u": "#212121"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    }
+  }
+}

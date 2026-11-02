@@ -1,0 +1,31 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#8d5524",
+    "L": "#8d5524",
+    "O": "#ffffff",
+    "Q": "#283593",
+    "U": "#ffffff",
+    "a": "#8d5524",
+    "h": "#8d5524",
+    "k": "#000000",
+    "l": "#8d5524",
+    "n": "#8d5524",
+    "o": "#ffffff",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#ffffff",
+    "u": "#ffffff",
+    "y": "#3b2a20"
+  },
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-shirt-collar-white",
+    "layer-skirt-navy"
+  ],
+  "name": "Office Worker",
+  "oy": 0,
+  "savedAt": 1793627932126
+}

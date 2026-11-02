@@ -1,0 +1,51 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#1565c0",
+    "O": "#c62828",
+    "Q": "#1565c0",
+    "U": "#c62828",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#1565c0",
+    "n": "#f1c27d",
+    "o": "#c62828",
+    "p": "#1565c0",
+    "q": "#1565c0",
+    "t": "#c62828",
+    "u": "#c62828",
+    "y": "#3b2a20"
+  },
+  "group": "Commercial & service",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-stripes-red",
+    "layer-beard-brown",
+    "layer-officer-cap"
+  ],
+  "name": "Gun Shop Owner",
+  "needs": [],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-beard-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-officer-cap": {
+      "g": "#5b6b2f",
+      "n": "#5b6b2f",
+      "u": "#5b6b2f"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    },
+    "layer-stripes-red": {
+      "z": "#212121"
+    }
+  }
+}

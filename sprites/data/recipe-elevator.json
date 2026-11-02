@@ -1,0 +1,41 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#9e9e9e",
+    "L": "#37474f",
+    "O": "#37474f",
+    "Q": "#37474f",
+    "U": "#37474f",
+    "a": "#d9a066",
+    "h": "#9e9e9e",
+    "k": "#000000",
+    "l": "#37474f",
+    "n": "#d9a066",
+    "o": "#37474f",
+    "p": "#37474f",
+    "q": "#37474f",
+    "t": "#37474f",
+    "u": "#37474f",
+    "y": "#3b2a20"
+  },
+  "group": "Infrastructure & utilities",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-jacket-zip",
+    "layer-officer-belt"
+  ],
+  "name": "Elevator Mechanic",
+  "needs": [
+    "tool belt"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#262626"
+    }
+  }
+}

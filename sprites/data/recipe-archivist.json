@@ -1,0 +1,51 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#f6d5b5",
+    "L": "#b59f6b",
+    "O": "#6d4c41",
+    "Q": "#b59f6b",
+    "U": "#6d4c41",
+    "a": "#f6d5b5",
+    "h": "#f6d5b5",
+    "k": "#000000",
+    "l": "#b59f6b",
+    "n": "#f6d5b5",
+    "o": "#6d4c41",
+    "p": "#b59f6b",
+    "q": "#b59f6b",
+    "t": "#6d4c41",
+    "u": "#6d4c41",
+    "y": "#3b2a20"
+  },
+  "group": "Civic & government",
+  "kind": "recipe",
+  "layers": [
+    "layer-ears-skin",
+    "layer-hair-short-brown",
+    "layer-shirt-collar-white",
+    "layer-tie-navy",
+    "layer-scientist-glasses"
+  ],
+  "name": "City Archivist",
+  "needs": [
+    "cardigan buttons"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-short-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-scientist-glasses": {
+      "l": "#9fa8da"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-tie-navy": {
+      "c": "#2e7d32"
+    }
+  }
+}

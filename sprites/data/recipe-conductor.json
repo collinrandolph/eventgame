@@ -1,0 +1,55 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#c68642",
+    "L": "#1a237e",
+    "O": "#1a237e",
+    "Q": "#1a237e",
+    "U": "#1a237e",
+    "a": "#c68642",
+    "h": "#c68642",
+    "k": "#000000",
+    "l": "#1a237e",
+    "n": "#c68642",
+    "o": "#1a237e",
+    "p": "#1a237e",
+    "q": "#1a237e",
+    "t": "#1a237e",
+    "u": "#1a237e",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-shirt-collar-white",
+    "layer-tie-navy",
+    "layer-mustache-brown",
+    "layer-officer-cap"
+  ],
+  "name": "Train Conductor",
+  "needs": [],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-mustache-brown": {
+      "h": "#a8a8a8"
+    },
+    "layer-officer-cap": {
+      "g": "#fdd835",
+      "n": "#1a237e",
+      "u": "#1a237e"
+    },
+    "layer-officer-hair": {
+      "d": "#a8a8a8",
+      "s": "part:a"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-tie-navy": {
+      "c": "#1a237e"
+    }
+  }
+}

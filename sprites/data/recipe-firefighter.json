@@ -1,0 +1,51 @@
+{
+  "base": "base-male",
+  "by": "claude",
+  "colors": {
+    "H": "#212121",
+    "L": "#c8b273",
+    "O": "#c8b273",
+    "Q": "#c8b273",
+    "U": "#c8b273",
+    "a": "#ffcc80",
+    "h": "#212121",
+    "k": "#000000",
+    "l": "#c8b273",
+    "n": "#ffcc80",
+    "o": "#c8b273",
+    "p": "#c8b273",
+    "q": "#c8b273",
+    "t": "#c8b273",
+    "u": "#c8b273",
+    "y": "#3b2a20"
+  },
+  "group": "Emergency & security",
+  "kind": "recipe",
+  "layers": [
+    "layer-officer-hair",
+    "layer-stripes-red",
+    "layer-officer-cap"
+  ],
+  "name": "Firefighter",
+  "needs": [
+    "fire helmet",
+    "breathing tank",
+    "axe"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-officer-cap": {
+      "g": "#fdd835",
+      "n": "#c62828",
+      "u": "#c62828"
+    },
+    "layer-officer-hair": {
+      "d": "#6d4c41",
+      "s": "part:a"
+    },
+    "layer-stripes-red": {
+      "z": "#cddc39"
+    }
+  }
+}

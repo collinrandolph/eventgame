@@ -1,0 +1,50 @@
+{
+  "base": "base-female",
+  "by": "claude",
+  "colors": {
+    "H": "#f1c27d",
+    "L": "#283593",
+    "O": "#f1c27d",
+    "Q": "#283593",
+    "U": "#fafafa",
+    "a": "#f1c27d",
+    "h": "#f1c27d",
+    "k": "#000000",
+    "l": "#283593",
+    "n": "#f1c27d",
+    "o": "#f1c27d",
+    "p": "#283593",
+    "q": "#283593",
+    "t": "#fafafa",
+    "u": "#fafafa",
+    "y": "#3b2a20"
+  },
+  "group": "Transport",
+  "kind": "recipe",
+  "layers": [
+    "layer-hair-long-brown",
+    "layer-shirt-collar-white",
+    "layer-tie-navy",
+    "layer-scientist-glasses"
+  ],
+  "name": "Helicopter Pilot",
+  "needs": [
+    "epaulettes"
+  ],
+  "oy": 1,
+  "savedAt": 1793629469886,
+  "tints": {
+    "layer-hair-long-brown": {
+      "h": "#6d4c41"
+    },
+    "layer-scientist-glasses": {
+      "l": "#212121"
+    },
+    "layer-shirt-collar-white": {
+      "w": "#fafafa"
+    },
+    "layer-tie-navy": {
+      "c": "#212121"
+    }
+  }
+}
