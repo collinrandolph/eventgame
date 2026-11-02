@@ -306,8 +306,12 @@ function decode(doc: SpriteDoc, frame = "0", extra: Record<string, string> = {})
  * "exterior": every building shows its roof (the view from the street). "interior": roofs lifted, floors and thin
  * walls shown. The game shows the exterior and lifts one building's roof (the `building` grid) when the player is in it.
  */
-export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interior" = "exterior"): { width: number; height: number; pixels: Uint8Array } {
+export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interior" = "exterior", opts: { people?: boolean } = {}): { width: number; height: number; pixels: Uint8Array; solid: Uint8Array } {
   const width = m.w * TILE, height = m.h * TILE, px = new Uint8Array(width * height * 4);
+  // what blocks walking, per pixel: thin wall lines, locked doors, closed gates, water, unenterable blocks, void.
+  // Read it from the interior view (from outside, a building's whole footprint is roof).
+  const solid = new Uint8Array(width * height);
+  const block = (X0: number, Y0: number, w: number, h: number) => { for (let j = 0; j < h; j++) solid.fill(1, (Y0 + j) * width + X0, (Y0 + j) * width + X0 + w); };
   // per pixel: 1 road, 2 sidewalk, 3 structure, 5 water
   const mat = new Uint8Array(width * height);
   const put = (X: number, Y: number, c: RGB | null, scale = 1) => {
@@ -350,7 +354,7 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
   for (let y = 0; y < m.h; y++) for (let x = 0; x < m.w; x++) {
     const kd = m.kind[y][x], X0 = x * TILE, Y0 = y * TILE;
     const fill = (t: Tex, code = 0, scale = 1) => { for (let j = 0; j < TILE; j++) for (let i = 0; i < TILE; i++) { put(X0 + i, Y0 + j, sample(t, X0 + i, Y0 + j), scale); mat[(Y0 + j) * width + X0 + i] = code; } };
-    if (structure(x, y) >= 0) continue; // drawn below as a roof over a front wall
+    if (structure(x, y) >= 0) { block(X0, Y0, TILE, TILE); continue; } // drawn below as a roof over a front wall
     switch (kd) {
       case "road": fill(asphalt, 1); break;
       case "sidewalk": {
@@ -367,6 +371,7 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
         break;
       }
       case "water": {
+        block(X0, Y0, TILE, TILE);
         fill(water, 5);
         // the bank's stone face shows below land to the north; other edges are a line
         const land = (dx: number, dy: number) => k(x + dx, y + dy) !== "water" && k(x + dx, y + dy) !== undefined;
@@ -380,7 +385,7 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
       case "outdoor": { const l = m.ground[y][x]!; fill(themeTex(l) ?? lookTex(l)); break; }
       case "floor": fill(lookTex(m.ground[y][x]!)); break;
       case "wall": case "portal": drawWall(x, y); break;
-      default: for (let j = 0; j < TILE; j++) for (let i = 0; i < TILE; i++) put(X0 + i, Y0 + j, [16, 16, 20]);
+      default: block(X0, Y0, TILE, TILE); for (let j = 0; j < TILE; j++) for (let i = 0; i < TILE; i++) put(X0 + i, Y0 + j, [16, 16, 20]);
     }
   }
 
@@ -420,10 +425,11 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
       const rim = (i > 0 && !band[j][i - 1]) || (i < TILE - 1 && !band[j][i + 1]) || (j > 0 && !band[j - 1][i]) || (j < TILE - 1 && !band[j + 1][i]);
       if (door === "open") continue; // an open doorway: a gap in the wall
       if (door) {
+        if (door === "locked") solid[(Y0 + j) * width + X0 + i] = 1; // a closed door just opens
         if (door === "broken" && hash(X0 + i, Y0 + j, 5) < 0.4) continue;
         const centre = Math.abs(i - 7.5) < 1.5 && Math.abs(j - 7.5) < 1.5;
         put(X0 + i, Y0 + j, door === "locked" && centre ? lock : rim ? edge : wood);
-      } else put(X0 + i, Y0 + j, rim ? edge : top);
+      } else { put(X0 + i, Y0 + j, rim ? edge : top); solid[(Y0 + j) * width + X0 + i] = 1; }
     }
   }
 
@@ -501,8 +507,9 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
     if (kd === undefined) continue;
     const doc = art.tiles.get(p.prop);
     if (doc?.frames[p.state]) blit(tex(p.prop, p.state), x * TILE, y * TILE);
+    if (!inside && p.prop !== "prop-hatch" && (p.state === "closed" || p.state === "locked")) block(x * TILE, y * TILE, TILE, TILE);
   }
-  for (const p of m.people) {
+  for (const p of opts.people === false ? [] : m.people) {
     const [x, y] = p.at;
     if (!visible(x, y)) continue;
     const f = personIdle(art, p.sprite), rows = f?.frames.S?.[0];
@@ -511,7 +518,7 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
     const X0 = x * TILE + Math.floor((TILE - f.w) / 2), Y0 = (y + 1) * TILE - f.h;
     rows.forEach((row, j) => [...row].forEach((key, i) => { if (key !== "." && f.palette[key]) put(X0 + i, Y0 + j, rgb(f.palette[key])); }));
   }
-  return { width, height, pixels: px };
+  return { width, height, pixels: px, solid };
 }
 
 const idleCache = new Map<string, Frames | null>();

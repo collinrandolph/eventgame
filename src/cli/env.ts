@@ -1,6 +1,9 @@
 // Environment maps.
 //
 //   npm run env -- [world.json]   write sprites/maps/<world>-L<z>.png (one per layer) and <world>.map.json
+//   npm run env -- [world.json] --walk
+//                                 also write sprites/maps/walk/<world>/: the ground floor without people (exterior
+//                                 and interior), a 2 px collision mask, the building grid and who starts where
 //
 // The map JSON is what the game reads: per layer, the tile legend and grid, the props with their state, and the
 // people with their sprite. Art comes from sprites/env/data (tiles, themes, props) and sprites/data (characters);
@@ -34,6 +37,30 @@ for (const z of Object.keys(raw.grid.layers).map(Number).sort((a, b) => a - b)) 
   console.log(`  ${m.buildings.length} buildings, ${m.lots.length} roof lots, ${m.props.length} props, ${m.people.length} people`);
 }
 writeFileSync(`sprites/maps/${raw.id}.map.json`, JSON.stringify({ world: raw.id, tile: 16, layers }) + "\n");
+
+if (process.argv.includes("--walk")) {
+  const dir = `sprites/maps/walk/${raw.id}`, m = buildLayer(w, raw, cfg, art, 0);
+  mkdirSync(dir, { recursive: true });
+  const ext = renderLayer(m, art, "exterior", { people: false }), int = renderLayer(m, art, "interior", { people: false });
+  writeFileSync(`${dir}/exterior.png`, encodePng(ext.width, ext.height, ext.pixels));
+  writeFileSync(`${dir}/interior.png`, encodePng(int.width, int.height, int.pixels));
+  // collision at 2 px: a block is solid if any of its pixels is
+  const R = 2, cw = int.width / R, chh = int.height / R, bits = new Uint8Array(Math.ceil((cw * chh) / 8));
+  for (let y = 0; y < chh; y++) for (let x = 0; x < cw; x++) {
+    let hit = 0;
+    for (let j = 0; j < R && !hit; j++) for (let i = 0; i < R && !hit; i++) hit = int.solid[(y * R + j) * int.width + x * R + i];
+    if (hit) { const k = y * cw + x; bits[k >> 3] |= 1 << (k & 7); }
+  }
+  const sprites = [...new Set(m.people.map((p) => p.sprite))];
+  writeFileSync(`${dir}/walk.json`, JSON.stringify({
+    world: raw.id, name: raw.name, tile: 16, w: m.w, h: m.h, res: R, cw, ch: chh, solid: Buffer.from(bits).toString("base64"),
+    building: m.building.map((r) => r.map((b) => (b >= 0 && m.buildings[b].roofed ? b : -1))),
+    buildings: m.buildings.map((b) => ({ id: b.id, roofed: b.roofed, names: b.zones.map((z) => raw.grid.zones.find((q) => q.id === z)?.name ?? z) })),
+    people: m.people.map((p) => ({ ...p, name: w.people.get(p.id)?.name ?? p.id, playable: !!raw.people.find((q) => q.id === p.id && (q as { playable?: boolean }).playable) })),
+    sheets: Object.fromEntries(sprites.map((id) => [id, JSON.parse(readFileSync("sprites/sheets/index.json", "utf8"))[id]?.animations?.walk]).filter(([, a]) => a)),
+  }) + "\n");
+  console.log(`${dir}/  exterior.png, interior.png, walk.json`);
+}
 console.log(`sprites/maps/${raw.id}.map.json`);
 
 /** Tiles as a legend of looks plus rows of indices (-1 = nothing), so the file stays small. */
