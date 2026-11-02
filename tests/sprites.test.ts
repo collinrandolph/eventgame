@@ -33,15 +33,34 @@ group("recipe assembly", () => {
     const r: SpriteDoc = { kind: "recipe", name: "r", w: 3, h: 3, palette: {}, frames: {}, colors: { a: "#123456" } };
     const f = composeWalk(r, base, [hat]);
     const rows = f.frames.S![0].map((row) => [...row].map((c) => f.palette[c]));
-    expect(rows[0]).toEqual(["#ff0000", "#ff0000", "#ff0000"]);
-    expect(rows[1][1]).toBe("#123456");
-    expect(f.painter.S![0][0]).toEqual(["hat", "hat", "hat"]);
+    expect(rows[1]).toEqual(["#ff0000", "#ff0000", "#ff0000"]);   // row 0 is the room made above the hat
+    expect(rows[2][1]).toBe("#123456");
+    expect(f.painter.S![0][1]).toEqual(["hat", "hat", "hat"]);
+  });
+
+  it("stacks layers back to front whatever order the recipe lists them in", () => {
+    const collar = { id: "collar", kind: "layer" as const, name: "collar", w: 3, h: 3, palette: { c: "#ffffff" }, frames: { S: ["ccc/.../..."] }, stack: "shirt" as const };
+    const hair = { ...hat, id: "hair", stack: "hair" as const };
+    const r: SpriteDoc = { kind: "recipe", name: "r", w: 3, h: 3, palette: {}, frames: {} };
+    const f = composeWalk(r, base, [hair, collar]);
+    expect(f.palette[f.frames.S![0][1][0]]).toBe("#ff0000");
+    expect(f.painter.S![0][1]).toEqual(["hair", "hair", "hair"]);
+  });
+
+  it("makes room at the top for a layer that rises off the canvas on the bounce", () => {
+    // the head is drawn a row higher on the bounce frame (3), so the hat above it rises off the base's canvas
+    const still = ".../kkk/kak/kkk", up = "kkk/kak/kkk/...";
+    const tall: SpriteDoc = { name: "base", w: 3, h: 4, palette: pal, frames: { S: [still, still, still, up] } };
+    const r: SpriteDoc = { kind: "recipe", name: "r", w: 3, h: 4, palette: {}, frames: {} };
+    const f = composeWalk(r, tall, [hat]);
+    expect(f.h).toBe(5);                                     // a row added above
+    expect(f.frames.S![3][0]).toBe("ccc".replace(/c/g, f.frames.S![0][1][0]));   // the bounce keeps the hat's top row
   });
 
   it("recolours a layer per recipe with tints", () => {
     const r: SpriteDoc = { kind: "recipe", name: "r", w: 3, h: 3, palette: {}, frames: {}, tints: { hat: { h: "#00ff00" } } };
     const f = composeWalk(r, base, [hat]);
-    expect(f.palette[f.frames.S![0][0][0]]).toBe("#00ff00");
+    expect(f.palette[f.frames.S![0][1][0]]).toBe("#00ff00");
   });
 });
 

@@ -3185,7 +3185,7 @@
         "file": "recipe-daycare/walk.png",
         "frame": {
           "w": 13,
-          "h": 16
+          "h": 17
         },
         "walkAt": {
           "x": 0,
@@ -3217,11 +3217,11 @@
         "file": "recipe-daycare/attack.png",
         "frame": {
           "w": 35,
-          "h": 31
+          "h": 32
         },
         "walkAt": {
           "x": 11,
-          "y": 7
+          "y": 8
         },
         "rows": [
           "S",
@@ -3240,11 +3240,11 @@
         "file": "recipe-daycare/hurt.png",
         "frame": {
           "w": 15,
-          "h": 18
+          "h": 19
         },
         "walkAt": {
           "x": 1,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "S",
@@ -3263,11 +3263,11 @@
         "file": "recipe-daycare/death.png",
         "frame": {
           "w": 17,
-          "h": 27
+          "h": 28
         },
         "walkAt": {
           "x": 2,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "E",
@@ -3751,7 +3751,7 @@
         "file": "recipe-dj/walk.png",
         "frame": {
           "w": 13,
-          "h": 16
+          "h": 17
         },
         "walkAt": {
           "x": 0,
@@ -3783,11 +3783,11 @@
         "file": "recipe-dj/attack.png",
         "frame": {
           "w": 35,
-          "h": 31
+          "h": 32
         },
         "walkAt": {
           "x": 11,
-          "y": 7
+          "y": 8
         },
         "rows": [
           "S",
@@ -3806,11 +3806,11 @@
         "file": "recipe-dj/hurt.png",
         "frame": {
           "w": 15,
-          "h": 18
+          "h": 19
         },
         "walkAt": {
           "x": 1,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "S",
@@ -3829,11 +3829,11 @@
         "file": "recipe-dj/death.png",
         "frame": {
           "w": 17,
-          "h": 27
+          "h": 28
         },
         "walkAt": {
           "x": 2,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "E",
@@ -4537,7 +4537,7 @@
         "file": "recipe-farmer/walk.png",
         "frame": {
           "w": 13,
-          "h": 16
+          "h": 17
         },
         "walkAt": {
           "x": 0,
@@ -4569,11 +4569,11 @@
         "file": "recipe-farmer/attack.png",
         "frame": {
           "w": 35,
-          "h": 31
+          "h": 32
         },
         "walkAt": {
           "x": 11,
-          "y": 7
+          "y": 8
         },
         "rows": [
           "S",
@@ -4592,11 +4592,11 @@
         "file": "recipe-farmer/hurt.png",
         "frame": {
           "w": 15,
-          "h": 18
+          "h": 19
         },
         "walkAt": {
           "x": 1,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "S",
@@ -4615,11 +4615,11 @@
         "file": "recipe-farmer/death.png",
         "frame": {
           "w": 17,
-          "h": 27
+          "h": 28
         },
         "walkAt": {
           "x": 2,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "E",
@@ -9249,7 +9249,7 @@
         "file": "recipe-shopkeeper/walk.png",
         "frame": {
           "w": 13,
-          "h": 16
+          "h": 17
         },
         "walkAt": {
           "x": 0,
@@ -9281,11 +9281,11 @@
         "file": "recipe-shopkeeper/attack.png",
         "frame": {
           "w": 35,
-          "h": 31
+          "h": 32
         },
         "walkAt": {
           "x": 11,
-          "y": 7
+          "y": 8
         },
         "rows": [
           "S",
@@ -9304,11 +9304,11 @@
         "file": "recipe-shopkeeper/hurt.png",
         "frame": {
           "w": 15,
-          "h": 18
+          "h": 19
         },
         "walkAt": {
           "x": 1,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "S",
@@ -9327,11 +9327,11 @@
         "file": "recipe-shopkeeper/death.png",
         "frame": {
           "w": 17,
-          "h": 27
+          "h": 28
         },
         "walkAt": {
           "x": 2,
-          "y": 1
+          "y": 2
         },
         "rows": [
           "E",
