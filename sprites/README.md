@@ -16,10 +16,15 @@ rows joined with `/`.
 |---|---|
 | character | Hand-drawn: `frames` (walk: idle + 6 per direction) and `attack` / `hurt` / `death` on their own bigger canvases (`ox`, `oy` place the walk frame inside them so the feet line up) |
 | base (`base-male`, `base-female`) | Bald, earless bodies whose palette keys are body parts (k outline, a head, y eyes, n neck, t torso, p hips, U/u upper arm, O/o forearm, H/h hand, Q/q thigh, L/l shin; capitals are his right) |
-| layer (`kind: "layer"`) | One drawing per direction (hair, hats, collars, skirts), drawn over a base's idle. `covers`: other body parts it may paint over; `rise: "all"`: follows the walk bounce entirely |
+| layer (`kind: "layer"`) | One drawing per direction (hair, hats, collars, skirts), drawn over a base's idle. `covers`: other body parts it may paint over; `rise: "all"`: follows the walk bounce entirely; `stack`: where it sits, back to front (below) |
 | recipe (`kind: "recipe"`) | A base, a colour per body part, layers, and `tints` (per-recipe layer recolours). Assembled, never drawn. `group` and `needs` (accessories not drawn yet) come from the profession list |
 
 The assembly rules are in `src/sprites/compose.ts`; they're the same ones the editor uses.
+
+**Stacking.** A recipe's layers go on back to front by where each one sits, whatever order the recipe lists them in:
+`skin` (ears) → `shirt` (collar, tie, stripes) → `lower` (skirt, overalls, belt) → `outer` (coat, jacket, a lowered
+hood) → `hair` → `hood` (raised) → `face` (beard, mustache) → `glasses` → `hat`. Later ones cover earlier ones, so long
+hair falls over a collar and a ponytail over a lowered hood. Each layer's slot is set in the editor.
 
 ## sheets/
 

@@ -17,6 +17,8 @@
 // - recipe.tints {layerId: {key: hex}} recolours a layer for that recipe (a green cap from the police cap); "part:a"
 //   in a layer's palette means the recipe's colour for that body part (ears in the skin tone)
 // - a layer drawn for a different oy moves down (or up) to the recipe's
+// - layers go on back to front by where they sit (`stack`, see STACK), whatever order the recipe lists them in:
+//   a collar under hair, hair under a raised hood, a hat on top
 // - in attack / hurt / death the head, chest and hips move about, so each frame finds where each one went (see
 //   findRegions) and moves that part's layer pixels with it
 
@@ -36,6 +38,13 @@ export const FALLBACK: Partial<Record<Anim, Partial<Record<Dir, Dir>>>> = {
 export const WALK_FPS = 8;
 export const ANIM_FPS: Record<Anim, number> = { attack: 12, hurt: 10, death: 8 };
 
+/**
+ * Where a layer sits, back to front; later slots cover earlier ones. A lowered hood is "outer" (the hair falls over
+ * it), a raised one is "hood" (it covers the hair).
+ */
+export const STACK = ["skin", "shirt", "lower", "outer", "hair", "hood", "face", "glasses", "hat"] as const;
+export type StackSlot = (typeof STACK)[number];
+
 export type Palette = Record<string, string>;
 export interface AnimDoc { w: number; h: number; ox: number; oy: number; frames: Partial<Record<string, string[]>> }
 export interface SpriteDoc {
@@ -54,6 +63,7 @@ export interface SpriteDoc {
   oy?: number;
   covers?: string;
   rise?: string;
+  stack?: StackSlot;
   // recipes
   colors?: Palette;
   layers?: string[];
@@ -111,6 +121,7 @@ const partColour = (recipe: SpriteDoc, base: SpriteDoc, c: string) => recipe.col
 
 /** A recipe's walk (idle + 6 frames) in every direction the base has. */
 export function composeWalk(recipe: SpriteDoc, base: SpriteDoc, layers: Layer[]): Frames {
+  layers = stacked(layers);
   const oy = recipe.oy ?? 0, W = base.w, H = base.h + oy;
   const pad = (s: string) => [...Array<string>(oy).fill(".".repeat(W)), ...s.split("/").map((r) => r.slice(0, W).padEnd(W, "."))].slice(0, H);
   const { palette, keyFor } = paletteBuilder();
@@ -229,6 +240,7 @@ function place(off: Offset, x: number, y: number, ox: number, aoy: number, roy: 
 
 /** A recipe's attack, hurt or death: the base's frames with the layers following the head, chest and hips. */
 export function composeAnim(recipe: SpriteDoc, base: SpriteDoc, layers: Layer[], kind: Anim): Frames | null {
+  layers = stacked(layers);
   const A = base[kind];
   if (!A) return null;
   const oy = recipe.oy ?? 0, W = A.w, H = A.h + oy;
@@ -293,6 +305,12 @@ export function drawnAnim(doc: SpriteDoc, kind: Anim): Frames | null {
     painter[dir] = frames[dir]!.map((g) => g.map((r) => [...r].map(() => "")));
   }
   return { w: A.w, h: A.h, ox: A.ox, oy: A.oy, palette: doc.palette, frames, painter };
+}
+
+/** Layers back to front by their stack slot (a layer without one counts as "shirt"); within a slot, as listed. */
+export function stacked(layers: Layer[]): Layer[] {
+  const at = (l: Layer) => { const i = STACK.indexOf(l.stack as StackSlot); return i < 0 ? 1 : i; };
+  return layers.map((l, i) => [l, i] as const).sort((a, b) => at(a[0]) - at(b[0]) || a[1] - b[1]).map(([l]) => l);
 }
 
 /** Everything a recipe needs, looked up by id. */

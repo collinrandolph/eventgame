@@ -38,6 +38,15 @@ group("recipe assembly", () => {
     expect(f.painter.S![0][0]).toEqual(["hat", "hat", "hat"]);
   });
 
+  it("stacks layers back to front whatever order the recipe lists them in", () => {
+    const collar = { id: "collar", kind: "layer" as const, name: "collar", w: 3, h: 3, palette: { c: "#ffffff" }, frames: { S: ["ccc/.../..."] }, stack: "shirt" as const };
+    const hair = { ...hat, id: "hair", stack: "hair" as const };
+    const r: SpriteDoc = { kind: "recipe", name: "r", w: 3, h: 3, palette: {}, frames: {} };
+    const f = composeWalk(r, base, [hair, collar]);
+    expect(f.palette[f.frames.S![0][0][0]]).toBe("#ff0000");
+    expect(f.painter.S![0][0]).toEqual(["hair", "hair", "hair"]);
+  });
+
   it("recolours a layer per recipe with tints", () => {
     const r: SpriteDoc = { kind: "recipe", name: "r", w: 3, h: 3, palette: {}, frames: {}, tints: { hat: { h: "#00ff00" } } };
     const f = composeWalk(r, base, [hat]);
