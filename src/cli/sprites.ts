@@ -11,7 +11,7 @@ import { join } from "node:path";
 import { type FrameReport, checkFrames } from "../sprites/check.js";
 import {
   ANIMS, ANIM_FPS, type Anim, DIRS, FALLBACK, type Frames, type SpriteDoc, WALK_FPS,
-  composeAnim, composeWalk, drawnAnim, drawnWalk, loadSprites, recipeParts,
+  composeAnim, composeWalk, drawnAnim, drawnWalk, fitOy, loadSprites, recipeParts,
 } from "../sprites/compose.js";
 import { encodePng, hexRgb } from "../sprites/png.js";
 
@@ -85,7 +85,7 @@ if (cmd === "export") {
   for (const doc of all.values()) {
     if (doc.kind !== "recipe") continue;
     const { base, layers } = recipeParts(all, doc);
-    const bare = { ...doc, layers: [], tints: {} };
+    const bare = { ...doc, layers: [], tints: {}, oy: fitOy(doc, layers) };   // same canvas as the dressed recipe
     reports.push(...checkFrames(doc.name, "walk", composeWalk(doc, base, layers), composeWalk(bare, base, [])));
     for (const k of ANIMS) {
       const a = composeAnim(doc, base, layers, k), b = composeAnim(bare, base, [], k);

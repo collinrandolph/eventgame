@@ -19,6 +19,7 @@
 // - a layer drawn for a different oy moves down (or up) to the recipe's
 // - layers go on back to front by where they sit (`stack`, see STACK), whatever order the recipe lists them in:
 //   a collar under hair, hair under a raised hood, a hat on top
+// - the canvas has room above for whatever the layers draw, and for it rising a row on the walk's bounce (fitOy)
 // - in attack / hurt / death the head, chest and hips move about, so each frame finds where each one went (see
 //   findRegions) and moves that part's layer pixels with it
 
@@ -119,10 +120,24 @@ function colourOf(recipe: SpriteDoc, base: SpriteDoc, l: Layer, c: string): stri
 
 const partColour = (recipe: SpriteDoc, base: SpriteDoc, c: string) => recipe.colors?.[c] ?? base.palette[c] ?? "#ff00ff";
 
+/** How far down the canvas the base sits: the recipe's oy, more if a layer would otherwise rise off the top. */
+export function fitOy(recipe: SpriteDoc, layers: Layer[]): number {
+  const oy0 = recipe.oy ?? 0;
+  let top = Infinity;
+  for (const l of layers) for (const fr of Object.values(l.frames)) {
+    if (!fr?.[0]) continue;
+    fr[0].split("/").forEach((row, y) => {
+      const Y = y + oy0 - (l.oy ?? 0);
+      if (/[^.]/.test(row) && (l.rise === "all" || Y - oy0 <= 11)) top = Math.min(top, Y);
+    });
+  }
+  return top < 1 ? oy0 + 1 - top : oy0;
+}
+
 /** A recipe's walk (idle + 6 frames) in every direction the base has. */
 export function composeWalk(recipe: SpriteDoc, base: SpriteDoc, layers: Layer[]): Frames {
   layers = stacked(layers);
-  const oy = recipe.oy ?? 0, W = base.w, H = base.h + oy;
+  const oy = fitOy(recipe, layers), W = base.w, H = base.h + oy;
   const pad = (s: string) => [...Array<string>(oy).fill(".".repeat(W)), ...s.split("/").map((r) => r.slice(0, W).padEnd(W, "."))].slice(0, H);
   const { palette, keyFor } = paletteBuilder();
   const frames: Frames["frames"] = {}, painter: Frames["painter"] = {};
@@ -243,7 +258,7 @@ export function composeAnim(recipe: SpriteDoc, base: SpriteDoc, layers: Layer[],
   layers = stacked(layers);
   const A = base[kind];
   if (!A) return null;
-  const oy = recipe.oy ?? 0, W = A.w, H = A.h + oy;
+  const oy = fitOy(recipe, layers), W = A.w, H = A.h + oy;
   const padIdle = (s: string) => [...Array<string>(oy).fill(".".repeat(base.w)), ...s.split("/")];
   const padAnim = (s: string) => [...Array<string>(oy).fill(".".repeat(W)), ...s.split("/").map((r) => r.slice(0, W).padEnd(W, "."))].slice(0, H);
   const { palette, keyFor } = paletteBuilder();
