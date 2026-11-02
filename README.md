@@ -11,6 +11,7 @@ npm run viz       # write viz/<world>-viewer.html: 3D layer stack + 2D plan per 
 npm run play      # play in the terminal  (-- --mode untimed --seed 42)
 npm run sprites   # character sprite sheets from sprites/data/ (see sprites/README.md)
 npm run check:sprites   # missing-pixel check on every assembled character
+npm run env       # top-down map per layer from a grid world: sprites/maps/ (see sprites/env/README.md)
 ```
 
 ## Layout

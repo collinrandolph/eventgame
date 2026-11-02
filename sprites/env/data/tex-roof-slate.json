@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Roof: slate",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#6888fc",
+    "b": "#a4e4fc",
+    "c": "#242424"
+  },
+  "frames": {
+    "0": [
+      "abbbabbbabbbabbb/aaaaaaaaaaaaaaaa/caaacaaacaaacaaa/cccccccccccccccc/bbabbbabbbabbbab/aaaaaaaaaaaaaaaa/aacaaacaaacaaaca/cccccccccccccccc"
+    ]
+  }
+}

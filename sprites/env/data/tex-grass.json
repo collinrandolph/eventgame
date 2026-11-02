@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Grass",
+  "w": 32,
+  "h": 32,
+  "palette": {
+    "a": "#00a800",
+    "b": "#58d854",
+    "c": "#005800"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aabaaaaaaaaaaabaaaaaaaaaaaaaaaaa/acacaaaaaaaaacacaaaaaaabaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaacacaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaabaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaacacaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaabaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaacacaaaaaaaaaaaaaaaa/aabaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/acacaaaaaaaaaaaaaaaaaaaaabaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaacacaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaabaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaacacaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaabaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaacacaaaaaa"
+    ]
+  }
+}

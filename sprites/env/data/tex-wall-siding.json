@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Wall: siding",
+  "w": 16,
+  "h": 4,
+  "palette": {
+    "a": "#fcfcfc",
+    "b": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/bbbbbbbbbbbbbbbb"
+    ]
+  }
+}

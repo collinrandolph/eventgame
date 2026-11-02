@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Window",
+  "w": 10,
+  "h": 12,
+  "palette": {
+    "a": "#000000",
+    "b": "#0000bc",
+    "c": "#3cbcfc",
+    "d": "#fcfcfc"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaa/abcbbbbbba/abcbbbbbba/abcbbbbbba/abcbbbbbba/abbbbbbbba/adddddddda/abbbbbbbba/abbbbbbbba/abbbbbbbba/abbbbbbbba/aaaaaaaaaa"
+    ]
+  }
+}

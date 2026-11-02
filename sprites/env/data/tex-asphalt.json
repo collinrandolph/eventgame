@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Asphalt",
+  "w": 32,
+  "h": 32,
+  "palette": {
+    "a": "#3c3c3c",
+    "b": "#242424",
+    "c": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaacaaaaaaaaaaaaaaaaaaaaaa/aaaacaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaabbaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaabbaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaacaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaacaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaabbaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaabbaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaacaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaacaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaacaaaaaaaa/aaaaaaaacaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaacaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaacaaaaaaaaaaaaaa"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Roof: slate, back slope",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#a4e4fc",
+    "b": "#fcfcfc",
+    "c": "#6888fc"
+  },
+  "frames": {
+    "0": [
+      "abbbabbbabbbabbb/aaaaaaaaaaaaaaaa/caaacaaacaaacaaa/cccccccccccccccc/bbabbbabbbabbbab/aaaaaaaaaaaaaaaa/aacaaacaaacaaaca/cccccccccccccccc"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Wall: brick",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#581800",
+    "b": "#a81000"
+  },
+  "frames": {
+    "0": [
+      "abbbbbbbabbbbbbb/abbbbbbbabbbbbbb/abbbbbbbabbbbbbb/aaaaaaaaaaaaaaaa/bbbbabbbbbbbabbb/bbbbabbbbbbbabbb/bbbbabbbbbbbabbb/aaaaaaaaaaaaaaaa"
+    ]
+  }
+}

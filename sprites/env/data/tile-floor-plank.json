@@ -1,0 +1,22 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Floor: planks",
+  "palette": {
+    "f": "#7c7c7c",
+    "g": "#7c7c7c",
+    "F": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "gggggggggggggggg/gffFffffffffffff/gfffffffffffffff/gfffffffffffffff/gggggggggggggggg/fffffffgffFfffff/fffffffgffffffff/fffffffgffffffff/gggggggggggggggg/fFffffffffffffgf/ffffffffffffffgf/ffffffffffffffgf/gggggggggggggggg/fffffgffFfffffff/fffffgffffffffff/fffffgffffffffff"
+    ],
+    "1": [
+      "gggggggggggggggg/fffgffFfffffffff/fffgffffffffffff/fffgffffffffffff/gggggggggggggggg/ffffffffffgffFff/ffffffffffgfffff/ffffffffffgfffff/gggggggggggggggg/fgffFfffffffffff/fgffffffffffffff/fgffffffffffffff/gggggggggggggggg/ffffffffgffFffff/ffffffffgfffffff/ffffffffgfffffff"
+    ],
+    "2": [
+      "gggggggggggggggg/ffffffgffFffffff/ffffffgfffffffff/ffffffgfffffffff/gggggggggggggggg/Fffffffffffffgff/fffffffffffffgff/fffffffffffffgff/gggggggggggggggg/ffffgffFffffffff/ffffgfffffffffff/ffffgfffffffffff/gggggggggggggggg/fffffffffffgffFf/fffffffffffgffff/fffffffffffgffff"
+    ]
+  }
+}

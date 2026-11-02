@@ -12,7 +12,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "sprites": "tsx src/cli/sprites.ts export",
-    "check:sprites": "tsx src/cli/sprites.ts check"
+    "check:sprites": "tsx src/cli/sprites.ts check",
+    "env": "tsx src/cli/env.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

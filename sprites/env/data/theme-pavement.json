@@ -1,0 +1,17 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Pavement",
+  "floor": "tile-floor-stone",
+  "colors": {
+    "f": "#e45c10",
+    "g": "#581800",
+    "F": "#f8b878",
+    "v": "#bcbcbc",
+    "x": "#7c7c7c",
+    "w": "#3c3c3c",
+    "W": "#7c7c7c"
+  },
+  "texture": "tex-pavers"
+}

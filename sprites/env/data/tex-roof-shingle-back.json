@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Roof: shingles, back slope",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#e45c10",
+    "b": "#f8b878",
+    "c": "#a81000"
+  },
+  "frames": {
+    "0": [
+      "abbbabbbabbbabbb/aaaaaaaaaaaaaaaa/caaacaaacaaacaaa/cccccccccccccccc/bbabbbabbbabbbab/aaaaaaaaaaaaaaaa/aacaaacaaacaaaca/cccccccccccccccc"
+    ]
+  }
+}

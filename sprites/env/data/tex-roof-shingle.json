@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Roof: shingles",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#a81000",
+    "b": "#e45c10",
+    "c": "#581800"
+  },
+  "frames": {
+    "0": [
+      "abbbabbbabbbabbb/aaaaaaaaaaaaaaaa/caaacaaacaaacaaa/cccccccccccccccc/bbabbbabbbabbbab/aaaaaaaaaaaaaaaa/aacaaacaaacaaaca/cccccccccccccccc"
+    ]
+  }
+}

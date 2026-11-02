@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Poured concrete",
+  "w": 32,
+  "h": 32,
+  "palette": {
+    "a": "#bcbcbc",
+    "b": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaabaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaabaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aabaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaabaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  }
+}

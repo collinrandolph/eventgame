@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Clinic tile",
+  "floor": "tile-floor-tile",
+  "colors": {
+    "f": "#fcfcfc",
+    "g": "#bcbcbc",
+    "F": "#fcfcfc",
+    "v": "#bcbcbc",
+    "x": "#7c7c7c",
+    "w": "#7c7c7c",
+    "W": "#bcbcbc"
+  }
+}

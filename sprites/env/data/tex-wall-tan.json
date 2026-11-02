@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Wall: stucco",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#f8b878",
+    "b": "#ac7c00"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/baaabaaabaaabaaa"
+    ]
+  }
+}

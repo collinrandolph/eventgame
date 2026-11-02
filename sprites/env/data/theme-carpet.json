@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Carpet",
+  "floor": "tile-floor-carpet",
+  "colors": {
+    "f": "#a81000",
+    "g": "#581800",
+    "F": "#e45c10",
+    "v": "#fcd8a8",
+    "x": "#f8b878",
+    "w": "#503000",
+    "W": "#ac7c00"
+  }
+}

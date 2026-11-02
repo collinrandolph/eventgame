@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Embankment stone (wall face)",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#000000",
+    "b": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "abbbbbbbabbbbbbb/abbbbbbbabbbbbbb/abbbbbbbabbbbbbb/aaaaaaaaaaaaaaaa/bbbbabbbbbbbabbb/bbbbabbbbbbbabbb/bbbbabbbbbbbabbb/aaaaaaaaaaaaaaaa"
+    ]
+  }
+}

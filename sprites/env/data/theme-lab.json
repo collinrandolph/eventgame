@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Lab",
+  "floor": "tile-floor-tile",
+  "colors": {
+    "f": "#a4e4fc",
+    "g": "#3cbcfc",
+    "F": "#fcfcfc",
+    "v": "#bcbcbc",
+    "x": "#7c7c7c",
+    "w": "#3c3c3c",
+    "W": "#7c7c7c"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Roof: standing-seam metal",
+  "w": 8,
+  "h": 8,
+  "palette": {
+    "a": "#fcfcfc",
+    "b": "#3c3c3c",
+    "c": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "abcccccc/abcccccc/abcccccc/abcccccc/abcccccc/abcccccc/abcccccc/abcccccc"
+    ]
+  }
+}

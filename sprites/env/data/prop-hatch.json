@@ -1,0 +1,19 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "prop",
+  "name": "Grate or hatch",
+  "palette": {
+    "k": "#242424",
+    "g": "#7c7c7c",
+    "o": "#000000"
+  },
+  "frames": {
+    "closed": [
+      "................/................/..kkkkkkkkkkkk../..kggggggggggk../..kg..g..g..gk../..kg..g..g..gk../..kggggggggggk../..kg..g..g..gk../..kg..g..g..gk../..kggggggggggk../..kg..g..g..gk../..kg..g..g..gk../..kggggggggggk../..kkkkkkkkkkkk../................/................"
+    ],
+    "open": [
+      "................/................/..kkkkkkkkkkkk../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kooooooooook../..kkkkkkkkkkkk../................/................"
+    ]
+  }
+}

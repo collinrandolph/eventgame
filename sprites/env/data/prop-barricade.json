@@ -1,0 +1,19 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "prop",
+  "name": "Barricade",
+  "palette": {
+    "r": "#e45c10",
+    "W": "#fcfcfc",
+    "k": "#242424"
+  },
+  "frames": {
+    "closed": [
+      "................/................/................/...k........k.../WWrrrWWWrrrWWWrr/WrrrWWWrrrWWWrrr/rrrWWWrrrWWWrrrW/rrWWWrrrWWWrrrWW/...k........k.../WWWrrrWWWrrrWWWr/WWrrrWWWrrrWWWrr/WrrrWWWrrrWWWrrr/rrrWWWrrrWWWrrrW/...k........k.../...k........k.../................"
+    ],
+    "open": [
+      "................/................/................/................/................/................/................/................/................/................/................/................/.rrWWWr........./.rWWWrr..WWrrrW./.WWWrrr..WrrrWW./.........rrrWWW."
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Wood floor",
+  "floor": "tile-floor-plank",
+  "colors": {
+    "f": "#ac7c00",
+    "g": "#503000",
+    "F": "#f8b878",
+    "v": "#fcd8a8",
+    "x": "#f8b878",
+    "w": "#503000",
+    "W": "#ac7c00"
+  }
+}

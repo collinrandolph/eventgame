@@ -1,0 +1,17 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Grass",
+  "floor": "tile-floor-grass",
+  "colors": {
+    "f": "#00a800",
+    "g": "#005800",
+    "F": "#58d854",
+    "v": "#bcbcbc",
+    "x": "#7c7c7c",
+    "w": "#3c3c3c",
+    "W": "#7c7c7c"
+  },
+  "texture": "tex-grass"
+}

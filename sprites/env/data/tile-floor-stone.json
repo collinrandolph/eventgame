@@ -1,0 +1,22 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Floor: flagstones",
+  "palette": {
+    "f": "#7c7c7c",
+    "g": "#7c7c7c",
+    "F": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "gggggggggggggggg/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gffffffFgfffffff/gfffffffgfffffff/gfffffffgfffFfff/gfffffffgffFffff/gggggggggggggggg/ffffgffffFffgfff/ffffgffffffFgfff/ffffgfffffffgfff/fFffgffffFffgfff/ffffgffffFffgfff/ffffgfffffffgfff/fffFgfffFfffgfff"
+    ],
+    "1": [
+      "gggggggggggggggg/gfffffffgfffffff/gfffffffgffffFff/gfffffffgfffffff/gfffffffgfffffFf/gffffffFgfffffff/gfffffffgfffffff/gfffffffgfffffff/gggggggggggggggg/ffffgfffffffgfff/ffffgfffffffgfff/ffffgfffffffgfff/ffffgfffffffgFff/ffffgfffffffgfff/ffffgffffffFgfff/ffffgfffffffgffF"
+    ],
+    "2": [
+      "gggggggggggggggg/gffffFffgfffffff/gfffffffgFffffff/gfffffffgffFffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gggggggggggggggg/ffffgfffffffgfFf/ffFfgfffffffgfFf/ffffgfffffffgfff/ffFFgfFFffffgFff/ffffgfffffFfgfff/ffffgfffffffgfFf/ffffgfffffffgfff"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Water",
+  "w": 32,
+  "h": 32,
+  "palette": {
+    "a": "#0058f8",
+    "b": "#3cbcfc",
+    "c": "#0000bc"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaabbbaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaacccaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaabbbaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaacccaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaabbbaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaacccaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aabbbaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaacccaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaabbbaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaacccaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaabbbaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaacccaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+  }
+}

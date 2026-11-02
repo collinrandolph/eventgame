@@ -1,0 +1,22 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Ground: grass",
+  "palette": {
+    "f": "#7c7c7c",
+    "g": "#7c7c7c",
+    "F": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "gfgfgfffffffffff/ffffffgffgfgffgf/fffffgffffggffFf/ffFgfffFfggfffff/ffggfgfgfgFfffgf/ggggffgfgffgfffg/gffggFfffFfggfff/ffFggffffffgffff/ffffffffFfffffgf/ffgfFffgggffgfff/ffffgfgffffggffg/ffffffffffffffff/ggfFFffffgfgFffg/fgfgfffgfgffffff/ffffgfgffggfffff/gffggfffggffffff"
+    ],
+    "1": [
+      "gfffgffgffffffgf/gFfffffggfFgffff/fgfgffffFffFfgfg/ffffffffffffFgfF/ffffgffFgfffffgf/fffFfffgffffffff/ffgffffgFfFffffg/fFffffffffFffFgf/gfffffgFffgfgffg/gffffgffffgfffff/fgffgfffgfffffff/ffFfffgfggffgFff/fffffgfgfffFfgff/ffgffffgggfggfff/gffgfffggffgFffg/fffffFffFfffgffg"
+    ],
+    "2": [
+      "ffffffffffffFgfF/fffffgfffgffgffg/gfggffffggfffffF/gffgfFfffffgffff/gfffFfgfffffffff/ffffffffffgfffgf/ffffffggffffffff/fffffFffffffggff/fFgfgfFfggffffFf/gFfgffgffgfffggf/gfggffFfffffffgf/FFffgfffffffgggf/ffggffggfffffgFf/gfgFgfgfgfgfffgf/ffffffgffffffggf/fggfFgffgffffgff"
+    ]
+  }
+}

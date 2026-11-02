@@ -1,0 +1,39 @@
+{
+  "kind": "palette",
+  "name": "Master palette and line colours",
+  "master": {
+    "black": "#000000",
+    "white": "#fcfcfc",
+    "grey1": "#bcbcbc",
+    "grey2": "#7c7c7c",
+    "grey3": "#3c3c3c",
+    "grey4": "#242424",
+    "red": "#a81000",
+    "redDark": "#581800",
+    "orange": "#e45c10",
+    "tan": "#f8b878",
+    "brown": "#ac7c00",
+    "brownDark": "#503000",
+    "yellow": "#f8b800",
+    "cream": "#fcd8a8",
+    "green": "#00a800",
+    "greenDark": "#005800",
+    "greenLight": "#58d854",
+    "blue": "#0058f8",
+    "blueDark": "#0000bc",
+    "blueLight": "#3cbcfc",
+    "sky": "#a4e4fc",
+    "slate": "#6888fc",
+    "plum": "#6844fc"
+  },
+  "colors": {
+    "curb": "#fcfcfc",
+    "curbFace": "#7c7c7c",
+    "outline": "#000000",
+    "eave": "#242424",
+    "yellow": "#f8b800",
+    "white": "#fcfcfc",
+    "parapet": "#bcbcbc",
+    "parapetFace": "#7c7c7c"
+  }
+}

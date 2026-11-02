@@ -1,0 +1,22 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Floor: concrete",
+  "palette": {
+    "f": "#7c7c7c",
+    "g": "#7c7c7c",
+    "F": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "gfgfffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/fffffffffffgffff/ffffffffffffffff/fgfffffffgffffff/ffffffffffffffff/ffffffffffffffff/fffgffffgfffffff"
+    ],
+    "1": [
+      "gfffffffffffffff/ffffffffffffffff/fffffffffffffgff/ffffffffffffffff/ffffffffffffffff/fffffffgffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffgfffff/ffffffffffffffff/ffffgfffffffffff/ffffffffffffgfff/ffffffffffffffff/ffffffffffffgfff/ffffffffffffffff/fffffffffffffffg"
+    ],
+    "2": [
+      "ffffffffffffffff/ffffffffffffffff/fffffffffgffffff/fffffffffffgffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffgf/ffgfffffffffffgf/ffffffffffffffff/ffgfffffffffffff/ffffgfffffffffff/ffffffffffffffff/ffffffffffffffff"
+    ]
+  }
+}

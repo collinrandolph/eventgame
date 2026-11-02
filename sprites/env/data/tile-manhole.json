@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Manhole",
+  "palette": {
+    "k": "#242424",
+    "m": "#3c3c3c",
+    "M": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "................/................/.....kkkkkk...../...kkmMmmMmkk.../...kmMmmMmmMk.../..kmMmmMmmMmmk../..kMmmMmmMmmMk../..kmmMmmMmmMmk../..kmMmmMmmMmmk../..kMmmMmmMmmMk../..kmmMmmMmmMmk../...kMmmMmmMmk.../...kkmMmmMmkk.../.....kkkkkk...../................/................"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Stone",
+  "floor": "tile-floor-stone",
+  "colors": {
+    "f": "#bcbcbc",
+    "g": "#7c7c7c",
+    "F": "#fcfcfc",
+    "v": "#bcbcbc",
+    "x": "#7c7c7c",
+    "w": "#3c3c3c",
+    "W": "#7c7c7c"
+  }
+}

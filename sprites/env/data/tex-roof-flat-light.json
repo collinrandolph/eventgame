@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Roof: flat (membrane)",
+  "w": 16,
+  "h": 16,
+  "palette": {
+    "a": "#bcbcbc",
+    "b": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab/aaaaaaaaaaaaaaab"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "theme",
+  "name": "Gravel",
+  "floor": "tile-floor-carpet",
+  "colors": {
+    "f": "#7c7c7c",
+    "g": "#503000",
+    "F": "#bcbcbc",
+    "v": "#bcbcbc",
+    "x": "#7c7c7c",
+    "w": "#3c3c3c",
+    "W": "#7c7c7c"
+  },
+  "texture": "tex-gravel"
+}

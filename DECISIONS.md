@@ -113,13 +113,13 @@ The one thing here that touches design is the automatic pick-up assumption: the 
 
 ## Scope: this is the engine, not the game
 
-The final game is a 3D third-person survival/adventure game with real-time, player-driven movement and combat. **This repository is the engine that drives it:**
+The final game is a **2D top-down pixel-art** survival/adventure game with real-time, player-driven movement and combat (changed from 3D third-person; you have a sprite generator in progress). The grid maps directly onto it: cells become tiles, layers become floors. Asset needs are tracked in [ASSETS.md](ASSETS.md). **This repository is the engine that drives it:**
 
 - **The world model:** places, links, things, people, state.
 - **The rules and story structure:** lives, objectives, triggers, milestones, endings.
 - **Generation and validation:** proving a world is completable, mission-safe and rule-conformant.
 
-The 3D game is a client of the engine. It renders the grid as a level, runs real-time movement and combat, and reports what happened back as events (moved here, used this, opened that, died, escaped). The turn-like parts here (actions, ticks, the text runner, the solver's fixed fight outcomes) are abstractions for testing and proofs, not the game's feel.
+The game is a client of the engine. It renders the grid as a level, runs real-time movement and combat, and reports what happened back as events (moved here, used this, opened that, died, escaped). The turn-like parts here (actions, ticks, the text runner, the solver's fixed fight outcomes) are abstractions for testing and proofs, not the game's feel.
 ## Core systems to add (agreed)
 
 - **What a claim does, as data:** a claimed zone can kill, detect, drain a meter or slow; its counter is data. This generalises darkness.
@@ -137,3 +137,24 @@ The 3D game is a client of the engine. It renders the grid as a level, runs real
 - **Validator rule:** a remnant must never lock away something a planned path needs. There must always be a reachable way past it (a counter or weapon, a distraction, or another route).
 - **The cure is the bonus weapon** in an outbreak scenario. It works on every infected person, turning them back into rescue NPCs, including your own past characters. It follows the bonus rules: one per game, unlocked by milestones from at least 2 different lives.
 - The remnant is scenario data: a turned character (zombie), a pocket of dark (Lightless), an assimilated drone (nanobots), a ghost (haunting), just a body (grounded thriller).
+## Inventory (yours)
+
+- **Two slots:** one big (car batteries, gas cans, weapons) and one small (keys, medicine, ammo). Carrying is a choice, and a life's story can fill the slots for you.
+- **Backpack** doubles both slots.
+- **Car trunks** store items, so vehicles double as mobile stashes.
+- **No default weapon slot.** Running is always an option; weapons belong to the roles that would carry one.
+- **Engine impact:** the solver's "pick up everything" assumption no longer holds. Pickups become choices it must search, and every planned path must fit in the slots or include a place to set things down.
+- **Open:** swap or refuse on a full slot; ammo stacking; whether keys stay useful after a door is unlocked. *Assumed defaults:* swap, ammo stacks, unlocked doors stay unlocked.
+
+## Skills (yours, structure approved)
+
+- **Story skills** gate milestone mechanisms. **Access skills** open alternative routes (lockpicking by lock type, climbing, hot-wiring). **Gameplay perks** change how a life plays (holster, quartermaster, stealth).
+- **Roles are mostly baked in, with variation:** family (military: holster, firearms) → role (infantry: quartermaster; sergeant: authority) → individual (1–2 picks from the role's pool, plus maybe a weakness).
+- **Stealth** lets you pass threats unnoticed; loud actions break it.
+- **Assumed rules:** no planned path requires a perk; every access skill has a non-skill alternative; the story picks the role, and the generator fills the rest from the pool, avoiding duplicates in a run.
+
+## Generation (approved direction)
+
+- **Story, cast and level push and pull.** Characters bring anchor places (home, work, a personal place, what they own); places imply who's there; relationships create shared places.
+- **Assumed order:** story skeleton → cast → level from anchors → fill → validate and repair, where repair can give ground in any direction.
+- **Every life links to at least one other** (proposed, not yet agreed).

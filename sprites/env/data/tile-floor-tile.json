@@ -1,0 +1,22 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Floor: tiles",
+  "palette": {
+    "f": "#7c7c7c",
+    "g": "#7c7c7c",
+    "F": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "gggggggggggggggg/gFffffffgFffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gggggggggggggggg/gFffffffgFffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff"
+    ],
+    "1": [
+      "gggggggggggggggg/gFffffffgFffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gggggggggggggggg/gFffffffgFffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff"
+    ],
+    "2": [
+      "gggggggggggggggg/gFffffffgFffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gggggggggggggggg/gFffffffgFffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff/gfffffffgfffffff"
+    ]
+  }
+}

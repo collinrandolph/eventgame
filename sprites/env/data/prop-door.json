@@ -1,0 +1,30 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "prop",
+  "name": "Door",
+  "palette": {
+    "k": "#000000",
+    "d": "#ac7c00",
+    "D": "#503000",
+    "h": "#f8b878",
+    "o": "#242424",
+    "l": "#f8b878",
+    "L": "#ac7c00",
+    "s": "#f8b878"
+  },
+  "frames": {
+    "closed": [
+      "................/..kkkkkkkkkkkk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kDDDDDDDDDDk../..kddddDdddddk../..kddddDdddddk../..kddddDddhddk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kkkkkkkkkkkk.."
+    ],
+    "open": [
+      "................/..kkkkkkkkkkkk../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook../..kDDooooooook.."
+    ],
+    "locked": [
+      "................/..kkkkkkkkkkkk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kDDDDDDDDDDk../..kddddDdddddk../..kddddDdLLLdk../..kddddDdLlLdk../..kddddDdLlLdk../..kddddDdLLLdk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kddddDdddddk../..kkkkkkkkkkkk.."
+    ],
+    "broken": [
+      "................/..kkkkkkkkkkkk../..kddddDdddddk../..kddddDddddsk../..kddooosdosdk../..kDDoDooDoDDk../..kdsooDoooddk../..kddooooooddk../..kddododohddk../..kddooooooddk../..kddooooodddk../..kddsooododdk../..kdddsDdddddk../..kddddDdddddk../..kddddDdddddk../..kkkkkkkkkkkk.."
+    ]
+  }
+}

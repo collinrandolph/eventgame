@@ -1,0 +1,16 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Wall: front face",
+  "palette": {
+    "k": "#000000",
+    "v": "#7c7c7c",
+    "x": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "kkkkkkkkkkkkkkkk/xvvvvvvvxvvvvvvv/xvvvvvvvxvvvvvvv/xvvvvvvvxvvvvvvv/xxxxxxxxxxxxxxxx/vvvvxvvvvvvvxvvv/vvvvxvvvvvvvxvvv/vvvvxvvvvvvvxvvv/xxxxxxxxxxxxxxxx/xvvvvvvvxvvvvvvv/xvvvvvvvxvvvvvvv/xvvvvvvvxvvvvvvv/xxxxxxxxxxxxxxxx/vvvvxvvvvvvvxvvv/vvvvxvvvvvvvxvvv/vvvvxvvvvvvvxvvv"
+    ]
+  }
+}

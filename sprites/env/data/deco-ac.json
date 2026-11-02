@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Rooftop AC unit",
+  "w": 12,
+  "h": 10,
+  "palette": {
+    "a": "#000000",
+    "b": "#bcbcbc",
+    "c": "#3c3c3c",
+    "d": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaa/abbbbbbbbbba/abbbbbbbbbba/abbcbcbcbbba/abbbcbcbcbba/abbcbcbcbbba/abbbcbcbcbba/abbbbbbbbbba/adddddddddda/aaaaaaaaaaaa"
+    ]
+  }
+}

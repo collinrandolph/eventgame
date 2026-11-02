@@ -1,0 +1,22 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Floor: carpet",
+  "palette": {
+    "f": "#7c7c7c",
+    "g": "#7c7c7c",
+    "F": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "gfffgfffgfffgfff/ffffffffffffffff/ffffffffffFfffff/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffffffffffffffff/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffFfffFfffFfffFf/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffffffFfffFfffFf/ffffffffffffffff"
+    ],
+    "1": [
+      "gfffgfffgfffgfff/ffffffffffffffff/ffffffFfffFfffff/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffFfffffffffffFf/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffffffFfffffffFf/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffFfffFfffFfffFf/ffffffffffffffff"
+    ],
+    "2": [
+      "gfffgfffgfffgfff/ffffffffffffffff/ffFfffffffffffFf/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffffffFfffffffff/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffFfffffffffffFf/ffffffffffffffff/gfffgfffgfffgfff/ffffffffffffffff/ffffffFfffffffFf/ffffffffffffffff"
+    ]
+  }
+}

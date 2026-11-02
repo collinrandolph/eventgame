@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Sidewalk slabs",
+  "w": 16,
+  "h": 16,
+  "palette": {
+    "a": "#fcfcfc",
+    "b": "#7c7c7c",
+    "c": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaab/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/accccccccccccccb/bbbbbbbbbbbbbbbb"
+    ]
+  }
+}

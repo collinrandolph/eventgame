@@ -1,0 +1,21 @@
+{
+  "w": 16,
+  "h": 16,
+  "kind": "tile",
+  "name": "Wall: top",
+  "palette": {
+    "w": "#7c7c7c",
+    "W": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "WwWwWwwwwwwwwwww/wwwwwwwwwWwwwwww/wwwwwwwwwwwwwwww/wwwwwwwwwwwwwwww/wwWwwwwWwWwwwwww/wWWwwwwwwwwwwwww/wwwWwwwwwwwwWwww/wwwWwwwwwwwWwwww/wwwwwwwwwwwwwwWw/wwWwwwwwwWwwwwww/wwwwwwwwwwwWwwww/wwwwwwwwwwwwwwww/wWwwwwwwwWwWwwww/wwwwwwwwwWwwwwww/wwwwwwwwwwwwwwww/wwwWwwwwWwwwwwww"
+    ],
+    "1": [
+      "WwwwwwwWwwwwwwWw/WwwwwwwwwwwWwwww/wwwwwwwwwwwwwWww/wwwwwwwwwwwwwwww/wwwwWwwwwwwwwwWw/wwwwwwwWwwwwwwww/wwwwwwwwwwwwwwww/wwwwwwwwwwwwwwww/WwwwwwwwwwWwWwww/wwwwwWwwwwWwwwww/wwwwWwwwwwwwwwww/wwwwwwWwwwwwWwww/wwwwwwwwwwwwwWww/wwwwwwwWwwwwWwww/wwwwwwwwWwwWwwww/wwwwwwwwwwwwWwwW"
+    ],
+    "2": [
+      "wwwwwwwwwwwwwwww/wwwwwWwwwwwwwwww/wwwWwwwwwWwwwwww/wwwwwwwwwwwWwwww/wwwwwwwwwwwwwwww/wwwwwwwwwwwwwwww/wwwwwwwwwwwwwwww/wwwwwwwwwwwwWwww/wwwwWwwwwwwwwwww/wwwwwwWwwwwwwwWw/wwWwwwwwwwwwwwWw/wwwwWwwwwwwwWwww/wwWWwwWWwwwwwWww/wwwwWwWwwwWwwwww/wwwwwwwwwwwwwWWw/wWwwwwwwwwwwwWww"
+    ]
+  }
+}
