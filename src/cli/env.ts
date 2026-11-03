@@ -4,13 +4,15 @@
 //   npm run env -- [world.json] --walk
 //                                 also write sprites/maps/walk/<world>/: the ground floor without people (exterior
 //                                 and interior), a 2 px collision mask, the building grid and who starts where
+//   npm run env -- [world.json] --makeshift
+//                                 also write <world>-L0-makeshift.png: the exterior with makeshift parts tinted
 //
 // The map JSON is what the game reads: per layer, the tile legend and grid, the props with their state, and the
 // people with their sprite. Art comes from sprites/env/data (tiles, themes, props) and sprites/data (characters);
 // sprites/env/worlds/<world>.json says which theme each zone uses.
 
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { type LayerMap, buildLayer, loadArt, loadEnvConfig, renderLayer } from "../env/build.js";
+import { type LayerMap, MAKESHIFT, buildLayer, loadArt, loadEnvConfig, renderLayer } from "../env/build.js";
 import type { GridWorldFile } from "../grid.js";
 import { encodePng } from "../sprites/png.js";
 import { loadWorld } from "../world.js";
@@ -35,6 +37,16 @@ for (const z of Object.keys(raw.grid.layers).map(Number).sort((a, b) => a - b)) 
     const png = `sprites/maps/${raw.id}-L${z}${z === 0 ? `-${view}` : ""}${sfx}.png`;
     writeFileSync(png, encodePng(img.width, img.height, img.pixels));
     console.log(`${png}  ${img.width}x${img.height}`);
+    if (view !== "exterior") continue;
+    // makeshift exteriors (drawn by code from flat textures, waiting for drawn tiles): how much, and where
+    const counts = new Map<number, number>();
+    for (const k of img.makeshift) if (k) counts.set(k, (counts.get(k) ?? 0) + 1);
+    for (const [k, n] of counts) console.log(`  makeshift: ${MAKESHIFT[k as keyof typeof MAKESHIFT]}, ${Math.round(n / (16 * 16))} cells' worth`);
+    if (process.argv.includes("--makeshift")) {
+      const marked = renderLayer(m, art, view, { markMakeshift: true }), out = `sprites/maps/${raw.id}-L${z}-makeshift${sfx}.png`;
+      writeFileSync(out, encodePng(marked.width, marked.height, marked.pixels));
+      console.log(`${out}  (makeshift tinted: angled magenta, pitched cyan, towers yellow)`);
+    }
   }
   layers[String(z)] = compact(m);
   console.log(`  ${m.buildings.length} buildings, ${m.lots.length} roof lots, ${m.props.length} props, ${m.people.length} people`);

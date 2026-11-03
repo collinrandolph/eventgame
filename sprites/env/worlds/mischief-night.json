@@ -1,0 +1,961 @@
+{
+ "world": "mischief-night",
+ "zones": {
+  "abbott-house-0-living": "theme-carpet",
+  "abbott-house-0-kitchen": "theme-clinic",
+  "abbott-house-0-bedroom": "theme-carpet",
+  "abbott-house-0-bath": "theme-clinic",
+  "abbott-house-0-mudroom": "theme-concrete",
+  "kowalski-house-1-living": "theme-carpet",
+  "kowalski-house-1-kitchen": "theme-clinic",
+  "kowalski-house-1-bedroom": "theme-carpet",
+  "kowalski-house-1-bath": "theme-clinic",
+  "kowalski-house-1-mudroom": "theme-concrete",
+  "pruitt-house-2-living": "theme-carpet",
+  "pruitt-house-2-kitchen": "theme-clinic",
+  "pruitt-house-2-bedroom": "theme-carpet",
+  "pruitt-house-2-bath": "theme-clinic",
+  "pruitt-house-2-mudroom": "theme-concrete",
+  "whitcomb-house-3-living": "theme-carpet",
+  "whitcomb-house-3-kitchen": "theme-clinic",
+  "whitcomb-house-3-bedroom": "theme-carpet",
+  "whitcomb-house-3-bath": "theme-clinic",
+  "whitcomb-house-3-mudroom": "theme-concrete",
+  "pine-hollow-savings-4-sales": "theme-wood",
+  "pine-hollow-savings-4-stock": "theme-concrete",
+  "pine-hollow-savings-4-wc": "theme-clinic",
+  "pine-hollow-savings-4-back": "theme-concrete",
+  "corner-tavern-5-sales": "theme-wood",
+  "corner-tavern-5-stock": "theme-concrete",
+  "corner-tavern-5-wc": "theme-clinic",
+  "corner-tavern-5-back": "theme-concrete",
+  "main-st-hardware-6-sales": "theme-wood",
+  "main-st-hardware-6-stock": "theme-concrete",
+  "main-st-hardware-6-wc": "theme-clinic",
+  "main-st-hardware-6-back": "theme-concrete",
+  "antiques-and-curios-7-sales": "theme-wood",
+  "antiques-and-curios-7-stock": "theme-concrete",
+  "antiques-and-curios-7-wc": "theme-clinic",
+  "antiques-and-curios-7-back": "theme-concrete",
+  "dunn-house-8-living": "theme-carpet",
+  "dunn-house-8-kitchen": "theme-clinic",
+  "dunn-house-8-bedroom": "theme-carpet",
+  "dunn-house-8-bath": "theme-clinic",
+  "okafor-house-9-living": "theme-carpet",
+  "okafor-house-9-kitchen": "theme-clinic",
+  "okafor-house-9-bedroom": "theme-carpet",
+  "okafor-house-9-bath": "theme-clinic",
+  "okafor-house-9-mudroom": "theme-concrete",
+  "lindqvist-house-10-living": "theme-carpet",
+  "lindqvist-house-10-kitchen": "theme-clinic",
+  "lindqvist-house-10-bedroom": "theme-carpet",
+  "lindqvist-house-10-bath": "theme-clinic",
+  "lindqvist-house-10-mudroom": "theme-concrete",
+  "st-anne-s-church-11-nave": "theme-wood",
+  "st-anne-s-church-11-vestibule": "theme-stone",
+  "st-anne-s-church-11-chancel": "theme-carpet",
+  "st-anne-s-church-11-office": "theme-office",
+  "st-anne-s-church-11-sacristy": "theme-wood",
+  "blue-plate-diner-12-sales": "theme-wood",
+  "blue-plate-diner-12-stock": "theme-concrete",
+  "blue-plate-diner-12-wc": "theme-clinic",
+  "blue-plate-diner-12-back": "theme-concrete",
+  "strand-theater-13-sales": "theme-wood",
+  "strand-theater-13-stock": "theme-concrete",
+  "strand-theater-13-wc": "theme-clinic",
+  "strand-theater-13-back": "theme-concrete",
+  "main-st-drugs-14-sales": "theme-wood",
+  "main-st-drugs-14-stock": "theme-concrete",
+  "main-st-drugs-14-wc": "theme-clinic",
+  "main-st-drugs-14-back": "theme-concrete",
+  "post-office-15-sales": "theme-wood",
+  "post-office-15-stock": "theme-concrete",
+  "post-office-15-wc": "theme-clinic",
+  "post-office-15-back": "theme-concrete",
+  "haldane-s-department-store-16-sales": "theme-wood",
+  "haldane-s-department-store-16-stock": "theme-concrete",
+  "haldane-s-department-store-16-wc": "theme-clinic",
+  "haldane-s-department-store-16-back": "theme-concrete",
+  "pine-hollow-elementary-17-class1": "theme-wood",
+  "pine-hollow-elementary-17-office": "theme-office",
+  "pine-hollow-elementary-17-library": "theme-carpet",
+  "pine-hollow-elementary-17-class2": "theme-wood",
+  "pine-hollow-elementary-17-corridor": "theme-concrete",
+  "pine-hollow-elementary-17-class3": "theme-wood",
+  "pine-hollow-elementary-17-restrooms": "theme-clinic",
+  "pine-hollow-elementary-17-class4": "theme-wood",
+  "pine-hollow-elementary-17-lobby": "theme-stone",
+  "pine-hollow-elementary-17-gym": "theme-wood",
+  "pine-hollow-elementary-17-kitchen": "theme-clinic",
+  "pine-hollow-clinic-18-waiting": "theme-clinic",
+  "pine-hollow-clinic-18-pharmacy": "theme-clinic",
+  "pine-hollow-clinic-18-hall-w": "theme-clinic",
+  "pine-hollow-clinic-18-court": "theme-grass",
+  "pine-hollow-clinic-18-hall-e": "theme-clinic",
+  "pine-hollow-clinic-18-exam1": "theme-clinic",
+  "pine-hollow-clinic-18-nurses": "theme-office",
+  "pine-hollow-clinic-18-exam2": "theme-clinic",
+  "pine-hollow-clinic-18-entry": "theme-stone",
+  "pine-hollow-clinic-18-emergency": "theme-clinic",
+  "brooks-house-19-living": "theme-carpet",
+  "brooks-house-19-kitchen": "theme-clinic",
+  "brooks-house-19-bedroom": "theme-carpet",
+  "brooks-house-19-bath": "theme-clinic",
+  "brooks-house-19-mudroom": "theme-concrete",
+  "mitchell-house-20-living": "theme-carpet",
+  "mitchell-house-20-kitchen": "theme-clinic",
+  "mitchell-house-20-bedroom": "theme-carpet",
+  "mitchell-house-20-bath": "theme-clinic",
+  "mitchell-house-20-mudroom": "theme-concrete",
+  "ellison-house-21-living": "theme-carpet",
+  "ellison-house-21-kitchen": "theme-clinic",
+  "ellison-house-21-bedroom": "theme-carpet",
+  "ellison-house-21-bath": "theme-clinic",
+  "ellison-house-21-mudroom": "theme-concrete"
+ },
+ "outdoor": [
+  "pine-hollow-clinic-18-court"
+ ],
+ "buildings": {
+  "abbott-house-0-living": "house-shingle",
+  "abbott-house-0-kitchen": "house-shingle",
+  "abbott-house-0-bedroom": "house-shingle",
+  "abbott-house-0-bath": "house-shingle",
+  "abbott-house-0-mudroom": "house-shingle",
+  "kowalski-house-1-living": "house-shingle",
+  "kowalski-house-1-kitchen": "house-shingle",
+  "kowalski-house-1-bedroom": "house-shingle",
+  "kowalski-house-1-bath": "house-shingle",
+  "kowalski-house-1-mudroom": "house-shingle",
+  "pruitt-house-2-living": "house-shingle",
+  "pruitt-house-2-kitchen": "house-shingle",
+  "pruitt-house-2-bedroom": "house-shingle",
+  "pruitt-house-2-bath": "house-shingle",
+  "pruitt-house-2-mudroom": "house-shingle",
+  "whitcomb-house-3-living": "house-shingle",
+  "whitcomb-house-3-kitchen": "house-shingle",
+  "whitcomb-house-3-bedroom": "house-shingle",
+  "whitcomb-house-3-bath": "house-shingle",
+  "whitcomb-house-3-mudroom": "house-shingle",
+  "pine-hollow-savings-4-sales": "storefront",
+  "pine-hollow-savings-4-stock": "storefront",
+  "pine-hollow-savings-4-wc": "storefront",
+  "pine-hollow-savings-4-back": "storefront",
+  "corner-tavern-5-sales": "storefront",
+  "corner-tavern-5-stock": "storefront",
+  "corner-tavern-5-wc": "storefront",
+  "corner-tavern-5-back": "storefront",
+  "main-st-hardware-6-sales": "storefront",
+  "main-st-hardware-6-stock": "storefront",
+  "main-st-hardware-6-wc": "storefront",
+  "main-st-hardware-6-back": "storefront",
+  "antiques-and-curios-7-sales": "storefront",
+  "antiques-and-curios-7-stock": "storefront",
+  "antiques-and-curios-7-wc": "storefront",
+  "antiques-and-curios-7-back": "storefront",
+  "dunn-house-8-living": "house-shingle",
+  "dunn-house-8-kitchen": "house-shingle",
+  "dunn-house-8-bedroom": "house-shingle",
+  "dunn-house-8-bath": "house-shingle",
+  "okafor-house-9-living": "house-shingle",
+  "okafor-house-9-kitchen": "house-shingle",
+  "okafor-house-9-bedroom": "house-shingle",
+  "okafor-house-9-bath": "house-shingle",
+  "okafor-house-9-mudroom": "house-shingle",
+  "lindqvist-house-10-living": "house-shingle",
+  "lindqvist-house-10-kitchen": "house-shingle",
+  "lindqvist-house-10-bedroom": "house-shingle",
+  "lindqvist-house-10-bath": "house-shingle",
+  "lindqvist-house-10-mudroom": "house-shingle",
+  "st-anne-s-church-11-nave": "church-nave",
+  "st-anne-s-church-11-vestibule": "church-nave",
+  "st-anne-s-church-11-chancel": "church-nave",
+  "st-anne-s-church-11-office": "church-nave",
+  "st-anne-s-church-11-sacristy": "church-nave",
+  "blue-plate-diner-12-sales": "storefront",
+  "blue-plate-diner-12-stock": "storefront",
+  "blue-plate-diner-12-wc": "storefront",
+  "blue-plate-diner-12-back": "storefront",
+  "strand-theater-13-sales": "storefront",
+  "strand-theater-13-stock": "storefront",
+  "strand-theater-13-wc": "storefront",
+  "strand-theater-13-back": "storefront",
+  "main-st-drugs-14-sales": "storefront",
+  "main-st-drugs-14-stock": "storefront",
+  "main-st-drugs-14-wc": "storefront",
+  "main-st-drugs-14-back": "storefront",
+  "post-office-15-sales": "storefront",
+  "post-office-15-stock": "storefront",
+  "post-office-15-wc": "storefront",
+  "post-office-15-back": "storefront",
+  "haldane-s-department-store-16-sales": "storefront",
+  "haldane-s-department-store-16-stock": "storefront",
+  "haldane-s-department-store-16-wc": "storefront",
+  "haldane-s-department-store-16-back": "storefront",
+  "pine-hollow-elementary-17-class1": "school",
+  "pine-hollow-elementary-17-office": "school",
+  "pine-hollow-elementary-17-library": "school",
+  "pine-hollow-elementary-17-class2": "school",
+  "pine-hollow-elementary-17-corridor": "school",
+  "pine-hollow-elementary-17-class3": "school",
+  "pine-hollow-elementary-17-restrooms": "school",
+  "pine-hollow-elementary-17-class4": "school",
+  "pine-hollow-elementary-17-lobby": "school",
+  "pine-hollow-elementary-17-gym": "school",
+  "pine-hollow-elementary-17-kitchen": "school",
+  "pine-hollow-clinic-18-waiting": "clinic",
+  "pine-hollow-clinic-18-pharmacy": "clinic",
+  "pine-hollow-clinic-18-hall-w": "clinic",
+  "pine-hollow-clinic-18-court": "clinic",
+  "pine-hollow-clinic-18-hall-e": "clinic",
+  "pine-hollow-clinic-18-exam1": "clinic",
+  "pine-hollow-clinic-18-nurses": "clinic",
+  "pine-hollow-clinic-18-exam2": "clinic",
+  "pine-hollow-clinic-18-entry": "clinic",
+  "pine-hollow-clinic-18-emergency": "clinic",
+  "brooks-house-19-living": "house-shingle",
+  "brooks-house-19-kitchen": "house-shingle",
+  "brooks-house-19-bedroom": "house-shingle",
+  "brooks-house-19-bath": "house-shingle",
+  "brooks-house-19-mudroom": "house-shingle",
+  "mitchell-house-20-living": "house-shingle",
+  "mitchell-house-20-kitchen": "house-shingle",
+  "mitchell-house-20-bedroom": "house-shingle",
+  "mitchell-house-20-bath": "house-shingle",
+  "mitchell-house-20-mudroom": "house-shingle",
+  "ellison-house-21-living": "house-shingle",
+  "ellison-house-21-kitchen": "house-shingle",
+  "ellison-house-21-bedroom": "house-shingle",
+  "ellison-house-21-bath": "house-shingle",
+  "ellison-house-21-mudroom": "house-shingle"
+ },
+ "areas": [
+  {
+   "kind": "lawn",
+   "rect": [
+    8,
+    8,
+    21,
+    25
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    14,
+    8,
+    14,
+    11
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    22,
+    8,
+    33,
+    25
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    29,
+    8,
+    29,
+    12
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    34,
+    8,
+    45,
+    25
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    38,
+    8,
+    38,
+    10
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    46,
+    8,
+    58,
+    25
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    53,
+    8,
+    53,
+    11
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    8,
+    26,
+    19,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    13,
+    48,
+    13,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    20,
+    26,
+    31,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    25,
+    48,
+    25,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    32,
+    26,
+    44,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    38,
+    48,
+    38,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    45,
+    26,
+    58,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    51,
+    49,
+    51,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    67,
+    8,
+    79,
+    26
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    74,
+    8,
+    74,
+    12
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    80,
+    8,
+    91,
+    26
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    87,
+    8,
+    87,
+    12
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    92,
+    8,
+    104,
+    26
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    96,
+    8,
+    96,
+    11
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    67,
+    27,
+    82,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    76,
+    46,
+    77,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    83,
+    27,
+    93,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    88,
+    49,
+    88,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    94,
+    27,
+    104,
+    49
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    99,
+    49,
+    99,
+    49
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    8,
+    58,
+    24,
+    74
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    16,
+    58,
+    16,
+    58
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    25,
+    58,
+    40,
+    74
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    32,
+    58,
+    32,
+    59
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    41,
+    58,
+    58,
+    74
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    49,
+    58,
+    49,
+    59
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    8,
+    75,
+    58,
+    100
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    31,
+    96,
+    32,
+    100
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    67,
+    58,
+    104,
+    79
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    84,
+    58,
+    85,
+    61
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    67,
+    80,
+    78,
+    100
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    71,
+    96,
+    71,
+    100
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    79,
+    80,
+    91,
+    100
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    86,
+    97,
+    86,
+    100
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    92,
+    80,
+    104,
+    100
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    96,
+    97,
+    96,
+    100
+   ]
+  }
+ ],
+ "features": [],
+ "parcels": [],
+ "cuts": [
+  [
+   10,
+   17,
+   "sw"
+  ],
+  [
+   10,
+   14,
+   "nw"
+  ],
+  [
+   56,
+   18,
+   "se"
+  ],
+  [
+   56,
+   15,
+   "ne"
+  ],
+  [
+   34,
+   47,
+   "sw"
+  ],
+  [
+   75,
+   13,
+   "ne"
+  ],
+  [
+   72,
+   13,
+   "nw"
+  ],
+  [
+   88,
+   13,
+   "ne"
+  ],
+  [
+   85,
+   13,
+   "nw"
+  ],
+  [
+   74,
+   29,
+   "nw"
+  ],
+  [
+   79,
+   29,
+   "ne"
+  ],
+  [
+   13,
+   59,
+   "nw"
+  ],
+  [
+   46,
+   60,
+   "nw"
+  ],
+  [
+   70,
+   95,
+   "sw"
+  ],
+  [
+   73,
+   95,
+   "se"
+  ],
+  [
+   87,
+   96,
+   "se"
+  ],
+  [
+   84,
+   96,
+   "sw"
+  ]
+ ],
+ "masses": [
+  {
+   "rect": [
+    10,
+    38,
+    16,
+    47
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    10,
+    35,
+    13,
+    38
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    22,
+    39,
+    28,
+    47
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    25,
+    36,
+    28,
+    39
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    34,
+    40,
+    41,
+    47
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    34,
+    37,
+    37,
+    40
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    48,
+    40,
+    54,
+    48
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    50,
+    37,
+    54,
+    40
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    75,
+    42,
+    78,
+    45
+   ],
+   "arch": "bell-tower",
+   "storeys": 4,
+   "rise": true
+  },
+  {
+   "rect": [
+    74,
+    29,
+    79,
+    32
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    70,
+    33,
+    73,
+    39
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    85,
+    40,
+    91,
+    48
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    88,
+    36,
+    91,
+    40
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    96,
+    40,
+    102,
+    48
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    96,
+    37,
+    99,
+    40
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    13,
+    59,
+    19,
+    68
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    16,
+    68,
+    19,
+    71
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    30,
+    60,
+    35,
+    68
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    30,
+    68,
+    33,
+    71
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    46,
+    60,
+    52,
+    68
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    48,
+    68,
+    52,
+    72
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    30,
+    92,
+    33,
+    95
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    83,
+    62,
+    86,
+    65
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    90,
+    66,
+    95,
+    72
+   ],
+   "storeys": 1
+  }
+ ],
+ "barriers": {},
+ "people": {
+  "teller": "recipe-bank-teller",
+  "son": "recipe-student",
+  "inventor": "recipe-hardware-clerk",
+  "bartender": "recipe-bartender",
+  "teacher": "recipe-teacher",
+  "plow": "recipe-construction",
+  "paperboy": "recipe-teenager",
+  "landlady": "recipe-elderly-woman"
+ },
+ "districts": [
+  {
+   "kind": "residential",
+   "rect": [
+    0,
+    0,
+    112,
+    108
+   ]
+  }
+ ]
+}

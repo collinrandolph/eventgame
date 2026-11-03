@@ -1,0 +1,31 @@
+{
+  "id": "mischief-night",
+  "name": "Pine Hollow Walkabout",
+  "seed": 3,
+  "streets": ["Elm St", "Main St", "Oak St"],
+  "avenues": ["Mill Rd", "Church St", "River Rd"],
+  "blocks": [
+    [
+      { "north": [{ "shell": "dwelling", "name": "Abbott house" }, { "shell": "dwelling", "name": "Kowalski house" }, { "shell": "dwelling", "name": "Pruitt house" }, { "shell": "dwelling", "name": "Whitcomb house" }],
+        "south": [{ "shell": "storefront", "name": "Pine Hollow Savings" }, { "shell": "storefront", "name": "Corner Tavern" }, { "shell": "storefront", "name": "Main St Hardware" }, { "shell": "storefront", "name": "Antiques and Curios" }] },
+      { "north": [{ "shell": "dwelling", "name": "Dunn house" }, { "shell": "dwelling", "name": "Okafor house" }, { "shell": "dwelling", "name": "Lindqvist house" }],
+        "south": [{ "shell": "hall", "name": "St. Anne's Church" }, { "shell": "storefront", "name": "Blue Plate Diner" }, { "shell": "storefront", "name": "Strand Theater" }] }
+    ],
+    [
+      { "north": [{ "shell": "storefront", "name": "Main St Drugs" }, { "shell": "storefront", "name": "Post Office" }, { "shell": "storefront", "name": "Haldane's Department Store" }],
+        "south": [{ "shell": "block", "name": "Pine Hollow Elementary" }] },
+      { "north": [{ "shell": "ward", "name": "Pine Hollow Clinic" }],
+        "south": [{ "shell": "dwelling", "name": "Brooks house" }, { "shell": "dwelling", "name": "Mitchell house" }, { "shell": "dwelling", "name": "Ellison house" }] }
+    ]
+  ],
+  "people": [
+    { "id": "teller", "name": "Nora (bank teller)", "role": "bank teller", "sprite": "recipe-bank-teller", "at": "Pine Hollow Savings" },
+    { "id": "son", "name": "Sam (the son with the pet)", "role": "son", "sprite": "recipe-student", "at": "Abbott house" },
+    { "id": "inventor", "name": "Walt (inventor)", "role": "inventor", "sprite": "recipe-hardware-clerk", "at": "Ellison house" },
+    { "id": "bartender", "name": "Gina (bartender)", "role": "bartender", "sprite": "recipe-bartender", "at": "Corner Tavern" },
+    { "id": "teacher", "name": "Mr. Ortiz (science teacher)", "role": "teacher", "sprite": "recipe-teacher", "at": "Pine Hollow Elementary" },
+    { "id": "plow", "name": "Hank (snowplow driver)", "role": "snowplow driver", "sprite": "recipe-construction", "at": "Kowalski house" },
+    { "id": "paperboy", "name": "Toby (paperboy)", "role": "paperboy", "sprite": "recipe-teenager", "at": "Post Office" },
+    { "id": "landlady", "name": "Mrs. Pruitt (landlady)", "role": "landlady", "sprite": "recipe-elderly-woman", "at": "Pruitt house" }
+  ]
+}

@@ -1,0 +1,244 @@
+<title>Pine Hollow Walkabout</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<style>
+  /* One screen: the town fills the window at an integer pixel scale; a thin HUD strip rides on top.
+     Buildings are sprites drawn from 3D (src/env/massing.ts), stood on the ground north to south with the people.
+     Single dark look on purpose (a game screen), every colour set explicitly. */
+  :root {
+    --bg: #000000;
+    --hud: #000000;
+    --ink: #fcfcfc;
+    --dim: #bcbcbc;
+    --accent: #f8b800;
+    --edge: #3c3c3c;
+    --pixel: "Press Start 2P", ui-monospace, "Courier New", monospace;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--pixel); overflow: hidden; }
+  .shell { position: relative; height: 100%; display: flex; flex-direction: column; }
+  .hud {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+    padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background: var(--hud); border-bottom: 2px solid var(--edge); font-size: 10px; line-height: 1.6;
+  }
+  .hud h1 { font-size: 12px; font-weight: 400; color: var(--accent); margin: 0; letter-spacing: 0.05em; }
+  /* one line, however long the place's name, so the HUD never changes height as you walk in and out */
+  .place { color: var(--ink); min-width: 0; flex: 1 1 12em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .place b { color: var(--accent); font-weight: 400; }
+  .hud label { display: flex; align-items: center; gap: 8px; color: var(--dim); }
+  select, button {
+    font: inherit; font-size: 10px; color: var(--ink); background: var(--bg); border: 2px solid var(--dim);
+    padding: 4px 8px; border-radius: 0; cursor: pointer;
+  }
+  select:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .keys { color: var(--dim); margin-left: auto; }
+  .stage { position: relative; flex: 1; min-height: 0; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; touch-action: none; }
+  .loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 10px; color: var(--dim); }
+  .loading[hidden] { display: none; }
+  @media (max-width: 640px) { .keys { display: none; } }
+</style>
+
+<div class="shell">
+  <div class="hud">
+    <h1 id="city">PINE HOLLOW</h1>
+    <div class="place" id="place">Outside</div>
+    <label for="who">PLAY AS <select id="who"></select></label>
+    <button id="dim" type="button" aria-pressed="true" title="How much of the outside shows while you're indoors">OUTSIDE: DIM</button>
+    <button id="gb" type="button" aria-pressed="false" title="Four shades of green, like the original Game Boy (G)">FILTER: OFF</button>
+    <div class="keys">WASD / ARROWS · SHIFT RUN · HOLD CLICK TO WALK · G FILTER</div>
+  </div>
+  <div class="stage">
+    <canvas id="view"></canvas>
+    <div class="loading" id="loading">LOADING PINE HOLLOW…</div>
+  </div>
+</div>
+
+<script>
+(async () => {
+  const T = 16;
+  const load = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  const data = await (await fetch("walk.json")).json();
+  // the ground (streets, lawns, every interior with its roof off), then one sprite per building
+  const ground = await load("ground.png");
+  const sprites = new Map(), roofOpacity = new Map();
+  await Promise.all(data.buildings.filter((b) => b.sprite).map(async (b) => { sprites.set(b.id, { ...b.sprite, img: await load(b.sprite.file), inImg: await load(b.sprite.inside.file), wallsImg: await load(b.sprite.inside.walls) }); }));
+  const sheets = {};
+  await Promise.all(Object.entries(data.sheets).map(async ([id, a]) => { sheets[id] = { ...a, img: await load("sheets/" + a.file) }; }));
+  document.getElementById("loading").hidden = true;
+  document.getElementById("city").textContent = data.name.replace(/ Walkabout$/, "").toUpperCase();
+
+  // ---- collision: one bit per 2 px block, read from the interior view (thin walls, locked doors, water, blocks) ----
+  const bits = Uint8Array.from(atob(data.solid), (c) => c.charCodeAt(0));
+  const W = data.w * T, H = data.h * T;
+  const solidAt = (x, y) => {
+    if (x < 0 || y < 0 || x >= W || y >= H) return true;
+    const k = Math.floor(y / data.res) * data.cw + Math.floor(x / data.res);
+    return (bits[k >> 3] >> (k & 7)) & 1;
+  };
+  // the feet: a 6 x 3 px box under the sprite
+  const blocked = (x, y) => { for (let dy = -2; dy <= 0; dy += 2) for (let dx = -3; dx <= 3; dx += 3) if (solidAt(x + dx, y + dy)) return true; return false; };
+  // inside a building means on the inner side of its walls: in an outer wall's cell, past the wall's centre line
+  // (or the diagonal of a cut corner); the outer part of that cell is open ground
+  const buildingAt = (x, y) => {
+    const cx = Math.floor(x / T), cy = Math.floor(y / T), b = data.building[cy]?.[cx] ?? -1, e = data.edge?.[cy]?.[cx] ?? 0;
+    if (b < 0 || !e) return b;
+    const lx = x - cx * T, ly = y - cy * T;
+    if (e >= 16) {
+      const c = e - 16, s = (c === 0 || c === 3 ? lx : T - 1 - lx) + (c === 0 || c === 1 ? ly : T - 1 - ly);
+      return s < T + T / 2 - 1 ? -1 : b;
+    }
+    const outside = (e & 1 && ly < T / 2) || (e & 4 && ly >= T / 2) || (e & 2 && lx >= T / 2) || (e & 8 && lx < T / 2);
+    return outside ? -1 : b;
+  };
+  const cellsOf = new Map();
+  data.building.forEach((row, y) => row.forEach((b, x) => { if (b >= 0) { if (!cellsOf.has(b)) cellsOf.set(b, []); cellsOf.get(b).push([x, y]); } }));
+
+  // ---- people: the player plus everyone else standing where their life starts ----
+  const people = data.people.filter((p) => sheets[p.sprite]).map((p) => ({ ...p, x: p.at[0] * T + 8, y: p.at[1] * T + 14, dir: "S", t: 0, moving: false }));
+  const who = document.getElementById("who");
+  for (const p of people.filter((q) => q.playable)) who.append(new Option(p.name, p.id));
+  let me = people.find((p) => p.id === "son") ?? people.find((p) => p.playable);
+  who.value = me.id;
+  who.addEventListener("change", () => { me = people.find((p) => p.id === who.value); who.blur(); });
+  let dimOutside = true;
+  const dimBtn = document.getElementById("dim");
+  dimBtn.addEventListener("click", () => {
+    dimOutside = !dimOutside;
+    dimBtn.setAttribute("aria-pressed", String(dimOutside));
+    dimBtn.textContent = dimOutside ? "OUTSIDE: DIM" : "OUTSIDE: FULL";
+  });
+
+  // ---- Game Boy filter: every pixel becomes one of the DMG's four greens, by brightness ----
+  const GB = [[15, 56, 15], [48, 98, 48], [139, 172, 15], [155, 188, 15]];
+  let gb = false;
+  try { gb = localStorage.getItem("walk-gb") === "1"; } catch {}
+  const gbBtn = document.getElementById("gb");
+  const setGb = (on) => {
+    gb = on;
+    gbBtn.setAttribute("aria-pressed", String(on));
+    gbBtn.textContent = on ? "FILTER: GAME BOY" : "FILTER: OFF";
+    try { localStorage.setItem("walk-gb", on ? "1" : "0"); } catch {}
+  };
+  setGb(gb);
+  gbBtn.addEventListener("click", () => { setGb(!gb); gbBtn.blur(); });
+  addEventListener("keydown", (e) => { if (e.key.toLowerCase() === "g" && e.target !== who) setGb(!gb); });
+  const gameBoy = (vw, vh) => {
+    const img = ctx.getImageData(0, 0, vw, vh), d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const l = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+      const c = GB[l < 70 ? 0 : l < 135 ? 1 : l < 195 ? 2 : 3];
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2];
+    }
+    ctx.putImageData(img, 0, 0);
+  };
+
+  // ---- input: keys, or hold the pointer and walk toward it ----
+  const keys = new Set();
+  addEventListener("keydown", (e) => { if (e.target === who) return; keys.add(e.key.toLowerCase()); if (e.key.startsWith("Arrow") || e.key === " ") e.preventDefault(); });
+  addEventListener("keyup", (e) => keys.delete(e.key.toLowerCase()));
+  addEventListener("blur", () => keys.clear());
+  const canvas = document.getElementById("view"), ctx = canvas.getContext("2d");
+  let pointer = null, scale = 3, cam = { x: 0, y: 0 };
+  const toWorld = (e) => { const r = canvas.getBoundingClientRect(); return { x: cam.x + ((e.clientX - r.left) / r.width) * canvas.width, y: cam.y + ((e.clientY - r.top) / r.height) * canvas.height }; };
+  canvas.addEventListener("pointerdown", (e) => { canvas.setPointerCapture(e.pointerId); pointer = toWorld(e); });
+  canvas.addEventListener("pointermove", (e) => { if (pointer) pointer = toWorld(e); });
+  canvas.addEventListener("pointerup", () => (pointer = null));
+  canvas.addEventListener("pointercancel", () => (pointer = null));
+
+  const resize = () => {
+    const r = canvas.getBoundingClientRect();
+    scale = Math.max(2, Math.round(Math.min(r.width / 360, r.height / 240)));
+    canvas.width = Math.ceil(r.width / scale);
+    canvas.height = Math.ceil(r.height / scale);
+    ctx.imageSmoothingEnabled = false;
+  };
+  // re-measure whenever the play area changes size, not just the window, so the picture is never stretched
+  new ResizeObserver(resize).observe(canvas);
+  resize();
+
+  const DIRS = { "0,1": "S", "1,1": "SE", "1,0": "E", "1,-1": "NE", "0,-1": "N", "-1,-1": "NW", "-1,0": "W", "-1,1": "SW" };
+  const place = document.getElementById("place");
+  let lastPlace = "";
+
+  function step(dt) {
+    let dx = (keys.has("arrowright") || keys.has("d") ? 1 : 0) - (keys.has("arrowleft") || keys.has("a") ? 1 : 0);
+    let dy = (keys.has("arrowdown") || keys.has("s") ? 1 : 0) - (keys.has("arrowup") || keys.has("w") ? 1 : 0);
+    if (!dx && !dy && pointer) {
+      const ax = pointer.x - me.x, ay = pointer.y - me.y, d = Math.hypot(ax, ay);
+      if (d > 4) { const a = Math.atan2(ay, ax), o = Math.round(a / (Math.PI / 4)); dx = Math.round(Math.cos(o * Math.PI / 4)); dy = Math.round(Math.sin(o * Math.PI / 4)); }
+    }
+    me.moving = !!(dx || dy);
+    if (me.moving) {
+      me.dir = DIRS[`${dx},${dy}`];
+      const speed = (keys.has("shift") ? 96 : 52) * dt, n = Math.hypot(dx, dy);
+      const mx = (dx / n) * speed, my = (dy / n) * speed;
+      // move each axis on its own so you slide along walls
+      if (!blocked(me.x + mx, me.y)) me.x += mx;
+      if (!blocked(me.x, me.y + my)) me.y += my;
+      me.t += dt;
+    } else me.t = 0;
+  }
+
+  function drawPerson(p) {
+    const s = sheets[p.sprite], row = Math.max(0, s.rows.indexOf(p.dir));
+    const frame = p.moving ? s.loop[Math.floor(p.t * s.fps * (keys.has("shift") && p === me ? 1.6 : 1)) % s.loop.length] : s.idle;
+    const x = Math.round(p.x - s.frame.w / 2 - cam.x), y = Math.round(p.y - s.frame.h + 2 - cam.y);
+    ctx.drawImage(s.img, frame * s.frame.w, row * s.frame.h, s.frame.w, s.frame.h, x, y, s.frame.w, s.frame.h);
+  }
+
+  function draw() {
+    const vw = canvas.width, vh = canvas.height;
+    cam.x = Math.round(Math.min(Math.max(me.x - vw / 2, 0), Math.max(0, W - vw)));
+    cam.y = Math.round(Math.min(Math.max(me.y - vh / 2, 0), Math.max(0, H - vh)));
+    ctx.fillStyle = "#000"; ctx.fillRect(0, 0, vw, vh);
+    ctx.drawImage(ground, cam.x, cam.y, vw, vh, 0, 0, vw, vh);
+    const inside = buildingAt(me.x, me.y - 2);
+    // buildings and people, north to south by where they meet the ground. People inside other buildings are drawn
+    // before those buildings' sprites cover them.
+    // the building you're in shows its cutaway instead of its roof: the floor under everyone, then its waist-high
+    // walls strip by strip, sorted with the people, so a wall in front of you covers you and one behind you doesn't.
+    // Going in or out, the roof fades over a quarter second instead of popping (the roof stands above the footprint
+    // by the building's height, the cutaway on it).
+    const now = performance.now(), fdt = Math.min(0.1, (now - (draw.last ?? now)) / 1000);
+    draw.last = now;
+    for (const [id] of sprites) {
+      const target = id === inside ? 0 : 1, o = roofOpacity.get(id) ?? 1;
+      roofOpacity.set(id, target > o ? Math.min(1, o + fdt / 0.25) : target < o ? Math.max(0, o - fdt / 0.25) : o);
+    }
+    const open = [...sprites].filter(([id]) => roofOpacity.get(id) < 1).map(([, s]) => s);
+    const drawFloor = (c) => ctx.drawImage(c.inImg, c.inside.x - cam.x, c.inside.y - cam.y);
+    const wallStrips = (c) => c.inside.strips.map((s) => ({ base: s.base, draw: () => ctx.drawImage(c.wallsImg, s.sx, s.sy, s.w, s.h, s.x - cam.x, s.y - cam.y, s.w, s.h) }));
+    const drawSorted = (list) => { list.sort((a, b) => a.base - b.base); for (const t of list) t.draw(); };
+    for (const c of open) drawFloor(c);
+    const things = open.flatMap(wallStrips);
+    for (const [id, s] of sprites) {
+      const o = roofOpacity.get(id);
+      // each part of the building is its own layer, sorted by where its south wall meets the ground
+      if (o > 0) for (const q of s.strips) things.push({ base: q.base, draw: () => { ctx.globalAlpha = o; ctx.drawImage(s.img, q.sx, q.sy, q.w, q.h, q.x - cam.x, q.y - cam.y, q.w, q.h); ctx.globalAlpha = 1; } });
+    }
+    for (const p of people) things.push({ base: p.y, draw: () => drawPerson(p) });
+    drawSorted(things);
+    const cutaway = sprites.get(inside);
+    if (cutaway && dimOutside) {
+      // dim everything but the building you're in, then put its rooms and the people in them back on top
+      const lift = 1 - roofOpacity.get(inside);
+      ctx.fillStyle = `rgba(0,0,0,${(0.55 * lift).toFixed(3)})`; ctx.fillRect(0, 0, vw, vh);
+      ctx.globalAlpha = lift;
+      drawFloor(cutaway);
+      drawSorted([...wallStrips(cutaway), ...people.filter((q) => buildingAt(q.x, q.y - 2) === inside).map((p) => ({ base: p.y, draw: () => drawPerson(p) }))]);
+      ctx.globalAlpha = 1;
+    }
+    if (gb) gameBoy(vw, vh);
+    const label = inside >= 0 ? data.buildings[inside].names[0] : "Outside";
+    if (label !== lastPlace) { lastPlace = label; place.innerHTML = inside >= 0 ? `INSIDE <b>${label.toUpperCase()}</b>` : "OUTSIDE"; }
+  }
+
+  let last = performance.now();
+  const loop = (now) => { const dt = Math.min(0.05, (now - last) / 1000); last = now; step(dt); draw(); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})().catch((e) => { const l = document.getElementById("loading"); l.hidden = false; l.textContent = "COULDN'T LOAD THE MAP: " + e.message; });
+</script>

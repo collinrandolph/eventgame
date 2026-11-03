@@ -129,3 +129,24 @@ npm run env -- worlds/millbrook.json --skin=kenney           # draw with them: m
   east and west walls can't be seen from outside.
 - **Not drawn yet:** items, vehicles and machines.
 - **No damage or decay states yet.**
+
+## What the 3D check showed
+
+`npm run block3d` extrudes the shell block into real 3D (walls of 3 m storeys, flat roofs behind a parapet, gables
+along each mass's long side, hips on small or angled masses, a spire on the tower) and draws it with the game's
+exact projection: (x, y up, z south) in metres lands at (x * 8, (z - y) * 8) px. `sprites/maps/shell-block-2d-vs-3d.png`
+puts the 2D builder's church and house over the 3D ones. What it showed:
+
+- **A building's picture is taller than its footprint.** In the true projection the roof sits its full depth, raised
+  by the wall height, so the picture reaches north of the footprint by the building's height (to the ridge for a
+  pitched roof). The 2D builder squeezes roof and wall into the footprint. That's tolerable for flat roofs (the
+  Kenney set does the same), but a steep roof or a tower can't fit, and the builder already breaks its own rule for
+  towers. Two conventions in one picture is a large part of why the buildings read as optical illusions.
+- **A ridge running north-south shows a peak at both ends.** Its two slopes are parallelograms rising from the eaves
+  to a vertical ridge line; the south gable end is a triangle of wall on top of a full-width wall, and the north end
+  peaks too. The 2D builder draws a flat top edge.
+- **A ridge running east-west shows mostly its front slope.** The back slope's share depends on the pitch: about
+  15% at 35 degrees, and edge-on at 45. The 2D builder always gives it 40%, which reads as a shallow roof.
+- **Small angled masses are little prisms with hip roofs** (a hexagonal bay with a pyramid cap), not wedges.
+- **Texture follows the face.** Shingle rows run parallel to their eave and brick rows to their wall's base, so on a
+  slope or an angled wall they slant with it; textures sampled in screen space don't.

@@ -34,9 +34,8 @@
       ]
     },
     "school": {
-      "roof": "gable",
-      "roofTex": "tex-roof-shingle",
-      "backTex": "tex-roof-shingle-back",
+      "roof": "flat",
+      "roofTex": "tex-roof-flat",
       "wall": "tex-wall-brick",
       "window": "deco-window",
       "every": 1,
@@ -54,7 +53,11 @@
           "deco": "deco-bike-rack",
           "at": "front-right"
         }
-      ]
+      ],
+      "roof9": "kenney-roof9-gray",
+      "wall9": "kenney-facade9-orange",
+      "tileDoor": "kenney-door-double",
+      "tileWindow": "kenney-window"
     },
     "precinct": {
       "roof": "flat",
@@ -374,6 +377,85 @@
       "groundDoor": "deco-door-rollup",
       "groundEvery": 2,
       "entrance": "deco-door"
+    },
+    "storefront": {
+      "roof": "flat",
+      "roofTex": "tex-roof-flat",
+      "wall": "tex-wall-brick",
+      "storeys": [
+        1,
+        1
+      ],
+      "window": "deco-window-shop",
+      "ground": "deco-window-shop",
+      "awning": "deco-awning-red",
+      "every": 1,
+      "door": "deco-door",
+      "entrance": "deco-door",
+      "roof9": "kenney-roof9-beige",
+      "wall9": "kenney-facade9-red",
+      "tileDoor": "kenney-door-glass",
+      "tileShop": "kenney-window",
+      "tileWindow": "kenney-window",
+      "tileAwning": "kenney-awning-shop"
+    },
+    "clinic": {
+      "roof": "flat",
+      "roofTex": "tex-roof-flat-light",
+      "wall": "tex-wall-white",
+      "storeys": [
+        1,
+        1
+      ],
+      "window": "deco-window",
+      "ground": "deco-window",
+      "every": 1,
+      "door": "deco-door-double",
+      "canopy": "deco-canopy",
+      "features": [
+        {
+          "deco": "deco-redcross",
+          "at": "roof-left"
+        },
+        {
+          "deco": "deco-ambulance",
+          "at": "front-right"
+        }
+      ],
+      "entrance": "deco-door-double",
+      "roof9": "kenney-roof9-gray",
+      "wall9": "kenney-facade9-red",
+      "tileDoor": "kenney-door-glass",
+      "tileWindow": "kenney-window-small"
+    },
+    "church-nave": {
+      "roof": "gable",
+      "roofTex": "tex-roof-slate",
+      "backTex": "tex-roof-slate-back",
+      "wall": "tex-wall-stone",
+      "window": "deco-window-arched",
+      "every": 2,
+      "door": "deco-door-arched",
+      "entrance": "deco-door-arched"
+    },
+    "bell-tower": {
+      "roof": "flat",
+      "roofTex": "tex-roof-slate",
+      "wall": "tex-wall-stone",
+      "storeys": [
+        3,
+        4
+      ],
+      "window": "deco-window-arched",
+      "every": 1,
+      "door": "deco-door-arched",
+      "features": [
+        {
+          "deco": "deco-steeple",
+          "at": "roof-centre"
+        }
+      ],
+      "entrance": "deco-door-arched"
     }
   },
   "districts": {

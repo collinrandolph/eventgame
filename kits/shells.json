@@ -1,0 +1,985 @@
+{
+  "about": "Building shells: the North American building types sites are made from (events/MAP-NEEDS.md), built from masses (src/city/shells.ts). Metres throughout; the generator rounds to 2 m cells. masses: the main one has a size; the rest attach to a side of an earlier mass (along the side, out from it counting the shared wall, at 0-1 along it or between a range), may be there only by chance, and carry their own plan or join a room of another mass. cut: corners at 45 degrees (one cell, so the cut wall meets the straight walls' centre lines), or both outer corners of an attached mass. arch/storeys/rise: a mass that looks different from the rest. lot: the parcel's width and the front setback. connect: interior doors (width in cells). entrance: the main door, on the front-most south wall. doors: other outside doors. keep: what the type can't drop.",
+  "shells": {
+    "storefront": {
+      "name": "Storefront",
+      "reference": "A two-storey main-street commercial block, 1890s-1930s: a glass shopfront under a cornice, a stockroom behind, and a lower one-storey addition at the back, narrower than the front, off to one side, with the back door. Corner lots cut the front corner at 45 degrees.",
+      "keep": [
+        "shopfront facing the street",
+        "sales floor at the front",
+        "stockroom behind it",
+        "lower rear addition",
+        "back door"
+      ],
+      "masses": [
+        {
+          "id": "front",
+          "size": {
+            "w": [
+              12,
+              16
+            ],
+            "d": [
+              16,
+              20
+            ]
+          },
+          "storeys": 2,
+          "cut": [
+            {
+              "corner": [
+                "sw",
+                "se"
+              ],
+              "n": 1,
+              "chance": 0.35
+            }
+          ],
+          "plan": {
+            "split": "y",
+            "parts": [
+              {
+                "share": 0.7,
+                "room": "sales",
+                "name": "sales floor",
+                "theme": "theme-wood"
+              },
+              {
+                "share": 0.3,
+                "split": "x",
+                "parts": [
+                  {
+                    "share": 0.7,
+                    "room": "stock",
+                    "name": "stockroom",
+                    "theme": "theme-concrete"
+                  },
+                  {
+                    "share": 0.3,
+                    "room": "wc",
+                    "name": "restroom",
+                    "theme": "theme-clinic",
+                    "min": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "rear",
+          "attach": {
+            "to": "front",
+            "side": "north",
+            "along": [
+              6,
+              10
+            ],
+            "out": [
+              6,
+              10
+            ],
+            "at": [
+              0,
+              1
+            ]
+          },
+          "storeys": 1,
+          "plan": {
+            "room": "back",
+            "name": "back room",
+            "theme": "theme-concrete"
+          }
+        }
+      ],
+      "lot": {
+        "w": [
+          18,
+          22
+        ],
+        "front": [
+          2,
+          4
+        ]
+      },
+      "archetype": "storefront",
+      "connect": [
+        [
+          "sales",
+          "stock"
+        ],
+        [
+          "stock",
+          "wc"
+        ],
+        [
+          "stock",
+          "back"
+        ],
+        [
+          "wc",
+          "back"
+        ]
+      ],
+      "entrance": {
+        "room": "sales",
+        "width": 1
+      },
+      "doors": [
+        {
+          "room": "back",
+          "side": "north"
+        }
+      ],
+      "mirror": true
+    },
+    "hall": {
+      "name": "Hall",
+      "reference": "A small-town Gothic Revival church, 1870s-1920s: a long nave; a square bell tower at one front corner, or centred, with the entrance through its base; a narrower polygonal apse for the chancel at the far end; a sacristy wing off one side near the back.",
+      "keep": [
+        "long nave",
+        "bell tower with the entrance in its base",
+        "polygonal apse at the far end",
+        "sacristy wing",
+        "side door"
+      ],
+      "masses": [
+        {
+          "id": "nave",
+          "size": {
+            "w": [
+              14,
+              18
+            ],
+            "d": [
+              22,
+              28
+            ]
+          },
+          "plan": {
+            "room": "nave",
+            "name": "nave",
+            "theme": "theme-wood"
+          }
+        },
+        {
+          "id": "tower",
+          "attach": {
+            "to": "nave",
+            "side": "south",
+            "along": [
+              6,
+              8
+            ],
+            "out": [
+              6,
+              8
+            ],
+            "at": [
+              0,
+              0.5,
+              1
+            ]
+          },
+          "arch": "bell-tower",
+          "storeys": 4,
+          "rise": true,
+          "plan": {
+            "room": "vestibule",
+            "name": "tower vestibule",
+            "theme": "theme-stone"
+          }
+        },
+        {
+          "id": "apse",
+          "attach": {
+            "to": "nave",
+            "side": "north",
+            "along": [
+              8,
+              12
+            ],
+            "out": [
+              6,
+              8
+            ],
+            "at": 0.5
+          },
+          "storeys": 1,
+          "cut": [
+            {
+              "corner": "outer",
+              "n": 1
+            }
+          ],
+          "plan": {
+            "room": "chancel",
+            "name": "chancel",
+            "theme": "theme-carpet"
+          }
+        },
+        {
+          "id": "sacristy",
+          "attach": {
+            "to": "nave",
+            "side": [
+              "east",
+              "west"
+            ],
+            "along": [
+              14,
+              16
+            ],
+            "out": [
+              8,
+              10
+            ],
+            "between": [
+              0.1,
+              0.35
+            ]
+          },
+          "storeys": 1,
+          "plan": {
+            "split": "y",
+            "parts": [
+              {
+                "share": 0.5,
+                "room": "office",
+                "name": "office",
+                "theme": "theme-office"
+              },
+              {
+                "share": 0.5,
+                "room": "sacristy",
+                "name": "sacristy",
+                "theme": "theme-wood"
+              }
+            ]
+          }
+        }
+      ],
+      "lot": {
+        "w": [
+          28,
+          34
+        ],
+        "front": [
+          6,
+          10
+        ]
+      },
+      "archetype": "church-nave",
+      "connect": [
+        [
+          "vestibule",
+          "nave",
+          2
+        ],
+        [
+          "nave",
+          "chancel",
+          3
+        ],
+        [
+          "nave",
+          "sacristy"
+        ],
+        [
+          "sacristy",
+          "office"
+        ],
+        [
+          "chancel",
+          "sacristy"
+        ]
+      ],
+      "entrance": {
+        "room": "vestibule",
+        "width": 2
+      },
+      "doors": [
+        {
+          "room": "office",
+          "side": "south"
+        }
+      ]
+    },
+    "dwelling": {
+      "name": "Dwelling",
+      "reference": "A 1920s bungalow: living room at the front behind a porch, kitchen behind it, a bedroom and bathroom down one side; a bay window on the living room or a side wall; a back ell for a mudroom with the back door.",
+      "keep": [
+        "front door into the living room",
+        "porch",
+        "kitchen at the back",
+        "a bedroom",
+        "bathroom",
+        "back door"
+      ],
+      "masses": [
+        {
+          "id": "main",
+          "size": {
+            "w": [
+              14,
+              16
+            ],
+            "d": [
+              14,
+              16
+            ]
+          },
+          "plan": {
+            "split": "x",
+            "parts": [
+              {
+                "share": 0.56,
+                "split": "y",
+                "parts": [
+                  {
+                    "share": 0.55,
+                    "room": "living",
+                    "name": "living room",
+                    "theme": "theme-carpet"
+                  },
+                  {
+                    "share": 0.45,
+                    "room": "kitchen",
+                    "name": "kitchen",
+                    "theme": "theme-clinic"
+                  }
+                ]
+              },
+              {
+                "share": 0.44,
+                "split": "y",
+                "parts": [
+                  {
+                    "share": 0.6,
+                    "room": "bedroom",
+                    "name": "bedroom",
+                    "theme": "theme-carpet"
+                  },
+                  {
+                    "share": 0.4,
+                    "room": "bath",
+                    "name": "bathroom",
+                    "theme": "theme-clinic",
+                    "min": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "bay",
+          "attach": {
+            "to": "main",
+            "side": [
+              "west",
+              "south"
+            ],
+            "along": [
+              6,
+              6
+            ],
+            "out": [
+              6,
+              6
+            ],
+            "between": [
+              0.1,
+              0.3
+            ]
+          },
+          "chance": 0.75,
+          "cut": [
+            {
+              "corner": "outer",
+              "n": 1
+            }
+          ],
+          "joins": "living"
+        },
+        {
+          "id": "ell",
+          "attach": {
+            "to": "main",
+            "side": "north",
+            "along": [
+              6,
+              8
+            ],
+            "out": [
+              6,
+              8
+            ],
+            "at": 0
+          },
+          "chance": 0.7,
+          "plan": {
+            "room": "mudroom",
+            "name": "mudroom",
+            "theme": "theme-concrete"
+          }
+        }
+      ],
+      "lot": {
+        "w": [
+          22,
+          26
+        ],
+        "front": [
+          6,
+          10
+        ]
+      },
+      "archetype": "house-shingle",
+      "connect": [
+        [
+          "living",
+          "kitchen"
+        ],
+        [
+          "living",
+          "bedroom"
+        ],
+        [
+          "kitchen",
+          "bath"
+        ],
+        [
+          "kitchen",
+          "mudroom"
+        ]
+      ],
+      "entrance": {
+        "room": "living",
+        "width": 1
+      },
+      "doors": [
+        {
+          "room": "mudroom",
+          "side": "north"
+        },
+        {
+          "room": "kitchen",
+          "side": "north"
+        }
+      ],
+      "mirror": true,
+      "porch": {
+        "d": 4,
+        "full": 0.5
+      }
+    },
+    "block": {
+      "name": "Block",
+      "reference": "A 1950s one-storey elementary school: a classroom wing along the street with a corridor down its length; a projecting entrance with the office and library beside it; a gym and kitchen wing going back from one end (an L) or the middle (a T).",
+      "keep": [
+        "entrance projecting at the front",
+        "office by the entrance",
+        "corridor the length of the wing",
+        "classrooms on both sides",
+        "a back wing for the gym",
+        "exits at the ends"
+      ],
+      "masses": [
+        {
+          "id": "wing",
+          "size": {
+            "w": [
+              36,
+              44
+            ],
+            "d": [
+              18,
+              20
+            ]
+          },
+          "plan": {
+            "split": "y",
+            "parts": [
+              {
+                "share": 0.43,
+                "split": "x",
+                "parts": [
+                  {
+                    "share": 0.32,
+                    "room": "class1",
+                    "name": "classroom 1",
+                    "theme": "theme-wood"
+                  },
+                  {
+                    "share": 0.18,
+                    "room": "office",
+                    "name": "office",
+                    "theme": "theme-office"
+                  },
+                  {
+                    "share": 0.18,
+                    "room": "library",
+                    "name": "library",
+                    "theme": "theme-carpet"
+                  },
+                  {
+                    "share": 0.32,
+                    "room": "class2",
+                    "name": "classroom 2",
+                    "theme": "theme-wood"
+                  }
+                ]
+              },
+              {
+                "share": 0.14,
+                "room": "corridor",
+                "name": "corridor",
+                "theme": "theme-concrete",
+                "min": 1
+              },
+              {
+                "share": 0.43,
+                "split": "x",
+                "parts": [
+                  {
+                    "share": 0.4,
+                    "room": "class3",
+                    "name": "classroom 3",
+                    "theme": "theme-wood"
+                  },
+                  {
+                    "share": 0.2,
+                    "room": "restrooms",
+                    "name": "restrooms",
+                    "theme": "theme-clinic",
+                    "min": 1
+                  },
+                  {
+                    "share": 0.4,
+                    "room": "class4",
+                    "name": "classroom 4",
+                    "theme": "theme-wood"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "entry",
+          "attach": {
+            "to": "wing",
+            "side": "south",
+            "along": [
+              8,
+              10
+            ],
+            "out": [
+              6,
+              6
+            ],
+            "between": [
+              0.4,
+              0.5
+            ]
+          },
+          "storeys": 1,
+          "cut": [
+            {
+              "corner": "outer",
+              "n": 1,
+              "chance": 0.5
+            }
+          ],
+          "plan": {
+            "room": "lobby",
+            "name": "lobby",
+            "theme": "theme-stone"
+          }
+        },
+        {
+          "id": "gym",
+          "attach": {
+            "to": "wing",
+            "side": "north",
+            "along": [
+              14,
+              18
+            ],
+            "out": [
+              16,
+              20
+            ],
+            "at": [
+              0,
+              0.5,
+              1
+            ]
+          },
+          "plan": {
+            "split": "y",
+            "parts": [
+              {
+                "share": 0.75,
+                "room": "gym",
+                "name": "gym",
+                "theme": "theme-wood"
+              },
+              {
+                "share": 0.25,
+                "room": "kitchen",
+                "name": "kitchen",
+                "theme": "theme-clinic"
+              }
+            ]
+          }
+        }
+      ],
+      "lot": {
+        "w": [
+          50,
+          56
+        ],
+        "front": [
+          6,
+          10
+        ]
+      },
+      "archetype": "school",
+      "connect": [
+        [
+          "lobby",
+          "office"
+        ],
+        [
+          "lobby",
+          "library"
+        ],
+        [
+          "office",
+          "corridor"
+        ],
+        [
+          "library",
+          "corridor",
+          2
+        ],
+        [
+          "class1",
+          "corridor"
+        ],
+        [
+          "class2",
+          "corridor"
+        ],
+        [
+          "class3",
+          "corridor"
+        ],
+        [
+          "restrooms",
+          "corridor"
+        ],
+        [
+          "class4",
+          "corridor"
+        ],
+        [
+          "gym",
+          "corridor",
+          2
+        ],
+        [
+          "gym",
+          "class3"
+        ],
+        [
+          "gym",
+          "class4"
+        ],
+        [
+          "gym",
+          "restrooms"
+        ],
+        [
+          "gym",
+          "kitchen",
+          2
+        ]
+      ],
+      "entrance": {
+        "room": "lobby",
+        "width": 2
+      },
+      "doors": [
+        {
+          "room": "corridor",
+          "side": "west"
+        },
+        {
+          "room": "corridor",
+          "side": "east"
+        },
+        {
+          "room": "kitchen",
+          "side": "north"
+        }
+      ]
+    },
+    "ward": {
+      "name": "Ward",
+      "reference": "A small-town clinic, 1960s-70s: a front block with the waiting room and pharmacy behind a glass entry vestibule; corridors around an enclosed garden courtyard; exam rooms and the nurses' station along the back; an emergency wing pushed out to the side with its own ambulance entrance.",
+      "keep": [
+        "entry vestibule",
+        "waiting room",
+        "pharmacy",
+        "courtyard garden",
+        "exam rooms",
+        "nurses' station",
+        "emergency wing with a side entrance"
+      ],
+      "masses": [
+        {
+          "id": "main",
+          "size": {
+            "w": [
+              30,
+              34
+            ],
+            "d": [
+              26,
+              30
+            ]
+          },
+          "plan": {
+            "split": "y",
+            "parts": [
+              {
+                "share": 0.3,
+                "split": "x",
+                "parts": [
+                  {
+                    "share": 0.62,
+                    "room": "waiting",
+                    "name": "waiting room",
+                    "theme": "theme-clinic"
+                  },
+                  {
+                    "share": 0.38,
+                    "room": "pharmacy",
+                    "name": "pharmacy",
+                    "theme": "theme-clinic"
+                  }
+                ]
+              },
+              {
+                "share": 0.4,
+                "split": "x",
+                "parts": [
+                  {
+                    "share": 0.12,
+                    "room": "hall-w",
+                    "name": "west corridor",
+                    "theme": "theme-clinic",
+                    "min": 1
+                  },
+                  {
+                    "share": 0.76,
+                    "room": "court",
+                    "name": "courtyard garden",
+                    "theme": "theme-grass",
+                    "court": true
+                  },
+                  {
+                    "share": 0.12,
+                    "room": "hall-e",
+                    "name": "east corridor",
+                    "theme": "theme-clinic",
+                    "min": 1
+                  }
+                ]
+              },
+              {
+                "share": 0.3,
+                "split": "x",
+                "parts": [
+                  {
+                    "share": 0.34,
+                    "room": "exam1",
+                    "name": "exam room 1",
+                    "theme": "theme-clinic"
+                  },
+                  {
+                    "share": 0.33,
+                    "room": "nurses",
+                    "name": "nurses' station",
+                    "theme": "theme-office"
+                  },
+                  {
+                    "share": 0.33,
+                    "room": "exam2",
+                    "name": "exam room 2",
+                    "theme": "theme-clinic"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "vestibule",
+          "attach": {
+            "to": "main",
+            "side": "south",
+            "along": [
+              6,
+              8
+            ],
+            "out": [
+              6,
+              8
+            ],
+            "between": [
+              0.2,
+              0.45
+            ]
+          },
+          "storeys": 1,
+          "plan": {
+            "room": "entry",
+            "name": "entry vestibule",
+            "theme": "theme-stone"
+          }
+        },
+        {
+          "id": "er",
+          "attach": {
+            "to": "main",
+            "side": [
+              "east",
+              "west"
+            ],
+            "along": [
+              12,
+              14
+            ],
+            "out": [
+              10,
+              12
+            ],
+            "between": [
+              0.55,
+              0.9
+            ]
+          },
+          "storeys": 1,
+          "cut": [
+            {
+              "corner": "outer",
+              "n": 1,
+              "chance": 0.5
+            }
+          ],
+          "plan": {
+            "room": "emergency",
+            "name": "emergency room",
+            "theme": "theme-clinic"
+          }
+        }
+      ],
+      "lot": {
+        "w": [
+          44,
+          50
+        ],
+        "front": [
+          6,
+          8
+        ]
+      },
+      "archetype": "clinic",
+      "connect": [
+        [
+          "entry",
+          "waiting",
+          2
+        ],
+        [
+          "waiting",
+          "pharmacy"
+        ],
+        [
+          "waiting",
+          "hall-w"
+        ],
+        [
+          "waiting",
+          "hall-e"
+        ],
+        [
+          "hall-w",
+          "court"
+        ],
+        [
+          "hall-e",
+          "court"
+        ],
+        [
+          "hall-w",
+          "exam1"
+        ],
+        [
+          "hall-e",
+          "exam2"
+        ],
+        [
+          "exam1",
+          "nurses"
+        ],
+        [
+          "exam2",
+          "nurses"
+        ],
+        [
+          "nurses",
+          "court"
+        ],
+        [
+          "emergency",
+          "hall-e",
+          2
+        ],
+        [
+          "emergency",
+          "hall-w",
+          2
+        ],
+        [
+          "emergency",
+          "exam2"
+        ],
+        [
+          "emergency",
+          "exam1"
+        ]
+      ],
+      "entrance": {
+        "room": "entry",
+        "width": 2
+      },
+      "doors": [
+        {
+          "room": "emergency",
+          "side": "east",
+          "width": 2
+        },
+        {
+          "room": "emergency",
+          "side": "west",
+          "width": 2
+        }
+      ]
+    }
+  }
+}

@@ -7,3 +7,4 @@ vendor/lo-bit-city/
 vendor/**/*.zip
 sprites/env/imported/lobit/
 vendor/kenney-rpg-urban/Tiles/
+worlds/shell-block-test.json

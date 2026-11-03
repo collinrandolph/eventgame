@@ -1,0 +1,305 @@
+{
+ "world": "shell-block",
+ "zones": {
+  "storefront-sales": "theme-wood",
+  "storefront-stock": "theme-concrete",
+  "storefront-wc": "theme-clinic",
+  "storefront-back": "theme-concrete",
+  "hall-nave": "theme-wood",
+  "hall-vestibule": "theme-stone",
+  "hall-chancel": "theme-carpet",
+  "hall-office": "theme-office",
+  "hall-sacristy": "theme-wood",
+  "dwelling-living": "theme-carpet",
+  "dwelling-kitchen": "theme-clinic",
+  "dwelling-bedroom": "theme-carpet",
+  "dwelling-bath": "theme-clinic",
+  "dwelling-mudroom": "theme-concrete",
+  "block-class1": "theme-wood",
+  "block-office": "theme-office",
+  "block-library": "theme-carpet",
+  "block-class2": "theme-wood",
+  "block-corridor": "theme-concrete",
+  "block-class3": "theme-wood",
+  "block-restrooms": "theme-clinic",
+  "block-class4": "theme-wood",
+  "block-lobby": "theme-stone",
+  "block-gym": "theme-wood",
+  "block-kitchen": "theme-clinic",
+  "ward-waiting": "theme-clinic",
+  "ward-pharmacy": "theme-clinic",
+  "ward-hall-w": "theme-clinic",
+  "ward-court": "theme-grass",
+  "ward-hall-e": "theme-clinic",
+  "ward-exam1": "theme-clinic",
+  "ward-nurses": "theme-office",
+  "ward-exam2": "theme-clinic",
+  "ward-entry": "theme-stone",
+  "ward-emergency": "theme-clinic"
+ },
+ "outdoor": [
+  "ward-court"
+ ],
+ "buildings": {
+  "storefront-sales": "storefront",
+  "storefront-stock": "storefront",
+  "storefront-wc": "storefront",
+  "storefront-back": "storefront",
+  "hall-nave": "church-nave",
+  "hall-vestibule": "church-nave",
+  "hall-chancel": "church-nave",
+  "hall-office": "church-nave",
+  "hall-sacristy": "church-nave",
+  "dwelling-living": "house-shingle",
+  "dwelling-kitchen": "house-shingle",
+  "dwelling-bedroom": "house-shingle",
+  "dwelling-bath": "house-shingle",
+  "dwelling-mudroom": "house-shingle",
+  "block-class1": "school",
+  "block-office": "school",
+  "block-library": "school",
+  "block-class2": "school",
+  "block-corridor": "school",
+  "block-class3": "school",
+  "block-restrooms": "school",
+  "block-class4": "school",
+  "block-lobby": "school",
+  "block-gym": "school",
+  "block-kitchen": "school",
+  "ward-waiting": "clinic",
+  "ward-pharmacy": "clinic",
+  "ward-hall-w": "clinic",
+  "ward-court": "clinic",
+  "ward-hall-e": "clinic",
+  "ward-exam1": "clinic",
+  "ward-nurses": "clinic",
+  "ward-exam2": "clinic",
+  "ward-entry": "clinic",
+  "ward-emergency": "clinic"
+ },
+ "areas": [
+  {
+   "kind": "lawn",
+   "rect": [
+    8,
+    8,
+    18,
+    33
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    13,
+    32,
+    13,
+    33
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    19,
+    8,
+    35,
+    33
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    31,
+    31,
+    31,
+    33
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    36,
+    8,
+    47,
+    33
+   ]
+  },
+  {
+   "kind": "entry",
+   "rect": [
+    40,
+    31,
+    44,
+    32
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    42,
+    31,
+    42,
+    33
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    48,
+    8,
+    74,
+    33
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    59,
+    31,
+    60,
+    33
+   ]
+  },
+  {
+   "kind": "lawn",
+   "rect": [
+    75,
+    8,
+    100,
+    33
+   ]
+  },
+  {
+   "kind": "path",
+   "rect": [
+    84,
+    31,
+    85,
+    33
+   ]
+  }
+ ],
+ "features": [],
+ "parcels": [],
+ "cuts": [
+  [
+   28,
+   14,
+   "nw"
+  ],
+  [
+   27,
+   15,
+   "nw"
+  ],
+  [
+   30,
+   14,
+   "ne"
+  ],
+  [
+   31,
+   15,
+   "ne"
+  ],
+  [
+   43,
+   30,
+   "se"
+  ],
+  [
+   41,
+   30,
+   "sw"
+  ],
+  [
+   58,
+   30,
+   "sw"
+  ],
+  [
+   62,
+   30,
+   "se"
+  ]
+ ],
+ "masses": [
+  {
+   "rect": [
+    10,
+    23,
+    16,
+    31
+   ],
+   "storeys": 2
+  },
+  {
+   "rect": [
+    10,
+    20,
+    13,
+    23
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    30,
+    28,
+    32,
+    30
+   ],
+   "arch": "bell-tower",
+   "storeys": 4,
+   "rise": true
+  },
+  {
+   "rect": [
+    27,
+    14,
+    31,
+    16
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    22,
+    17,
+    26,
+    23
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    58,
+    28,
+    62,
+    30
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    83,
+    28,
+    86,
+    30
+   ],
+   "storeys": 1
+  },
+  {
+   "rect": [
+    93,
+    21,
+    98,
+    27
+   ],
+   "storeys": 1
+  }
+ ],
+ "barriers": {},
+ "people": {
+  "walker": "recipe-civilian"
+ }
+}

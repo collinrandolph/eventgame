@@ -192,3 +192,21 @@ Each prop needs a sprite for every state the engine tracks.
 | Condition meters: injury, exposure, infection | ☐ |
 | Objective / destination markers | ☐ |
 | Stealth / detection indicator | ☐ |
+
+## 8. Makeshift exteriors (drawn by code, to replace with tiles)
+
+Building exteriors are composed from whole tiles, the way the Kenney set draws them: a flat roof with its parapet
+(`kenney-roof9-*`), a brick front with cornice and pilasters (`kenney-facade9-*`), and window, door and awning tiles.
+Some parts have no tiles yet, so the renderer draws them from flat textures. They work, but slope, ground and
+texture don't agree. `npm run env -- <world> --makeshift` writes `<world>-L0-makeshift.png` with them tinted, and
+every render prints how much of each there is.
+
+| Makeshift part | Tint | Tiles needed | Status |
+|---|---|---|---|
+| **Angled walls and roofs** (45 degree cuts: bay windows, corner shops, polygonal apses, angled vestibules) | Magenta | Diagonal roof-edge tiles (NE, NW, SE, SW) for each roof set; diagonal facade tiles (SE- and SW-facing) with matching cornice, brick and window | ☐ |
+| **Pitched roofs** (houses, the church nave, wings) | Cyan | Gable roof sets in both directions: ridge, slopes, eaves and ends for a ridge running east-west, and slopes, ridge and the triangular gable end for a ridge running north-south; hips for small parts | ☐ |
+| **Towers** (rising above their footprint) | Yellow | A tower set: shaft rows with windows, a belfry row, a pyramid or spire cap | ☐ |
+| Walls under pitched roofs (siding, stone) | Untinted | Facade sets in siding and stone, like the brick ones | ☐ |
+
+Lo Bit City has pitched roofs drawn the right way (ridge toward the viewer, gable end to the street) and is a good
+reference, but its licence keeps it out of git, so these have to be drawn for us.

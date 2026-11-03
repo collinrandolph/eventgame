@@ -1,370 +1,410 @@
 {
- "pack": "kenney",
- "source": "vendor/kenney-rpg-urban/Tilemap/tilemap_packed.png",
- "licence": "CC0 (Kenney, www.kenney.nl)",
- "redistributable": true,
- "grid": {
-  "tile": 16
- },
- "palette": "keep",
- "pieces": [
-  {
-   "id": "asphalt",
-   "kind": "texture",
-   "cell": [
-    9,
-    16
-   ]
+  "pack": "kenney",
+  "source": "vendor/kenney-rpg-urban/Tilemap/tilemap_packed.png",
+  "licence": "CC0 (Kenney, www.kenney.nl)",
+  "redistributable": true,
+  "grid": {
+    "tile": 16
   },
-  {
-   "id": "sidewalk",
-   "kind": "texture",
-   "cell": [
-    9,
-    1
-   ]
-  },
-  {
-   "id": "pavers",
-   "kind": "texture",
-   "cell": [
-    1,
-    4
-   ]
-  },
-  {
-   "id": "grass",
-   "kind": "texture",
-   "cell": [
-    1,
-    1
-   ]
-  },
-  {
-   "id": "water",
-   "kind": "texture",
-   "cell": [
-    9,
-    7
-   ]
-  },
-  {
-   "id": "roof-flat",
-   "kind": "texture",
-   "cell": [
-    9,
-    4
-   ]
-  },
-  {
-   "id": "brick-red",
-   "kind": "texture",
-   "cell": [
-    18,
-    2
-   ]
-  },
-  {
-   "id": "brick-orange",
-   "kind": "texture",
-   "cell": [
-    18,
-    6
-   ]
-  },
-  {
-   "id": "lamp",
-   "kind": "deco",
-   "cells": [
-    1,
-    6,
-    1,
-    7
-   ],
-   "trim": true
-  },
-  {
-   "id": "lamp-double",
-   "kind": "deco",
-   "cells": [
-    4,
-    6,
-    4,
-    7
-   ],
-   "trim": true
-  },
-  {
-   "id": "lamp-green",
-   "kind": "deco",
-   "cells": [
-    7,
-    6,
-    7,
-    7
-   ],
-   "trim": true
-  },
-  {
-   "id": "street-sign",
-   "kind": "deco",
-   "cells": [
-    6,
-    6,
-    6,
-    7
-   ],
-   "trim": true
-  },
-  {
-   "id": "traffic-light",
-   "kind": "deco",
-   "cell": [
-    4,
-    15
-   ],
-   "trim": true
-  },
-  {
-   "id": "hydrant",
-   "kind": "deco",
-   "cell": [
-    8,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "bin",
-   "kind": "deco",
-   "cell": [
-    10,
-    9
-   ],
-   "trim": true
-  },
-  {
-   "id": "trash",
-   "kind": "deco",
-   "cell": [
-    9,
-    9
-   ],
-   "trim": true
-  },
-  {
-   "id": "mailbox",
-   "kind": "deco",
-   "cell": [
-    8,
-    11
-   ],
-   "trim": true
-  },
-  {
-   "id": "cone",
-   "kind": "deco",
-   "cell": [
-    10,
-    11
-   ],
-   "trim": true
-  },
-  {
-   "id": "barricade",
-   "kind": "deco",
-   "cell": [
-    5,
-    8
-   ],
-   "trim": true
-  },
-  {
-   "id": "bench",
-   "kind": "deco",
-   "cell": [
-    0,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "planter-red",
-   "kind": "deco",
-   "cell": [
-    6,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "planter-green",
-   "kind": "deco",
-   "cell": [
-    7,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "hedge",
-   "kind": "deco",
-   "cells": [
-    4,
-    12,
-    7,
-    12
-   ],
-   "trim": true
-  },
-  {
-   "id": "tree",
-   "kind": "deco",
-   "cells": [
-    16,
-    8,
-    16,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "tree-autumn",
-   "kind": "deco",
-   "cells": [
-    16,
-    11,
-    16,
-    13
-   ],
-   "trim": true
-  },
-  {
-   "id": "awning-shop",
-   "kind": "deco",
-   "cells": [
-    8,
-    13,
-    10,
-    14
-   ],
-   "trim": true
-  },
-  {
-   "id": "door",
-   "kind": "deco",
-   "cell": [
-    13,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "door-white",
-   "kind": "deco",
-   "cell": [
-    13,
-    9
-   ],
-   "trim": true
-  },
-  {
-   "id": "door-double",
-   "kind": "deco",
-   "cell": [
-    14,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "door-glass",
-   "kind": "deco",
-   "cell": [
-    15,
-    10
-   ],
-   "trim": true
-  },
-  {
-   "id": "garage",
-   "kind": "deco",
-   "cells": [
-    8,
-    15,
-    9,
-    15
-   ],
-   "trim": true
-  },
-  {
-   "id": "window",
-   "kind": "deco",
-   "cell": [
-    13,
-    13
-   ],
-   "trim": true
-  },
-  {
-   "id": "window-small",
-   "kind": "deco",
-   "cell": [
-    11,
-    12
-   ],
-   "trim": true
-  },
-  {
-   "id": "window-tall",
-   "kind": "deco",
-   "cells": [
-    12,
-    12,
-    12,
-    13
-   ],
-   "trim": true
-  },
-  {
-   "id": "taxi",
-   "kind": "deco",
-   "cells": [
-    15,
-    15,
-    16,
-    15
-   ],
-   "trim": true
-  },
-  {
-   "id": "van",
-   "kind": "deco",
-   "cell": [
-    17,
-    15
-   ],
-   "trim": true
-  },
-  {
-   "id": "car-red",
-   "kind": "deco",
-   "cells": [
-    15,
-    16,
-    16,
-    17
-   ],
-   "trim": true
-  },
-  {
-   "id": "car-green",
-   "kind": "deco",
-   "cell": [
-    21,
-    15
-   ],
-   "trim": true
-  }
- ]
+  "palette": "keep",
+  "pieces": [
+    {
+      "id": "asphalt",
+      "kind": "texture",
+      "cell": [
+        9,
+        16
+      ]
+    },
+    {
+      "id": "sidewalk",
+      "kind": "texture",
+      "cell": [
+        9,
+        1
+      ]
+    },
+    {
+      "id": "pavers",
+      "kind": "texture",
+      "cell": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "grass",
+      "kind": "texture",
+      "cell": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "water",
+      "kind": "texture",
+      "cell": [
+        9,
+        7
+      ]
+    },
+    {
+      "id": "roof-flat",
+      "kind": "texture",
+      "cell": [
+        9,
+        4
+      ]
+    },
+    {
+      "id": "brick-red",
+      "kind": "texture",
+      "cell": [
+        18,
+        2
+      ]
+    },
+    {
+      "id": "brick-orange",
+      "kind": "texture",
+      "cell": [
+        18,
+        6
+      ]
+    },
+    {
+      "id": "lamp",
+      "kind": "deco",
+      "cells": [
+        1,
+        6,
+        1,
+        7
+      ],
+      "trim": true
+    },
+    {
+      "id": "lamp-double",
+      "kind": "deco",
+      "cells": [
+        4,
+        6,
+        4,
+        7
+      ],
+      "trim": true
+    },
+    {
+      "id": "lamp-green",
+      "kind": "deco",
+      "cells": [
+        7,
+        6,
+        7,
+        7
+      ],
+      "trim": true
+    },
+    {
+      "id": "street-sign",
+      "kind": "deco",
+      "cells": [
+        6,
+        6,
+        6,
+        7
+      ],
+      "trim": true
+    },
+    {
+      "id": "traffic-light",
+      "kind": "deco",
+      "cell": [
+        4,
+        15
+      ],
+      "trim": true
+    },
+    {
+      "id": "hydrant",
+      "kind": "deco",
+      "cell": [
+        8,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "bin",
+      "kind": "deco",
+      "cell": [
+        10,
+        9
+      ],
+      "trim": true
+    },
+    {
+      "id": "trash",
+      "kind": "deco",
+      "cell": [
+        9,
+        9
+      ],
+      "trim": true
+    },
+    {
+      "id": "mailbox",
+      "kind": "deco",
+      "cell": [
+        8,
+        11
+      ],
+      "trim": true
+    },
+    {
+      "id": "cone",
+      "kind": "deco",
+      "cell": [
+        10,
+        11
+      ],
+      "trim": true
+    },
+    {
+      "id": "barricade",
+      "kind": "deco",
+      "cell": [
+        5,
+        8
+      ],
+      "trim": true
+    },
+    {
+      "id": "bench",
+      "kind": "deco",
+      "cell": [
+        0,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "planter-red",
+      "kind": "deco",
+      "cell": [
+        6,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "planter-green",
+      "kind": "deco",
+      "cell": [
+        7,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "hedge",
+      "kind": "deco",
+      "cells": [
+        4,
+        12,
+        7,
+        12
+      ],
+      "trim": true
+    },
+    {
+      "id": "tree",
+      "kind": "deco",
+      "cells": [
+        16,
+        8,
+        16,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "tree-autumn",
+      "kind": "deco",
+      "cells": [
+        16,
+        11,
+        16,
+        13
+      ],
+      "trim": true
+    },
+    {
+      "id": "awning-shop",
+      "kind": "deco",
+      "cells": [
+        8,
+        13,
+        10,
+        14
+      ],
+      "trim": true
+    },
+    {
+      "id": "door",
+      "kind": "deco",
+      "cell": [
+        13,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "door-white",
+      "kind": "deco",
+      "cell": [
+        13,
+        9
+      ],
+      "trim": true
+    },
+    {
+      "id": "door-double",
+      "kind": "deco",
+      "cell": [
+        14,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "door-glass",
+      "kind": "deco",
+      "cell": [
+        15,
+        10
+      ],
+      "trim": true
+    },
+    {
+      "id": "garage",
+      "kind": "deco",
+      "cells": [
+        8,
+        15,
+        9,
+        15
+      ],
+      "trim": true
+    },
+    {
+      "id": "window",
+      "kind": "deco",
+      "cell": [
+        13,
+        13
+      ],
+      "trim": true
+    },
+    {
+      "id": "window-small",
+      "kind": "deco",
+      "cell": [
+        11,
+        12
+      ],
+      "trim": true
+    },
+    {
+      "id": "window-tall",
+      "kind": "deco",
+      "cells": [
+        12,
+        12,
+        12,
+        13
+      ],
+      "trim": true
+    },
+    {
+      "id": "taxi",
+      "kind": "deco",
+      "cells": [
+        15,
+        15,
+        16,
+        15
+      ],
+      "trim": true
+    },
+    {
+      "id": "van",
+      "kind": "deco",
+      "cell": [
+        17,
+        15
+      ],
+      "trim": true
+    },
+    {
+      "id": "car-red",
+      "kind": "deco",
+      "cells": [
+        15,
+        16,
+        16,
+        17
+      ],
+      "trim": true
+    },
+    {
+      "id": "car-green",
+      "kind": "deco",
+      "cell": [
+        21,
+        15
+      ],
+      "trim": true
+    },
+    {
+      "id": "roof9-gray",
+      "kind": "slice",
+      "cells": [
+        8,
+        0,
+        10,
+        2
+      ]
+    },
+    {
+      "id": "roof9-beige",
+      "kind": "slice",
+      "cells": [
+        8,
+        3,
+        10,
+        5
+      ]
+    },
+    {
+      "id": "facade9-red",
+      "kind": "slice",
+      "cells": [
+        17,
+        0,
+        19,
+        3
+      ]
+    },
+    {
+      "id": "facade9-orange",
+      "kind": "slice",
+      "cells": [
+        17,
+        4,
+        19,
+        7
+      ]
+    }
+  ]
 }

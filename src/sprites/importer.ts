@@ -15,7 +15,7 @@ import { join } from "node:path";
 import { type Image, decodePng } from "./pngread.js";
 
 /** `trim`: crop to the visible pixels (for sprites that sit loosely in their cells). */
-export interface Piece { id: string; kind: "texture" | "deco" | "tile" | "prop"; name?: string; cell?: [number, number]; cells?: [number, number, number, number]; px?: [number, number, number, number]; trim?: boolean }
+export interface Piece { id: string; kind: "texture" | "deco" | "tile" | "prop" | "slice"; name?: string; cell?: [number, number]; cells?: [number, number, number, number]; px?: [number, number, number, number]; trim?: boolean }
 export interface ImportManifest {
   pack: string;
   source: string;
