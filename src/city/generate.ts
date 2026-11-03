@@ -17,7 +17,9 @@
 //   - parking lots (stalls, parked cars, a curb cut across the sidewalk);
 //   - everything else unenterable buildings, by district: downtown flush to the sidewalk, residential behind
 //     front yards, industrial along one edge.
-// Buildings whose south face looks onto an alley get fire escapes, and dumpsters stand in the alleys.
+// Buildings whose south face looks onto an alley get fire escapes, and dumpsters stand in the alleys. Some wide
+// blocks are also cut north-south by a 4 m lane between buildings. Every building's main entrance is on its south
+// face (the one 3/4 view shows), facing a street, an entry plaza, a front yard or an alley apron.
 //
 // The grid world compiles like any other (zones, links, streets). Open ground (sidewalks, plazas, parks, parking) is
 // sidewalk, which belongs to the street it touches, so it's walkable without adding zones.
@@ -147,6 +149,25 @@ export function generateCity(brief: CityBrief): { world: GridWorldFile; env: Env
       streets.push({ name: `Alley ${++alleyNo}`, vertical: false, kind: "alley", alley: true, road: [[ax0, a0, ax1, a1]] });
       halves.push({ r: [x0, y0, x1, a0 - APRON - 1], facesAlley: true, district, cursor: x0 }, { r: [x0, a1 + APRON + 1, x1, y1], facesAlley: false, district, cursor: x0 });
     } else halves.push({ r: [x0, y0, x1, y1], facesAlley: false, district, cursor: x0 });
+
+    // some wide blocks are cut north-south by a 4 m lane between buildings, street to street, across the alley
+    if (x1 - x0 + 1 >= 44 && R() < 0.5) {
+      const cx = x0 + Math.floor((x1 - x0) * (0.4 + R() * 0.2)), LANE = m(4);
+      const above = hBands.find(([, by1]) => by1 + 1 === y0), below = hBands.find(([by0]) => by0 - 1 === y1);
+      const ly0 = above ? y0 - SECTIONS.local.sw : y0, ly1 = below ? y1 + SECTIONS.local.sw : y1;
+      fill([cx - APRON, y0, cx - 1, y1], "_", "%");
+      fill([cx + LANE, y0, cx + LANE + APRON - 1, y1], "_", "%");
+      areas.push({ kind: "apron", rect: [cx - APRON, y0, cx - 1, y1] }, { kind: "apron", rect: [cx + LANE, y0, cx + LANE + APRON - 1, y1] });
+      fill([cx, ly0, cx + LANE - 1, ly1], "=");
+      streets.push({ name: `Lane ${++alleyNo}`, vertical: true, kind: "alley", alley: true, road: [[cx, ly0, cx + LANE - 1, ly1]] });
+      // the halves of this block become a west part and an east part
+      for (const h of halves.filter((q) => q.r[0] === x0 && q.r[2] === x1 && q.r[1] >= y0 && q.r[3] <= y1)) {
+        halves.splice(halves.indexOf(h), 1,
+          { ...h, r: [x0, h.r[1], cx - APRON - 1, h.r[3]], cursor: x0 },
+          { ...h, r: [cx + LANE + APRON, h.r[1], x1, h.r[3]], cursor: cx + LANE + APRON });
+      }
+      if (R() < 0.6) feature("deco-dumpster", cx - APRON, Math.floor((y0 + y1) / 2) + 4);
+    }
   }
 
   // ---- the park ----
@@ -214,7 +235,8 @@ export function generateCity(brief: CityBrief): { world: GridWorldFile; env: Env
     const door = (fx0 + fx1) >> 1;
     grid[fy1][door] = "+";
     if (fw >= 10) grid[fy1][door + 1] = "+";
-    if (fy0 - 1 >= h.r[1]) { grid[fy0][fx0 + 2] = "+"; fill([fx0 + 2, h.r[1], fx0 + 2, fy0 - 1], "_"); } // a back door and a path to it
+    // a back door, with a path to the street or alley behind (none at the edge of the map)
+    if (fy0 - 1 >= h.r[1] && ["_", "="].includes(grid[h.r[1] - 1]?.[fx0 + 2])) { grid[fy0][fx0 + 2] = "+"; fill([fx0 + 2, h.r[1], fx0 + 2, fy0 - 1], "_"); }
     parcels.push([x0, h.r[1], x0 + fw + 2 * SIDE - 1, fy0 - 2, "yard"]);
     feature("deco-planter", fx0 - 1, fy1 + 2); feature("deco-planter", fx1 + 1, fy1 + 2);
     const pid = `${L.id}-staff`;
@@ -245,6 +267,9 @@ export function generateCity(brief: CityBrief): { world: GridWorldFile; env: Env
         parcels.push([x0, y0, x1, y1 - yard, undefined, false]);
         fill([x0, y1 - yard + 1, x1, y1], "_");
         areas.push({ kind: "yard", rect: [x0, y1 - yard + 1, x1, y1] });
+        // a path from the front door (the middle bay, where the facade puts it) to the sidewalk
+        const door = x0 + Math.floor((x1 - x0) / 2);
+        areas.push({ kind: "path", rect: [door, y1 - yard + 1, door, y1] });
         if (R() < 0.6) feature("deco-tree", x0 + 1 + Math.floor(R() * Math.max(1, w - 2)), y1 - 1);
         if (R() < 0.5) feature("deco-flowerbed", x0 + 1, y1 - yard + 2);
         continue;

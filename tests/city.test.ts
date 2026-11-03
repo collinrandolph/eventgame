@@ -59,6 +59,16 @@ group("city generator (Millbrook)", () => {
     }
   });
 
+  it("some blocks are cut by a north-south lane between buildings", () => {
+    const lanes = world.grid.streets!.names.filter((n) => n.alley && n.rect[3] - n.rect[1] > n.rect[2] - n.rect[0]);
+    expect(lanes.length).toBeGreaterThan(0);
+  });
+
+  it("every unenterable building type has a main entrance on its south face", () => {
+    const art = loadArt();
+    for (const [id, a] of Object.entries(art.arch.types)) if (!a.yard && !Object.values(env.buildings!).includes(id) && !["hospital", "school", "precinct", "lab", "cafe", "library", "church", "sluice", "hotel", "control"].includes(id)) expect(a.entrance, id).toBeDefined();
+  });
+
   it("only uses art that exists", () => {
     const art = loadArt();
     for (const f of env.features!) expect(art.tiles.has(f.deco), f.deco).toBe(true);

@@ -63,6 +63,8 @@ export interface Archetype {
   awning?: string;
   door?: string;
   canopy?: string;
+  /** The main entrance of an unenterable building, drawn in the middle bay of its south face. */
+  entrance?: string;
   yard?: boolean;
   features?: { deco: string; at: "roof-centre" | "roof-left" | "roof-right" | "tower" | "wall-top" | "front-left" | "front-right" }[];
 }
@@ -76,7 +78,7 @@ export interface PlacedPerson { id: string; sprite: string; at: [number, number]
 /** `roofed`: false for walls around open ground (a fenced compound): drawn as walls from outside too. */
 export interface Building { id: number; zones: string[]; bbox: [number, number, number, number]; roofed: boolean }
 /** A roofed structure: its archetype, roof textures (back slope for a gable), front wall texture, height in storeys. */
-export interface Lot { arch: string; roof: string; back: string | null; wall: string; storeys: number; style: "gable" | "flat"; x0: number; fireEscape?: boolean }
+export interface Lot { arch: string; roof: string; back: string | null; wall: string; storeys: number; style: "gable" | "flat"; x0: number; x1: number; fireEscape?: boolean }
 export interface Line { x0: number; y0: number; x1: number; y1: number; color: "yellow" | "white"; dash?: boolean }
 export interface LayerMap {
   z: number;
@@ -215,11 +217,11 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
   const pickOf = <T,>(xs: T[], seed: number, salt: number) => xs[Math.floor(hash(seed, salt) * xs.length)];
   const districtAt = (x: number, y: number) =>
     [...(cfg.districts ?? [])].reverse().find((d) => x >= d.rect[0] && x <= d.rect[2] && y >= d.rect[1] && y <= d.rect[3])?.kind ?? "downtown";
-  const newLot = (seed: number, archId: string, x0: number, storeys?: number) => {
+  const newLot = (seed: number, archId: string, x0: number, x1: number, storeys?: number) => {
     const a = art.arch.types[archId] ?? art.arch.types["shops-brick"];
     const [lo, hi] = a.storeys ?? [1, 2];
     const n = storeys !== undefined ? Math.max(storeys, lo) : lo + Math.floor(hash(seed, 4) * (hi - lo + 1));
-    lots.push({ arch: archId, roof: a.roofTex, back: a.backTex ?? null, wall: a.wall, storeys: n, style: a.roof, x0 });
+    lots.push({ arch: archId, roof: a.roofTex, back: a.backTex ?? null, wall: a.wall, storeys: n, style: a.roof, x0, x1 });
     return lots.length - 1;
   };
   const archOfBuilding = (b: Building) => b.zones.map((zz) => cfg.buildings?.[zz]).find(Boolean)
@@ -236,12 +238,12 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
     }
     return n;
   };
-  const buildingLot = buildings.map((b) => newLot(b.id * 31 + 5, archOfBuilding(b), b.bbox[0], storeysOf(b)));
+  const buildingLot = buildings.map((b) => newLot(b.id * 31 + 5, archOfBuilding(b), b.bbox[0], b.bbox[2], storeysOf(b)));
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (building[y][x] >= 0) lot[y][x] = buildingLot[building[y][x]];
   // generated parcels are lots as drawn; whatever is left of a block is split automatically
   const seen = grid(false);
   for (const [x0, y0, x1, y1, archId, fire] of cfg.parcels ?? []) {
-    const id = newLot(x0 * 131 + y0 * 17 + x1, archId ?? pickOf(art.arch.districts[districtAt((x0 + x1) >> 1, (y0 + y1) >> 1)] ?? ["shops-brick"], x0 * 131 + y0 * 17 + x1, 7), x0);
+    const id = newLot(x0 * 131 + y0 * 17 + x1, archId ?? pickOf(art.arch.districts[districtAt((x0 + x1) >> 1, (y0 + y1) >> 1)] ?? ["shops-brick"], x0 * 131 + y0 * 17 + x1, 7), x0, x1);
     if (fire) lots[id].fireEscape = true;
     for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) if (kind[y]?.[x] === "roof") { lot[y][x] = id; seen[y][x] = true; }
   }
@@ -271,7 +273,7 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
     split([Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)], 0);
     const ids = leaves.map((l) => {
       const seed = l[0] * 131 + l[1] * 17 + l[2];
-      return newLot(seed, pickOf(art.arch.districts[districtAt((l[0] + l[2]) >> 1, (l[1] + l[3]) >> 1)] ?? ["shops-brick"], seed, 7), l[0]);
+      return newLot(seed, pickOf(art.arch.districts[districtAt((l[0] + l[2]) >> 1, (l[1] + l[3]) >> 1)] ?? ["shops-brick"], seed, 7), l[0], l[2]);
     });
     for (const [cx, cy] of cells) lot[cy][cx] = ids[leaves.findIndex(([x0, y0, x1, y1]) => cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1)];
   }
@@ -564,6 +566,13 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
         stamp(t, dx, bottom - t.h);
         if (door.state === "locked") stamp(tex("deco-lock"), dx + t.w - 4, bottom - 9);
         if (A.canopy) { const c = tex(A.canopy); entrances.push([A.canopy, x * TILE + Math.floor((TILE - c.w) / 2), bottom - t.h - c.h + 1]); }
+        continue;
+      }
+      // the main entrance of an unenterable building: the middle bay of its south face
+      if (st === 0 && m.building[yb][x] < 0 && A.entrance && bay === Math.floor((lot.x1 - lot.x0) / 2)) {
+        const t = tex(lot.fireEscape ? "deco-door" : A.entrance);
+        stamp(t, x * TILE + Math.floor((TILE - t.w) / 2), bottom - t.h);
+        if (A.canopy && !lot.fireEscape) { const c = tex(A.canopy); entrances.push([A.canopy, x * TILE + Math.floor((TILE - c.w) / 2), bottom - t.h - c.h + 1]); }
         continue;
       }
       if (st === 0 && A.groundDoor && bay % (A.groundEvery ?? 2) === 0) { const t = tex(A.groundDoor); stamp(t, x * TILE + Math.floor((TILE - t.w) / 2), bottom - t.h); continue; }
