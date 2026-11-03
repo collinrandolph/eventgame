@@ -1,0 +1,15 @@
+{
+  "kind": "deco",
+  "name": "Lock (on a locked door)",
+  "w": 3,
+  "h": 4,
+  "palette": {
+    "a": "#000000",
+    "b": "#f8b800"
+  },
+  "frames": {
+    "0": [
+      "a.a/aaa/aba/aaa"
+    ]
+  }
+}

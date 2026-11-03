@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Window: arched",
+  "w": 10,
+  "h": 14,
+  "palette": {
+    "a": "#000000",
+    "b": "#0000bc",
+    "c": "#fcfcfc",
+    "d": "#3cbcfc"
+  },
+  "frames": {
+    "0": [
+      "...aaaa.../.aabbcbaa./.adbbcbba./abdbbcbbba/abdbbcbbba/abdbbcbbba/abdbbcbbba/acccccccca/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/aaaaaaaaaa"
+    ]
+  }
+}

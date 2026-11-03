@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Window: shopfront",
+  "w": 14,
+  "h": 14,
+  "palette": {
+    "a": "#000000",
+    "b": "#0000bc",
+    "c": "#a4e4fc",
+    "d": "#ac7c00"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaa/abbbccbabbbbba/abbbbccabbbbba/abbbbbcabbbbba/abbbbbbacbbbba/abbbbbbaccbbba/abbbbbbabccbba/abbbbbbabbccba/abbbbbbabbbcca/abbbbbbabbbbca/abbbbbbabbbbba/abbbbbbabbbbba/adddddddddddda/aaaaaaaaaaaaaa"
+    ]
+  }
+}

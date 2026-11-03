@@ -1,0 +1,19 @@
+{
+  "kind": "deco",
+  "name": "Patrol car (4.8 m)",
+  "w": 38,
+  "h": 20,
+  "palette": {
+    "a": "#a81000",
+    "b": "#0058f8",
+    "c": "#000000",
+    "d": "#a4e4fc",
+    "e": "#242424",
+    "f": "#fcfcfc"
+  },
+  "frames": {
+    "0": [
+      "...............aaaabbbb.............../...............aaaabbbb.............../.........cccccccccccccccccccc........./.........cddddddddcdddddddddc........./.........cddddddddcdddddddddc........./.........cddddddddcdddddddddc........./.........cddddddddcdddddddddc........./.........cddddddddcdddddddddc........./.........cddddddddcdddddddddc........./ceeeeeeeeffffffffffffffffffffeeeeeeeec/ceeeeeeeeffffffffffffffffffffeeeeeeeec/ceeeeeeeeffffffffffffffffffffeeeeeeeec/ceeeeeeeeffffffffffffffffffffeeeeeeeec/ceeeeeeeeffffffffffffffffffffeeeeeeeec/ceeeeeeeeffffffffffffffffffffeeeeeeeec/ceeeeeeeeffffffffffffffffffffeeeeeeeec/cccccccccccccccccccccccccccccccccccccc/.....cccccc................cccccc...../.....cccccc................cccccc...../......................................"
+    ]
+  }
+}

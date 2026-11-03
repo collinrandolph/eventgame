@@ -1,0 +1,19 @@
+{
+  "kind": "deco",
+  "name": "Fountain (5 m basin)",
+  "w": 40,
+  "h": 30,
+  "palette": {
+    "a": "#fcfcfc",
+    "b": "#000000",
+    "c": "#bcbcbc",
+    "d": "#0058f8",
+    "e": "#3cbcfc",
+    "f": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "...................aa.................../..................aaaa................../..................aaaa................../.................aaaaaa................./..................aaaa................../..................aaaa................../..................baab................../..................bccb................../..............bbbbbccbbbbb............../..........bbbbccccbccbccccbbbb........../.......bbbccccccccbccbccccccccbbb......./.....bbcccccddedddbccbdeddddcccccbb...../....bbcccdddedddddbccbddddddddecccbb..../...bcccdddedddddddbccbddddddeddddcccb.../..bcccddeddddddddebccbddddedddddddcccb../.bcccdeddddddddeddddddddeddddddddedcccb./.bcceddddddddeddddddddeddddddddeddddccb./bcccdddddddeddddddddeddddddddeddddddcccb/bcccdddddeddddddddeddddddddeddddddddcccb/bcccdddeddddddddeddddddddeddddddddedcccb/bcccceddddddddeddddddddeddddddddeddccccb/.bccccddddddeddddddddeddddddddedddccccb./.bcccccdddeddddddddeddddddddeddddcccccb./..bffffffddddddddeddddddddeddddffffffb../...bffffffffdddeddddddddedddffffffffb.../....bbffffffffffffffffffffffffffffbb..../.....bbffffffffffffffffffffffffffbb...../.......bbbffffffffffffffffffffbbb......./..........bbbbffffffffffffbbbb........../..............bbbbbbbbbbbb.............."
+    ]
+  }
+}

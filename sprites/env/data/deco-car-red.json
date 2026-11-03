@@ -1,0 +1,18 @@
+{
+  "kind": "deco",
+  "name": "Parked car (4.5 m), red",
+  "w": 36,
+  "h": 18,
+  "palette": {
+    "a": "#000000",
+    "b": "#a4e4fc",
+    "c": "#581800",
+    "d": "#a81000",
+    "e": "#f8b800"
+  },
+  "frames": {
+    "0": [
+      "..................................../..................................../..................................../........aaaaaaaaaaaaaaaaaaaa......../........abbbbbbbbcbbbbbbbbba......../........abbbbbbbbcbbbbbbbbba......../........abbbbbbbbcbbbbbbbbba......../........abbbbbbbbcbbbbbbbbba......../addddddddddddddddddddddddddddddddeea/addddddddddddddddddddddddddddddddeea/acccccccccccccccccccccccccccccccccca/adddddddddddddddddddddddddddddddddda/adddddddddddddddddddddddddddddddddda/adddddddddddddddddddddddddddddddddda/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/.....aaaaaa..............aaaaaa...../.....aaaaaa..............aaaaaa...../...................................."
+    ]
+  }
+}

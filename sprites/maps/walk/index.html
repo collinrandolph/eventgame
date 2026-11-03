@@ -42,7 +42,7 @@
 
 <div class="shell">
   <div class="hud">
-    <h1>ASH RIVER</h1>
+    <h1 id="city">ASH RIVER</h1>
     <div class="place" id="place">Outside</div>
     <label for="who">PLAY AS <select id="who"></select></label>
     <button id="dim" type="button" aria-pressed="true" title="How much of the outside shows while you're indoors">OUTSIDE: DIM</button>
@@ -63,6 +63,7 @@
   const sheets = {};
   await Promise.all(Object.entries(data.sheets).map(async ([id, a]) => { sheets[id] = { ...a, img: await load("sheets/" + a.file) }; }));
   document.getElementById("loading").hidden = true;
+  document.getElementById("city").textContent = data.name.replace(/ (.*)$/, "").toUpperCase();
 
   // ---- collision: one bit per 2 px block, read from the interior view (thin walls, locked doors, water, blocks) ----
   const bits = Uint8Array.from(atob(data.solid), (c) => c.charCodeAt(0));

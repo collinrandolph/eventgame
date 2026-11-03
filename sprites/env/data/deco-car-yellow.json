@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Parked car, yellow",
+  "w": 36,
+  "h": 18,
+  "palette": {
+    "a": "#000000",
+    "b": "#a4e4fc",
+    "c": "#ac7c00",
+    "d": "#f8b800"
+  },
+  "frames": {
+    "0": [
+      "..................................../..................................../..................................../........aaaaaaaaaaaaaaaaaaaa......../........abbbbbbbbcbbbbbbbbba......../........abbbbbbbbcbbbbbbbbba......../........abbbbbbbbcbbbbbbbbba......../........abbbbbbbbcbbbbbbbbba......../adddddddddddddddddddddddddddddddddda/adddddddddddddddddddddddddddddddddda/acccccccccccccccccccccccccccccccccca/adddddddddddddddddddddddddddddddddda/adddddddddddddddddddddddddddddddddda/adddddddddddddddddddddddddddddddddda/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/.....aaaaaa..............aaaaaa...../.....aaaaaa..............aaaaaa...../...................................."
+    ]
+  }
+}

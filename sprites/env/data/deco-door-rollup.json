@@ -1,0 +1,16 @@
+{
+  "kind": "deco",
+  "name": "Door: roll-up",
+  "w": 14,
+  "h": 16,
+  "palette": {
+    "a": "#000000",
+    "b": "#bcbcbc",
+    "c": "#3c3c3c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaa/abbbbbbbbbbbba/abbbbbbbbbbbba/acccccccccccca/abbbbbbbbbbbba/abbbbbbbbbbbba/acccccccccccca/abbbbbbbbbbbba/abbbbbbbbbbbba/acccccccccccca/abbbbbbbbbbbba/abbbbbbbbbbbba/acccccccccccca/abbbbbbbbbbbba/abbbbbbbbbbbba/cccccccccccccc"
+    ]
+  }
+}

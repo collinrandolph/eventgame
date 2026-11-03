@@ -1,0 +1,16 @@
+{
+  "kind": "deco",
+  "name": "Helipad",
+  "w": 30,
+  "h": 30,
+  "palette": {
+    "a": "#f8b800",
+    "b": "#3c3c3c",
+    "c": "#fcfcfc"
+  },
+  "frames": {
+    "0": [
+      "...........aaaaaaaa.........../........aaaaaaaaaaaaaa......../.......aaabbbbbbbbbbaaa......./.....aaabbbbbbbbbbbbbbaaa...../....aaabbbbbbbbbbbbbbbbaaa..../...aabbbbbbbbbbbbbbbbbbbbaa.../...aabbbbbbbbbbbbbbbbbbbbaa.../..aabbbbbbbbbbbbbbbbbbbbbbaa../.aabbbbbbcccbbbbbbcccbbbbbbaa./.aabbbbbbcccbbbbbbcccbbbbbbaa./.abbbbbbbcccbbbbbbcccbbbbbbba./aabbbbbbbcccbbbbbbcccbbbbbbbaa/aabbbbbbbcccbbbbbbcccbbbbbbbaa/aabbbbbbbcccbbbbbbcccbbbbbbbaa/aabbbbbbbccccccccccccbbbbbbbaa/aabbbbbbbccccccccccccbbbbbbbaa/aabbbbbbbcccbbbbbbcccbbbbbbbaa/aabbbbbbbcccbbbbbbcccbbbbbbbaa/aabbbbbbbcccbbbbbbcccbbbbbbbaa/.abbbbbbbcccbbbbbbcccbbbbbbba./.aabbbbbbcccbbbbbbcccbbbbbbaa./.aabbbbbbcccbbbbbbcccbbbbbbaa./..aabbbbbbbbbbbbbbbbbbbbbbaa../...aabbbbbbbbbbbbbbbbbbbbaa.../...aabbbbbbbbbbbbbbbbbbbbaa.../....aaabbbbbbbbbbbbbbbbaaa..../.....aaabbbbbbbbbbbbbbaaa...../.......aaabbbbbbbbbbaaa......./........aaaaaaaaaaaaaa......../...........aaaaaaaa..........."
+    ]
+  }
+}

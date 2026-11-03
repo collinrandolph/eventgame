@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Wall: dressed stone",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#7c7c7c",
+    "b": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "abbbbbbbbbbbbbbb/abbbbbbbbbbbbbbb/abbbbbbbbbbbbbbb/aaaaaaaaaaaaaaaa/bbbbbbbbabbbbbbb/bbbbbbbbabbbbbbb/bbbbbbbbabbbbbbb/aaaaaaaaaaaaaaaa"
+    ]
+  }
+}

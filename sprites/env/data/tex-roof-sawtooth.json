@@ -1,0 +1,17 @@
+{
+  "kind": "texture",
+  "name": "Roof: sawtooth (north lights)",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#3cbcfc",
+    "b": "#fcfcfc",
+    "c": "#7c7c7c",
+    "d": "#000000"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/bbbbbbbbbbbbbbbb/cccccccccccccccc/cccccccccccccccc/cccccccccccccccc/cccccccccccccccc/dddddddddddddddd"
+    ]
+  }
+}

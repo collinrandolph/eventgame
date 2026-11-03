@@ -1,8 +1,8 @@
 {
   "kind": "deco",
   "name": "Doorway",
-  "w": 12,
-  "h": 16,
+  "w": 8,
+  "h": 17,
   "palette": {
     "a": "#000000",
     "b": "#ac7c00",
@@ -10,7 +10,7 @@
   },
   "frames": {
     "0": [
-      "aaaaaaaaaaaa/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca/abbcccccccca"
+      "aaaaaaaa/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca/abccccca"
     ]
   }
 }

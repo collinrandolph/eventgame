@@ -1,0 +1,15 @@
+{
+  "kind": "deco",
+  "name": "Clock face",
+  "w": 12,
+  "h": 12,
+  "palette": {
+    "a": "#000000",
+    "b": "#fcfcfc"
+  },
+  "frames": {
+    "0": [
+      "....aaaa..../..aabbbbaa../.abbbbbbbba./.abbbbabbba./abbbbbabbbba/abbbbbabbbba/abbbbbaaabba/abbbbbbbbbba/.abbbbbbbba./.abbbbbbbba./..aabbbbaa../....aaaa...."
+    ]
+  }
+}

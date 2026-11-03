@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "sprites": "tsx src/cli/sprites.ts export",
     "check:sprites": "tsx src/cli/sprites.ts check",
-    "env": "tsx src/cli/env.ts"
+    "env": "tsx src/cli/env.ts",
+    "city": "tsx src/cli/city.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

@@ -25,8 +25,10 @@ import type { State } from "../types.js";
 import { type World, initialState } from "../world.js";
 
 export const TILE = 16;
-/** Height of one storey of front wall, in pixels (characters are 16 px tall). */
-export const WALL = 20;
+/** Pixels per metre: a 2 m cell is 16 px, a 16 px character about 1.9 m. */
+export const PX_PER_M = 8;
+/** Height of one storey of front wall: 3 m. */
+export const WALL = 3 * PX_PER_M;
 
 export interface EnvConfig {
   world: string;
@@ -35,7 +37,36 @@ export interface EnvConfig {
   outdoor?: string[];
   barriers?: Record<string, string>;
   people?: Record<string, string>;
+  /** Zone -> archetype for the enterable building that contains it. */
+  buildings?: Record<string, string>;
+  /** Districts pick the archetypes of unenterable lots; later rectangles win. */
+  districts?: { kind: string; rect: [number, number, number, number] }[];
+  /** Open ground drawn over sidewalk cells: park, path, lawn, yard, plaza, entry, parking, driveway, median. */
+  areas?: { kind: string; rect: [number, number, number, number] }[];
+  /** Placed dressing: a deco standing at a cell (bottom-aligned), nudged by ox/oy pixels. */
+  features?: { deco: string; at: [number, number]; ox?: number; oy?: number }[];
+  /** Unenterable parcels as lots: [x0, y0, x1, y1, archetype?, fire escape?]; cells outside any parcel are split automatically. */
+  parcels?: [number, number, number, number, string?, boolean?][];
 }
+/** How a kind of building looks (sprites/env/archetypes.json). */
+export interface Archetype {
+  roof: "gable" | "flat";
+  roofTex: string;
+  backTex?: string;
+  wall: string;
+  storeys?: [number, number];
+  window: string;
+  ground?: string;
+  every?: number;
+  groundDoor?: string;
+  groundEvery?: number;
+  awning?: string;
+  door?: string;
+  canopy?: string;
+  yard?: boolean;
+  features?: { deco: string; at: "roof-centre" | "roof-left" | "roof-right" | "tower" | "wall-top" | "front-left" | "front-right" }[];
+}
+export interface Archetypes { types: Record<string, Archetype>; districts: Record<string, string[]> }
 /** A cell's floor look: tile id, theme id (or null), variant. */
 export type CellLook = [tile: string, theme: string | null, variant: number];
 /** What a cell is, for drawing. */
@@ -44,9 +75,9 @@ export interface PlacedProp { prop: string; state: string; at: [number, number];
 export interface PlacedPerson { id: string; sprite: string; at: [number, number] }
 /** `roofed`: false for walls around open ground (a fenced compound): drawn as walls from outside too. */
 export interface Building { id: number; zones: string[]; bbox: [number, number, number, number]; roofed: boolean }
-/** A roofed structure: roof textures (back slope for a gable), front wall texture, height in storeys. */
-export interface Lot { roof: string; back: string | null; wall: string; storeys: number; style: "gable" | "flat" }
-export interface Line { x0: number; y0: number; x1: number; y1: number; color: "yellow" | "white" }
+/** A roofed structure: its archetype, roof textures (back slope for a gable), front wall texture, height in storeys. */
+export interface Lot { arch: string; roof: string; back: string | null; wall: string; storeys: number; style: "gable" | "flat"; x0: number; fireEscape?: boolean }
+export interface Line { x0: number; y0: number; x1: number; y1: number; color: "yellow" | "white"; dash?: boolean }
 export interface LayerMap {
   z: number;
   w: number;
@@ -66,11 +97,16 @@ export interface LayerMap {
   /** Road markings, in pixels. */
   lines: Line[];
   crosswalks: [x: number, y: number, w: number, h: number, vertical: boolean][];
+  districts: EnvConfig["districts"];
+  /** Open-ground kind per cell (park, plaza, parking...), from the config's areas; null for plain sidewalk. */
+  area: (string | null)[][];
+  areas: NonNullable<EnvConfig["areas"]>;
+  features: NonNullable<EnvConfig["features"]>;
 }
 
-export interface EnvArt { tiles: Map<string, SpriteDoc>; chars: Map<string, SpriteDoc> }
-export const loadArt = (envDir = "sprites/env/data", charDir = "sprites/data"): EnvArt =>
-  ({ tiles: loadSprites(envDir), chars: loadSprites(charDir) });
+export interface EnvArt { tiles: Map<string, SpriteDoc>; chars: Map<string, SpriteDoc>; arch: Archetypes }
+export const loadArt = (envDir = "sprites/env/data", charDir = "sprites/data", archFile = "sprites/env/archetypes.json"): EnvArt =>
+  ({ tiles: loadSprites(envDir), chars: loadSprites(charDir), arch: JSON.parse(readFileSync(archFile, "utf8")) });
 export const loadEnvConfig = (worldId: string, dir = "sprites/env/worlds"): EnvConfig =>
   JSON.parse(readFileSync(join(dir, `${worldId}.json`), "utf8"));
 
@@ -91,7 +127,9 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
   const zones = w.spatial!.zoneGrid[String(z)];
   const ch = (x: number, y: number) => rows[y]?.[x] ?? " ";
   const zoneAt = (x: number, y: number) => zones[y]?.[x] ?? null;
-  const isStreet = (x: number, y: number) => z === g.streets?.layer && ch(x, y) === g.streets.char;
+  // street surface: the road (inside the named rectangles) and the sidewalks along it
+  const isSidewalk = (x: number, y: number) => z === g.streets?.layer && !!g.streets.sidewalk && ch(x, y) === g.streets.sidewalk;
+  const isStreet = (x: number, y: number) => (z === g.streets?.layer && ch(x, y) === g.streets.char) || isSidewalk(x, y);
   const isFloor = (c: string) => !" .%~#+".includes(c);
   const theme = (zone: string | null) => (zone && cfg.zones[zone]) || DEFAULT_THEME;
   const variants = (tile: string) => Object.keys(art.tiles.get(tile)?.frames ?? { 0: 1 }).length;
@@ -151,14 +189,14 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
 
   // ---- what each cell is ----
   const kind = grid<CellKind>("void"), ground = grid<CellLook | null>(null), overlay = grid<CellLook | null>(null);
-  const nearStreet8 = (x: number, y: number) => { for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) if (isStreet(x + dx, y + dy)) return true; return false; };
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const c = ch(x, y), b = building[y][x];
     if (b >= 0) {
       if (c === "#" || c === "+") kind[y][x] = c === "#" ? "wall" : "portal";
       else { kind[y][x] = "floor"; ground[y][x] = floorLook(zoneAt(x, y), x, y); }
-    } else if (isStreet(x, y)) kind[y][x] = N4.some(([dx, dy]) => building[y + dy]?.[x + dx] >= 0) ? "sidewalk" : "road";
-    else if (c === "%") kind[y][x] = z === 0 && nearStreet8(x, y) ? "sidewalk" : "roof";
+    } else if (isSidewalk(x, y)) kind[y][x] = "sidewalk";
+    else if (isStreet(x, y)) kind[y][x] = "road";
+    else if (c === "%") kind[y][x] = "roof";
     else if (c === "~") kind[y][x] = "water";
     else if (c === " " || c === ".") kind[y][x] = z === 0 ? "grass" : "void";
     else if (c === "+") {
@@ -172,17 +210,20 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
     else if (c === "M") overlay[y][x] = look("tile-manhole", null, x, y);
   }
   // ---- roof lots: each enterable building is one; unenterable blocks are split into lots ----
-  // Small buildings get a gable roof (a back slope, a ridge, a front slope); big ones a flat roof with a parapet.
+  // An enterable building takes the archetype its zones name; a lot takes one from its district.
   const lot = grid(-1), lots: Lot[] = [];
   const pickOf = <T,>(xs: T[], seed: number, salt: number) => xs[Math.floor(hash(seed, salt) * xs.length)];
-  const newLot = (seed: number, area: number, storeys: number) => {
-    const gable = area <= 140 && storeys <= 2 && hash(seed, 3) < 0.7;
-    const [roof, back] = gable ? pickOf([["tex-roof-shingle", "tex-roof-shingle-back"], ["tex-roof-slate", "tex-roof-slate-back"]], seed, 7)
-      : [pickOf(["tex-roof-flat", "tex-roof-flat", "tex-roof-flat-light", "tex-roof-metal"], seed, 7), null];
-    const wall = pickOf(gable ? ["tex-wall-brick", "tex-wall-tan", "tex-wall-siding"] : ["tex-wall-brick", "tex-wall-panel", "tex-wall-tan"], seed, 8);
-    lots.push({ roof, back, wall, storeys, style: gable ? "gable" : "flat" });
+  const districtAt = (x: number, y: number) =>
+    [...(cfg.districts ?? [])].reverse().find((d) => x >= d.rect[0] && x <= d.rect[2] && y >= d.rect[1] && y <= d.rect[3])?.kind ?? "downtown";
+  const newLot = (seed: number, archId: string, x0: number, storeys?: number) => {
+    const a = art.arch.types[archId] ?? art.arch.types["shops-brick"];
+    const [lo, hi] = a.storeys ?? [1, 2];
+    const n = storeys !== undefined ? Math.max(storeys, lo) : lo + Math.floor(hash(seed, 4) * (hi - lo + 1));
+    lots.push({ arch: archId, roof: a.roofTex, back: a.backTex ?? null, wall: a.wall, storeys: n, style: a.roof, x0 });
     return lots.length - 1;
   };
+  const archOfBuilding = (b: Building) => b.zones.map((zz) => cfg.buildings?.[zz]).find(Boolean)
+    ?? pickOf(art.arch.districts[districtAt(b.bbox[0], b.bbox[1])] ?? ["shops-brick"], b.id * 31 + 5, 7);
   // storeys: the ground floor plus every layer above that has walls or floor over the footprint
   const storeysOf = (b: Building) => {
     let n = 1;
@@ -195,9 +236,17 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
     }
     return n;
   };
-  const buildingLot = buildings.map((b) => newLot(b.id * 31 + 5, (b.bbox[2] - b.bbox[0] + 1) * (b.bbox[3] - b.bbox[1] + 1), storeysOf(b)));
+  const buildingLot = buildings.map((b) => newLot(b.id * 31 + 5, archOfBuilding(b), b.bbox[0], storeysOf(b)));
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (building[y][x] >= 0) lot[y][x] = buildingLot[building[y][x]];
+  // generated parcels are lots as drawn; whatever is left of a block is split automatically
   const seen = grid(false);
+  for (const [x0, y0, x1, y1, archId, fire] of cfg.parcels ?? []) {
+    const id = newLot(x0 * 131 + y0 * 17 + x1, archId ?? pickOf(art.arch.districts[districtAt((x0 + x1) >> 1, (y0 + y1) >> 1)] ?? ["shops-brick"], x0 * 131 + y0 * 17 + x1, 7), x0);
+    if (fire) lots[id].fireEscape = true;
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) if (kind[y]?.[x] === "roof") { lot[y][x] = id; seen[y][x] = true; }
+  }
+  const area = grid<string | null>(null);
+  for (const a of cfg.areas ?? []) for (let y = a.rect[1]; y <= a.rect[3]; y++) for (let x = a.rect[0]; x <= a.rect[2]; x++) if (kind[y]?.[x] === "sidewalk") area[y][x] = a.kind;
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     if (seen[y][x] || kind[y][x] !== "roof") continue;
     const cells: [number, number][] = [], stack: [number, number][] = [[x, y]];
@@ -220,7 +269,10 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
       else { const m = y0 + Math.max(4, Math.floor(rh * t)); split([x0, y0, x1, m - 1], d + 1); split([x0, m, x1, y1], d + 1); }
     };
     split([Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)], 0);
-    const ids = leaves.map((l) => newLot(l[0] * 131 + l[1] * 17 + l[2], (l[2] - l[0] + 1) * (l[3] - l[1] + 1), 1 + Math.floor(hash(l[0], l[1], 4) * 4)));
+    const ids = leaves.map((l) => {
+      const seed = l[0] * 131 + l[1] * 17 + l[2];
+      return newLot(seed, pickOf(art.arch.districts[districtAt((l[0] + l[2]) >> 1, (l[1] + l[3]) >> 1)] ?? ["shops-brick"], seed, 7), l[0]);
+    });
     for (const [cx, cy] of cells) lot[cy][cx] = ids[leaves.findIndex(([x0, y0, x1, y1]) => cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1)];
   }
 
@@ -252,15 +304,17 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
     const cover = grid(0);
     for (const n of g.streets.names) { const [x0, y0, x1, y1] = n.rect; for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) if (cover[y]?.[x] !== undefined) cover[y][x]++; }
     for (const n of g.streets.names) {
+      if (n.alley) continue; // service lanes: no markings
       const [x0, y0, x1, y1] = n.rect, vertical = y1 - y0 > x1 - x0;
       const [a0, a1, b0, b1] = vertical ? [y0, y1, x0, x1] : [x0, x1, y0, y1];
       const at = (t: number, u: number) => (vertical ? [u, t] : [t, u]) as [number, number];
       const crossing = (t: number) => { for (let u = b0; u <= b1; u++) { const [x, y] = at(t, u); if ((cover[y]?.[x] ?? 0) > 1 && isStreet(x, y)) return true; } return false; };
       for (let t = a0; t <= a1; t++) {
-        const road: number[] = [];
-        for (let u = b0 - 1; u <= b1 + 1; u++) { const [x, y] = at(t, u); if (kind[y]?.[x] === "road") road.push(u); }
-        if (!road.length || crossing(t)) continue;
-        const u0 = Math.min(...road), u1 = Math.max(...road);
+        // the street keeps its width: lines run along the rectangle${String.fromCharCode(39)}s own axis, never re-centred per row
+        let anyRoad = false;
+        for (let u = b0; u <= b1; u++) { const [x, y] = at(t, u); if (kind[y]?.[x] === "road") anyRoad = true; }
+        if (!anyRoad || crossing(t)) continue;
+        const u0 = b0, u1 = b1;
         if (crossing(t - 1) || crossing(t + 1)) {
           // a crosswalk across the road, just outside the intersection
           const [cx, cy] = at(t, u0);
@@ -269,14 +323,15 @@ export function buildLayer(w: World, file: GridWorldFile, cfg: EnvConfig, art: E
         }
         if (u1 - u0 < 1) continue; // one lane: no centre line
         const mid = ((u0 + u1 + 1) * TILE) / 2;
-        for (const off of [-2, 1]) {
-          const c = mid + off;
-          lines.push(vertical ? { x0: c, y0: t * TILE, x1: c, y1: t * TILE + TILE - 1, color: "yellow" } : { x0: t * TILE, y0: c, x1: t * TILE + TILE - 1, y1: c, color: "yellow" });
+        // two-way: a double yellow centre line; one-way (a boulevard carriageway): a dashed white lane line
+        for (const off of n.oneWay ? [-1] : [-2, 1]) {
+          const c = mid + off, color = n.oneWay ? "white" : "yellow", dash = !!n.oneWay;
+          lines.push(vertical ? { x0: c, y0: t * TILE, x1: c + (dash ? 1 : 0), y1: t * TILE + TILE - 1, color, dash } : { x0: t * TILE, y0: c, x1: t * TILE + TILE - 1, y1: c + (dash ? 1 : 0), color, dash });
         }
       }
     }
   }
-  return { z, w: W, h: H, ground, overlay, kind, building, buildings, lot, lots, props, people, lines, crosswalks };
+  return { z, w: W, h: H, ground, overlay, kind, building, buildings, lot, lots, props, people, lines, crosswalks, districts: cfg.districts, area, areas: cfg.areas ?? [], features: cfg.features ?? [] };
 }
 
 /** The frame a barrier shows for its current props. */
@@ -358,6 +413,13 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
     switch (kd) {
       case "road": fill(asphalt, 1); break;
       case "sidewalk": {
+        // open ground: lawns and medians are grass, plazas paved, parking and driveways asphalt
+        const ar = m.area[y][x];
+        if (ar === "parking" || ar === "driveway") { fill(asphalt, 1); break; }
+        if (ar === "park" || ar === "lawn" || ar === "yard" || ar === "median") { fill(grass, 2); break; }
+        if (ar === "path") { fill(tex("tex-path"), 2); break; }
+        if (ar === "apron") { fill(tex("tex-concrete"), 2); break; }
+        if (ar === "plaza" || ar === "entry") { fill(tex("tex-pavers"), 2); break; }
         fill(sidewalk, 2);
         // round the corners that face road on both sides
         for (const [dx, dy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]] as const) {
@@ -437,6 +499,15 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
   const black: RGB = [0, 0, 0], eave = C("eave", "#242424"), parapet = C("parapet", "#bcbcbc"), parapetFace = C("parapetFace", "#7c7c7c");
   const stamp = (t: Tex, X0: number, Y0: number) => { for (let j = 0; j < t.h; j++) for (let i = 0; i < t.w; i++) put(X0 + i, Y0 + j, t.px[j * t.w + i]); };
   const decos: [string, number, number][] = [];
+  const entrances: [string, number, number][] = [];
+  // per lot: its columns, roof top, wall top and base per column (for placing features)
+  const geoms = new Map<number, { x0: number; x1: number; top: number; wallTop: Map<number, number>; base: Map<number, number> }>();
+  const geom = (L: number, x: number, top: number, wallTop: number, base: number) => {
+    const gm = geoms.get(L) ?? { x0: x, x1: x, top, wallTop: new Map(), base: new Map() };
+    gm.x0 = Math.min(gm.x0, x); gm.x1 = Math.max(gm.x1, x); gm.top = Math.min(gm.top, top);
+    gm.wallTop.set(x, Math.max(gm.wallTop.get(x) ?? 0, wallTop)); gm.base.set(x, Math.max(gm.base.get(x) ?? 0, base));
+    geoms.set(L, gm);
+  };
   const DECOS = ["deco-ac", "deco-vent", "deco-vent", "deco-skylight"];
   for (let x = 0; x < m.w; x++) for (let y = 0; y < m.h; y++) {
     const L = structure(x, y);
@@ -447,7 +518,21 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
     const Yn = y * TILE, Ys = yb * TILE + TILE - 1;
     // a structure behind a shorter one shows only the part of its wall that rises above it
     const show = Math.max(0, Math.min(lot.storeys * WALL - (south >= 0 ? m.lots[south].storeys * WALL : 0), Ys - Yn + 1 - 8));
+    const A = art.arch.types[lot.arch] ?? art.arch.types["shops-brick"];
+    if (A.yard) {
+      // a yard: grass behind a hedge, with whatever stands in it (the lot still blocks walking)
+      const grassT = tex(A.roofTex), hedge = tex("deco-hedge");
+      for (let i = 0; i < TILE; i++) for (let Y = Yn; Y <= Ys; Y++) {
+        const X = x * TILE + i, cy = Math.floor(Y / TILE);
+        const edge = (i < 2 && structure(x - 1, cy) !== L) || (i > TILE - 3 && structure(x + 1, cy) !== L) || Y - Yn < 2 || Ys - Y < 2;
+        mat[Y * width + X] = 3;
+        put(X, Y, edge ? sample(hedge, 0, 0) : sample(grassT, X, Y));
+      }
+      geom(L, x, Yn, Ys, Ys);
+      continue;
+    }
     const wallTop = Ys - show + 1, ridge = Yn + Math.floor((wallTop - Yn) * 0.4);
+    geom(L, x, Yn, wallTop, Ys);
     const roofT = tex(lot.roof), backT = lot.back ? tex(lot.back) : roofT, wallT = tex(lot.wall);
     for (let i = 0; i < TILE; i++) {
       const X = x * TILE + i;
@@ -467,13 +552,29 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
         put(X, Y, c);
       }
     }
-    // windows on each storey of the front wall; the ground floor of a building has its doors
+    // the front wall, storey by storey, from the archetype's modules; a building's real doors go on the ground floor
+    const bay = x - lot.x0, every = A.every ?? 1;
     for (let st = 0; show >= 16; st++) {
       const bottom = Ys - st * WALL, top = bottom - WALL + 1;
       if (top < wallTop + 2) break;
       const door = st === 0 && m.building[yb][x] >= 0 ? m.props.find((p) => p.at[0] === x && p.at[1] === yb) : undefined;
-      if (door) stamp(tex(door.state === "locked" ? "deco-door-locked" : door.state === "closed" ? "deco-door" : "deco-door-open"), x * TILE + 2, bottom - 16);
-      else if ((x + L) % 2 === 0) stamp(tex("deco-window"), x * TILE + 3, top + 4);
+      if (door) {
+        const t = tex(door.state === "open" || door.state === "broken" ? "deco-door-open" : A.door ?? "deco-door");
+        const dx = x * TILE + Math.floor((TILE - t.w) / 2);
+        stamp(t, dx, bottom - t.h);
+        if (door.state === "locked") stamp(tex("deco-lock"), dx + t.w - 4, bottom - 9);
+        if (A.canopy) { const c = tex(A.canopy); entrances.push([A.canopy, x * TILE + Math.floor((TILE - c.w) / 2), bottom - t.h - c.h + 1]); }
+        continue;
+      }
+      if (st === 0 && A.groundDoor && bay % (A.groundEvery ?? 2) === 0) { const t = tex(A.groundDoor); stamp(t, x * TILE + Math.floor((TILE - t.w) / 2), bottom - t.h); continue; }
+      // a fire escape climbs the upper storeys of a south face that looks onto an alley; its drop ladder hangs raised
+      if (lot.fireEscape && st >= 1 && bay % 4 === 1) { stamp(tex(st === 1 ? "deco-fire-escape-ladder" : "deco-fire-escape"), x * TILE, top); continue; }
+      const id = st === 0 && A.ground ? A.ground : A.window;
+      if (bay % (st === 0 && A.ground ? 1 : every) !== 0) continue;
+      const t = tex(id);
+      const wy = id === "deco-columns" ? top : id === "deco-window-ribbon" ? top + 6 : bottom - t.h - (st === 0 && A.ground ? 2 : 4);
+      stamp(t, x * TILE + Math.floor((TILE - t.w) / 2), wy);
+      if (st === 0 && A.awning) stamp(tex(A.awning), x * TILE, wy - 4);
     }
     if (lot.style === "flat") for (let cy = y + 1; cy < yb; cy++) {
       if ((cy + 1) * TILE > wallTop - 4 || structure(x - 1, cy) !== L || structure(x + 1, cy) !== L || hash(x, cy, 11) > 0.05) continue;
@@ -481,6 +582,33 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
     }
   }
   for (const [d, X, Y] of decos) stamp(tex(d), X, Y);
+  for (const [d, X, Y] of entrances) stamp(tex(d), X, Y);
+  const features: [Tex, number, number][] = [];
+  for (const [L, gm] of geoms) {
+    const A = art.arch.types[m.lots[L].arch];
+    for (const f of A?.features ?? []) {
+      const t = tex(f.deco), cx = Math.floor((gm.x0 + gm.x1) / 2), wt = gm.wallTop.get(cx) ?? gm.top, base = Math.max(...gm.base.values());
+      const mid = Math.floor((gm.x0 + gm.x1 + 1) * TILE / 2);
+      const roofY = Math.floor((gm.top + wt) / 2 - t.h / 2);
+      const at: Record<string, [number, number]> = {
+        "roof-centre": [mid - (t.w >> 1), roofY],
+        "roof-left": [gm.x0 * TILE + 6, Math.floor((gm.top + (gm.wallTop.get(gm.x0) ?? wt)) / 2 - t.h / 2)],
+        "roof-right": [(gm.x1 + 1) * TILE - 6 - t.w, Math.floor((gm.top + (gm.wallTop.get(gm.x1) ?? wt)) / 2 - t.h / 2)],
+        tower: [mid - (t.w >> 1), wt - t.h + 6],
+        "wall-top": [mid - (t.w >> 1), wt + 3],
+        "front-left": [gm.x0 * TILE + 2, base + TILE - t.h],
+        "front-right": [(gm.x1 + 1) * TILE - 2 - t.w, base + TILE - t.h],
+      };
+      const [X, Y] = at[f.at];
+      // a front that faces another structure is hidden: nothing goes on its wall or in front of it
+      const col = f.at === "front-left" ? gm.x0 : f.at === "front-right" ? gm.x1 : cx;
+      const front = structure(col, Math.floor((gm.base.get(col) ?? base) / TILE) + 1) < 0;
+      if (f.at === "wall-top" && (!front || (gm.base.get(cx) ?? base) - wt < 14)) continue;
+      // things in front of the building stand on the ground, so they're drawn with the street dressing
+      if (f.at.startsWith("front")) { if (front) features.push([t, X, Y]); }
+      else stamp(t, X, Y);
+    }
+  }
 
   // ---- curbs (the sidewalk is raised: a light edge, and a 2 px face on the road below it), road markings ----
   const at = (X: number, Y: number) => (X < 0 || Y < 0 || X >= width || Y >= height ? 0 : mat[Y * width + X]);
@@ -491,11 +619,44 @@ export function renderLayer(m: LayerMap, art: EnvArt, view: "exterior" | "interi
     else if (v === 1 && (at(X, Y - 1) === 2 || at(X, Y - 2) === 2)) put(X, Y, curbFace);
   }
   const yellow = C("yellow", "#d9b43c"), white = C("white", "#e4e4de");
-  for (const l of m.lines) for (let Y = l.y0; Y <= l.y1; Y++) for (let X = l.x0; X <= l.x1; X++) if (at(X, Y) === 1) put(X, Y, l.color === "yellow" ? yellow : white);
+  for (const l of m.lines) for (let Y = l.y0; Y <= l.y1; Y++) for (let X = l.x0; X <= l.x1; X++) {
+    if (l.dash && (l.x1 - l.x0 > l.y1 - l.y0 ? X : Y) % 12 >= 6) continue; // 0.75 m dashes
+    if (at(X, Y) === 1) put(X, Y, l.color === "yellow" ? yellow : white);
+  }
+  // parking stalls: 2.5 m wide, painted along the top and bottom rows of each lot
+  for (const a of m.areas.filter((q) => q.kind === "parking")) {
+    const [x0, y0, x1, y1] = a.rect, depth = Math.round(5 * PX_PER_M);
+    for (let X = x0 * TILE + 20; X < (x1 + 1) * TILE; X += 20) for (const [Ya, Yb] of [[y0 * TILE + 4, y0 * TILE + depth], [(y1 + 1) * TILE - depth, (y1 + 1) * TILE - 4]]) {
+      for (let Y = Ya; Y <= Yb; Y++) if (at(X, Y) === 1) put(X, Y, white);
+    }
+  }
   for (const [cx, cy, cw, chh, vertical] of m.crosswalks) for (let Y = cy; Y < cy + chh; Y++) for (let X = cx; X < cx + cw; X++) {
     const u = vertical ? X - cx : Y - cy;
     if (u % 4 < 2 && at(X, Y) === 1) put(X, Y, white);
   }
+
+  // ---- street dressing: lamps along the curb, trees on residential streets, the odd hydrant ----
+  const lamp = tex("deco-lamp"), tree = tex("deco-tree"), hydrant = tex("deco-hydrant");
+  const district = (x: number, y: number) => [...(m.districts ?? [])].reverse().find((d) => x >= d.rect[0] && x <= d.rect[2] && y >= d.rect[1] && y <= d.rect[3])?.kind ?? "downtown";
+  // things that stand on the ground are drawn north to south, so nearer ones overlap farther ones
+  const standing: [Tex, number, number][] = [...features];
+  for (let y = 0; y < m.h; y++) for (let x = 0; x < m.w; x++) {
+    if (m.kind[y][x] !== "sidewalk" || !N4.some(([dx, dy]) => m.kind[y + dy]?.[x + dx] === "road")) continue;
+    if (N4.some(([dx, dy]) => m.kind[y + dy]?.[x + dx] === "portal")) continue; // keep doorways clear
+    const area = m.area[y][x];
+    if (area === "parking" || area === "driveway" || area === "entry" || area === "plaza" || area === "apron") continue;
+    const X = x * TILE, Y = y * TILE;
+    if (area === "median") { if (x % 6 === 0) standing.push([tree, X - 8, Y + TILE - tree.h]); else if (x % 6 === 3) standing.push([lamp, X + 4, Y + TILE - lamp.h]); continue; }
+    if ((x * 7 + y * 3) % 13 === 0) standing.push([lamp, X + 4, Y + TILE - lamp.h]);
+    else if (district(x, y) === "residential" && (x * 5 + y * 11) % 9 === 0) standing.push([tree, X - 8, Y + TILE - tree.h]);
+    else if ((x * 13 + y * 7) % 37 === 0) standing.push([hydrant, X + 5, Y + TILE - hydrant.h]);
+  }
+  for (const f of m.features) {
+    const t = tex(f.deco);
+    standing.push([t, f.at[0] * TILE + Math.floor((TILE - t.w) / 2) + (f.ox ?? 0), (f.at[1] + 1) * TILE - t.h + (f.oy ?? 0)]);
+  }
+  standing.sort((a, b) => a[2] + a[0].h - (b[2] + b[0].h));
+  for (const [t, X, Y] of standing) stamp(t, X, Y);
 
   // ---- overlays, rooftop clutter, props, people ----
   const blit = (t: Tex, X0: number, Y0: number) => { for (let j = 0; j < t.h; j++) for (let i = 0; i < t.w; i++) put(X0 + i, Y0 + j, t.px[j * t.w + i]); };

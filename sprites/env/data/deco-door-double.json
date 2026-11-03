@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Door: double glass (1.8 m)",
+  "w": 15,
+  "h": 17,
+  "palette": {
+    "a": "#000000",
+    "b": "#0000bc",
+    "c": "#a4e4fc",
+    "d": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaa/abccbbbabbbbbba/abbccbbabbbbbba/abbbccbabbbbbba/abbbbccabbbbbba/abbbbbcabbbbbba/abbbbbbacbbbbba/abbbbbbaccbbbba/abbbbbbabccbbba/addddddadddddda/abbbbbbabbbccba/abbbbbbabbbbcca/abbbbbbabbbbbca/abbbbbbabbbbbba/abbbbbbabbbbbba/abbbbbbabbbbbba/bbbbbbbabbbbbbb"
+    ]
+  }
+}

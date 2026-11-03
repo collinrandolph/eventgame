@@ -12,6 +12,7 @@ npm run play      # play in the terminal  (-- --mode untimed --seed 42)
 npm run sprites   # character sprite sheets from sprites/data/ (see sprites/README.md)
 npm run check:sprites   # missing-pixel check on every assembled character
 npm run env       # top-down map per layer from a grid world: sprites/maps/ (see sprites/env/README.md)
+npm run city -- cities/millbrook.json   # generate a city at real scale: worlds/<id>.json + its dressing
 ```
 
 ## Layout

@@ -1,0 +1,15 @@
+{
+  "kind": "texture",
+  "name": "Wall: white render",
+  "w": 16,
+  "h": 16,
+  "palette": {
+    "a": "#fcfcfc",
+    "b": "#bcbcbc"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/aaaaaaaaaaaaaaaa/bbbbbbbbbbbbbbbb"
+    ]
+  }
+}

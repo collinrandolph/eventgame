@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Entrance canopy",
+  "w": 22,
+  "h": 6,
+  "palette": {
+    "a": "#000000",
+    "b": "#fcfcfc",
+    "c": "#bcbcbc",
+    "d": "#3c3c3c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaaaaaaaa/abbbbbbbbbbbbbbbbbbbba/acccccccccccccccccccca/acccccccccccccccccccca/aaaaaaaaaaaaaaaaaaaaaa/..d................d.."
+    ]
+  }
+}

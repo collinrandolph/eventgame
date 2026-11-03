@@ -1,0 +1,16 @@
+{
+  "kind": "deco",
+  "name": "Awning: red stripes",
+  "w": 16,
+  "h": 6,
+  "palette": {
+    "a": "#000000",
+    "b": "#fcfcfc",
+    "c": "#a81000"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaa/bbbbccccbbbbcccc/bbbbccccbbbbcccc/bbbbccccbbbbcccc/bbbbccccbbbbcccc/bbb.ccc.bbb.ccc."
+    ]
+  }
+}

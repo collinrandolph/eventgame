@@ -1,0 +1,20 @@
+{
+  "kind": "deco",
+  "name": "Church tower and spire",
+  "w": 18,
+  "h": 52,
+  "palette": {
+    "a": "#f8b800",
+    "b": "#000000",
+    "c": "#6888fc",
+    "d": "#a4e4fc",
+    "e": "#bcbcbc",
+    "f": "#7c7c7c",
+    "g": "#242424"
+  },
+  "frames": {
+    "0": [
+      ".........a......../........aaa......./.........a......../.........a......../........bcb......./........bcb......./.......bdccb....../.......bdccb....../......bddcccb...../......bddcccb...../.....bdddccccb..../.....bdddccccb..../....bddddcccccb.../....bddddcccccb.../...bdddddccccccb../...bdddddccccccb../..bddddddcccccccb./..bddddddcccccccb./..bbbbbbbbbbbbbb../..beeeeefeeeeeeb../..bffffffffffffb../..befeeeeeeefeeb../..befeeggggefeeb../..befeggggggfeeb../..bfffggggggfffb../..beeeggggggeeeb../..beeeggggggeeeb../..beeeggggggeeeb../..bfffggggggfffb../..befeggggggfeeb../..befefffffffeeb../..befeeeeeeefeeb../..bffffffffffffb../..bbbbbbbbbbbbbb../..beeeeefeeeeeeb../..beeeeefeeeeeeb../..bffffffffffffb../..befeeeeeeefeeb../..befeeeeeeefeeb../..befeeeeeeefeeb../..bffffffffffffb../..beeeeefeeeeeeb../..beeeeefeeeeeeb../..beeeeefeeeeeeb../..bffffffffffffb../..befeeeeeeefeeb../..befeeeeeeefeeb../..befeeeeeeefeeb../..bffffffffffffb../..beeeeefeeeeeeb../..beeeeefeeeeeeb../..bbbbbbbbbbbbbb.."
+    ]
+  }
+}

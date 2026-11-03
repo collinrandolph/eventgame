@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Wall: corrugated metal",
+  "w": 4,
+  "h": 4,
+  "palette": {
+    "a": "#3c3c3c",
+    "b": "#bcbcbc",
+    "c": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "abcc/abcc/abcc/abcc"
+    ]
+  }
+}

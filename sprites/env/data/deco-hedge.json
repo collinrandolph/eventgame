@@ -1,0 +1,16 @@
+{
+  "kind": "deco",
+  "name": "Hedge / yard planting",
+  "w": 16,
+  "h": 16,
+  "palette": {
+    "a": "#005800",
+    "b": "#00a800",
+    "c": "#58d854"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaa/abbbbbbbbcbbbbba/abbbbbbcbbbbbbba/abbbbcbbbbbbbbba/abbcbbbbbbbbbbca/acbbbbbbbbbbcbba/abbbbbbbbbcbbbba/abbbbbbbcbbbbbba/abbbbbcbbbbbbbba/abbbcbbbbbbbbbba/abcbbbbbbbbbbcba/abbbbbbbbbbcbbba/abbbbbbbbcbbbbba/abbbbbbcbbbbbbba/abbbbcbbbbbbbbba/aaaaaaaaaaaaaaaa"
+    ]
+  }
+}

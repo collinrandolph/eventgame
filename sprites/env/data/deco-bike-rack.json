@@ -1,0 +1,15 @@
+{
+  "kind": "deco",
+  "name": "Bike rack",
+  "w": 14,
+  "h": 7,
+  "palette": {
+    "a": "#3c3c3c",
+    "b": "#000000"
+  },
+  "frames": {
+    "0": [
+      "aaa.aaa.aaa.aa/.a...a...a...a/.a...a...a...a/.a...a...a...a/.a...a...a...a/.a...a...a...a/.b...b...b...b"
+    ]
+  }
+}

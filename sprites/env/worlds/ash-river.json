@@ -36,6 +36,56 @@
     "hill",
     "yard"
   ],
+  "buildings": {
+    "hospital": "hospital",
+    "school": "school",
+    "police": "precinct",
+    "lab": "lab",
+    "cafe": "cafe",
+    "library": "library",
+    "church": "church",
+    "sluice": "sluice",
+    "hotel": "hotel",
+    "control": "control"
+  },
+  "districts": [
+    {
+      "kind": "industrial",
+      "rect": [
+        100,
+        0,
+        159,
+        119
+      ]
+    },
+    {
+      "kind": "industrial",
+      "rect": [
+        0,
+        88,
+        99,
+        119
+      ]
+    },
+    {
+      "kind": "residential",
+      "rect": [
+        0,
+        0,
+        35,
+        87
+      ]
+    },
+    {
+      "kind": "downtown",
+      "rect": [
+        36,
+        0,
+        99,
+        87
+      ]
+    }
+  ],
   "barriers": {
     "barricade": "prop-barricade",
     "yard_gate": "prop-gate",

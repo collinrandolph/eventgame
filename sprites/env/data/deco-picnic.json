@@ -1,0 +1,16 @@
+{
+  "kind": "deco",
+  "name": "Picnic table",
+  "w": 16,
+  "h": 12,
+  "palette": {
+    "a": "#000000",
+    "b": "#ac7c00",
+    "c": "#503000"
+  },
+  "frames": {
+    "0": [
+      "................/..aaaaaaaaaaaa../..bbbbbbbbbbbb../aaaaaaaaaaaaaaaa/abbbbbbbbbbbbbba/abbbbbbbbbbbbbba/abbbbbbbbbbbbbba/aaaaaaaaaaaaaaaa/..c..........c../..c..........c../..c..........c../..c..........c.."
+    ]
+  }
+}

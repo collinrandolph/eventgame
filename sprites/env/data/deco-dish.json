@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Satellite dish",
+  "w": 14,
+  "h": 14,
+  "palette": {
+    "a": "#000000",
+    "b": "#fcfcfc",
+    "c": "#bcbcbc",
+    "d": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "...aabbbbaa.../..abbbbbccca../..abbbbcccca../.abbbbcccccca./.abbbcddcccca./.abbccddcccca./.abccccccccca./..acccccccca../..acccccccca../...aaccccaa.../.....dddd...../.....dddd...../.....dddd...../.....aaaa....."
+    ]
+  }
+}

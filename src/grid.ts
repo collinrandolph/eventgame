@@ -13,6 +13,7 @@
 //   'S' 'L' 'M' stairs / ladder / manhole: links the same char at the same x,y
 //               on the layer above or below; belongs to the zone around it
 //   streets.char  street surface, split automatically into intersections and segments
+//   streets.sidewalk  sidewalk: walkable, part of the street it borders (outside the named rectangles)
 //   other       floor; the layer's legend maps the char to a zone id
 //
 // Streets: every street cell must lie inside at least one named street rectangle.
@@ -45,7 +46,10 @@ export interface GridLinkSpec {
   road?: boolean;
 }
 
+/** `oneWay` (a boulevard carriageway) and `alley` (a service lane) only change how the street is drawn. */
 export interface StreetName {
+  oneWay?: boolean;
+  alley?: boolean;
   name: string;
   /** Inclusive [x0, y0, x1, y1]. */
   rect: [number, number, number, number];
@@ -59,7 +63,8 @@ export interface GridSpec {
   layers: Record<string, string[]>;
   legend: Record<string, Record<string, string>>;
   zones: GridZone[];
-  streets?: { layer: number; char: string; names: StreetName[] };
+  /** `sidewalk`: a char for walkable sidewalk, part of whichever street it borders. */
+  streets?: { layer: number; char: string; sidewalk?: string; names: StreetName[] };
   links?: GridLinkSpec[];
   /**
    * Links that don't come from cells: lifts that join a lobby straight to chosen floors.
@@ -174,6 +179,7 @@ export function compileGrid(file: GridWorldFile): { def: WorldDef; report: Spati
   // ---- streets: split street cells into intersections and segments ----
   const streetZoneAt = new Map<string, string>();
   const streetZones: ZoneDef[] = [];
+  const sidewalkCells = new Set<string>();
   if (g.streets) {
     const { layer: sz, char: sc, names } = g.streets;
     const rows = layers.get(sz) ?? [];
@@ -209,6 +215,22 @@ export function compileGrid(file: GridWorldFile): { def: WorldDef; report: Spati
           }
         }
       }
+    }
+    // Sidewalk cells belong to the street they border: a breadth-first fill out from the street cells over sidewalk
+    // cells (diagonals included), intersections first, so a corner goes to its intersection.
+    if (g.streets.sidewalk) {
+      const sw = g.streets.sidewalk;
+      const seeds = [...streetZoneAt.keys()].sort((a, b) => Number(!zoneIsIntersection(a)) - Number(!zoneIsIntersection(b)));
+      function zoneIsIntersection(k: string) { return streetZones.find((z) => z.id === streetZoneAt.get(k))?.street === "intersection"; }
+      const queue = [...seeds];
+      for (let i = 0; i < queue.length; i++) {
+        const [x, y, z] = unkey(queue[i]);
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          const k = key(x + dx, y + dy, z);
+          if ((dx || dy) && rows[y + dy]?.[x + dx] === sw && !streetZoneAt.has(k)) { streetZoneAt.set(k, streetZoneAt.get(queue[i])!); sidewalkCells.add(k); queue.push(k); }
+        }
+      }
+      rows.forEach((row, y) => [...row].forEach((c, x) => { if (c === sw && !streetZoneAt.has(key(x, y, sz))) errors.push(`sidewalk at ${key(x, y, sz)} doesn't touch a street`); }));
     }
   }
   const allZones: ZoneDef[] = [...g.zones, ...streetZones];
@@ -379,6 +401,13 @@ export function compileGrid(file: GridWorldFile): { def: WorldDef; report: Spati
           d.set(k, d.get(key(x, y, z))! + 1);
           queue.push([x + dx, y + dy, z]);
         }
+      }
+      // a sidewalk corner joins its street diagonally (you walk round the corner of the block)
+      for (const [dx, dy] of [[1, 1], [1, -1], [-1, 1], [-1, -1]]) {
+        const k = key(x + dx, y + dy, z);
+        if (d.has(k) || zoneOf.get(k) !== zid || (!sidewalkCells.has(k) && !sidewalkCells.has(key(x, y, z)))) continue;
+        d.set(k, d.get(key(x, y, z))! + 1);
+        queue.push([x + dx, y + dy, z]);
       }
     }
     return d;

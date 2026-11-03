@@ -1,0 +1,45 @@
+{
+  "about": "Building archetypes: how a kind of building looks in 3/4 view. roof: gable or flat; storeys: [min, max] for unenterable lots, or a visual minimum for enterable buildings; window/ground: facade modules per storey (ground = ground floor), every: one per N bays; groundDoor/groundEvery: doors across the ground floor (shops, loading bays); door/canopy: the entrance; awning: over ground-floor windows; features: decos placed at roof-centre, roof-left, roof-right, tower, wall-top, front-left, front-right. yard: not a building (planting and a tree).",
+  "types": {
+    "hospital": { "roof": "flat", "roofTex": "tex-roof-flat-light", "wall": "tex-wall-white", "storeys": [2, 2], "window": "deco-window-ribbon", "ground": "deco-window", "every": 1, "door": "deco-door-double", "canopy": "deco-canopy",
+      "features": [{ "deco": "deco-helipad", "at": "roof-centre" }, { "deco": "deco-redcross", "at": "roof-left" }, { "deco": "deco-redcross", "at": "roof-right" }, { "deco": "deco-ambulance", "at": "front-right" }] },
+    "school": { "roof": "gable", "roofTex": "tex-roof-shingle", "backTex": "tex-roof-shingle-back", "wall": "tex-wall-brick", "window": "deco-window", "every": 1, "door": "deco-door-double",
+      "features": [{ "deco": "deco-clock", "at": "wall-top" }, { "deco": "deco-flagpole", "at": "front-left" }, { "deco": "deco-bike-rack", "at": "front-right" }] },
+    "precinct": { "roof": "flat", "roofTex": "tex-roof-flat", "wall": "tex-wall-brick", "storeys": [2, 2], "window": "deco-window-barred", "every": 1, "door": "deco-door-double", "canopy": "deco-canopy",
+      "features": [{ "deco": "deco-antenna", "at": "roof-right" }, { "deco": "deco-flagpole", "at": "front-left" }, { "deco": "deco-police-car", "at": "front-right" }] },
+    "lab": { "roof": "flat", "roofTex": "tex-roof-metal", "wall": "tex-wall-panel", "storeys": [2, 2], "window": "deco-window-ribbon", "every": 1, "door": "deco-door-double",
+      "features": [{ "deco": "deco-dish", "at": "roof-left" }, { "deco": "deco-dish", "at": "roof-centre" }, { "deco": "deco-antenna", "at": "roof-right" }] },
+    "cafe": { "roof": "gable", "roofTex": "tex-roof-slate", "backTex": "tex-roof-slate-back", "wall": "tex-wall-tan", "window": "deco-window", "ground": "deco-window-shop", "awning": "deco-awning-green", "every": 1, "door": "deco-door",
+      "features": [{ "deco": "deco-chimney", "at": "roof-right" }, { "deco": "deco-bench", "at": "front-left" }] },
+    "library": { "roof": "flat", "roofTex": "tex-roof-flat-light", "wall": "tex-wall-stone", "window": "deco-window-arched", "ground": "deco-columns", "every": 1, "door": "deco-door-arched",
+      "features": [{ "deco": "deco-tree", "at": "front-left" }, { "deco": "deco-tree", "at": "front-right" }] },
+    "church": { "roof": "gable", "roofTex": "tex-roof-slate", "backTex": "tex-roof-slate-back", "wall": "tex-wall-stone", "window": "deco-window-arched", "every": 2, "door": "deco-door-arched",
+      "features": [{ "deco": "deco-steeple", "at": "tower" }] },
+    "sluice": { "roof": "gable", "roofTex": "tex-roof-slate", "backTex": "tex-roof-slate-back", "wall": "tex-wall-stone", "window": "deco-window-arched", "every": 2, "door": "deco-door-rollup",
+      "features": [{ "deco": "deco-chimney", "at": "roof-left" }] },
+    "hotel": { "roof": "flat", "roofTex": "tex-roof-flat", "wall": "tex-wall-brick", "storeys": [4, 4], "window": "deco-window", "ground": "deco-window-shop", "awning": "deco-awning-red", "every": 1, "door": "deco-door-double", "canopy": "deco-canopy",
+      "features": [{ "deco": "deco-flagpole", "at": "roof-left" }, { "deco": "deco-flagpole", "at": "roof-right" }] },
+    "control": { "roof": "flat", "roofTex": "tex-roof-metal", "wall": "tex-wall-corrugated", "window": "deco-window-barred", "every": 3, "door": "deco-door-rollup",
+      "features": [{ "deco": "deco-antenna", "at": "roof-centre" }] },
+
+    "shops-brick": { "roof": "flat", "roofTex": "tex-roof-flat", "wall": "tex-wall-brick", "storeys": [2, 4], "window": "deco-window", "ground": "deco-window-shop", "awning": "deco-awning-red", "every": 1 },
+    "shops-tan": { "roof": "flat", "roofTex": "tex-roof-flat-light", "wall": "tex-wall-tan", "storeys": [2, 3], "window": "deco-window", "ground": "deco-window-shop", "awning": "deco-awning-green", "every": 1 },
+    "office-panel": { "roof": "flat", "roofTex": "tex-roof-flat", "wall": "tex-wall-panel", "storeys": [3, 4], "window": "deco-window-ribbon", "every": 1 },
+    "office-white": { "roof": "flat", "roofTex": "tex-roof-metal", "wall": "tex-wall-white", "storeys": [2, 4], "window": "deco-window", "every": 1 },
+    "house-shingle": { "roof": "gable", "roofTex": "tex-roof-shingle", "backTex": "tex-roof-shingle-back", "wall": "tex-wall-siding", "storeys": [1, 2], "window": "deco-window", "every": 2,
+      "features": [{ "deco": "deco-chimney", "at": "roof-right" }] },
+    "house-slate": { "roof": "gable", "roofTex": "tex-roof-slate", "backTex": "tex-roof-slate-back", "wall": "tex-wall-tan", "storeys": [1, 2], "window": "deco-window", "every": 2,
+      "features": [{ "deco": "deco-chimney", "at": "roof-left" }] },
+    "rowhouse-brick": { "roof": "gable", "roofTex": "tex-roof-shingle", "backTex": "tex-roof-shingle-back", "wall": "tex-wall-brick", "storeys": [2, 2], "window": "deco-window", "every": 1 },
+    "yard": { "yard": true, "roof": "flat", "roofTex": "tex-grass", "wall": "tex-wall-siding", "window": "deco-window",
+      "features": [{ "deco": "deco-tree", "at": "roof-centre" }] },
+    "warehouse-metal": { "roof": "flat", "roofTex": "tex-roof-metal", "wall": "tex-wall-corrugated", "storeys": [1, 2], "window": "deco-window-barred", "every": 4, "groundDoor": "deco-door-rollup", "groundEvery": 3 },
+    "factory-sawtooth": { "roof": "flat", "roofTex": "tex-roof-sawtooth", "wall": "tex-wall-brick", "storeys": [1, 2], "window": "deco-window-ribbon", "every": 1 },
+    "warehouse-corrugated": { "roof": "flat", "roofTex": "tex-roof-flat", "wall": "tex-wall-corrugated", "storeys": [1, 1], "window": "deco-window-barred", "every": 5, "groundDoor": "deco-door-rollup", "groundEvery": 2 }
+  },
+  "districts": {
+    "downtown": ["shops-brick", "shops-tan", "office-panel", "office-white"],
+    "residential": ["house-shingle", "house-slate", "rowhouse-brick", "house-shingle", "yard"],
+    "industrial": ["warehouse-metal", "factory-sawtooth", "warehouse-corrugated"]
+  }
+}

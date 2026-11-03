@@ -1,0 +1,16 @@
+{
+  "kind": "texture",
+  "name": "Park path (fine gravel)",
+  "w": 16,
+  "h": 16,
+  "palette": {
+    "a": "#ac7c00",
+    "b": "#f8b878",
+    "c": "#fcd8a8"
+  },
+  "frames": {
+    "0": [
+      "abbbbbbbbbbbbbbb/bbbabbcbbbbbbbbb/bbbbbbabbbbbcbbb/bbbbbbbbbabbbbbb/bcbbbbbbbbbbabbb/bbbbbbbcbbbbbbba/babbbbbbbbbbbcbb/bbbbabbbbbbbbbbb/bbcbbbbabbbbbbbb/bbbbbbbbcbabbbbb/bbbbbbbbbbbbbacb/bbbbbbbbbbbbbbbb/bbacbbbbbbbbbbbb/bbbbbabbbcbbbbbb/bbbbbbbbabbbbbbc/bbbbbbbbbbbabbbb"
+    ]
+  }
+}

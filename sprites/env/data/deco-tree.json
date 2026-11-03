@@ -1,0 +1,19 @@
+{
+  "kind": "deco",
+  "name": "Street tree (5.5 m, 4 m crown)",
+  "w": 32,
+  "h": 44,
+  "palette": {
+    "a": "#000000",
+    "b": "#00a800",
+    "c": "#005800",
+    "d": "#58d854",
+    "e": "#503000",
+    "f": "#ac7c00"
+  },
+  "frames": {
+    "0": [
+      "................................/..........aaaaaaaaaaaa........../........aaabcbbbbbbbbaaa......../.......abbbbbbbbbbcbbbbba......./.....aabbbbbbcbbbbbbbbbbcaa...../....aabbcddddbbbbbbcbbbbbbaa..../...aabbddddddddbbbbbbbbbbcbaa.../...abbddddddddddbbbbcbbbbbbba.../..abcbddddddddddbbbbbbbbbbcbba../..abbbddddddddddbbbbbcbbbbbbba../.abbbcddddddddddcbbbbbbbbbbcbba./.abbbbbddddddddbbbbbbbcbbbbbbba./.abbbbcbbddddbbbbcbbbbbbbbbbcba./.abbbbbbbbbbcbbbbbbbbbbcbbbbbba./.abbbbbcbbbbbbbbbbcbbbbbbbbbbca./.acbbbbbbbbbbcbbbbbbbbbbcbbbbba./.abbbbbbcbbbbbbbbbbcbbbbbbbbbba./.abcbbbbbbbbbbcbbbbbbbbbbcbbbba./.abbbbbbbcbbbbbbbbbbcbbbbbbbbba./.abbcbbbbbbbbbbcbbbbbbbbbbcbbba./..abbbbbbbcbbbbbbbbbbcbbbbbbba../..abbcbbbbbbbbbbcbbbbbbbbbbcba../...abbbbbbbcbbbbbbbbbbcbbbbba.../...aaccccccccccccccccccccccaa.../....aaccccccccccccccccccccaa..../.....aaccccccccccccccccccaa...../.......acccccccccccccccca......./........aaaccccccccccaaa......../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../..............efff............../............aaaaaaaa............"
+    ]
+  }
+}

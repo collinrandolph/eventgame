@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Flower bed",
+  "w": 16,
+  "h": 8,
+  "palette": {
+    "a": "#503000",
+    "b": "#a81000",
+    "c": "#00a800",
+    "d": "#f8b800"
+  },
+  "frames": {
+    "0": [
+      "................/................/aaaaaaaaaaaaaaaa/abccdcccbdccccda/acdcccbdccccdbca/acccbdccccdbccca/acbdccccdbcccdca/aaaaaaaaaaaaaaaa"
+    ]
+  }
+}

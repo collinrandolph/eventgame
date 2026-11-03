@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Chimney",
+  "w": 8,
+  "h": 12,
+  "palette": {
+    "a": "#000000",
+    "b": "#3c3c3c",
+    "c": "#581800",
+    "d": "#a81000"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaa/abbbbbba/abbbbbba/acccccca/addcddda/addcddda/acccccca/adcdddca/adcdddca/acccccca/acdddcda/aaaaaaaa"
+    ]
+  }
+}

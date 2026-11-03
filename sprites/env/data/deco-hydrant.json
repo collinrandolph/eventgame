@@ -1,0 +1,15 @@
+{
+  "kind": "deco",
+  "name": "Fire hydrant",
+  "w": 6,
+  "h": 8,
+  "palette": {
+    "a": "#000000",
+    "b": "#a81000"
+  },
+  "frames": {
+    "0": [
+      "..aa../baaaab/babbab/aabbaa/babbab/babbab/babbab/baaaab"
+    ]
+  }
+}

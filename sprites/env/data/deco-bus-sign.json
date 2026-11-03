@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Bus stop sign",
+  "w": 9,
+  "h": 30,
+  "palette": {
+    "a": "#000000",
+    "b": "#0058f8",
+    "c": "#fcfcfc",
+    "d": "#3c3c3c"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaa/abbbbbbba/abbbbbbba/abcccccba/abcccccba/abcccccba/abbbbbbba/abbbbbbba/aaaaaaaaa/....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....d..../....a...."
+    ]
+  }
+}

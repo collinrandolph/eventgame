@@ -1,0 +1,18 @@
+{
+  "kind": "deco",
+  "name": "Ambulance (6 m)",
+  "w": 48,
+  "h": 26,
+  "palette": {
+    "a": "#a81000",
+    "b": "#3cbcfc",
+    "c": "#000000",
+    "d": "#fcfcfc",
+    "e": "#0000bc"
+  },
+  "frames": {
+    "0": [
+      "........aaaabbbb................................/........aaaabbbb................................/........aaaabbbb................................/cccccccccccccccccccccccccccccccccccccccccccccccc/cddddddddddddddddddddddddddddddddddddeeeeeeeeeec/cddddddddddddddddddddddddddddddddddddeeeeeeeeeec/cdddddddddddddddddaaaddddddddddddddddeeeeeeeeeec/cdddddddddddddddddaaaddddddddddddddddeeeeeeeeeec/cdddddddddddddddaaaaaaaddddddddddddddeeeeeeeeeec/cdddddddddddddddaaaaaaaddddddddddddddeeeeeeeeeec/cdddddddddddddddaaaaaaaddddddddddddddeeeeeeeeeec/cdddddddddddddddddaaaddddddddddddddddeeeeeeeeeec/cdddddddddddddddddaaaddddddddddddddddddddddddddc/cddddddddddddddddddddddddddddddddddddddddddddddc/caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac/caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac/cddddddddddddddddddddddddddddddddddddddddddddddc/cddddddddddddddddddddddddddddddddddddddddddddddc/cddddddddddddddddddddddddddddddddddddddddddddddc/cddddddddddddddddddddddddddddddddddddddddddddddc/cddddddddddddddddddddddddddddddddddddddddddddddc/cddddddddddddddddddddddddddddddddddddddddddddddc/cccccccccccccccccccccccccccccccccccccccccccccccc/......ccccccc......................ccccccc....../......ccccccc......................ccccccc....../................................................"
+    ]
+  }
+}

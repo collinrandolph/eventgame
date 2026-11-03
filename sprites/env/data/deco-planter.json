@@ -1,0 +1,19 @@
+{
+  "kind": "deco",
+  "name": "Planter box (1.5 m)",
+  "w": 12,
+  "h": 12,
+  "palette": {
+    "a": "#00a800",
+    "b": "#58d854",
+    "c": "#a81000",
+    "d": "#000000",
+    "e": "#bcbcbc",
+    "f": "#7c7c7c"
+  },
+  "frames": {
+    "0": [
+      "...abcaab.../..abaaabca../.cbaaabaaab./abaacbaaabaa/bacabaacbaaa/caabacabaacb/dddddddddddd/deeeeeeeeeed/dffffffffffd/dffffffffffd/dffffffffffd/dddddddddddd"
+    ]
+  }
+}

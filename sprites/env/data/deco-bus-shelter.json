@@ -1,0 +1,19 @@
+{
+  "kind": "deco",
+  "name": "Bus shelter (4 m)",
+  "w": 34,
+  "h": 24,
+  "palette": {
+    "a": "#000000",
+    "b": "#7c7c7c",
+    "c": "#3c3c3c",
+    "d": "#a4e4fc",
+    "e": "#fcfcfc",
+    "f": "#ac7c00"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/.c..............................c./.c.cccccccccccccccccccccccccccc.c./.c.cddddddddeeddddddddddddddddc.c./.c.cdddddddddeedddddddddddddddc.c./.c.cddddddddddeeddddddddddddddc.c./.c.cdddddddddddeedddddddddddddc.c./.c.cddddddddddddeeddddddddddddc.c./.c.cdddddddddddddeedddddddddddc.c./.c.cddddddddddddddeeddddddddddc.c./.c.cdddddddddddddddeedddddddddc.c./.c.cddddddddddddddddeeddddddddc.c./.c.cdddddddddddddddddeedddddddc.c./.c.cddddddddddddddddddeeddddddc.c./.c.cdddddddddddddddddddeedddddc.c./.c.cccccccccccccccccccccccccccc.c./.c....ffffffffffffffffffffff....c./.c....aaaaaaaaaaaaaaaaaaaaaa....c./.c..............................c./.c..............................c./.c..............................c./.a..............................a."
+    ]
+  }
+}

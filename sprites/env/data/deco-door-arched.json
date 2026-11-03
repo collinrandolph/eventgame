@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Door: arched timber",
+  "w": 10,
+  "h": 18,
+  "palette": {
+    "a": "#000000",
+    "b": "#ac7c00",
+    "c": "#503000",
+    "d": "#f8b800"
+  },
+  "frames": {
+    "0": [
+      "...aaaa.../.aabbcbaa./.abbbcbba./abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbdba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba/abbbbcbbba"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "deco",
+  "name": "Grass knoll",
+  "w": 56,
+  "h": 30,
+  "palette": {
+    "a": "#000000",
+    "b": "#00a800",
+    "c": "#005800",
+    "d": "#58d854"
+  },
+  "frames": {
+    "0": [
+      "......................................................../......................................................../......................................................../......................................................../......................................................../......................................................../....................aaaaaaaaaaaaaaaa..................../..............aaaaaabbbcbbbbbbbbbbbbaaaaaa............../...........aaabbddddddddddddbbcbbbbbbbbbbbaaa.........../........aaacddddddddddddddddddddbbbbbcbbbbbbbaaa......../......aabbddddddddddddddddddddddddbbbbbbbbbbcbbbaa....../....aabbbddddddddddddddddddddddddddbbbcbbbbbbbbbbbaa..../...aabcbddddddddddddddddddddddddddddbbbbbbbbbcbbbbbaa.../..abbbbbddddddddddddddddddddddddddddbbbcbbbbbbbbbbbbca../.abbbbbcbddddddddddddddddddddddddddbbbbbbbbbbbcbbbbbbba./.abbbbbbbbddddddddddddddddddddddddbbbbbbcbbbbbbbbbbbbca./abbbbbbbcbbbddddddddddddddddddddbbcbbbbbbbbbbbbcbbbbbbba/abcbbbbbbbbbbbbcddddddddddddcbbbbbbbbbbbbcbbbbbbbbbbbbca/abbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbba/cbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbc/.cbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbc./.cbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbc./..cbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbc../...cccbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbcc.../....ccbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbcc..../......ccbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbcc....../........cccbbcbbbbbbbbbbbbcbbbbbbbbbbbbcbbbbbccc......../...........cccbbbbbbcbbbbbbbbbbbbcbbbbbbbbccc.........../..............ccccccbbbbbbbcbbbbbbbbcccccc............../....................cccccccccccccccc...................."
+    ]
+  }
+}

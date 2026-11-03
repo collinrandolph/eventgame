@@ -1,8 +1,8 @@
 {
   "kind": "deco",
-  "name": "Door (front wall)",
-  "w": 12,
-  "h": 16,
+  "name": "Door (0.9 m)",
+  "w": 8,
+  "h": 17,
   "palette": {
     "a": "#000000",
     "b": "#ac7c00",
@@ -11,7 +11,7 @@
   },
   "frames": {
     "0": [
-      "aaaaaaaaaaaa/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbdba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba/abbbbbcbbbba"
+      "aaaaaaaa/abbbbbba/abbbbbba/abbbbbba/abbbbbba/acccccca/abbbbbba/abbbbbba/abbbbbba/abbbbdba/abbbbbba/acccccca/abbbbbba/abbbbbba/abbbbbba/abbbbbba/abbbbbba"
     ]
   }
 }

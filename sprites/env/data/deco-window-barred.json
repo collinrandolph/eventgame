@@ -1,0 +1,16 @@
+{
+  "kind": "deco",
+  "name": "Window: barred",
+  "w": 10,
+  "h": 12,
+  "palette": {
+    "a": "#000000",
+    "b": "#bcbcbc",
+    "c": "#0000bc"
+  },
+  "frames": {
+    "0": [
+      "aaaaaaaaaa/abccbccbca/abccbccbca/abccbccbca/abccbccbca/abccbccbca/abccbccbca/abccbccbca/abccbccbca/abccbccbca/abccbccbca/aaaaaaaaaa"
+    ]
+  }
+}

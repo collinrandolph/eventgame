@@ -16,8 +16,18 @@ writes to `sprites/maps/`:
 | `<world>-L<z>.png` | Other floors (only ever seen from inside) |
 | `<world>.map.json` | What the game reads, per layer: cell kinds and floor looks, the **building grid** (which roof to lift when the player is inside), roof lots, props with their state, people, road lines and crosswalks |
 
-All art in `data/` is **placeholder**, drawn by the scripts in `placeholder/` (run them in order with
-`sprites/env/data` as the argument). Redraw any file in the sprite editor and keep its id and palette keys; the
+All art in `data/` is **placeholder**, drawn by the scripts in `placeholder/` (run the four in order with
+`sprites/env/data` as the argument).
+
+**Scale:** 8 px per metre. A 2 m cell is 16 px, a 16 px character is about 1.9 m, a storey is 3 m (24 px), a door
+is 0.9 × 2.1 m, a car 4.5 m, a street lamp or tree 5.5 m. Draw new pieces at that scale.
+
+**Generated cities** (`npm run city -- cities/<id>.json`, see `src/city/generate.ts`) also write these to the world
+config:
+- `areas`: open ground drawn over sidewalk cells. Kinds: park, path, lawn, yard, plaza, entry, parking (with
+  painted stalls), driveway, median, apron.
+- `features`: decos standing at cells, drawn north to south so nearer ones overlap farther ones.
+- `parcels`: lots exactly as laid out, with an optional fire escape on their south face. Redraw any file in the sprite editor and keep its id and palette keys; the
 builder picks it up.
 
 ## Rules (`src/env/build.ts`)
@@ -42,13 +52,32 @@ builder picks it up.
 - **Thin walls.** A wall is a whole cell in the grid but is drawn as a 4 px line on the cell's outer edge, with the
   floor filling the rest. North walls show their inside face.
 - **Streets.**
-  - Street cells next to a building, and the outer ring of every unenterable block, are sidewalk; the rest is road.
+  - Sidewalks are real grid cells (`streets.sidewalk`). They're walkable, and they're part of the street zone they
+    border, so the engine and the game agree on where you can walk. The road is exactly the named street
+    rectangles.
   - Sidewalk corners that face road on both sides are rounded: a quarter circle is carved per cell quadrant, the
     same idea as dual-grid autotiling.
-  - The named street rectangles give double yellow centre lines (none on one-lane streets) and a crosswalk on each
-    side of every intersection.
-- **Blocks.** Unenterable blocks are split into lots of at most about 12 cells. Each lot has its own roof, wall
-  material and height. Flat roofs get rooftop clutter.
+  - Each street rectangle gets a double yellow centre line down its own axis (none on one-lane streets), and a
+    crosswalk on each side of every intersection.
+  - Lamps stand along the curbs, trees line residential streets, and there's the odd hydrant. Doorways are kept
+    clear.
+- **Archetypes** (`archetypes.json`). A building type describes:
+  - its roof form and materials, and its wall material;
+  - its storeys;
+  - facade modules per storey: window, ground floor, shop doors or loading doors, awnings;
+  - its entrance: door module and canopy;
+  - its features: roof features, a tower, wall features like a clock, and things in front like a parked
+    ambulance.
+
+  The world config maps each enterable building's zone to a type. Ash River's ten landmarks each have their own.
+  Features on a front that faces another building are left off.
+- **Districts.** The world config draws district rectangles, and unenterable lots pick their archetype from their
+  district:
+  - downtown: shops and offices;
+  - residential: houses, rowhouses and yards;
+  - industrial: warehouses and sawtooth factories.
+
+  Blocks are split into lots of at most about 12 cells.
 
 ## data/
 
@@ -73,7 +102,7 @@ builder picks it up.
 
 - **Street width:** Ash River's streets are 2–3 cells (4–6 m), so lanes are narrow. Generated cities should use
   wider streets.
-- **Sidewalks in the engine:** the sidewalk ring on blocks is visual only. The grid should mark it as walkable.
+- **Signs:** no lettering yet; the pixel font is paused.
 - **Hidden fronts:** a building's front wall is hidden when a taller building stands directly south of it. Doors in
   east and west walls can't be seen from outside.
 - **Not drawn yet:** items, vehicles and machines.
