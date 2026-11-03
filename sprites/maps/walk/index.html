@@ -46,7 +46,8 @@
     <div class="place" id="place">Outside</div>
     <label for="who">PLAY AS <select id="who"></select></label>
     <button id="dim" type="button" aria-pressed="true" title="How much of the outside shows while you're indoors">OUTSIDE: DIM</button>
-    <div class="keys">WASD / ARROWS · SHIFT RUN · HOLD CLICK TO WALK</div>
+    <button id="gb" type="button" aria-pressed="false" title="Four shades of green, like the original Game Boy (G)">FILTER: OFF</button>
+    <div class="keys">WASD / ARROWS · SHIFT RUN · HOLD CLICK TO WALK · G FILTER</div>
   </div>
   <div class="stage">
     <canvas id="view"></canvas>
@@ -93,6 +94,30 @@
     dimBtn.setAttribute("aria-pressed", String(dimOutside));
     dimBtn.textContent = dimOutside ? "OUTSIDE: DIM" : "OUTSIDE: FULL";
   });
+
+  // ---- Game Boy filter: every pixel becomes one of the DMG's four greens, by brightness ----
+  const GB = [[15, 56, 15], [48, 98, 48], [139, 172, 15], [155, 188, 15]];
+  let gb = false;
+  try { gb = localStorage.getItem("walk-gb") === "1"; } catch {}
+  const gbBtn = document.getElementById("gb");
+  const setGb = (on) => {
+    gb = on;
+    gbBtn.setAttribute("aria-pressed", String(on));
+    gbBtn.textContent = on ? "FILTER: GAME BOY" : "FILTER: OFF";
+    try { localStorage.setItem("walk-gb", on ? "1" : "0"); } catch {}
+  };
+  setGb(gb);
+  gbBtn.addEventListener("click", () => { setGb(!gb); gbBtn.blur(); });
+  addEventListener("keydown", (e) => { if (e.key.toLowerCase() === "g" && e.target !== who) setGb(!gb); });
+  const gameBoy = (vw, vh) => {
+    const img = ctx.getImageData(0, 0, vw, vh), d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const l = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+      const c = GB[l < 70 ? 0 : l < 135 ? 1 : l < 195 ? 2 : 3];
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2];
+    }
+    ctx.putImageData(img, 0, 0);
+  };
 
   // ---- input: keys, or hold the pointer and walk toward it ----
   const keys = new Set();
@@ -167,6 +192,7 @@
     }
     const front = [...others.filter((p) => inside >= 0 && buildingAt(p.x, p.y - 2) === inside), me].sort((a, b) => a.y - b.y);
     for (const p of front) drawPerson(p);
+    if (gb) gameBoy(vw, vh);
     const label = inside >= 0 ? data.buildings[inside].names[0] : "Outside";
     if (label !== lastPlace) { lastPlace = label; place.innerHTML = inside >= 0 ? `INSIDE <b>${label.toUpperCase()}</b>` : "OUTSIDE"; }
   }
