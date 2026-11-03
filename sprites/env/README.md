@@ -90,6 +90,28 @@ builder picks it up.
 | deco (`deco-*`) | Windows and doors (closed, locked, open) for front walls; rooftop clutter |
 | palette (`palette-street`) | The master palette, plus curb, curb face, eave, lane paint and parapet colours |
 
+## Imported packs and skins
+
+Third-party sheets come in through a manifest per pack (`sprites/import/<pack>.json`). A manifest gives the source
+image, its grid, its licence, and the pieces to cut, each as a cell, a block of cells or a pixel rectangle, with
+optional trimming to the visible pixels.
+
+```
+npm run import-tiles -- sprites/import/kenney.json --sheet   # numbered contact sheet, for picking cells
+npm run import-tiles -- sprites/import/kenney.json           # cut the pieces into sprites/env/imported/kenney/
+npm run env -- worlds/millbrook.json --skin=kenney           # draw with them: millbrook-L0-exterior-kenney.png
+```
+
+- Imported pieces keep their pack's own colours (`"palette": "keep"`), or snap to our master palette
+  (`"snap"`). Each records its source and licence.
+- A skin (`sprites/env/skins/<name>.json`) maps our piece ids to imported ones, so a whole kit swaps in without
+  touching the builder.
+
+| Pack | Licence | In the repo |
+|---|---|---|
+| Kenney RPG Urban Pack (`vendor/kenney-rpg-urban/`) | CC0 | Yes |
+| Lo Bit City by Greywyrd (`vendor/lo-bit-city/`) | Commercial use and edits allowed; no redistribution; credit Greywyrd | **No:** the sheet and its cut pieces are git-ignored. Download it from https://greywyrd.itch.io/lo-bit-city into `vendor/lo-bit-city/`. |
+
 ## worlds/
 
 `<world>.json` holds:

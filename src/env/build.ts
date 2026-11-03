@@ -17,7 +17,7 @@
 // sprites/env/worlds/<world>.json maps zones to themes, barriers to props and people to character recipes.
 // Barrier state comes from the world state, so the same map draws any moment of a run.
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import type { GridWorldFile } from "../grid.js";
 import { type Frames, type SpriteDoc, composeWalk, drawnWalk, loadSprites, recipeParts } from "../sprites/compose.js";
@@ -107,8 +107,23 @@ export interface LayerMap {
 }
 
 export interface EnvArt { tiles: Map<string, SpriteDoc>; chars: Map<string, SpriteDoc>; arch: Archetypes }
-export const loadArt = (envDir = "sprites/env/data", charDir = "sprites/data", archFile = "sprites/env/archetypes.json"): EnvArt =>
-  ({ tiles: loadSprites(envDir), chars: loadSprites(charDir), arch: JSON.parse(readFileSync(archFile, "utf8")) });
+/**
+ * Our art, plus every imported pack in sprites/env/imported/<pack>/. A skin (sprites/env/skins/<name>.json) swaps
+ * pieces: { "pieces": { "tex-asphalt": "kenney-asphalt", ... } } draws Kenney's asphalt wherever ours would go.
+ */
+export function loadArt(envDir = "sprites/env/data", charDir = "sprites/data", archFile = "sprites/env/archetypes.json", skin?: string): EnvArt {
+  const tiles = loadSprites(envDir), imported = "sprites/env/imported";
+  if (existsSync(imported)) for (const pack of readdirSync(imported)) for (const [id, doc] of loadSprites(join(imported, pack))) tiles.set(id, doc);
+  if (skin) {
+    const swap = JSON.parse(readFileSync(`sprites/env/skins/${skin}.json`, "utf8")).pieces as Record<string, string>;
+    for (const [ours, theirs] of Object.entries(swap)) {
+      const doc = tiles.get(theirs);
+      if (!doc) throw new Error(`skin ${skin}: ${theirs} isn't imported (run npm run import-tiles)`);
+      tiles.set(ours, doc);
+    }
+  }
+  return { tiles, chars: loadSprites(charDir), arch: JSON.parse(readFileSync(archFile, "utf8")) };
+}
 export const loadEnvConfig = (worldId: string, dir = "sprites/env/worlds"): EnvConfig =>
   JSON.parse(readFileSync(join(dir, `${worldId}.json`), "utf8"));
 

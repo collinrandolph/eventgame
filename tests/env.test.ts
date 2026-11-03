@@ -44,6 +44,7 @@ group("environment builder (Ash River)", () => {
   it("8-bit rule: textures use at most 4 colours, all environment art from the master palette", () => {
     const master = new Set(Object.values((art.tiles.get("palette-street") as unknown as { master: Record<string, string> }).master));
     for (const [id, doc] of art.tiles) {
+      if ((doc as { source?: string }).source) continue; // imported packs keep their own palette
       const kind = doc.kind as string | undefined;
       if (kind === "texture") expect(Object.keys(doc.palette).length, id).toBeLessThanOrEqual(4);
       const colours = kind === "theme" ? Object.values(doc.colors ?? {}) : kind === "palette" ? [] : Object.values(doc.palette ?? {});

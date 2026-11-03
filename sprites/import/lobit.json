@@ -1,0 +1,156 @@
+{
+ "pack": "lobit",
+ "source": "vendor/lo-bit-city/Lo_bit_city_set.png",
+ "licence": "Lo Bit City by Greywyrd (https://greywyrd.itch.io/): use and edit in commercial games; no resale or redistribution",
+ "redistributable": false,
+ "grid": {
+  "tile": 16
+ },
+ "transparent": [
+  "#ff04d4"
+ ],
+ "palette": "keep",
+ "pieces": [
+  {
+   "id": "roof-gable-red",
+   "kind": "deco",
+   "cells": [
+    9,
+    18,
+    11,
+    23
+   ],
+   "trim": true
+  },
+  {
+   "id": "roof-gable-teal",
+   "kind": "deco",
+   "cells": [
+    9,
+    13,
+    11,
+    16
+   ],
+   "trim": true
+  },
+  {
+   "id": "window",
+   "kind": "deco",
+   "cell": [
+    25,
+    19
+   ],
+   "trim": true
+  },
+  {
+   "id": "market-stall",
+   "kind": "deco",
+   "cells": [
+    30,
+    29,
+    31,
+    32
+   ],
+   "trim": true
+  },
+  {
+   "id": "kiosk",
+   "kind": "deco",
+   "cells": [
+    34,
+    25,
+    36,
+    28
+   ],
+   "trim": true
+  },
+  {
+   "id": "fountain",
+   "kind": "deco",
+   "cells": [
+    26,
+    29,
+    28,
+    31
+   ],
+   "trim": true
+  },
+  {
+   "id": "tree-round",
+   "kind": "deco",
+   "cells": [
+    54,
+    28,
+    56,
+    31
+   ],
+   "trim": true
+  },
+  {
+   "id": "tree-pine",
+   "kind": "deco",
+   "cells": [
+    46,
+    27,
+    49,
+    31
+   ],
+   "trim": true
+  },
+  {
+   "id": "tree-festive",
+   "kind": "deco",
+   "cells": [
+    50,
+    27,
+    53,
+    31
+   ],
+   "trim": true
+  },
+  {
+   "id": "lamp",
+   "kind": "deco",
+   "cells": [
+    18,
+    28,
+    19,
+    32
+   ],
+   "trim": true
+  },
+  {
+   "id": "statue",
+   "kind": "deco",
+   "cells": [
+    20,
+    30,
+    21,
+    32
+   ],
+   "trim": true
+  },
+  {
+   "id": "greenhouse",
+   "kind": "deco",
+   "cells": [
+    9,
+    26,
+    10,
+    30
+   ],
+   "trim": true
+  },
+  {
+   "id": "shop-stand",
+   "kind": "deco",
+   "cells": [
+    32,
+    26,
+    33,
+    28
+   ],
+   "trim": true
+  }
+ ]
+}

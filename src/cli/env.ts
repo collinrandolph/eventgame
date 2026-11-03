@@ -20,7 +20,10 @@ const raw = JSON.parse(readFileSync(file, "utf8")) as GridWorldFile;
 if (!raw.grid) throw new Error(`${file} isn't a grid world`);
 const w = loadWorld(file);
 const cfg = loadEnvConfig(raw.id);
-const art = loadArt();
+// --skin=<name>: draw with imported pieces (sprites/env/skins/<name>.json); outputs get a -<name> suffix
+const skin = process.argv.find((a) => a.startsWith("--skin="))?.slice(7);
+const art = loadArt(undefined, undefined, undefined, skin);
+const sfx = skin ? `-${skin}` : "";
 mkdirSync("sprites/maps", { recursive: true });
 
 const layers: Record<string, unknown> = {};
@@ -29,17 +32,17 @@ for (const z of Object.keys(raw.grid.layers).map(Number).sort((a, b) => a - b)) 
   // the ground floor from the street (roofs on) and with every roof lifted; other floors are only seen from inside
   for (const view of z === 0 ? (["exterior", "interior"] as const) : (["interior"] as const)) {
     const img = renderLayer(m, art, view);
-    const png = `sprites/maps/${raw.id}-L${z}${z === 0 ? `-${view}` : ""}.png`;
+    const png = `sprites/maps/${raw.id}-L${z}${z === 0 ? `-${view}` : ""}${sfx}.png`;
     writeFileSync(png, encodePng(img.width, img.height, img.pixels));
     console.log(`${png}  ${img.width}x${img.height}`);
   }
   layers[String(z)] = compact(m);
   console.log(`  ${m.buildings.length} buildings, ${m.lots.length} roof lots, ${m.props.length} props, ${m.people.length} people`);
 }
-writeFileSync(`sprites/maps/${raw.id}.map.json`, JSON.stringify({ world: raw.id, tile: 16, layers }) + "\n");
+if (!skin) writeFileSync(`sprites/maps/${raw.id}.map.json`, JSON.stringify({ world: raw.id, tile: 16, layers }) + "\n");
 
 if (process.argv.includes("--walk")) {
-  const dir = `sprites/maps/walk/${raw.id}`, m = buildLayer(w, raw, cfg, art, 0);
+  const dir = `sprites/maps/walk/${raw.id}${sfx}`, m = buildLayer(w, raw, cfg, art, 0);
   mkdirSync(dir, { recursive: true });
   const ext = renderLayer(m, art, "exterior", { people: false }), int = renderLayer(m, art, "interior", { people: false });
   writeFileSync(`${dir}/exterior.png`, encodePng(ext.width, ext.height, ext.pixels));

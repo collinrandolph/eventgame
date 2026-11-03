@@ -1,0 +1,24 @@
+{
+  "about": "Swap our placeholder pieces for Kenney's RPG Urban Pack (CC0). Keys are our ids, values imported ids (sprites/import/kenney.json).",
+  "pieces": {
+    "tex-asphalt": "kenney-asphalt",
+    "tex-sidewalk": "kenney-sidewalk",
+    "tex-pavers": "kenney-pavers",
+    "tex-grass": "kenney-grass",
+    "tex-water": "kenney-water",
+    "tex-roof-flat": "kenney-roof-flat",
+    "tex-wall-brick": "kenney-brick-red",
+    "tex-wall-tan": "kenney-brick-orange",
+    "deco-lamp": "kenney-lamp",
+    "deco-hydrant": "kenney-hydrant",
+    "deco-bench": "kenney-bench",
+    "deco-planter": "kenney-planter-green",
+    "deco-tree": "kenney-tree",
+    "deco-window": "kenney-window",
+    "deco-door": "kenney-door",
+    "deco-door-double": "kenney-door-glass",
+    "deco-car-red": "kenney-car-red",
+    "deco-car-yellow": "kenney-taxi",
+    "deco-car-blue": "kenney-car-green"
+  }
+}

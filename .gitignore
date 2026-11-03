@@ -1,3 +1,9 @@
 node_modules/
 *.tmp.ts
 scratch/
+
+# Third-party art: Lo Bit City may not be redistributed (see vendor/lo-bit-city/LICENCE.txt)
+vendor/lo-bit-city/
+vendor/**/*.zip
+sprites/env/imported/lobit/
+vendor/kenney-rpg-urban/Tiles/
