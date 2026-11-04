@@ -1,0 +1,1775 @@
+<title>Creature Frame Editor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Creature Frame Editor: the Sprite Frame Editor for quadrupeds and winged creatures. Same layout and tools; bigger
+   canvases, a person for scale, a highlighted ground row and a fly cycle. Creatures are saved apart from characters. */
+:root {
+  --bg: #eef0ea;
+  --fg: #1c201b;
+  --muted: #5b6457;
+  --panel: #fafbf7;
+  --line: #d3d8cb;
+  --accent: #e5392c;
+  --check-a: #ffffff;
+  --check-b: #e4e8de;
+  --grid: rgba(0, 0, 0, 0.14);
+  --display: "Silkscreen", ui-monospace, monospace;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141713; --fg: #e6eae2; --muted: #9aa395; --panel: #1c2019; --line: #30362d;
+    --accent: #ff6555; --check-a: #2b3028; --check-b: #232720; --grid: rgba(255, 255, 255, 0.12);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141713; --fg: #e6eae2; --muted: #9aa395; --panel: #1c2019; --line: #30362d;
+  --accent: #ff6555; --check-a: #2b3028; --check-b: #232720; --grid: rgba(255, 255, 255, 0.12);
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45; }
+.wrap {
+  max-width: 1240px; margin: 0 auto; display: grid; gap: 18px;
+  padding-block: 22px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: .02em; text-wrap: balance; }
+h1 { font-size: clamp(20px, 3.6vw, 28px); line-height: 1.15; }
+h2 { font-size: 15px; }
+.muted { color: var(--muted); }
+.top { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+.top .who { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-width: 0; }
+#status { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 9ch; }
+#status.bad { color: var(--accent); }
+input[type="text"], input[type="number"], select {
+  font: 14px var(--body); color: var(--fg); background: var(--panel);
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; min-width: 0;
+}
+input[type="number"] { width: 64px; font-family: var(--mono); }
+button { font: 500 13px var(--body); color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--fg); }
+button:disabled { opacity: .45; cursor: default; }
+button.on { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button.armed { border-color: var(--accent); color: var(--accent); }
+button:focus-visible, input:focus-visible, select:focus-visible, #ed:focus-visible, #stage:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+#banner {
+  display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center;
+  border: 1px solid var(--accent); border-radius: 8px; padding: 10px 14px; background: var(--panel);
+}
+.layout { display: grid; grid-template-columns: minmax(260px, 320px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.left, .right { display: grid; gap: 20px; min-width: 0; }
+@media (min-width: 861px) { .left { position: sticky; top: 12px; } }
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+.card header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; }
+.checker {
+  background: conic-gradient(var(--check-a) 25%, var(--check-b) 0 50%, var(--check-a) 0 75%, var(--check-b) 0) 0 0 / 16px 16px;
+}
+#pv { display: block; image-rendering: pixelated; margin: 0 auto; max-width: 100%; }
+.pvbox { padding: 10px; border: 1px solid var(--line); border-radius: 6px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.row label { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+input[type="range"] { accent-color: var(--accent); width: 110px; }
+#stage { display: block; width: 100%; max-width: 100%; aspect-ratio: 192 / 120; image-rendering: pixelated; border: 3px solid var(--fg); background: #66984f; cursor: pointer; }
+kbd { font-family: var(--mono); font-size: 11px; background: var(--bg); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; }
+.dpad { display: grid; grid-template-columns: repeat(3, 36px); grid-template-rows: repeat(3, 36px); gap: 3px; }
+.dpad button { padding: 0; font: 500 14px var(--mono); touch-action: none; user-select: none; -webkit-user-select: none; }
+.dpad .hub { visibility: hidden; }
+.edit-body { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.edcol { min-width: 0; display: grid; gap: 8px; }
+#ed { display: block; max-width: 100%; image-rendering: pixelated; border: 1px solid var(--fg); cursor: crosshair; touch-action: none; }
+.tools { display: grid; gap: 10px; flex: 1 1 260px; min-width: 0; align-content: start; }
+.group { display: grid; gap: 6px; }
+.group > .cap { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; }
+.pal { display: flex; flex-wrap: wrap; gap: 5px; }
+.sw { width: 28px; height: 28px; padding: 0; border-radius: 5px; border: 2px solid var(--line); background: var(--c); }
+.sw.sel { border-color: var(--fg); box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fg); }
+.pal.named { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 3px; }
+.palitem { display: flex; align-items: center; gap: 7px; padding: 3px 6px 3px 3px; border: 1px solid transparent; border-radius: 6px;
+  background: none; color: var(--fg); font-size: 12px; text-align: left; min-width: 0; }
+.palitem > span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.palitem .sw { width: 18px; height: 18px; flex: none; border-width: 1px; }
+.palitem .key { font-family: var(--mono); color: var(--muted); }
+.palitem.sel { border-color: var(--fg); }
+.sheet-scroll { overflow-x: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+table.sheet { border-collapse: separate; border-spacing: 5px; font-family: var(--mono); font-size: 12px; }
+.sheet th { color: var(--muted); font-weight: 500; text-align: center; white-space: nowrap; }
+.sheet th.loop-h { color: var(--accent); }
+.sheet th[scope="row"] { text-align: left; padding: 0; }
+.sheet th[scope="row"] button { font: 500 12px var(--mono); padding: 4px 8px; width: 100%; text-align: left; }
+.sheet th[scope="row"] button.cur { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.sheet td { padding: 0; }
+.sheet td.cell { cursor: pointer; }
+.sheet canvas { display: block; image-rendering: pixelated; background: conic-gradient(var(--check-a) 25%, var(--check-b) 0 50%, var(--check-a) 0 75%, var(--check-b) 0) 0 0 / 8px 8px; }
+.sheet td.loop canvas { box-shadow: 0 0 0 2px var(--accent); }
+.sheet td.cell:hover canvas { outline: 2px solid var(--muted); }
+.sheet td.sel canvas { outline: 3px solid var(--fg); outline-offset: 0; }
+#empty { text-align: center; padding: 40px 16px; display: grid; gap: 12px; justify-items: center; }
+#empty p { margin: 0; max-width: 52ch; color: var(--muted); }
+.hint { font-size: 13px; color: var(--muted); margin: 0; max-width: 68ch; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Creature Frame Editor</h1>
+    <div class="who">
+      <label class="muted" for="charsel">Creature</label>
+      <select id="charsel" aria-label="Creature"></select>
+      <input type="text" id="charname" aria-label="Creature name" maxlength="40" size="14">
+      <select id="stacksel" aria-label="Where this layer sits, back to front" title="Where this layer sits, back to front: later ones cover earlier ones" hidden></select>
+      <input type="text" id="newname" aria-label="New creature name" placeholder="New creature" maxlength="40" size="14">
+      <select id="bodysel" aria-label="Start from" title="Start from a base mesh, or a blank canvas"><option value="base-quadruped">Quadruped</option><option value="base-winged">Winged</option><option value="">Blank</option></select>
+      <select id="sizesel" aria-label="Size" title="How big it is next to a person; the canvas has room to spare all round"><option value="small">Small (dog)</option><option value="medium" selected>Medium (wolf, eagle)</option><option value="large">Large (horse, bear)</option><option value="huge">Huge (car-sized)</option></select>
+      <button type="button" id="newbtn">Add</button>
+      <span id="status" role="status">Loading…</span>
+    </div>
+  </header>
+
+  <div id="banner" hidden>
+    <span id="bannertext">A newer version of this creature arrived from somewhere else.</span>
+    <button type="button" id="bnload">Load it</button>
+    <button type="button" id="bnkeep">Keep mine</button>
+  </div>
+
+  <div id="empty" class="card" hidden>
+    <h2>No creatures yet</h2>
+    <p>The quadruped and winged base meshes appear here once they're seeded. You can also start from a blank canvas and draw a creature yourself.</p>
+    <button type="button" id="emptybtn">Start a blank creature</button>
+  </div>
+
+  <div class="layout" id="layout" hidden>
+    <aside class="left">
+      <section class="card">
+        <header><h2>Preview</h2><span class="muted" id="pvlabel" style="font-family:var(--mono);font-size:12px"></span></header>
+        <div class="pvbox checker"><canvas id="pv" aria-label="Animated preview of the selected direction"></canvas></div>
+        <div class="row">
+          <button type="button" id="play">Pause</button>
+          <label for="fps">Speed <input type="range" id="fps" min="3" max="16" value="8"></label>
+        </div>
+      </section>
+      <section class="card">
+        <header><h2>Field</h2><span class="muted" style="font-size:12px">click it, then walk</span>
+          <select id="retro" aria-label="Field look" title="Show the field in a vintage console's colours" style="font-size:12px;margin-left:auto"></select></header>
+        <canvas id="stage" tabindex="0" aria-label="Play area. Use arrow keys or WASD to walk."></canvas>
+        <div class="row" style="justify-content:space-between">
+          <div style="display:grid;gap:8px;justify-items:start">
+            <span class="muted" style="font-size:12px"><kbd>WASD</kbd> / arrows, <kbd>Shift</kbd> runs, <kbd>Space</kbd> swings, <kbd>H</kbd> takes a hit, <kbd>K</kbd> dies, <kbd>R</kbd> gets up, <kbd>T</kbd> takes off and lands</span>
+            <div class="row">
+              <button type="button" id="swing">Swing</button>
+              <button type="button" id="hit">Hit</button>
+              <button type="button" id="die">Die</button>
+              <button type="button" id="getup">Get up</button>
+              <button type="button" id="fly">Take off / land</button>
+            </div>
+          </div>
+          <div class="dpad" id="dpad" aria-label="Direction pad">
+            <button type="button" data-dx="-1" data-dy="-1" aria-label="Walk north-west">↖</button>
+            <button type="button" data-dx="0" data-dy="-1" aria-label="Walk north">↑</button>
+            <button type="button" data-dx="1" data-dy="-1" aria-label="Walk north-east">↗</button>
+            <button type="button" data-dx="-1" data-dy="0" aria-label="Walk west">←</button>
+            <button type="button" class="hub" tabindex="-1" aria-hidden="true"></button>
+            <button type="button" data-dx="1" data-dy="0" aria-label="Walk east">→</button>
+            <button type="button" data-dx="-1" data-dy="1" aria-label="Walk south-west">↙</button>
+            <button type="button" data-dx="0" data-dy="1" aria-label="Walk south">↓</button>
+            <button type="button" data-dx="1" data-dy="1" aria-label="Walk south-east">↘</button>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <main class="right">
+      <section class="card">
+        <header>
+          <h2>Frame editor</h2>
+          <span class="muted" id="edlabel" style="font-family:var(--mono);font-size:12px"></span>
+        </header>
+        <div class="row">
+          <div class="seg" id="animseg" aria-label="Animation">
+            <button type="button" data-anim="walk" class="on">Walk</button>
+            <button type="button" data-anim="attack">Attack</button>
+            <button type="button" data-anim="hurt">Hurt</button>
+            <button type="button" data-anim="death">Death</button>
+            <button type="button" data-anim="fly">Fly</button>
+            <button type="button" data-anim="top">Top of head</button>
+          </div>
+          <span class="hint" id="animhint"></span>
+        </div>
+        <div class="edit-body">
+          <div class="edcol">
+            <canvas id="ed" tabindex="0" aria-label="Pixel editor for the selected frame"></canvas>
+            <div class="row">
+              <button type="button" id="prevf" aria-label="Previous frame">◀ Frame</button>
+              <button type="button" id="nextf" aria-label="Next frame">Frame ▶</button>
+              <label><input type="checkbox" id="onion" checked> Onion skin</label>
+            </div>
+          </div>
+          <div class="tools">
+            <div class="group">
+              <span class="cap">Tool</span>
+              <div class="seg" id="toolseg">
+                <button type="button" data-tool="pencil" class="on">Pencil <kbd>P</kbd></button>
+                <button type="button" data-tool="eraser">Eraser <kbd>E</kbd></button>
+                <button type="button" data-tool="fill">Fill <kbd>F</kbd></button>
+                <button type="button" data-tool="picker">Pick <kbd>I</kbd></button>
+              </div>
+              <p class="hint">Right-click erases. Alt-click picks a color.</p>
+            </div>
+            <div class="group">
+              <span class="cap">Color</span>
+              <div class="pal" id="pal"></div>
+              <div class="row">
+                <input type="color" id="colorin" aria-label="Edit the selected color">
+                <button type="button" id="addcolor">Add color</button>
+              </div>
+            </div>
+            <div class="group">
+              <span class="cap">Frame</span>
+              <div class="seg">
+                <button type="button" id="undo">Undo</button>
+                <button type="button" id="redo">Redo</button>
+                <button type="button" id="flip">Flip</button>
+                <button type="button" id="copy">Copy</button>
+                <button type="button" id="paste">Paste</button>
+                <button type="button" id="clear">Clear</button>
+              </div>
+              <div class="seg" aria-label="Nudge the frame">
+                <button type="button" data-nudge="-1,0" aria-label="Nudge left">←</button>
+                <button type="button" data-nudge="0,-1" aria-label="Nudge up">↑</button>
+                <button type="button" data-nudge="0,1" aria-label="Nudge down">↓</button>
+                <button type="button" data-nudge="1,0" aria-label="Nudge right">→</button>
+              </div>
+            </div>
+            <div class="group">
+              <span class="cap">Row</span>
+              <div class="row">
+                <select id="mirsrc" aria-label="Copy this row from"></select>
+                <button type="button" id="mirbtn">Copy mirrored</button>
+              </div>
+            </div>
+            <div class="group">
+              <span class="cap">Scale</span>
+              <div class="row">
+                <label for="ground">Ground row <input type="number" id="ground" min="1" max="64" aria-label="The row the feet stand on"></label>
+                <label for="person">Person <select id="person" aria-label="Show a person for scale"><option value="idle">on the idle</option><option value="all">on every frame</option><option value="off">off</option></select></label>
+              </div>
+              <p class="hint">The highlighted band is the ground: feet stand on its top row. The faded person (13 x 16, a grown-up) stands on it too, for scale.</p>
+            </div>
+            <div class="group">
+              <span class="cap">Canvas size</span>
+              <div class="row">
+                <input type="number" id="sw" min="4" max="64" aria-label="Width in pixels">
+                <span class="muted">×</span>
+                <input type="number" id="sh" min="4" max="64" aria-label="Height in pixels">
+                <button type="button" id="resize">Resize all</button>
+              </div>
+              <p class="hint">Resizes the animation you're editing and keeps frames centered on the bottom edge. Resizing can't be undone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <header><h2>Sprite sheet</h2><span class="muted" style="font-size:12px">click a frame to edit it, click a direction to preview it</span></header>
+        <div class="sheet-scroll"><table class="sheet" id="sheet"></table></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const DIRS = ["S", "SE", "E", "NE", "N", "NW", "W", "SW"];
+const DIR_NAME = { S: "South", SE: "South-east", E: "East", NE: "North-east", N: "North", NW: "North-west", W: "West", SW: "South-west" };
+const MIRROR_SRC = { W: "E", SW: "SE", NW: "NE" };
+const WALK_FRAMES = 7; // 0 = idle, 1-6 = walk
+// The animations besides the walk. Each has its own canvas; a new one gets padX px each side, padTop above and
+// padBottom below the walk frame. hold: stays on the last frame (until Get up). knock: px/s pushed back when it starts.
+const ANIMS = {
+  // flying: a loop on the walk's canvas, so it lines up; the field draws it lifted off the ground, its shadow below
+  fly:    { label: "Fly", frames: 6, padX: 0, padTop: 0, padBottom: 0, fps: 10, loop: true,
+    hint: "A 6-frame flap, looped. Same canvas as the walk, so it lines up; in the field (T takes off and lands) it's drawn lifted off the ground with its shadow below." },
+  attack: { label: "Attack", frames: 4, padX: 5, padTop: 4, padBottom: 0, fps: 12,
+    hint: "Attack frames have a bigger canvas. The dashed box is where the walk frame sits, so the feet line up." },
+  hurt:   { label: "Hurt", frames: 3, padX: 2, padTop: 1, padBottom: 0, fps: 10, knock: 70, flash: true,
+    hint: "Plays when he takes a hit: impact, recoil, recover. The field flashes him white and pushes him back; the frames stay in place." },
+  death:  { label: "Death", frames: 6, padX: 10, padTop: 2, padBottom: 2, fps: 8, knock: 50, flash: true, hold: true,
+    dirs: ["E", "W"], fallback: { S: "E", SE: "E", NE: "E", N: "W", SW: "W", NW: "W" },
+    hint: "Plays once and stays on the last frame. Side views only (E and W): facing S or a south diagonal plays E, N or a north diagonal plays W. The dashed box is the walk frame." },
+  // layers only: the layer seen from above the head, drawn over the base's death S frame 5 (lying feet first). Recipes
+  // use it on any frame where that head turns up and no other head rule fits.
+  top:    { label: "Top of head", frames: 1, layerOnly: true, ref: ["death", "S", 4],
+    dirs: ["S"], fallback: { SE: "S", E: "S", NE: "S", N: "S", NW: "S", W: "S", SW: "S" },
+    hint: "The layer seen from the top of the head, drawn over the base lying feet first (death S frame 5, faded). Recipes use it when only the top of the head shows." },
+};
+// the directions an animation is drawn for (all 8 unless it says), and the drawn one a missing direction plays
+const dirsFor = key => (key !== "walk" && ANIMS[key].dirs) || DIRS;
+const drawnDir = (lay, dir) => (lay.grids[dir] ? dir : ((ANIMS[lay.key] && ANIMS[lay.key].fallback) || {})[dir] || dir);
+const ANIM_KEYS = Object.keys(ANIMS);
+const PALETTE_KEYS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const DEFAULT_PALETTE = { k: "#000000", w: "#ffffff", r: "#f44336", b: "#2196f3" };
+const SHEET_SCALE = 4;
+// a person for scale: the human base's idle in each direction (13 x 16, feet on its bottom row), drawn faded
+const PERSON = {"w":13,"h":16,"frames":{"E":"............./....kkkkk..../...kaaaaak.../..kaaaaaak.../..kaaaaaak.../..kaaaaayak../...kaaaaakk../....kaaaak.../.....knnk..../....kUtttk.../...kOOkttk.../...kHktttk.../...kkkppk..../.....kQk...../.....kLk...../.....kkkk....","N":"............./....kkkkk..../...kaaaaak.../..kaaaaaaak../..kaaaaaaak../..kaaaaaaak../..kaaaaaaak../...kaaaaak.../....knnnk..../..kkutttUkk../.koutttttUOk./khkktttttkkHk/kk.kpppppk.kk/...kqkkkQk.../...klk.kLk.../..kkkk.kkkk..","NE":"............./....kkkkk..../...kaaaaak.../..kaaaaaaak../..kaaaaaaak../..kaaaaaaak../..kaaaaaaak../...kaaaaak.../....knnnk..../....ktttUk.../....kttttOk../....kttttkHk./....kppppkkk./....kqkkQk.../....klkkLk.../....kkkkkkk..","NW":"............./....kkkkk..../...kaaaaak.../..kaaaaaaak../..kaaaaaaak../..kaaaaaaak../..kaaaaaaak../...kaaaaak.../....knnnk..../...kutttk..../..kottttk..../.khkttttk..../.kkkppppk..../...kqkkQk..../...klkkLk..../..kkkkkkk....","S":"............./....kkkkk..../...kaaaaak.../..kaaaaaaak../..kaaaaaaak../..kaayayaak../..kaaaaaaak../...kaaaaak.../....knnnk..../..kkUtttukk../.kOUtttttuok./kHkktttttkkhk/kk.kpppppk.kk/...kQkkkqk.../...kLk.klk.../..kkkk.kkkk..","SE":"............./....kkkkk..../...kaaaaak.../..kaaaaaaak../..kaaaaaaak../..kaaayayak../..kaaaaaaak../...kaaaaak.../....knnnk..../...kUttttk.../...kOttttk.../..kHkttttk.../..kkkppppk.../....kQkkqk.../....kLkklk.../....kkkkkkk..","SW":"............./....kkkkk..../...kaaaaak.../..kaaaaaaak../..kaaaaaaak../..kayayaaak../..kaaaaaaak../...kaaaaak.../....knnnk..../...kttttuk.../...kttttok.../...kttttkhk../...kppppkkk../...kQkkqk..../...kLkklk..../..kkkkkkk....","W":"............./....kkkkk..../...kaaaaak.../...kaaaaaak../...kaaaaaak../..kayaaaaak../..kkaaaaak.../...kaaaak..../....knnk...../...ktttuk..../...kttkook.../...ktttkhk.../....kppkkk.../.....kqk...../.....klk...../....kkkk....."}};
+// the row a creature's feet stand on, in its walk canvas (kept with the creature as `ground`)
+const groundRow = ch => Math.max(0, Math.min(ch.h - 1, ch.extra && Number.isFinite(ch.extra.ground) ? ch.extra.ground : ch.h - 1));
+let personMode = "idle";
+try { personMode = localStorage.getItem("creatureEditor.person") || "idle"; } catch (e) {}
+// size classes: how much a base is scaled, and a blank canvas
+const SIZES = { small: { scale: 0.75, w: 24, h: 20 }, medium: { scale: 1, w: 32, h: 24 }, large: { scale: 1.5, w: 48, h: 36 }, huge: { scale: 2, w: 64, h: 48 } };
+const $ = id => document.getElementById(id);
+
+let db = null;
+let col = null;
+const clientId = Math.random().toString(36).slice(2, 10);
+const chars = new Map();
+const cur = { id: null, anim: "walk", dir: "S", idx: 1, tool: "pencil", key: "k", onion: true, playing: true };
+let dirty = false, saving = false, saveTimer = null, remotePending = null;
+let undoStack = [], redoStack = [];
+let clip = null;
+let edCs = 20;
+let cells = {};
+let loopCanvases = {};
+
+// ---------- character data ----------
+// A character's animations ("layers") are the walk (idle + 6 frames) and the optional ones in ANIMS, each with its
+// own canvas. ox/oy say where the walk canvas sits inside that canvas so the feet line up.
+function normRows(s, w, h) {
+  const rows = typeof s === "string" ? s.split("/") : [];
+  const out = [];
+  for (let y = 0; y < h; y++) out.push((rows[y] || "").slice(0, w).padEnd(w, "."));
+  return out;
+}
+function walkLayer(ch) {
+  if (ch.kind === "layer") return {                     // a layer is one drawing per direction
+    key: "walk", dirs: DIRS, ox: 0, oy: 0, count: 1, labels: ["drawing"], loop: [0],
+    get w() { return ch.w; }, get h() { return ch.h; }, get grids() { return ch.grids; },
+  };
+  return {
+    key: "walk", dirs: DIRS, ox: 0, oy: 0, count: WALK_FRAMES,
+    labels: ["idle", "1", "2", "3", "4", "5", "6"], loop: [1, 2, 3, 4, 5, 6],
+    get w() { return ch.w; }, get h() { return ch.h; }, get grids() { return ch.grids; },
+  };
+}
+function animLayer(key, a) {
+  const w = Math.max(4, Math.min(96, a.w | 0)), h = Math.max(4, Math.min(96, a.h | 0));
+  const dirs = dirsFor(key);
+  const count = Math.max(1, ...dirs.map(d => ((a.frames && a.frames[d]) || []).length));
+  const grids = {};
+  dirs.forEach(d => { const arr = (a.frames && a.frames[d]) || []; grids[d] = Array.from({ length: count }, (_, i) => normRows(arr[i], w, h)); });
+  // frames drawn for directions this animation no longer uses (death's old S and N) are kept as they are and saved
+  // back untouched, so nothing drawn is lost
+  const kept = Object.fromEntries(Object.entries(a.frames || {}).filter(([d]) => !dirs.includes(d)));
+  return { key, dirs, w, h, ox: a.ox | 0, oy: a.oy | 0, count, grids, kept,
+    labels: ANIMS[key].layerOnly ? ["drawing"] : Array.from({ length: count }, (_, i) => String(i + 1)), loop: Array.from({ length: count }, (_, i) => i) };
+}
+const KNOWN_FIELDS = ["name", "w", "h", "palette", "paletteNames", "frames", "by", "savedAt", ...ANIM_KEYS];
+function parseDoc(id, d) {
+  const w = Math.max(4, Math.min(64, d.w | 0 || 32));
+  const h = Math.max(4, Math.min(64, d.h | 0 || 24));
+  const ch = { id, name: d.name || id, w, h, palette: { ...(d.palette || DEFAULT_PALETTE) }, paletteNames: { ...(d.paletteNames || {}) }, grids: {}, cache: {} };
+  // kind: "layer" (one drawing per direction, drawn over a base) or "recipe" (a base + colours + layers, assembled
+  // here and read-only); anything else is an ordinary character
+  ch.kind = d.kind === "layer" || d.kind === "recipe" ? d.kind : "character";
+  ch.base = d.base || null;
+  const count = ch.kind === "layer" ? 1 : WALK_FRAMES;
+  DIRS.forEach(dir => {
+    const arr = (d.frames && d.frames[dir]) || [];
+    ch.grids[dir] = Array.from({ length: count }, (_, i) => normRows(arr[i], w, h));
+  });
+  // oy: how many rows down the canvas the base sits (room above for hats and big hair)
+  ch.oy = d.oy | 0;
+  // a recipe's tints recolour its layers ({layerId: {key: hex}}: a green cap from the police cap); group files it in the list
+  if (ch.kind === "recipe") ch.recipe = { colors: { ...(d.colors || {}) }, layers: (d.layers || []).slice(), oy: d.oy | 0, tints: d.tints || {}, group: d.group || "" };
+  // a layer's covers: body parts it may also paint over (long hair over the shoulders); rise "all": the whole layer
+  // follows the walk's bounce (a coat hem), not just the head and chest
+  if (ch.kind === "layer") { ch.covers = d.covers || ""; ch.rise = d.rise || ""; }
+  ch.walk = walkLayer(ch);
+  ANIM_KEYS.forEach(k => { ch[k] = d[k] && d[k].frames ? animLayer(k, d[k]) : null; });
+  // fields this editor doesn't know about are kept as they are, so saving never drops them
+  ch.extra = Object.fromEntries(Object.entries(d).filter(([k]) => !KNOWN_FIELDS.includes(k)));
+  return ch;
+}
+// the base frame a layer-only drawing (top of head) is drawn over, as rows, or null
+function refFrame(ch, key) {
+  const A = ANIMS[key], base = chars.get(ch.base), r = A && A.ref && base && base[A.ref[0]];
+  return (r && r.grids[A.ref[1]] && r.grids[A.ref[1]][A.ref[2]]) || null;
+}
+function newLayer(ch, key) {
+  const A = ANIMS[key];
+  if (A.layerOnly) {
+    // a blank drawing on the reference frame's canvas, with the layer's oy rows above
+    const base = chars.get(ch.base), R = base && base[A.ref[0]];
+    if (!R) return null;
+    const w = R.w, h = R.h + ch.oy;
+    return animLayer(key, { w, h, ox: R.ox, oy: R.oy + ch.oy, frames: { S: [".".repeat(w)] } });
+  }
+  // start every frame from that direction's idle pose, placed where the feet line up
+  const w = ch.w + 2 * A.padX, h = ch.h + A.padTop + A.padBottom, ox = A.padX, oy = A.padTop;
+  const frames = {};
+  dirsFor(key).forEach(d => {
+    const idle = ch.grids[d][0];
+    const rows = Array.from({ length: h }, (_, y) => {
+      const sy = y - oy;
+      return ".".repeat(ox) + (sy >= 0 && sy < ch.h ? idle[sy] : ".".repeat(ch.w)) + ".".repeat(w - ox - ch.w);
+    }).join("/");
+    frames[d] = Array(A.frames).fill(rows);
+  });
+  return animLayer(key, { w, h, ox, oy, frames });
+}
+function blankChar(id, name) {
+  return parseDoc(id, { name, w: 9, h: 14, palette: DEFAULT_PALETTE, frames: {} });
+}
+function serialize(ch) {
+  const frames = {};
+  DIRS.forEach(dir => { frames[dir] = ch.grids[dir].map(rows => rows.join("/")); });
+  const out = { ...ch.extra, name: ch.name, w: ch.w, h: ch.h, palette: ch.palette, frames, by: clientId, savedAt: Date.now() };
+  if (Object.keys(ch.paletteNames).length) out.paletteNames = ch.paletteNames;
+  ANIM_KEYS.forEach(k => {
+    const a = ch[k];
+    if (!a) return;
+    const af = { ...(a.kept || {}) };
+    a.dirs.forEach(dir => { af[dir] = a.grids[dir].map(rows => rows.join("/")); });
+    out[k] = { w: a.w, h: a.h, ox: a.ox, oy: a.oy, frames: af };
+  });
+  return out;
+}
+const layerOf = (ch, key) => (key === "walk" ? ch.walk : ch[key]);
+const curChar = () => chars.get(cur.id);
+const L = () => layerOf(curChar(), cur.anim);
+const locked = () => { const ch = curChar(); return !!ch && ch.kind === "recipe"; };
+
+// ---------- recipes ----------
+// Where a layer sits, back to front: later slots cover earlier ones. Stored on the layer as `stack`.
+const STACK = [
+  ["skin", "Skin (ears)"], ["shirt", "Shirt (collar, tie, stripes)"], ["lower", "Lower (skirt, overalls, belt)"],
+  ["outer", "Outer (coat, jacket, hood down)"], ["hair", "Hair"], ["hood", "Hood up"], ["face", "Face (beard, mustache)"],
+  ["glasses", "Glasses"], ["hat", "Hat"],
+];
+const stackIndex = l => { const i = STACK.findIndex(([k]) => k === (l.extra && l.extra.stack)); return i < 0 ? 1 : i; };
+// The base's head and chest rise a row on the walk's bounce frames (3 and 6); its legs stay put.
+const BOB = [0, 0, 0, 1, 0, 0, 1];
+// Assemble a recipe: the base (oy rows down the canvas) with each body part in the recipe's colour, then each layer
+// in order. A layer pixel paints only where the frame has the body part it was drawn over in that direction's idle
+// (or one of the layer's `covers`), so a zip hides behind an arm swinging across the chest and a reshaped base
+// carries through. On the bounce frames the head and chest rise a row; a layer with rise "all" rises entirely.
+function composeRecipe(ch) {
+  const base = chars.get(ch.base);
+  ch.problem = !base ? "Its base character isn't here." : null;
+  if (!base) { ch.grids = Object.fromEntries(DIRS.map(d => [d, Array.from({ length: WALK_FRAMES }, () => normRows("", ch.w, ch.h))])); ch.cache = {}; return; }
+  // layers go on back to front by where they sit (a collar under hair, hair under a raised hood), whatever order
+  // the recipe lists them in; within a slot, in the recipe's order
+  const layers = ch.recipe.layers.map(id => chars.get(id)).filter(l => l && l.kind === "layer")
+    .map((l, i) => [l, i]).sort((a, b) => stackIndex(a[0]) - stackIndex(b[0]) || a[1] - b[1]).map(([l]) => l);
+  // the canvas has room above for whatever the layers draw, and for it rising a row on the walk's bounce
+  const oy0 = ch.recipe.oy || 0;
+  let top = Infinity;
+  layers.forEach(l => DIRS.forEach(dir => {
+    const r = l.grids[dir] && l.grids[dir][0];
+    if (r) r.forEach((row, y) => { const Y = y + oy0 - (l.oy || 0); if (/[^.]/.test(row) && (l.rise === "all" || Y - oy0 <= 11)) top = Math.min(top, Y); });
+  }));
+  const oy = top < 1 ? oy0 + 1 - top : oy0, W = base.w, H = base.h + oy;
+  ch.w = W; ch.h = H;
+  const pad = rows => [...Array(oy).fill(".".repeat(W)), ...rows].slice(0, H);
+  const palette = {}, keyOf = {};
+  const keyFor = hex => {
+    if (!keyOf[hex]) { const k = PALETTE_KEYS[Object.keys(palette).length] || "?"; keyOf[hex] = k; palette[k] = hex; }
+    return keyOf[hex];
+  };
+  const missing = ch.recipe.layers.filter(id => !layers.some(l => l.id === id));
+  if (missing.length) ch.problem = "Missing layers: " + missing.join(", ");
+  // a layer drawn for a different oy moves down (or up) to this recipe's; its colours can be tinted per recipe
+  const layerRows = (l, dir) => { const r = l.grids[dir][0], d = oy - (l.oy || 0); return d > 0 ? [...Array(d).fill(""), ...r] : r.slice(-d); };
+  const colour = (l, c) => {
+    const col = (ch.recipe.tints[l.id] || {})[c] || l.palette[c] || "#ff00ff";
+    return col.startsWith("part:") ? ch.recipe.colors[col.slice(5)] || base.palette[col.slice(5)] || "#ff00ff" : col;
+  };
+  const grids = {};
+  DIRS.forEach(dir => {
+    const idle = pad(base.grids[dir][0]);
+    grids[dir] = base.grids[dir].map((frame, i) => {
+      const parts = pad(frame);
+      const out = parts.map(row => [...row].map(c => (c === "." ? "." : keyFor(ch.recipe.colors[c] || base.palette[c] || "#ff00ff"))));
+      layers.forEach(l => layerRows(l, dir).forEach((row, y) => [...row].forEach((c, x) => {
+        if (c === "." || x >= W || y >= H) return;
+        const ty = l.rise === "all" || y - oy <= 11 ? y - (BOB[i] || 0) : y;
+        if (ty < 0 || ty >= H) return;
+        const here = parts[ty][x];
+        if (here !== idle[y][x] && !l.covers.includes(here)) return;   // a different body part is here in this frame
+        // "part:a" in a layer's palette means the recipe's colour for that body part (ears in the skin tone)
+        out[ty][x] = keyFor(colour(l, c));
+      })));
+      return out.map(r => r.join(""));
+    });
+  });
+  // attack, hurt and death: the base's frames on their own canvas. The head, chest and hips move about, so in each
+  // frame find where each is compared with the idle and move that part's layer pixels with it; a part that can't
+  // be found (a lying head) leaves its layer pixels off. Rise "all" layers (coat hems) follow the chest.
+  ANIM_KEYS.forEach(k => {
+    const A = base[k];
+    if (!A) { ch[k] = null; return; }
+    const AH = A.h + oy, agrids = {};
+    A.dirs.forEach(dir => {
+      const idle = pad(base.grids[dir][0]);
+      agrids[dir] = A.grids[dir].map(frame => {
+        const parts = [...Array(oy).fill(".".repeat(A.w)), ...frame].slice(0, AH);
+        const out = parts.map(row => [...row].map(c => (c === "." ? "." : keyFor(ch.recipe.colors[c] || base.palette[c] || "#ff00ff"))));
+        const at = findRegions(idle, parts, A.ox, A.oy, oy);
+        layers.forEach(l => {
+          layerRows(l, dir).forEach((row, y) => [...row].forEach((c, x) => {
+            if (c === ".") return;
+            const off = at[l.rise === "all" ? "chest" : y - oy <= 8 ? "head" : y - oy <= 11 ? "chest" : "hips"];
+            if (!off) return;
+            const at2 = place(off, x, y, A.ox, A.oy, oy);
+            if (!at2) return;
+            const [X, Y] = at2;
+            if (Y < 0 || Y >= AH || X < 0 || X >= A.w) return;
+            const here = parts[Y][X];
+            if (here !== idle[y][x] && !l.covers.includes(here)) return;
+            out[Y][X] = keyFor(colour(l, c));
+          }));
+          // no head rule fits (lying feet first, only the top of the head showing): the layer's top-of-head drawing
+          const top = !at.head && topAt(l, base, parts, oy);
+          if (top) top.rows.forEach((row, y) => [...row].forEach((c, x) => {
+            if (c === ".") return;
+            const r = top.rowAt(y - top.lo);
+            if (r === null) return;
+            const X = x + top.dx, Y = r + oy + top.dy;
+            if (Y < 0 || Y >= AH || X < 0 || X >= A.w) return;
+            const here = parts[Y][X], was = (top.ref[y - top.lo] || "")[x] || ".";
+            if (here !== was && !l.covers.includes(here)) return;
+            out[Y][X] = keyFor(colour(l, c));
+          }));
+        });
+        return out.map(r => r.join(""));
+      });
+    });
+    ch[k] = { key: k, dirs: A.dirs, w: A.w, h: AH, ox: A.ox, oy: A.oy + oy, count: A.count, grids: agrids,
+      labels: A.labels.slice(), loop: A.loop.slice() };
+  });
+  ch.palette = palette; ch.grids = grids; ch.cache = {};
+}
+// where the idle's head (rows 1-8), chest (torso) and hips/legs are in an animation frame: the offset with the most
+// matching body-part pixels, if at least 60% match (a bat or a raised hand can cover part of the head)
+function findRegions(idle, parts, ox, aoy, roy) {
+  const sets = { head: [], chest: [], hips: [] };
+  idle.forEach((row, y) => [...row].forEach((c, x) => {
+    if (c === ".") return;
+    const by = y - roy;
+    // the head counts its outline too: the back of the head has no eyes, so its outline is what pins the right row
+    if (by >= 1 && by <= 8) sets.head.push([x, y, c]);
+    else if (c === "k") return;
+    else if (c === "t") sets.chest.push([x, y, c]);
+    else if ("pQqLl".includes(c)) sets.hips.push([x, y, c]);
+  }));
+  const at = {};
+  for (const [name, px] of Object.entries(sets)) {
+    let best = { m: -1 };
+    for (let dy = -4; dy <= 4; dy++) for (let dx = -5; dx <= 5; dx++) {
+      let m = 0;
+      for (const [x, y, c] of px) { const r = parts[y + aoy + dy]; if (r && r[x + ox + dx] === c) m++; }
+      if (m > best.m || (m === best.m && Math.abs(dx) + Math.abs(dy) < Math.abs(best.dx) + Math.abs(best.dy))) best = { m, dx, dy };
+    }
+    // how well it fits is judged on the skin alone (as before the outline counted), so a round blob of outline
+    // (the top of a head lying feet first) doesn't pass for an upright head
+    const skin = px.filter(p => p[2] !== "k");
+    let fm = 0;
+    for (const [x, y, c] of skin) { const r = parts[y + aoy + best.dy]; if (r && r[x + ox + best.dx] === c) fm++; }
+    best.fit = skin.length ? fm / skin.length : 0;
+    at[name] = px.length && best.fit >= 0.6 ? best : null;
+  }
+  if (!at.head || at.head.fit < 0.8) at.head = squashedHead(idle, parts, ox, aoy, roy) || at.head;
+  if (!at.head) at.head = turnedHead(idle, parts, roy);
+  return at;
+}
+// A head drawn a row or two shorter (slumped, sitting, looking down): the idle's head with rows from the top of the
+// skull taken out (outline included, for its shape). Hair on those rows is left out; hair below them moves up.
+const squashRow = (by, s) => (by >= 3 && by < 3 + s ? null : by >= 3 + s ? by - s : by);
+function squashedHead(idle, parts, ox, aoy, roy) {
+  let best = null;
+  for (const s of [1, 2]) {
+    const head = [];
+    idle.forEach((row, y) => { const by = y - roy; if (by >= 1 && by <= 8 && squashRow(by, s) !== null) [...row].forEach((c, x) => { if (c !== ".") head.push([x, roy + squashRow(by, s), c]); }); });
+    for (let dy = -4; dy <= 8; dy++) for (let dx = -5; dx <= 5; dx++) {
+      let m = 0;
+      for (const [x, y, c] of head) if ((parts[y + aoy + dy] || "")[x + ox + dx] === c) m++;
+      const r = m / head.length;
+      if (r >= 0.9 && (!best || r > best.r)) best = { r, m: Infinity, dx, dy, squash: s };
+    }
+  }
+  return best;
+}
+// A head lying down or upside down: try the idle's head (outline included, for its shape) turned a quarter, half or
+// three quarters about its middle, anywhere in the frame. Pixel art turns by quarters exactly, so the hair turns with it.
+const TURNS = { 1: (x, y) => [-y, x], 2: (x, y) => [-x, -y], 3: (x, y) => [y, -x] };
+function turnedHead(idle, parts, roy) {
+  const head = [];
+  idle.forEach((row, y) => { const by = y - roy; if (by >= 1 && by <= 8) [...row].forEach((c, x) => { if (c !== ".") head.push([x - 6, by - 5, c]); }); });
+  let best = { m: -1 };
+  for (const [turn, f] of Object.entries(TURNS)) for (let cy = 0; cy < parts.length; cy++) for (let cx = 0; cx < parts[0].length; cx++) {
+    let m = 0;
+    for (const [x, y, c] of head) { const [X, Y] = f(x, y); if ((parts[cy + Y] || "")[cx + X] === c) m++; }
+    if (m > best.m) best = { m, turn: +turn, cx, cy };
+  }
+  return best.m / head.length >= 0.7 ? best : null;
+}
+// A layer's top-of-head drawing sits on the base's reference frame (death S 5), with the layer's oy rows above. It
+// lands wherever that frame's head (head skin and the outline touching it, within the drawing's box one pixel out) is
+// found in a frame, as drawn or a row shorter (a row out of the skull, two below its top).
+function topAt(l, base, parts, oy) {
+  const A = ANIMS.top, R = l.top && base[A.ref[0]], ref = R && R.grids[A.ref[1]] && R.grids[A.ref[1]][A.ref[2]];
+  if (!ref) return null;
+  const rows = l.top.grids.S[0], lo = l.oy || 0;
+  let x0 = 99, x1 = -1, y0 = 99, y1 = -1;
+  rows.forEach((row, y) => [...row].forEach((c, x) => { if (c !== ".") { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y - lo); y1 = Math.max(y1, y - lo); } }));
+  const shape = [];
+  const isA = (x, y) => (ref[y] || "")[x] === "a";
+  for (let y = y0 - 1; y <= y1 + 1; y++) for (let x = x0 - 1; x <= x1 + 1; x++) {
+    const c = (ref[y] || "")[x];
+    if (c === "a" || (c === "k" && (isA(x + 1, y) || isA(x - 1, y) || isA(x, y + 1) || isA(x, y - 1)))) shape.push([x, y, c]);
+  }
+  if (!shape.length) return null;
+  const cut = Math.min(...shape.filter(p => p[2] === "a").map(p => p[1])) + 1;
+  const rowAt = (y, s) => (!s || y < cut ? y : y === cut ? null : y - 1);
+  let best = { m: -1 };
+  for (const s of [0, 1]) for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) {
+    let m = 0;
+    for (const [x, y, c] of shape) { const r = rowAt(y, s); if (r !== null && (parts[r + oy + dy] || "")[x + dx] === c) m++; }
+    const n = shape.filter(p => rowAt(p[1], s) !== null).length;
+    if (m / n > (best.m < 0 ? -1 : best.r) + 1e-9) best = { m, r: m / n, dx, dy, s };
+  }
+  return best.r >= 0.85 ? { rows, lo, ref, dx: best.dx, dy: best.dy, rowAt: y => rowAt(y, best.s) } : null;
+}
+// where a layer pixel (x, y on the recipe's walk canvas) lands in an animation frame, or null (a squashed-out row)
+function place(off, x, y, ox, aoy, roy) {
+  if (off.squash) { const by = squashRow(y - roy, off.squash); return by === null ? null : [x + ox + off.dx, by + roy + aoy + off.dy]; }
+  if (!off.turn) return [x + ox + off.dx, y + aoy + off.dy];
+  const [X, Y] = TURNS[off.turn](x - 6, y - roy - 5);
+  return [off.cx + X, off.cy + Y];
+}
+// a palette colour as drawn: on a layer, "part:a" stands for a body part's colour (shown here in the base's colour)
+function colorOf(ch, key) {
+  const v = ch.palette[key] || "#ff00ff";
+  if (!v.startsWith("part:")) return v;
+  const base = chars.get(ch.base);
+  return (base && base.palette[v.slice(5)]) || "#ff00ff";
+}
+const refreshRecipes = () => chars.forEach(ch => { if (ch.kind === "recipe") composeRecipe(ch); if (ch.kind === "layer") ch.cache = {}; });
+
+function frameCanvas(ch, lay, dir, idx) {
+  dir = drawnDir(lay, dir);
+  const k = lay.key + dir + idx;
+  let c = ch.cache[k];
+  if (!c) {
+    c = document.createElement("canvas");
+    c.width = lay.w; c.height = lay.h;
+    const g = c.getContext("2d");
+    // a layer is shown over its base's idle (or the top of head's reference frame), faded, so you can see where it sits
+    const base = ch.kind === "layer" && chars.get(ch.base);
+    const under = base && (lay.key === "walk" ? base.grids[dir] && base.grids[dir][0] : refFrame(ch, lay.key));
+    if (under) {
+      g.globalAlpha = 0.3;
+      under.forEach((row, y) => { for (let x = 0; x < lay.w; x++) if (row[x] && row[x] !== ".") { g.fillStyle = base.palette[row[x]] || "#ff00ff"; g.fillRect(x, y + ch.oy, 1, 1); } });
+      g.globalAlpha = 1;
+    }
+    lay.grids[dir][idx].forEach((row, y) => {
+      for (let x = 0; x < lay.w; x++) {
+        const key = row[x];
+        if (key !== ".") { g.fillStyle = colorOf(ch, key); g.fillRect(x, y, 1, 1); }
+      }
+    });
+    ch.cache[k] = c;
+  }
+  return c;
+}
+const invalidate = (ch, lay, dir, idx) => { delete ch.cache[lay.key + dir + idx]; delete ch.cache["flash" + lay.key + dir + idx]; };
+
+// ---------- saving ----------
+function setStatus(text, bad) {
+  const s = $("status");
+  s.textContent = text;
+  s.className = bad ? "bad" : "";
+}
+function markDirty() {
+  if (locked()) return;                                  // a recipe is assembled here, never saved from here
+  dirty = true;
+  setStatus(db ? "Unsaved changes" : "Not saved here");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 700);
+}
+async function saveNow() {
+  clearTimeout(saveTimer);
+  if (!dirty) return;
+  if (!db) { setStatus("Edits aren't saved in this view", true); return; }
+  if (saving) { saveTimer = setTimeout(saveNow, 300); return; }
+  const ch = curChar();
+  if (!ch || ch.kind === "recipe") { dirty = false; return; }
+  const body = serialize(ch);
+  dirty = false; saving = true;
+  setStatus("Saving…");
+  try {
+    await db.doc("creatures/" + ch.id).set(body);
+    setStatus(dirty ? "Unsaved changes" : "Saved");
+  } catch (e) {
+    dirty = true;
+    setStatus("Not saved: " + (e && e.code ? e.code : "error"), true);
+  }
+  saving = false;
+}
+
+// ---------- history and frame operations ----------
+function pushUndo(changes) {
+  undoStack.push({ id: cur.id, changes });
+  if (undoStack.length > 200) undoStack.shift();
+  redoStack = [];
+  updateButtons();
+}
+function setFrame(ch, lay, dir, idx, rows) {
+  lay.grids[dir][idx] = rows;
+  invalidate(ch, lay, dir, idx);
+  if (lay.key === cur.anim) redrawCell(dir, idx);
+}
+function history(from, to) {
+  const e = from.pop();
+  if (!e || e.id !== cur.id) { updateButtons(); return; }
+  const ch = curChar();
+  const anim = e.changes[0].anim;
+  const lay = layerOf(ch, anim);
+  if (!lay) { updateButtons(); return; }
+  const inverse = { id: e.id, changes: e.changes.map(c => ({ anim: c.anim, dir: c.dir, idx: c.idx, rows: lay.grids[c.dir][c.idx].slice() })) };
+  e.changes.forEach(c => setFrame(ch, lay, c.dir, c.idx, c.rows.slice()));
+  to.push(inverse);
+  cur.dir = e.changes[0].dir; cur.idx = e.changes[0].idx;
+  if (anim !== cur.anim) { cur.anim = anim; rebuildAll(); }
+  markDirty(); refreshSelection(); drawEditor(); updateButtons();
+}
+function editFrame(fn) {
+  if (locked()) return;
+  const ch = curChar(), lay = L();
+  const before = lay.grids[cur.dir][cur.idx].slice();
+  const after = fn(before.slice(), lay);
+  if (!after || after.join("/") === before.join("/")) return;
+  setFrame(ch, lay, cur.dir, cur.idx, after);
+  pushUndo([{ anim: cur.anim, dir: cur.dir, idx: cur.idx, rows: before }]);
+  markDirty(); drawEditor();
+}
+const flipRows = rows => rows.map(r => [...r].reverse().join(""));
+function nudgeRows(rows, dx, dy, w, h) {
+  let out = rows.map(r => {
+    if (dx > 0) return ".".repeat(dx) + r.slice(0, w - dx);
+    if (dx < 0) return r.slice(-dx) + ".".repeat(-dx);
+    return r;
+  });
+  if (dy > 0) out = [...Array(dy).fill(".".repeat(w)), ...out.slice(0, h - dy)];
+  if (dy < 0) out = [...out.slice(-dy), ...Array(-dy).fill(".".repeat(w))];
+  return out;
+}
+function floodFill(rows, x, y, key, w, h) {
+  const target = rows[y][x];
+  if (target === key) return null;
+  const g = rows.map(r => r.split(""));
+  const stack = [[x, y]];
+  while (stack.length) {
+    const [cx, cy] = stack.pop();
+    if (cx < 0 || cy < 0 || cx >= w || cy >= h || g[cy][cx] !== target) continue;
+    g[cy][cx] = key;
+    stack.push([cx + 1, cy], [cx - 1, cy], [cx, cy + 1], [cx, cy - 1]);
+  }
+  return g.map(r => r.join(""));
+}
+function mirrorRow(src) {
+  if (locked()) return;
+  const ch = curChar(), lay = L();
+  const changes = [];
+  for (let i = 0; i < lay.count; i++) {
+    changes.push({ anim: cur.anim, dir: cur.dir, idx: i, rows: lay.grids[cur.dir][i].slice() });
+    setFrame(ch, lay, cur.dir, i, flipRows(lay.grids[src][i]));
+  }
+  pushUndo(changes);
+  markDirty(); drawEditor();
+}
+function resizeLayer(nw, nh) {
+  if (locked()) return;
+  const ch = curChar(), lay = L();
+  const ox = Math.floor((nw - lay.w) / 2), oy = nh - lay.h;
+  const grids = {};
+  lay.dirs.forEach(dir => {
+    grids[dir] = lay.grids[dir].map(rows => {
+      const out = [];
+      for (let y = 0; y < nh; y++) {
+        const sy = y - oy;
+        let r = "";
+        for (let x = 0; x < nw; x++) {
+          const sx = x - ox;
+          r += sy >= 0 && sy < lay.h && sx >= 0 && sx < lay.w ? rows[sy][sx] : ".";
+        }
+        out.push(r);
+      }
+      return out;
+    });
+  });
+  if (lay.key === "walk") {
+    if (Number.isFinite(ch.extra.ground)) ch.extra.ground += oy;
+    ch.grids = grids; ch.w = nw; ch.h = nh;
+    ANIM_KEYS.forEach(k => { if (ch[k]) { ch[k].ox -= ox; ch[k].oy -= oy; } });   // keep the feet lined up with the other animations
+  } else {
+    lay.grids = grids; lay.w = nw; lay.h = nh; lay.ox += ox; lay.oy += oy;
+  }
+  ch.cache = {};
+  undoStack = []; redoStack = [];
+  markDirty(); rebuildAll();
+}
+
+// ---------- editor canvas ----------
+const ed = $("ed");
+function layoutEditor() {
+  const lay = L();
+  edCs = Math.max(8, Math.min(28, Math.floor(420 / Math.max(lay.w, lay.h))));
+  ed.width = lay.w * edCs; ed.height = lay.h * edCs;
+}
+function prevIdx(lay, idx) {
+  if (lay.key === "walk") return idx >= 1 ? (idx === 1 ? 6 : idx - 1) : -1;
+  return (idx + lay.count - 1) % lay.count;
+}
+function drawEditor() {
+  const ch = curChar();
+  if (!ch) return;
+  const lay = L();
+  const g = ed.getContext("2d");
+  const st = getComputedStyle(document.documentElement);
+  const A = st.getPropertyValue("--check-a").trim(), B = st.getPropertyValue("--check-b").trim(), G = st.getPropertyValue("--grid").trim();
+  const cs = edCs;
+  for (let y = 0; y < lay.h; y++) for (let x = 0; x < lay.w; x++) {
+    g.fillStyle = (x + y) % 2 ? B : A;
+    g.fillRect(x * cs, y * cs, cs, cs);
+  }
+  const paintRows = (rows, alpha) => {
+    g.globalAlpha = alpha;
+    rows.forEach((row, y) => { for (let x = 0; x < lay.w; x++) {
+      const k = row[x];
+      if (k !== ".") { g.fillStyle = colorOf(ch, k); g.fillRect(x * cs, y * cs, cs, cs); }
+    } });
+    g.globalAlpha = 1;
+  };
+  // a layer is drawn over its base's idle (or the top of head's reference frame), faded
+  const base = ch.kind === "layer" && chars.get(ch.base);
+  const under = base && (lay.key === "walk" ? base.grids[cur.dir] && base.grids[cur.dir][0] : refFrame(ch, lay.key));
+  if (under) {
+    g.globalAlpha = 0.3;
+    under.forEach((row, y) => { for (let x = 0; x < lay.w; x++) if (row[x] && row[x] !== ".") { g.fillStyle = base.palette[row[x]] || "#ff00ff"; g.fillRect(x * cs, (y + ch.oy) * cs, cs, cs); } });
+    g.globalAlpha = 1;
+  }
+  const gy = groundRow(ch) + (lay.key === "walk" ? 0 : lay.oy);
+  const showPerson = personMode === "all" || (personMode === "idle" && lay.key === "walk" && cur.idx === 0);
+  if (showPerson) drawPerson(g, cs, cur.dir, 1, gy);
+  const pi = prevIdx(lay, cur.idx);
+  if (cur.onion && pi >= 0 && pi !== cur.idx) paintRows(lay.grids[cur.dir][pi], 0.28);
+  paintRows(lay.grids[cur.dir][cur.idx], 1);
+  // the ground: its row highlighted, the rows below it shaded
+  g.fillStyle = "rgba(96, 196, 104, 0.30)"; g.fillRect(0, gy * cs, lay.w * cs, cs);
+  g.fillStyle = "rgba(96, 196, 104, 0.12)"; g.fillRect(0, (gy + 1) * cs, lay.w * cs, Math.max(0, lay.h - gy - 1) * cs);
+  g.fillStyle = "rgba(40, 120, 48, 0.9)"; g.fillRect(0, (gy + 1) * cs - 2, lay.w * cs, 2);
+  g.strokeStyle = G; g.lineWidth = 1;
+  g.beginPath();
+  for (let x = 0; x <= lay.w; x++) { g.moveTo(x * cs + 0.5, 0); g.lineTo(x * cs + 0.5, lay.h * cs); }
+  for (let y = 0; y <= lay.h; y++) { g.moveTo(0, y * cs + 0.5); g.lineTo(lay.w * cs, y * cs + 0.5); }
+  g.stroke();
+  g.strokeStyle = st.getPropertyValue("--accent").trim();
+  g.setLineDash([4, 4]);
+  g.beginPath();
+  const cx = (lay.ox + ch.w / 2) * cs;                  // the body's centre line
+  g.moveTo(cx, 0); g.lineTo(cx, lay.h * cs);
+  if (lay.key !== "walk") {                             // outline of the walk frame inside this canvas
+    g.rect(lay.ox * cs + 0.5, lay.oy * cs + 0.5, ch.w * cs, ch.h * cs);
+  }
+  g.stroke();
+  g.setLineDash([]);
+  $("edlabel").textContent = (lay.key !== "walk" ? ANIMS[lay.key].label + " · " : "") + DIR_NAME[cur.dir] + " · " +
+    (lay.labels[cur.idx] === "idle" || lay.labels[cur.idx] === "drawing" ? lay.labels[cur.idx] : "frame " + lay.labels[cur.idx]) +
+    (ch.kind === "recipe" ? " · assembled, read-only" : "");
+}
+// the person for scale, faded, feet on ground row gy, left edge at column x0 (in cells of size cs)
+function drawPerson(g, cs, dir, x0, gy) {
+  const rows = (PERSON.frames[dir] || PERSON.frames.S).split("/"), top = gy - PERSON.h + 1;
+  g.globalAlpha = 0.4;
+  rows.forEach((row, y) => [...row].forEach((c, x) => {
+    if (c === ".") return;
+    g.fillStyle = c === "k" ? "#3a4a5c" : "#9fb3c8";
+    g.fillRect((x0 + x) * cs, (top + y) * cs, cs, cs);
+  }));
+  g.globalAlpha = 1;
+}
+function cellAt(e) {
+  const lay = L();
+  const r = ed.getBoundingClientRect();
+  const x = Math.floor((e.clientX - r.left) * (ed.width / r.width) / edCs);
+  const y = Math.floor((e.clientY - r.top) * (ed.height / r.height) / edCs);
+  return x < 0 || y < 0 || x >= lay.w || y >= lay.h ? null : [x, y];
+}
+let stroke = null;
+function paintPixel(x, y, key) {
+  const ch = curChar(), lay = L();
+  const rows = lay.grids[cur.dir][cur.idx];
+  if (rows[y][x] === key) return;
+  rows[y] = rows[y].slice(0, x) + key + rows[y].slice(x + 1);
+  stroke.changed = true;
+  invalidate(ch, lay, cur.dir, cur.idx);
+  redrawCell(cur.dir, cur.idx);
+  drawEditor();
+}
+function pickColor(x, y) {
+  const k = L().grids[cur.dir][cur.idx][y][x];
+  if (k === ".") { setTool("eraser"); return; }
+  cur.key = k; renderPalette();
+}
+ed.addEventListener("contextmenu", e => e.preventDefault());
+ed.addEventListener("pointerdown", e => {
+  const at = cellAt(e);
+  if (!at) return;
+  e.preventDefault();
+  ed.focus();
+  const [x, y] = at;
+  const ch = curChar(), lay = L();
+  if (e.altKey || cur.tool === "picker") { pickColor(x, y); return; }
+  if (locked()) { $("animhint").textContent = "This is a recipe, assembled from its base and layers. To change it, open one of its layers."; return; }
+  const erase = e.button === 2 || cur.tool === "eraser";
+  if (cur.tool === "fill" && !erase) {
+    const before = lay.grids[cur.dir][cur.idx].slice();
+    const after = floodFill(before.slice(), x, y, cur.key, lay.w, lay.h);
+    if (after) {
+      setFrame(ch, lay, cur.dir, cur.idx, after);
+      pushUndo([{ anim: cur.anim, dir: cur.dir, idx: cur.idx, rows: before }]);
+      markDirty(); drawEditor();
+    }
+    return;
+  }
+  ed.setPointerCapture(e.pointerId);
+  stroke = { before: lay.grids[cur.dir][cur.idx].slice(), last: [x, y], key: erase ? "." : cur.key, changed: false };
+  paintPixel(x, y, stroke.key);
+});
+ed.addEventListener("pointermove", e => {
+  if (!stroke) return;
+  const at = cellAt(e);
+  if (!at) return;
+  let [x0, y0] = stroke.last;
+  const [x1, y1] = at;
+  const dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0);
+  const sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
+  let err = dx + dy;
+  for (;;) {
+    paintPixel(x0, y0, stroke.key);
+    if (x0 === x1 && y0 === y1) break;
+    const e2 = 2 * err;
+    if (e2 >= dy) { err += dy; x0 += sx; }
+    if (e2 <= dx) { err += dx; y0 += sy; }
+  }
+  stroke.last = at;
+});
+const endStroke = () => {
+  if (!stroke) return;
+  if (stroke.changed) { pushUndo([{ anim: cur.anim, dir: cur.dir, idx: cur.idx, rows: stroke.before }]); markDirty(); }
+  stroke = null;
+};
+ed.addEventListener("pointerup", endStroke);
+ed.addEventListener("pointercancel", endStroke);
+
+// ---------- palette and tools ----------
+function setTool(t) {
+  cur.tool = t;
+  document.querySelectorAll("#toolseg button").forEach(b => b.classList.toggle("on", b.dataset.tool === t));
+}
+function renderPalette() {
+  const ch = curChar();
+  if (!ch.palette[cur.key]) cur.key = Object.keys(ch.palette)[0];
+  const pal = $("pal");
+  pal.innerHTML = "";
+  // a character whose colours stand for body parts lists them by name
+  const names = ch.paletteNames || {};
+  const named = Object.keys(names).length > 0;
+  pal.classList.toggle("named", named);
+  Object.entries(ch.palette).forEach(([k, c]) => {
+    const b = document.createElement("button");
+    const follows = c.startsWith("part:");                // takes the character's colour for that body part
+    const label = names[k] || (follows ? "Follows the character's " + c.slice(5) + " colour" : "Color " + k);
+    c = colorOf(ch, k);
+    b.type = "button"; b.title = label + " (" + k + ")"; b.setAttribute("aria-label", label);
+    if (named) {
+      b.className = "palitem" + (k === cur.key ? " sel" : "");
+      const sw = document.createElement("span");
+      sw.className = "sw"; sw.style.setProperty("--c", c);
+      const tx = document.createElement("span");
+      tx.textContent = names[k] || "unnamed";
+      const kk = document.createElement("span");
+      kk.className = "key"; kk.textContent = k;
+      b.append(sw, tx, kk);
+    } else {
+      b.className = "sw" + (k === cur.key ? " sel" : "");
+      b.style.setProperty("--c", c);
+    }
+    b.addEventListener("click", () => { cur.key = k; if (cur.tool === "eraser" || cur.tool === "picker") setTool("pencil"); renderPalette(); });
+    pal.appendChild(b);
+  });
+  $("colorin").value = /^#[0-9a-f]{6}$/i.test(ch.palette[cur.key]) ? ch.palette[cur.key] : "#000000";
+}
+$("colorin").addEventListener("input", e => {
+  if (locked()) return;
+  const ch = curChar();
+  ch.palette[cur.key] = e.target.value;
+  ch.cache = {};
+  renderPalette(); redrawSheet(); drawEditor(); markDirty();
+});
+$("addcolor").addEventListener("click", () => {
+  if (locked()) return;
+  const ch = curChar();
+  const k = [...PALETTE_KEYS].find(c => !(c in ch.palette));
+  if (!k) return;
+  ch.palette[k] = "#888888";
+  cur.key = k; setTool("pencil");
+  renderPalette(); markDirty();
+});
+document.querySelectorAll("#toolseg button").forEach(b => b.addEventListener("click", () => setTool(b.dataset.tool)));
+$("onion").addEventListener("change", e => { cur.onion = e.target.checked; drawEditor(); });
+
+function arm(btn, label, fn) {
+  btn.addEventListener("click", () => {
+    if (btn.classList.contains("armed")) { btn.classList.remove("armed"); btn.textContent = btn.dataset.label; fn(); return; }
+    btn.dataset.label = btn.textContent;
+    btn.classList.add("armed"); btn.textContent = label;
+    setTimeout(() => { if (btn.classList.contains("armed")) { btn.classList.remove("armed"); btn.textContent = btn.dataset.label; } }, 2500);
+  });
+}
+$("undo").addEventListener("click", () => history(undoStack, redoStack));
+$("redo").addEventListener("click", () => history(redoStack, undoStack));
+$("flip").addEventListener("click", () => editFrame(rows => flipRows(rows)));
+$("copy").addEventListener("click", () => { clip = L().grids[cur.dir][cur.idx].slice(); updateButtons(); });
+$("paste").addEventListener("click", () => { if (clip) editFrame((rows, lay) => normRows(clip.join("/"), lay.w, lay.h)); });
+arm($("clear"), "Click to clear", () => editFrame((rows, lay) => rows.map(() => ".".repeat(lay.w))));
+document.querySelectorAll("[data-nudge]").forEach(b => b.addEventListener("click", () => {
+  const [dx, dy] = b.dataset.nudge.split(",").map(Number);
+  editFrame((rows, lay) => nudgeRows(rows, dx, dy, lay.w, lay.h));
+}));
+arm($("mirbtn"), "Click to overwrite row", () => mirrorRow($("mirsrc").value));
+arm($("resize"), "Click to resize", () => {
+  const nw = Math.max(4, Math.min(64, $("sw").value | 0)), nh = Math.max(4, Math.min(64, $("sh").value | 0));
+  const lay = L();
+  if (nw !== lay.w || nh !== lay.h) resizeLayer(nw, nh);
+});
+function updateButtons() {
+  $("undo").disabled = !undoStack.length;
+  $("redo").disabled = !redoStack.length;
+  $("paste").disabled = !clip;
+}
+function updateMirrorSelect() {
+  const sel = $("mirsrc");
+  const pick = MIRROR_SRC[cur.dir] && MIRROR_SRC[cur.dir] !== cur.dir ? MIRROR_SRC[cur.dir] : null;
+  sel.innerHTML = "";
+  L().dirs.filter(d => d !== cur.dir).forEach(d => {
+    const o = document.createElement("option");
+    o.value = d; o.textContent = "from " + d;
+    sel.appendChild(o);
+  });
+  if (pick) sel.value = pick;
+}
+
+// ---------- animation switch ----------
+function setAnim(anim) {
+  const ch = curChar();
+  if (anim !== "walk" && (ch.kind === "layer") !== !!ANIMS[anim].layerOnly) return;   // layers: walk and top of head
+  if (ANIMS[anim] && ANIMS[anim].layerOnly && !refFrame(ch, anim)) return;
+  if (anim !== "walk" && ch.kind === "recipe" && !ch[anim]) return;   // a recipe has what its base has
+  if (anim !== "walk" && !ch[anim]) { ch[anim] = newLayer(ch, anim); if (!ch[anim]) return; markDirty(); }
+  cur.anim = anim;
+  cur.idx = anim === "walk" ? 1 : 0;
+  rebuildAll();
+}
+document.querySelectorAll("#animseg button").forEach(b => b.addEventListener("click", () => setAnim(b.dataset.anim)));
+function refreshAnimSeg() {
+  const ch = curChar();
+  document.querySelectorAll("#animseg button").forEach(b => {
+    const k = b.dataset.anim;
+    b.classList.toggle("on", k === cur.anim);
+    b.hidden = k !== "walk" && ch && ((ch.kind === "layer") !== !!ANIMS[k].layerOnly || (ch.kind === "recipe" && !ch[k]) ||
+      (ANIMS[k].layerOnly && !refFrame(ch, k)));   // top of head: only while the base has its reference frame
+    if (k !== "walk") b.textContent = ch && ch[k] ? ANIMS[k].label : "Add " + ANIMS[k].label.toLowerCase();
+  });
+  const base = ch && ch.base && chars.get(ch.base);
+  $("animhint").textContent =
+    ch && ch.kind === "layer" && cur.anim !== "walk" ? ANIMS[cur.anim].hint :
+    ch && ch.kind === "layer" ? `A layer: one drawing per direction, shown over ${base ? base.name : "its base"} (faded). Each pixel only lands on the body part it's drawn over.` :
+    ch && ch.kind === "recipe" ? (ch.problem || `Assembled from ${base ? base.name : "its base"} and ${ch.recipe.layers.length} layers. Read-only: to change it, open one of its layers.`) :
+    cur.anim === "walk" ? "Idle plus a 6-frame walk cycle." : ANIMS[cur.anim].hint;
+}
+
+// ---------- sprite sheet ----------
+const sheet = $("sheet");
+function buildSheet() {
+  const lay = L();
+  sheet.innerHTML = "";
+  cells = {}; loopCanvases = {};
+  const head = document.createElement("tr");
+  head.innerHTML = '<th></th><th class="loop-h">loop</th>' + lay.labels.map(n => `<th>${n}</th>`).join("");
+  sheet.appendChild(head);
+  const mk = (td, w, h) => {
+    const c = document.createElement("canvas");
+    c.width = w; c.height = h;
+    c.style.width = w * SHEET_SCALE + "px"; c.style.height = h * SHEET_SCALE + "px";
+    td.appendChild(c);
+    return c;
+  };
+  lay.dirs.forEach(dir => {
+    const tr = document.createElement("tr");
+    const th = document.createElement("th");
+    th.scope = "row";
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = dir; b.dataset.dir = dir;
+    b.addEventListener("click", () => selectFrame(dir, cur.idx));
+    th.appendChild(b); tr.appendChild(th);
+    const loopTd = document.createElement("td"); loopTd.className = "loop";
+    loopCanvases[dir] = mk(loopTd, lay.w, lay.h);
+    tr.appendChild(loopTd);
+    cells[dir] = [];
+    for (let i = 0; i < lay.count; i++) {
+      const td = document.createElement("td"); td.className = "cell";
+      const c = mk(td, lay.w, lay.h);
+      td.addEventListener("click", () => selectFrame(dir, i));
+      cells[dir][i] = { td, c };
+      tr.appendChild(td);
+    }
+    sheet.appendChild(tr);
+  });
+  redrawSheet();
+  refreshSelection();
+}
+function redrawCell(dir, idx) {
+  const ch = curChar();
+  const cell = cells[dir] && cells[dir][idx];
+  if (!ch || !cell) return;
+  const lay = L();
+  const g = cell.c.getContext("2d");
+  g.clearRect(0, 0, lay.w, lay.h);
+  g.drawImage(frameCanvas(ch, lay, dir, idx), 0, 0);
+}
+function redrawSheet() { const lay = L(); lay.dirs.forEach(d => { for (let i = 0; i < lay.count; i++) redrawCell(d, i); }); }
+function refreshSelection() {
+  const lay = L();
+  lay.dirs.forEach(d => {
+    for (let i = 0; i < lay.count; i++) cells[d][i].td.classList.toggle("sel", d === cur.dir && i === cur.idx);
+  });
+  sheet.querySelectorAll("th button").forEach(b => b.classList.toggle("cur", b.dataset.dir === cur.dir));
+}
+function selectFrame(dir, idx) {
+  cur.dir = dir; cur.idx = Math.min(idx, L().count - 1);
+  refreshSelection(); updateMirrorSelect(); drawEditor();
+}
+$("prevf").addEventListener("click", () => { const n = L().count; selectFrame(cur.dir, (cur.idx + n - 1) % n); });
+$("nextf").addEventListener("click", () => { const n = L().count; selectFrame(cur.dir, (cur.idx + 1) % n); });
+
+// ---------- characters ----------
+function refreshSelect() {
+  const sel = $("charsel");
+  sel.innerHTML = "";
+  // characters first, then recipes (ungrouped, then each group), then layers
+  const groups = [...new Set([...chars.values()].filter(c => c.kind === "recipe" && c.recipe.group).map(c => c.recipe.group))].sort();
+  [["character", "Creatures"], ["recipe", "Recipes", ""], ...groups.map(g => ["recipe", "Recipes · " + g, g]), ["layer", "Layers"]].forEach(([kind, label, group]) => {
+    const list = [...chars.values()].filter(c => c.kind === kind && (kind !== "recipe" || c.recipe.group === group)).sort((a, b) => a.name.localeCompare(b.name));
+    if (!list.length) return;
+    const grp = document.createElement("optgroup");
+    grp.label = label;
+    list.forEach(c => {
+      const o = document.createElement("option");
+      o.value = c.id; o.textContent = c.name;
+      grp.appendChild(o);
+    });
+    sel.appendChild(grp);
+  });
+  if (cur.id) sel.value = cur.id;
+  const any = chars.size > 0;
+  $("empty").hidden = any;
+  $("layout").hidden = !any;
+  $("charsel").disabled = !any;
+  $("charname").disabled = !any || locked();
+}
+function rebuildAll() {
+  const ch = curChar();
+  if (!ch) return;
+  if (ch.kind === "recipe") composeRecipe(ch);
+  if (cur.anim !== "walk" && !ch[cur.anim]) cur.anim = "walk";
+  const lay = L();
+  cur.dir = drawnDir(lay, cur.dir);                      // a diagonal on an animation drawn without one
+  if (cur.idx >= lay.count) cur.idx = 0;
+  $("charname").value = ch.name;
+  $("charname").disabled = ch.kind === "recipe";
+  const ss = $("stacksel");
+  ss.hidden = ch.kind !== "layer";
+  if (ch.kind === "layer") {
+    if (!ss.options.length) STACK.forEach(([k, label]) => { const o = document.createElement("option"); o.value = k; o.textContent = "Stack: " + label; ss.appendChild(o); });
+    ss.value = STACK[stackIndex(ch)][0];
+  }
+  $("sw").value = lay.w; $("sh").value = lay.h;
+  $("ground").value = groundRow(ch); $("ground").max = ch.h - 1; $("ground").disabled = ch.kind === "recipe";
+  $("person").value = personMode;
+  refreshAnimSeg();
+  layoutEditor(); layoutPreview();
+  buildSheet(); renderPalette(); updateMirrorSelect(); drawEditor(); updateButtons();
+  p.y = Math.max(p.y, groundRow(ch) + 2);
+  if (!ch.fly) p.flying = false;
+}
+function switchChar(id) {
+  if (id === cur.id) return;
+  saveNow();
+  cur.id = id; cur.dir = "S"; cur.idx = cur.anim === "walk" ? 1 : 0;
+  p.act = null;
+  undoStack = []; redoStack = []; remotePending = null; $("banner").hidden = true;
+  try { localStorage.setItem("creatureEditor.last", id); } catch (e) {}
+  refreshSelect(); rebuildAll();
+}
+$("charsel").addEventListener("change", e => switchChar(e.target.value));
+$("charname").addEventListener("input", e => {
+  const ch = curChar();
+  ch.name = e.target.value || "Untitled";
+  markDirty();
+});
+$("charname").addEventListener("change", refreshSelect);
+$("ground").addEventListener("change", e => {
+  const ch = curChar();
+  if (!ch || ch.kind === "recipe") return;
+  ch.extra.ground = Math.max(0, Math.min(ch.h - 1, e.target.value | 0));
+  markDirty(); drawEditor();
+});
+$("person").addEventListener("change", e => {
+  personMode = e.target.value;
+  try { localStorage.setItem("creatureEditor.person", personMode); } catch (err) {}
+  drawEditor(); e.target.blur();
+});
+$("stacksel").addEventListener("change", e => {
+  const ch = curChar();
+  if (!ch || ch.kind !== "layer") return;
+  ch.extra.stack = e.target.value;                         // saved with the layer; recipes restack when they're opened
+  markDirty();
+});
+// a frame scaled to nearest pixels (a rough start: outlines thicken going up, thin pixels can drop going down)
+const scaleRows = (rows, sf, w, h) => Array.from({ length: h }, (_, y) => Array.from({ length: w }, (_, x) => (rows[Math.floor(y / sf)] || "")[Math.floor(x / sf)] || ".").join(""));
+function fromBase(id, name, baseId, size) {
+  const base = chars.get(baseId), S = SIZES[size] || SIZES.medium;
+  if (!base) {
+    const ch = blankChar(id, name);
+    resizeTo(ch, S.w, S.h);
+    ch.extra.ground = S.h - 4; ch.extra.size = size;
+    return ch;
+  }
+  const doc = serialize(base), sf = S.scale, w = Math.round(base.w * sf), h = Math.round(base.h * sf);
+  const scaled = a => Object.fromEntries(Object.entries(a).map(([d, fr]) => [d, fr.map(r => scaleRows(r.split("/"), sf, w, h).join("/"))]));
+  const out = { ...doc, name, w, h, frames: scaled(doc.frames), ground: Math.round((groundRow(base) + 1) * sf) - 1, size, from: baseId };
+  delete out.by; delete out.savedAt;
+  ANIM_KEYS.forEach(k => { if (doc[k]) out[k] = { w: Math.round(doc[k].w * sf), h: Math.round(doc[k].h * sf), ox: Math.round(doc[k].ox * sf), oy: Math.round(doc[k].oy * sf),
+    frames: Object.fromEntries(Object.entries(doc[k].frames).map(([d, fr]) => [d, fr.map(r => scaleRows(r.split("/"), sf, Math.round(doc[k].w * sf), Math.round(doc[k].h * sf)).join("/"))])) }; });
+  return parseDoc(id, out);
+}
+// a blank's frames on a bigger canvas, on the bottom edge
+function resizeTo(ch, nw, nh) {
+  const ox = Math.floor((nw - ch.w) / 2), oy = nh - ch.h;
+  DIRS.forEach(d => { ch.grids[d] = ch.grids[d].map(rows => Array.from({ length: nh }, (_, y) => Array.from({ length: nw }, (_, x) => (rows[y - oy] || "")[x - ox] || ".").join(""))); });
+  ch.w = nw; ch.h = nh; ch.cache = {};
+}
+async function addBlank(name) {
+  const base = (name || "creature").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "creature";
+  const id = base + "-" + Math.random().toString(36).slice(2, 5);
+  const ch = fromBase(id, name || "New creature", $("bodysel").value, $("sizesel").value);
+  chars.set(id, ch);
+  if (cur.id) await saveNow();
+  cur.id = id; cur.anim = "walk"; cur.dir = "S"; cur.idx = 1;
+  undoStack = []; redoStack = [];
+  refreshSelect(); rebuildAll();
+  dirty = true; await saveNow();
+}
+$("newbtn").addEventListener("click", () => { addBlank($("newname").value.trim()); $("newname").value = ""; });
+$("emptybtn").addEventListener("click", () => addBlank("New creature"));
+$("bnload").addEventListener("click", () => {
+  if (remotePending) { chars.set(cur.id, parseDoc(cur.id, remotePending)); remotePending = null; dirty = false; undoStack = []; redoStack = []; rebuildAll(); setStatus("Loaded newer version"); }
+  $("banner").hidden = true;
+});
+$("bnkeep").addEventListener("click", () => { remotePending = null; $("banner").hidden = true; });
+
+// ---------- preview, field and animation loop ----------
+const pv = $("pv"), pvg = pv.getContext("2d");
+const PV_GAP = 16;   // the person stands this far to the left in the preview
+function layoutPreview() {
+  const lay = L();
+  pv.width = lay.w + PV_GAP; pv.height = lay.h;
+  const s = Math.max(1, Math.min(Math.floor(240 / lay.w), Math.floor(280 / lay.h)));
+  pv.style.width = lay.w * s + "px"; pv.style.height = lay.h * s + "px";
+}
+$("play").addEventListener("click", () => {
+  cur.playing = !cur.playing;
+  $("play").textContent = cur.playing ? "Pause" : "Play";
+});
+
+const LW = 192, LH = 120;
+const stage = $("stage"), sg = stage.getContext("2d");
+stage.width = LW; stage.height = LH;
+const ground = (() => {
+  const c = document.createElement("canvas");
+  c.width = LW; c.height = LH;
+  const g = c.getContext("2d");
+  for (let ty = 0; ty < LH; ty += 12) for (let tx = 0; tx < LW; tx += 12) {
+    g.fillStyle = ((tx + ty) / 12) % 2 ? "#6a9c53" : "#64954e";
+    g.fillRect(tx, ty, 12, 12);
+  }
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 70; i++) {
+    const x = Math.floor(rnd() * LW), y = Math.floor(rnd() * LH);
+    g.fillStyle = "#4f7f3d";
+    g.fillRect(x, y, 1, 2); g.fillRect(x + 2, y, 1, 2); g.fillRect(x + 1, y + 1, 1, 1);
+  }
+  for (let i = 0; i < 14; i++) {
+    const x = Math.floor(rnd() * LW), y = Math.floor(rnd() * LH);
+    g.fillStyle = i % 3 ? "#f3e38a" : "#ffffff";
+    g.fillRect(x + 1, y, 1, 1); g.fillRect(x, y + 1, 3, 1); g.fillRect(x + 1, y + 2, 1, 1);
+    g.fillStyle = "#e0884a"; g.fillRect(x + 1, y + 1, 1, 1);
+  }
+  return c;
+})();
+// p.act is the animation playing instead of the walk: { key, t, vx, vy } (vx/vy: knockback still to slide)
+const p = { x: LW / 2 + 20, y: LH / 2 + 16, dir: "S", t: 0, act: null, flying: false, lift: 0 };
+const FLY_LIFT = 14;   // px off the ground in flight
+const keys = new Set();
+const pad = { dx: 0, dy: 0 };
+const KEYMAP = { ArrowUp: "u", KeyW: "u", ArrowDown: "d", KeyS: "d", ArrowLeft: "l", KeyA: "l", ArrowRight: "r", KeyD: "r" };
+const DIR_VEC = { E: [1, 0], SE: [1, 1], S: [0, 1], SW: [-1, 1], W: [-1, 0], NW: [-1, -1], N: [0, -1], NE: [1, -1] };
+function play(key) {
+  const ch = curChar();
+  if (!ch || !ch[key]) return;
+  if (p.act && p.act.key === "death") return;                    // he's down until Get up
+  if (p.act && key === "attack") return;
+  const A = ANIMS[key], [fx, fy] = DIR_VEC[p.dir], len = Math.hypot(fx, fy);
+  const kb = A.knock || 0;                                       // hit from the front, so pushed away from where he faces
+  p.act = { key, t: 0, vx: -fx / len * kb, vy: -fy / len * kb };
+}
+function getUp() { if (p.act && p.act.key === "death") p.act = null; }
+function takeOff() { const ch = curChar(); if (ch && ch.fly && !p.act) p.flying = !p.flying; }
+stage.addEventListener("keydown", e => {
+  if (e.key === "Shift") keys.add("run");
+  if (e.code === "Space" || e.code === "KeyJ") { play("attack"); e.preventDefault(); return; }
+  if (e.code === "KeyH") { play("hurt"); e.preventDefault(); return; }
+  if (e.code === "KeyK") { play("death"); e.preventDefault(); return; }
+  if (e.code === "KeyR") { getUp(); e.preventDefault(); return; }
+  if (e.code === "KeyT") { takeOff(); e.preventDefault(); return; }
+  const k = KEYMAP[e.code];
+  if (k) { keys.add(k); e.preventDefault(); }
+});
+window.addEventListener("keyup", e => {
+  if (e.key === "Shift") keys.delete("run");
+  const k = KEYMAP[e.code];
+  if (k) keys.delete(k);
+});
+window.addEventListener("blur", () => keys.clear());
+stage.addEventListener("blur", () => keys.clear());
+stage.addEventListener("pointerdown", () => stage.focus());
+$("swing").addEventListener("click", () => { play("attack"); stage.focus(); });
+$("hit").addEventListener("click", () => { play("hurt"); stage.focus(); });
+$("die").addEventListener("click", () => { play("death"); stage.focus(); });
+$("getup").addEventListener("click", () => { getUp(); stage.focus(); });
+$("fly").addEventListener("click", () => { takeOff(); stage.focus(); });
+// a frame drawn as a plain white silhouette, for the flash on the hit
+function flashCanvas(ch, lay, dir, idx) {
+  dir = drawnDir(lay, dir);
+  const k = "flash" + lay.key + dir + idx;
+  let c = ch.cache[k];
+  if (!c) {
+    c = document.createElement("canvas");
+    c.width = lay.w; c.height = lay.h;
+    const g = c.getContext("2d");
+    g.drawImage(frameCanvas(ch, lay, dir, idx), 0, 0);
+    g.globalCompositeOperation = "source-in";
+    g.fillStyle = "#ffffff"; g.fillRect(0, 0, lay.w, lay.h);
+    ch.cache[k] = c;
+  }
+  return c;
+}
+const padButtons = document.querySelectorAll("#dpad button[data-dx]");
+padButtons.forEach(b => {
+  const on = e => { e.preventDefault(); pad.dx = +b.dataset.dx; pad.dy = +b.dataset.dy; padButtons.forEach(o => o.classList.toggle("on", o === b)); b.setPointerCapture && b.setPointerCapture(e.pointerId); };
+  const off = () => { if (b.classList.contains("on")) { pad.dx = 0; pad.dy = 0; b.classList.remove("on"); } };
+  b.addEventListener("pointerdown", on);
+  b.addEventListener("pointerup", off);
+  b.addEventListener("pointercancel", off);
+  b.addEventListener("lostpointercapture", off);
+  b.addEventListener("contextmenu", e => e.preventDefault());
+});
+// Vintage looks for the field (only what's shown changes, never the sprites). Two kinds:
+//   shades   a handful of tones of one colour (Game Boy greens, Virtual Boy reds): each pixel by brightness,
+//            outlines darkest, skin and whites lightest; the ground is one tone (`groundTone`, the lightest unless
+//            set) with darker tufts
+//   palette  a fixed set of colours (NES, Atari 2600, C64, ...): each pixel becomes the nearest one in the set. The
+//            ground is `ground` [grass, tufts, flowers, flower middles, shadow] from the set, or the nearest colours
+function atari2600() {
+  // NTSC: 16 hues x 8 lumas from YIQ. Hue 0 is grey; 1-15 step about 25.7 degrees round the wheel from gold. Close to,
+  // not exactly, the hardware's colours.
+  const out = [], hx = v => Math.max(0, Math.min(255, Math.round(v * 255))).toString(16).padStart(2, "0");
+  for (let h = 0; h < 16; h++) for (let l = 0; l < 8; l++) {
+    const Y = 0.1 + l * 0.12, a = (-30 + (h - 1) * 25.7) * Math.PI / 180, I = h ? 0.26 * Math.cos(a) : 0, Q = h ? 0.26 * Math.sin(a) : 0;
+    out.push("#" + hx(Y + 0.956 * I + 0.621 * Q) + hx(Y - 0.272 * I - 0.647 * Q) + hx(Y - 1.106 * I + 1.703 * Q));
+  }
+  return out;
+}
+// Master System colours are 2 bits per channel (64 in all); the vaporwave look keeps the pinks, purples and teals
+// (plus black, white and a sunset yellow) and paints the field as a sunset over a neon grid
+const VAPOR = ["#000000", "#000055", "#550055", "#5500aa", "#aa00aa", "#aa00ff", "#ff00ff", "#ff55ff", "#ff55aa", "#ffaaff",
+  "#5555ff", "#aaaaff", "#00aaaa", "#00ffff", "#55ffff", "#aaffff", "#ffaa55", "#ffff55", "#ffffff"];
+function vaporScene(g, W, H) {
+  const sky = Math.round(H * 0.3);
+  ["#ff55aa", "#ff55ff", "#aa55ff", "#5555ff"].forEach((c, i, all) => { g.fillStyle = c; g.fillRect(0, Math.round(i * sky / all.length), W, Math.ceil(sky / all.length)); });
+  // the sun: a half disc on the horizon with bands cut out of its lower half
+  const cx = W / 2, r = Math.round(sky * 0.8);
+  for (let y = sky - r; y < sky; y++) {
+    const half = Math.floor(Math.sqrt(r * r - (sky - y) * (sky - y)));
+    if (y > sky - r / 2 && (sky - y) % 3 === 0) continue;
+    g.fillStyle = y < sky - r / 2 ? "#ffff55" : "#ffaa55";
+    g.fillRect(Math.round(cx - half), y, half * 2, 1);
+  }
+  // the floor: a neon grid running into the distance
+  g.fillStyle = "#000055"; g.fillRect(0, sky, W, H - sky);
+  g.fillStyle = "#00ffff"; g.fillRect(0, sky, W, 1);
+  g.fillStyle = "#ff00ff";
+  for (let k = 1, y = sky + 2; y < H; k++, y += k) g.fillRect(0, y, W, 1);
+  for (let i = -12; i <= 12; i++) for (let y = sky + 1; y < H; y++) {
+    const x = Math.round(cx + i * 8 * (y - sky) / 12);
+    if (x >= 0 && x < W) g.fillRect(x, y, 1, 1);
+  }
+}
+const RETRO = {
+  gb: { name: "Game Boy", shades: ["#0f380f", "#306230", "#8bac0f", "#9bbc0f"] },
+  pocket: { name: "Game Boy Pocket", shades: ["#1f1f1f", "#4d533c", "#8b956d", "#c4cfa1"] },
+  vb: { name: "Virtual Boy", shades: ["#000000", "#550000", "#aa0000", "#ff0000"], groundTone: 1 },   // dark, like the console
+  atari: { name: "Atari 2600", palette: atari2600() },
+  nes: { name: "NES", palette: ["#7c7c7c", "#0000fc", "#0000bc", "#4428bc", "#940084", "#a80020", "#a81000", "#881400", "#503000",
+    "#007800", "#006800", "#005800", "#004058", "#000000", "#bcbcbc", "#0078f8", "#0058f8", "#6844fc", "#d800cc", "#e40058",
+    "#f83800", "#e45c10", "#ac7c00", "#00b800", "#00a800", "#00a844", "#008888", "#f8f8f8", "#3cbcfc", "#6888fc", "#9878f8",
+    "#f878f8", "#f85898", "#f87858", "#fca044", "#f8b800", "#b8f818", "#58d854", "#58f898", "#00e8d8", "#787878", "#fcfcfc",
+    "#a4e4fc", "#b8b8f8", "#d8b8f8", "#f8b8f8", "#f8a4c0", "#f0d0b0", "#fce0a8", "#f8d878", "#d8f878", "#b8f8b8", "#b8f8d8",
+    "#00fcfc", "#f8d8f8"], ground: ["#00a800", "#007800", "#f8f8f8", "#f8b800", "#005800"],
+    tileColours: 3 },   // a sprite tile (8x8) holds 3 colours plus see-through
+  sms: { name: "Master System (vaporwave)", palette: VAPOR, scene: vaporScene },
+  teletext: { name: "Teletext", palette: ["#000000", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#ff00ff", "#00ffff", "#ffffff"],
+    ground: ["#0000ff", "#00ffff", "#ffff00", "#ff0000", "#000000"], mosaic: true },
+  c64: { name: "Commodore 64", palette: ["#000000", "#ffffff", "#880000", "#aaffee", "#cc44cc", "#00cc55", "#0000aa", "#eeee77",
+    "#dd8855", "#664400", "#ff7777", "#333333", "#777777", "#aaff66", "#0088ff", "#bbbbbb"], ground: ["#00cc55", "#aaff66", "#eeee77", "#dd8855", "#333333"] },
+  zx: { name: "ZX Spectrum", palette: ["#000000", "#0000d7", "#d70000", "#d700d7", "#00d700", "#00d7d7", "#d7d700", "#d7d7d7",
+    "#0000ff", "#ff0000", "#ff00ff", "#00ff00", "#00ffff", "#ffff00", "#ffffff"] },
+  cga: { name: "CGA", palette: ["#000000", "#55ffff", "#ff55ff", "#ffffff"] },
+  pico8: { name: "PICO-8", palette: ["#000000", "#1d2b53", "#7e2553", "#008751", "#ab5236", "#5f574f", "#c2c3c7", "#fff1e8",
+    "#ff004d", "#ffa300", "#ffec27", "#00e436", "#29adff", "#83769c", "#ff77a8", "#ffccaa"], ground: ["#008751", "#00e436", "#ffec27", "#ff77a8", "#1d2b53"] },
+};
+const rgbOf = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+for (const m of Object.values(RETRO)) {
+  m.rgb = (m.shades || m.palette).map(rgbOf);
+  // the darkest colour: outlines and dark clothes may use it, skin never does
+  const lum = c => 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2];
+  m.dark = m.shades ? 0 : m.rgb.reduce((best, c, i) => (lum(c) < lum(m.rgb[best]) ? i : best), 0);
+}
+let retro = "";
+try { retro = localStorage.getItem("creatureEditor.retro") || (localStorage.getItem("spriteEditor.gameBoy") === "1" ? "gb" : ""); } catch (e) {}
+if (!RETRO[retro]) retro = "";
+const retroSel = $("retro");
+[["", "Colour"], ...Object.entries(RETRO).map(([k, m]) => [k, m.name])].forEach(([k, n]) => {
+  const o = document.createElement("option"); o.value = k; o.textContent = n; retroSel.appendChild(o);
+});
+retroSel.value = retro;
+retroSel.addEventListener("change", e => {
+  retro = e.target.value;
+  try { localStorage.setItem("creatureEditor.retro", retro); } catch (err) {}
+});
+// one pixel in the mode's colours: shades by brightness, a palette by the nearest colour (weighted for how eyes see
+// it). Skin is never given the darkest colour, so a dark-skinned face doesn't vanish into its outline.
+function retroPixel(m, r, g, b, skin) {
+  if (m.shades) {
+    const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return m.rgb[Math.max(skin ? 1 : 0, lum < 0.2 ? 0 : lum < 0.45 ? 1 : lum < 0.7 ? 2 : 3)];
+  }
+  let best = null, bd = Infinity;
+  for (const c of m.rgb) {
+    if (skin && c === m.rgb[m.dark]) continue;
+    const rm = (r + c[0]) / 2, dr = r - c[0], dg = g - c[1], db = b - c[2];
+    const d = (2 + rm / 256) * dr * dr + 4 * dg * dg + (2 + (255 - rm) / 256) * db * db;
+    if (d < bd) { bd = d; best = c; }
+  }
+  return best;
+}
+// the skin colours of a character (head, neck, hands): a recipe's own colours, or a base's labelled parts
+function skinOf(ch) {
+  const out = new Set(), base = ch.kind === "recipe" ? chars.get(ch.base) : ch;
+  for (const k of ["a", "n", "h", "H"]) {
+    const hex = ch.kind === "recipe" ? ch.recipe.colors[k] || (base && base.palette[k]) : (ch.paletteNames || {})[k] && ch.palette[k];
+    if (hex && /^#[0-9a-f]{6}$/i.test(hex)) out.add(rgbOf(hex).join());
+  }
+  return out;
+}
+function retroCanvas(src, m, skin) {
+  const out = document.createElement("canvas");
+  out.width = src.width; out.height = src.height;
+  const g = out.getContext("2d");
+  g.drawImage(src, 0, 0);
+  const img = g.getImageData(0, 0, src.width, src.height), d = img.data;
+  for (let i = 0; i < d.length; i += 4) {
+    if (!d[i + 3]) continue;
+    const s = retroPixel(m, d[i], d[i + 1], d[i + 2], skin && skin.has(d[i] + "," + d[i + 1] + "," + d[i + 2]));
+    d[i] = s[0]; d[i + 1] = s[1]; d[i + 2] = s[2];
+  }
+  if (m.tileColours) limitTiles(d, src.width, src.height, m.tileColours, m.rgb[m.dark]);
+  g.putImageData(img, 0, 0);
+  return out;
+}
+// NES sprites: each 8x8 tile keeps its most used colours and the rest of its pixels take the nearest of those
+function limitTiles(d, W, H, n, dark) {
+  for (let ty = 0; ty < H; ty += 8) for (let tx = 0; tx < W; tx += 8) {
+    const count = new Map(), px = [];
+    for (let y = ty; y < Math.min(H, ty + 8); y++) for (let x = tx; x < Math.min(W, tx + 8); x++) {
+      const i = (y * W + x) * 4;
+      if (!d[i + 3]) continue;
+      const k = (d[i] << 16) | (d[i + 1] << 8) | d[i + 2];
+      count.set(k, (count.get(k) || 0) + 1);
+      px.push(i);
+    }
+    if (count.size <= n) continue;
+    const keep = [...count].sort((a, b) => b[1] - a[1]).slice(0, n).map(([k]) => [k >> 16, (k >> 8) & 255, k & 255]);
+    const isDark = i => d[i] === dark[0] && d[i + 1] === dark[1] && d[i + 2] === dark[2];
+    for (const i of px) {
+      // a pixel that wasn't the darkest colour doesn't become it (that's how a face turns into a blob)
+      const choices = isDark(i) ? keep : keep.filter(c => c[0] !== dark[0] || c[1] !== dark[1] || c[2] !== dark[2]);
+      let best = choices[0], bd = Infinity;
+      for (const c of choices) { const dd = (d[i] - c[0]) ** 2 + (d[i + 1] - c[1]) ** 2 + (d[i + 2] - c[2]) ** 2; if (dd < bd) { bd = dd; best = c; } }
+      d[i] = best[0]; d[i + 1] = best[1]; d[i + 2] = best[2];
+    }
+  }
+}
+// Teletext block graphics: the screen is character cells of 2 x 3 blocks (one pixel each here, so a 13 px character
+// stays readable), and a cell can only show two colours, its background and one foreground. Each block takes its
+// average colour, then the nearer of the cell's two most common.
+const SIXEL = 1;
+function teletextMosaic(g, W, H, m) {
+  const img = g.getImageData(0, 0, W, H), d = img.data;
+  for (let cy = 0; cy < H; cy += 3 * SIXEL) for (let cx = 0; cx < W; cx += 2 * SIXEL) {
+    const blocks = [], count = new Map();
+    for (let by = 0; by < 3; by++) for (let bx = 0; bx < 2; bx++) {
+      let r = 0, gg = 0, b = 0, n = 0;
+      for (let y = cy + by * SIXEL; y < Math.min(H, cy + (by + 1) * SIXEL); y++) for (let x = cx + bx * SIXEL; x < Math.min(W, cx + (bx + 1) * SIXEL); x++) {
+        const i = (y * W + x) * 4; r += d[i]; gg += d[i + 1]; b += d[i + 2]; n++;
+      }
+      if (!n) continue;
+      const c = retroPixel(m, r / n, gg / n, b / n), k = c.join();
+      count.set(k, (count.get(k) || 0) + 1);
+      blocks.push([bx, by, c]);
+    }
+    const two = [...count].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([k]) => k.split(",").map(Number));
+    const dk = m.rgb[m.dark], isDk = c => c[0] === dk[0] && c[1] === dk[1] && c[2] === dk[2];
+    for (const [bx, by, c] of blocks) {
+      // a block that isn't the darkest colour doesn't become it while the cell has another colour to give
+      const pick = two.length === 2 && !isDk(c) && isDk(two[0]) ? two[1] : two.length === 2 && !isDk(c) && isDk(two[1]) ? two[0] : two.length < 2 || (c[0] - two[0][0]) ** 2 + (c[1] - two[0][1]) ** 2 + (c[2] - two[0][2]) ** 2 <= (c[0] - two[1][0]) ** 2 + (c[1] - two[1][1]) ** 2 + (c[2] - two[1][2]) ** 2 ? two[0] : two[1];
+      for (let y = cy + by * SIXEL; y < Math.min(H, cy + (by + 1) * SIXEL); y++) for (let x = cx + bx * SIXEL; x < Math.min(W, cx + (bx + 1) * SIXEL); x++) {
+        const i = (y * W + x) * 4; d[i] = pick[0]; d[i + 1] = pick[1]; d[i + 2] = pick[2];
+      }
+    }
+  }
+  g.putImageData(img, 0, 0);
+}
+// the ground's colours in a mode: grass, tufts, flowers, flower middles, shadow
+function retroGroundColours(m) {
+  if (m.shades) { const t = m.groundTone ?? 3, S = m.shades; return [S[t], S[Math.max(0, t - 1)], S[Math.min(3, t + 1)], S[t], S[Math.max(0, t - 1)]]; }
+  if (m.ground) return m.ground;
+  if (m.scene) return ["#000055", "#ff00ff", "#00ffff", "#ffff55", "#550055"];
+  return [[0x6a, 0x9c, 0x53], [0x4f, 0x7f, 0x3d], [0xf3, 0xe3, 0x8a], [0xe0, 0x88, 0x4a], [0x46, 0x6a, 0x38]].map(c => "rgb(" + retroPixel(m, ...c).join(",") + ")");
+}
+const retroGrounds = {};
+function retroGround() {
+  if (!retro) return ground;
+  if (retroGrounds[retro]) return retroGrounds[retro];
+  const [grass, tuft, flower, middle] = retroGroundColours(RETRO[retro]);
+  const c = document.createElement("canvas");
+  c.width = LW; c.height = LH;
+  const g = c.getContext("2d");
+  if (RETRO[retro].scene) { RETRO[retro].scene(g, LW, LH); return (retroGrounds[retro] = c); }
+  g.fillStyle = grass; g.fillRect(0, 0, LW, LH);
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  g.fillStyle = tuft;
+  for (let i = 0; i < 70; i++) {
+    const x = Math.floor(rnd() * LW), y = Math.floor(rnd() * LH);
+    g.fillRect(x, y, 1, 2); g.fillRect(x + 2, y, 1, 2); g.fillRect(x + 1, y + 1, 1, 1);
+  }
+  for (let i = 0; i < 14; i++) {
+    const x = Math.floor(rnd() * LW), y = Math.floor(rnd() * LH);
+    g.fillStyle = flower;
+    g.fillRect(x + 1, y, 1, 1); g.fillRect(x, y + 1, 3, 1); g.fillRect(x + 1, y + 2, 1, 1);
+    g.fillStyle = middle; g.fillRect(x + 1, y + 1, 1, 1);
+  }
+  return (retroGrounds[retro] = c);
+}
+// the shadow under him
+const retroShadow = () => (retro ? retroGroundColours(RETRO[retro])[4] : "rgba(20, 40, 15, 0.35)");
+const retroSprites = new WeakMap();                        // frame canvas -> {mode: its copy} (frames redraw as new canvases)
+function retroImage(c, ch) {
+  if (!retro) return c;
+  let byMode = retroSprites.get(c);
+  if (!byMode) retroSprites.set(c, (byMode = {}));
+  return byMode[retro] || (byMode[retro] = retroCanvas(c, RETRO[retro], skinOf(ch)));
+}
+function dirFrom(dx, dy) {
+  const a = Math.atan2(dy, dx);
+  const i = ((Math.round(a / (Math.PI / 4)) % 8) + 8) % 8;
+  return ["E", "SE", "S", "SW", "W", "NW", "N", "NE"][i];
+}
+
+let last = performance.now(), pvT = 0, loopT = 0;
+function tick(now) {
+  const dt = Math.min(0.05, (now - last) / 1000);
+  last = now;
+  const ch = curChar();
+  if (ch) {
+    const lay = L();
+    const fps = +$("fps").value;
+    let f = cur.idx;
+    if (cur.playing) { pvT += dt * fps; f = lay.loop[Math.floor(pvT) % lay.loop.length]; }
+    pvg.clearRect(0, 0, lay.w + PV_GAP, lay.h);
+    const pgy = groundRow(ch) + (lay.key === "walk" ? 0 : lay.oy);
+    pvg.fillStyle = "rgba(96, 196, 104, 0.35)"; pvg.fillRect(0, pgy, lay.w + PV_GAP, 1);
+    if (personMode !== "off") drawPerson(pvg, 1, cur.dir, 1, pgy);
+    pvg.drawImage(frameCanvas(ch, lay, cur.dir, f), PV_GAP, 0);
+    $("pvlabel").textContent = DIR_NAME[cur.dir] + " · " + (lay.labels[f] === "idle" || lay.labels[f] === "drawing" ? lay.labels[f] : "frame " + lay.labels[f]);
+
+    loopT += dt * 8;
+    const lf = lay.loop[Math.floor(loopT) % lay.loop.length];
+    lay.dirs.forEach(d => {
+      const g = loopCanvases[d].getContext("2d");
+      g.clearRect(0, 0, lay.w, lay.h);
+      g.drawImage(frameCanvas(ch, lay, d, lf), 0, 0);
+    });
+
+    let dx = (keys.has("r") ? 1 : 0) - (keys.has("l") ? 1 : 0) + pad.dx;
+    let dy = (keys.has("d") ? 1 : 0) - (keys.has("u") ? 1 : 0) + pad.dy;
+    dx = Math.max(-1, Math.min(1, dx)); dy = Math.max(-1, Math.min(1, dy));
+    if (p.act && !ch[p.act.key]) p.act = null;
+    const act = p.act;
+    if (act) {                                                   // knockback slides out over a few frames
+      p.x = Math.max(ch.w / 2 + 1, Math.min(LW - ch.w / 2 - 1, p.x + act.vx * dt));
+      p.y = Math.max(groundRow(ch) + 2, Math.min(LH - 3, p.y + act.vy * dt));
+      const damp = Math.exp(-7 * dt);
+      act.vx *= damp; act.vy *= damp;
+    }
+    const moving = !act && !!(dx || dy);
+    if (moving) {
+      const run = keys.has("run");
+      const speed = run ? 58 : 32;
+      const len = Math.hypot(dx, dy);
+      p.x = Math.max(ch.w / 2 + 1, Math.min(LW - ch.w / 2 - 1, p.x + dx / len * speed * dt));
+      p.y = Math.max(groundRow(ch) + 2, Math.min(LH - 3, p.y + dy / len * speed * dt));
+      p.dir = dirFrom(dx, dy);
+      p.t += dt * (run ? 15 : 9);
+    } else p.t = 0;
+    sg.drawImage(retroGround(), 0, 0);
+    // a person standing by for scale: drawn first when they're behind (north of) the creature, after when in front
+    const PX = Math.round(LW / 2 - 30), PY = Math.round(LH / 2 + 10);
+    const person = () => { const rows = PERSON.frames.S.split("/"); sg.fillStyle = retroShadow(); sg.fillRect(PX + 2, PY, PERSON.w - 4, 1);
+      sg.globalAlpha = 0.85; rows.forEach((row, y) => [...row].forEach((c, x) => { if (c !== ".") { sg.fillStyle = c === "k" ? "#2a3644" : "#9fb3c8"; sg.fillRect(PX + x, PY - PERSON.h + 1 + y, 1, 1); } })); sg.globalAlpha = 1; };
+    if (personMode !== "off" && PY <= p.y) person();
+    p.lift += ((p.flying ? FLY_LIFT : 0) - p.lift) * Math.min(1, dt * 4);
+    const gr = groundRow(ch), sx = Math.round(p.x - ch.w / 2), sy = Math.round(p.y - gr - p.lift);
+    // the shadow on the ground under the feet, smaller the higher it flies
+    const sw = Math.max(4, Math.round(ch.w * 0.6 * (1 - p.lift / (FLY_LIFT * 3))));
+    sg.fillStyle = retroShadow();
+    sg.fillRect(Math.round(p.x - sw / 2), Math.round(p.y), sw, 1);
+    sg.fillRect(Math.round(p.x - sw / 2) + 1, Math.round(p.y) + 1, sw - 2, 1);
+    if (act) {
+      const A = ANIMS[act.key], a = ch[act.key];
+      let af = Math.floor(act.t * A.fps);
+      if (af >= a.count && A.hold) af = a.count - 1;
+      if (af >= a.count) { p.act = null; sg.drawImage(retroImage(frameCanvas(ch, ch.walk, p.dir, 0), ch), sx, sy); }
+      else {
+        const flash = A.flash && af === 0 && act.t * A.fps < 0.6;   // white for the first part of the impact frame
+        sg.drawImage(retroImage((flash ? flashCanvas : frameCanvas)(ch, a, p.dir, af), ch), sx - a.ox, sy - a.oy);
+        act.t += dt;
+      }
+    } else if (p.flying && ch.fly) {
+      p.ft = (p.ft || 0) + dt * ANIMS.fly.fps;
+      sg.drawImage(retroImage(frameCanvas(ch, ch.fly, p.dir, Math.floor(p.ft) % ch.fly.count), ch), sx - ch.fly.ox, sy - ch.fly.oy);
+    } else {
+      sg.drawImage(retroImage(frameCanvas(ch, ch.walk, p.dir, moving && ch.walk.count > 1 ? 1 + (Math.floor(p.t) % 6) : 0), ch), sx, sy);
+    }
+    if (personMode !== "off" && PY > p.y) person();
+    if (retro && RETRO[retro].mosaic) teletextMosaic(sg, LW, LH, RETRO[retro]);
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+// ---------- keyboard shortcuts ----------
+window.addEventListener("keydown", e => {
+  const t = e.target;
+  if (t && (t.tagName === "INPUT" || t.tagName === "SELECT" || t.id === "stage")) return;
+  if (!curChar()) return;
+  const mod = e.ctrlKey || e.metaKey;
+  if (mod && e.key.toLowerCase() === "z") { e.preventDefault(); history(e.shiftKey ? redoStack : undoStack, e.shiftKey ? undoStack : redoStack); return; }
+  if (mod && e.key.toLowerCase() === "y") { e.preventDefault(); history(redoStack, undoStack); return; }
+  if (mod) return;
+  const k = e.key.toLowerCase();
+  if (k === "p") setTool("pencil");
+  else if (k === "e") setTool("eraser");
+  else if (k === "f") setTool("fill");
+  else if (k === "i") setTool("picker");
+  else if (e.key === "[") $("prevf").click();
+  else if (e.key === "]") $("nextf").click();
+});
+window.addEventListener("pagehide", saveNow);
+
+// ---------- storage ----------
+async function boot() {
+  let timer = setTimeout(() => setStatus("Can't reach saved sprites yet", true), 10000);
+  try { db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch (e) { db = null; }
+  if (!db) {
+    clearTimeout(timer);
+    setStatus("Saving isn't available in this view", true);
+    refreshSelect();
+    return;
+  }
+  col = db.collection("creatures");
+  col.onSnapshot(snap => {
+    clearTimeout(timer);
+    let others = false;
+    snap.docChanges().forEach(chg => {
+      const id = chg.doc.id;
+      if (id !== cur.id) others = true;
+      if (chg.type === "removed") { chars.delete(id); return; }
+      const data = chg.doc.data();
+      if (!data) return;
+      if (id === cur.id) {
+        if (chg.doc.metadata.hasPendingWrites || data.by === clientId) return;
+        if (dirty) { remotePending = data; $("banner").hidden = false; return; }
+      }
+      chars.set(id, parseDoc(id, data));
+      if (id === cur.id) { rebuildAll(); setStatus("Updated from elsewhere"); }
+    });
+    // recipes are assembled from other characters and layers, and a layer shows its base: bring them up to date
+    refreshRecipes();
+    const shown = curChar();
+    if (others && shown && shown.kind !== "character") rebuildAll();
+    if (!cur.id && chars.size) {
+      let id = null;
+      try { id = localStorage.getItem("creatureEditor.last"); } catch (e) {}
+      if (!id || !chars.has(id)) id = [...chars.keys()].sort()[0];
+      cur.id = id;
+      refreshSelect(); rebuildAll();
+      setStatus("Saved");
+    } else {
+      refreshSelect();
+      if (!chars.size) setStatus("Ready");
+    }
+  }, err => setStatus("Can't load saved sprites: " + (err && err.code ? err.code : "error"), true));
+}
+boot();
+</script>
+

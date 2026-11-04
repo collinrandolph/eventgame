@@ -20,7 +20,8 @@
     "block": "tsx src/cli/block.ts",
     "block3d": "tsx src/cli/block3d.ts",
     "town": "tsx src/cli/town.ts",
-    "arena:sprites": "tsx src/cli/variants.ts"
+    "arena:sprites": "tsx src/cli/variants.ts",
+    "creature-bases": "tsx src/cli/creature-bases.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
