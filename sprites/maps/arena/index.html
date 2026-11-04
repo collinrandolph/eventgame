@@ -1,0 +1,775 @@
+<meta charset="utf-8">
+<title>Combat Arena</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<style>
+  /* A test bench for melee against human foot soldiers (SYSTEMS.md §1). Same screen as the town walk: the arena fills
+     the window at an integer pixel scale under a HUD strip. Single dark look on purpose (a game screen). */
+  :root {
+    --bg: #000000;
+    --ink: #fcfcfc;
+    --dim: #bcbcbc;
+    --accent: #f8b800;
+    --hurt: #f83800;
+    --edge: #3c3c3c;
+    --pixel: "Press Start 2P", ui-monospace, "Courier New", monospace;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--pixel); overflow: hidden; }
+  .shell { position: relative; height: 100%; display: flex; flex-direction: column; }
+  .hud {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+    padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background: var(--bg); border-bottom: 2px solid var(--edge); font-size: 10px; line-height: 1.6;
+  }
+  .hud h1 { font-size: 12px; font-weight: 400; color: var(--accent); margin: 0; letter-spacing: 0.05em; }
+  .hud label { display: flex; align-items: center; gap: 8px; color: var(--dim); }
+  .hud output { color: var(--ink); min-width: 4ch; }
+  input[type="range"] { accent-color: var(--accent); width: 96px; }
+  select, button {
+    font: inherit; font-size: 10px; color: var(--ink); background: var(--bg); border: 2px solid var(--dim);
+    padding: 4px 8px; border-radius: 0; cursor: pointer;
+  }
+  select:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+  .keys { color: var(--dim); margin-left: auto; }
+  .stage { position: relative; flex: 1; min-height: 0; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; touch-action: none; }
+  .status {
+    position: absolute; top: 8px; left: 16px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 10px;
+    background: rgba(0, 0, 0, 0.7); padding: 6px 8px; pointer-events: none;
+  }
+  .status b { color: var(--accent); font-weight: 400; }
+  .status .hit { color: var(--hurt); }
+  .banner {
+    position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); font-size: 12px; text-align: center;
+    background: rgba(0, 0, 0, 0.8); border: 2px solid var(--accent); padding: 12px 16px; line-height: 2; pointer-events: none;
+    max-width: calc(100% - 32px);
+  }
+  .banner[hidden], .log[hidden], .loading[hidden] { display: none; }
+  .log {
+    position: absolute; right: 16px; bottom: 16px; font-size: 8px; background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--edge); padding: 8px; max-width: calc(100% - 32px); max-height: 45%; overflow: auto;
+  }
+  .log table { border-collapse: collapse; font-size: inherit; color: inherit; }
+  .log th, .log td { padding: 2px 6px; text-align: right; white-space: nowrap; }
+  .log th { color: var(--dim); font-weight: 400; }
+  .log td.hits { color: var(--hurt); }
+  .log .row { display: flex; gap: 8px; justify-content: space-between; align-items: center; margin-bottom: 6px; color: var(--accent); }
+  .log button { font-size: 8px; padding: 2px 6px; }
+  .loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 10px; color: var(--dim); }
+  @media (max-width: 640px) { .keys { display: none; } }
+</style>
+
+<div class="shell">
+  <div class="hud">
+    <h1>COMBAT ARENA</h1>
+    <label for="count">ENEMIES <input type="range" id="count" min="1" max="100" value="8"><output id="countOut" for="count">8</output></label>
+    <label for="speed">SPEED <input type="range" id="speed" min="25" max="200" step="5" value="100"><output id="speedOut" for="speed">100%</output></label>
+    <label for="tokens" title="How many enemies swing at you at once; the rest circle">AT ONCE <select id="tokens"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="99">ALL</option></select></label>
+    <label for="hp">HITS TO DOWN <select id="hp"><option>1</option><option selected>2</option><option>3</option></select></label>
+    <label for="streak" title="Land this many hits in a row without being hit, and basic enemies go down in one. Stop fighting for a moment, or get hit, and it's gone">STREAK <select id="streak"><option value="0">OFF</option><option value="3">3</option><option value="5" selected>5</option><option value="8">8</option></select></label>
+    <label for="wary" title="Wary enemies (soldiers and guards) aren't basic: a streak doesn't one-hit them. They back off while you're on a streak and won't follow you into a corridor or a doorway">WARY <select id="wary"><option value="0">0%</option><option value="25" selected>25%</option><option value="50">50%</option><option value="100">100%</option></select></label>
+    <label for="crowd" title="Bystanders who wander, and run from enemies. An enemy chasing you goes for a bystander who's closer, so running through a crowd buys time">CROWD <select id="crowd"><option value="0">0</option><option value="10" selected>10</option><option value="20">20</option><option value="40">40</option></select></label>
+    <label for="pack" title="Pack enemies (the ones dressed in black, and the grey-skinned ones) spread around you and attack from different sides, with a slower wind-up">PACK <select id="pack"><option value="0">0%</option><option value="25">25%</option><option value="50" selected>50%</option><option value="75">75%</option><option value="100">100%</option></select></label>
+    <label for="start">START <select id="start"><option value="idle">ROAMING</option><option value="hunt">HUNTING</option></select></label>
+    <button id="restart" type="button">RESTART (R)</button>
+    <button id="logBtn" type="button" aria-pressed="true">LOG</button>
+    <div class="keys">WASD MOVE · SHIFT RUN · SPACE / CLICK SWING</div>
+  </div>
+  <div class="stage">
+    <canvas id="view"></canvas>
+    <div class="status" id="status"></div>
+    <div class="banner" id="banner" hidden></div>
+    <div class="log" id="log">
+      <div class="row"><span>WAVES</span><span><button id="copy" type="button">COPY</button> <button id="clear" type="button">CLEAR</button></span></div>
+      <table><thead><tr><th>#</th><th>ENEMIES</th><th>SPEED</th><th>AT ONCE</th><th>HITS TO DOWN</th><th>STREAK</th><th>PACK</th><th>WARY</th><th>START</th><th>HITS TAKEN</th><th>DOWNED</th><th>BEST STREAK</th><th>ONE-HIT KOS</th><th>CROWD LOST</th><th>TIME</th><th>END</th></tr></thead><tbody id="rows"></tbody></table>
+    </div>
+    <div class="loading" id="loading">LOADING THE ARENA…</div>
+  </div>
+</div>
+
+<script>
+(async () => {
+  const PLAYER = "recipe-bartender", PLAYER_NAME = "GINA";
+  const LONE = ["recipe-gang-member", "recipe-inmate", "recipe-smuggler"], PACK = ["recipe-thief", "recipe-infected"];
+  const WARY = ["recipe-soldier", "recipe-security"]; // harder enemies: they read the fight (below)
+  const FOES = [...LONE, ...PACK, ...WARY];
+  const CIVS = ["recipe-civilian", "recipe-tourist", "recipe-office", "recipe-jogger", "recipe-dog-walker", "recipe-student"]; // bystanders
+  const RINGS = [34, 56, 78, 100]; // where the waiting pack stands, inside out
+  const WIND = { lone: 0.35, pack: 0.5 }; // seconds of wind-up you can see coming
+  const load = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+  const index = await (await fetch("sheets/index.json")).json();
+  const sheets = {};
+  await Promise.all([PLAYER, ...FOES, ...CIVS].map(async (id) => {
+    sheets[id] = {};
+    await Promise.all(Object.entries(index[id].animations).map(async ([k, a]) => { sheets[id][k] = { ...a, img: await load("sheets/" + a.file) }; }));
+  }));
+  await Promise.race([document.fonts.load('8px "Press Start 2P"'), new Promise((r) => setTimeout(r, 1500))]);
+  document.getElementById("loading").hidden = true;
+
+  // ---- the arena: boxes on the ground, each with a height. Tall ones (20 px and up) block sight; all block movement ----
+  const W = 704, H = 480, TALL = 20;
+  const boxes = [];
+  const box = (x, y, w, d, h, kind) => boxes.push({ x, y, w, d, h, kind });
+  box(0, 0, W, 10, 24, "wall"); box(0, H - 8, W, 8, 8, "low"); box(0, 10, 8, H - 18, 16, "low"); box(W - 8, 10, 8, H - 18, 16, "low");
+  // pillars: kiting and breaking line of sight
+  for (const [i, j] of [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1], [1, 2]]) box(56 + i * 48, 56 + j * 44, 14, 12, 30, "pillar");
+  // a room with one door (the chokepoint) and a window you can see through but not climb
+  box(432, 52, 216, 6, 24, "wall"); box(432, 58, 6, 110, 24, "wall");
+  box(642, 58, 6, 40, 24, "wall"); box(642, 98, 6, 24, 8, "low"); box(642, 122, 6, 46, 24, "wall");
+  box(432, 162, 88, 6, 24, "wall"); box(546, 162, 102, 6, 24, "wall");
+  box(470, 90, 16, 14, 10, "crate");
+  // a corridor: fighting in a line
+  box(40, 316, 240, 6, 24, "wall"); box(40, 350, 240, 6, 24, "wall");
+  // low cover: blocks movement, not sight
+  box(268, 196, 16, 14, 10, "crate"); box(284, 196, 16, 14, 10, "crate"); box(410, 276, 16, 14, 10, "crate");
+  box(282, 292, 40, 18, 14, "car"); box(396, 196, 18, 36, 14, "car");
+  // a fence with a gap
+  box(430, 336, 110, 4, 14, "fence"); box(568, 336, 90, 4, 14, "fence");
+  const LABELS = [["PILLARS", 70, 192], ["ROOM: DOOR + WINDOW", 448, 188], ["CORRIDOR", 112, 384], ["LOW COVER", 300, 334], ["FENCE", 524, 372]];
+  const SPAWN = { x: 352, y: 244 };
+  const sightBoxes = boxes.filter((b) => b.h >= TALL);
+  const COLORS = {
+    wall: ["#c84c0c", "#881400", "#e45c10"], pillar: ["#bcbcbc", "#7c7c7c", "#d8d8d8"], low: ["#a4a4a4", "#6c6c6c", "#bcbcbc"],
+    crate: ["#c88c3c", "#88581c", "#e4a45c"], car: ["#3c7cfc", "#0058f8", "#6888fc"], fence: ["#9c9c9c", "#5c5c5c", "#bcbcbc"],
+  };
+
+  // the ground, drawn once
+  const ground = document.createElement("canvas");
+  ground.width = W; ground.height = H;
+  {
+    const g = ground.getContext("2d");
+    g.fillStyle = "#3c3c44"; g.fillRect(0, 0, W, H);
+    g.fillStyle = "#44444c";
+    for (let x = 0; x < W; x += 16) g.fillRect(x, 0, 1, H);
+    for (let y = 0; y < H; y += 16) g.fillRect(0, y, W, 1);
+    g.fillStyle = "#5c4430"; g.fillRect(438, 58, 204, 104);
+    g.fillStyle = "#4c4c58"; g.fillRect(40, 322, 240, 28);
+    g.fillStyle = "#7c7c84"; g.font = '8px "Press Start 2P"'; g.textBaseline = "top";
+    for (const [t, x, y] of LABELS) g.fillText(t, x, y);
+  }
+
+  // ---- collision: a 8 x 4 px box at the feet ----
+  const solid = (x0, y0, x1, y1) => x0 < 0 || y0 < 0 || x1 > W || y1 > H || boxes.some((b) => x1 > b.x && x0 < b.x + b.w && y1 > b.y && y0 < b.y + b.d);
+  const blockedAt = (x, y) => solid(x - 4, y - 3, x + 4, y + 1);
+  // move each axis on its own so you slide along walls; blocked on one axis by a corner, ease round it
+  const moveBy = (e, dx, dy) => {
+    if (!blockedAt(e.x + dx, e.y)) e.x += dx; else if (!dy) for (const o of [1, -1]) if (!blockedAt(e.x + dx, e.y + o)) { e.y += o * Math.min(1, Math.abs(dx)); break; }
+    if (!blockedAt(e.x, e.y + dy)) e.y += dy; else if (!dx) for (const o of [1, -1]) if (!blockedAt(e.x + o, e.y + dy)) { e.x += o * Math.min(1, Math.abs(dy)); break; }
+  };
+  // does the segment cross the box? (Liang–Barsky)
+  const crosses = (ax, ay, bx, by, b, pad = 0) => {
+    let t0 = 0, t1 = 1;
+    const dx = bx - ax, dy = by - ay;
+    const p = [-dx, dx, -dy, dy], q = [ax - (b.x - pad), b.x + b.w + pad - ax, ay - (b.y - pad), b.y + b.d + pad - ay];
+    for (let i = 0; i < 4; i++) {
+      if (p[i] === 0) { if (q[i] < 0) return false; continue; }
+      const t = q[i] / p[i];
+      if (p[i] < 0) { if (t > t1) return false; if (t > t0) t0 = t; } else { if (t < t0) return false; if (t < t1) t1 = t; }
+    }
+    return true;
+  };
+  const canSee = (a, b) => !sightBoxes.some((s) => crosses(a.x, a.y - 1, b.x, b.y - 1, s));
+  // is anything solid (tall or low) between two people? Nobody hits, or counts as close, through a wall or a car
+  const between = (a, x, y) => boxes.some((s) => crosses(a.x, a.y - 1, x, y - 1, s));
+  const clearWalk = (a, bx, by) => !boxes.some((s) => crosses(a.x, a.y - 1, bx, by - 1, s, 5));
+
+  // ---- paths: distance fields on an 8 px grid, cached by goal cell ----
+  const C = 8, GW = W / C, GH = H / C;
+  const open = new Uint8Array(GW * GH);
+  for (let cy = 0; cy < GH; cy++) for (let cx = 0; cx < GW; cx++) open[cy * GW + cx] = solid(cx * C - 0.5, cy * C + 1.5, cx * C + 8.5, cy * C + 6.5) ? 0 : 1;
+  const narrow = new Uint8Array(GW * GH);
+  {
+    const run = (c, dx, dy) => {
+      let n = 1;
+      const x = c % GW, y = (c / GW) | 0;
+      for (const sgn of [1, -1]) for (let k = 1; k <= 4; k++) { const nx = x + dx * sgn * k, ny = y + dy * sgn * k; if (nx < 0 || ny < 0 || nx >= GW || ny >= GH || !open[ny * GW + nx]) break; n++; }
+      return n;
+    };
+    for (let c = 0; c < GW * GH; c++) if (open[c] && Math.min(run(c, 1, 0), run(c, 0, 1)) <= 3) narrow[c] = 1;
+  }
+  const cellOf = (x, y) => Math.min(GH - 1, Math.max(0, Math.floor(y / C))) * GW + Math.min(GW - 1, Math.max(0, Math.floor(x / C)));
+  const N8 = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+  const fields = new Map();
+  const fieldTo = (x, y) => {
+    let k = cellOf(x, y);
+    if (!open[k]) { // a goal right against a wall: use the nearest open cell
+      let best = -1, bd = 1e9;
+      for (let cy = -2; cy <= 2; cy++) for (let cx = -2; cx <= 2; cx++) { const j = k + cy * GW + cx; if (open[j] && cx * cx + cy * cy < bd) { bd = cx * cx + cy * cy; best = j; } }
+      if (best >= 0) k = best;
+    }
+    if (fields.has(k)) return fields.get(k);
+    if (fields.size > 96) fields.clear();
+    const d = new Int32Array(GW * GH).fill(-1), q = [k];
+    d[k] = 0;
+    for (let i = 0; i < q.length; i++) {
+      const c = q[i], cx = c % GW, cy = (c / GW) | 0;
+      for (const [ox, oy] of N8) {
+        const nx = cx + ox, ny = cy + oy;
+        if (nx < 0 || ny < 0 || nx >= GW || ny >= GH) continue;
+        const n = ny * GW + nx;
+        if (!open[n] || d[n] >= 0) continue;
+        if (ox && oy && (!open[cy * GW + nx] || !open[ny * GW + cx])) continue; // no cutting corners
+        d[n] = d[c] + 1; q.push(n);
+      }
+    }
+    fields.set(k, d);
+    return d;
+  };
+  // where to head next toward (tx, ty): straight there if nothing's in the way, else downhill on the field
+  // how far someone has to walk to reach the player (the player's field is refreshed every step)
+  let toMe = null;
+  const pathD = (e) => { const v = toMe ? toMe[cellOf(e.x, e.y)] : -1; return v >= 0 ? v * C : 1e4; };
+  const nextStep = (e, tx, ty) => {
+    if (clearWalk(e, tx, ty)) return { x: tx, y: ty };
+    const f = fieldTo(tx, ty), c = cellOf(e.x, e.y), cx = c % GW, cy = (c / GW) | 0;
+    let best = c, bd = f[c] >= 0 ? f[c] : 1e9;
+    for (const [ox, oy] of N8) {
+      const nx = cx + ox, ny = cy + oy;
+      if (nx < 0 || ny < 0 || nx >= GW || ny >= GH) continue;
+      const n = ny * GW + nx;
+      // never a cell on the far side of the wall you're pressed against
+      if (f[n] >= 0 && f[n] < bd && !between(e, nx * C + 4, ny * C + 5)) { bd = f[n]; best = n; }
+    }
+    return { x: (best % GW) * C + 4, y: ((best / GW) | 0) * C + 5 };
+  };
+
+  // ---- settings ----
+  const $ = (id) => document.getElementById(id);
+  const set = { count: 8, speed: 100, tokens: 2, hp: 2, start: "idle", pack: 50, streak: 5, wary: 25, crowd: 10 };
+  const bindRange = (id, key, fmt) => { const el = $(id), out = $(id + "Out"); el.addEventListener("input", () => { set[key] = +el.value; out.textContent = fmt(el.value); }); };
+  bindRange("count", "count", (v) => v);
+  bindRange("speed", "speed", (v) => v + "%");
+  $("count").addEventListener("change", () => restart()); // a new count starts a new wave
+  $("tokens").addEventListener("change", (e) => { set.tokens = +e.target.value; e.target.blur(); });
+  $("crowd").addEventListener("change", (e) => { set.crowd = +e.target.value; e.target.blur(); restart(); });
+  $("wary").addEventListener("change", (e) => { set.wary = +e.target.value; e.target.blur(); restart(); });
+  $("streak").addEventListener("change", (e) => { set.streak = +e.target.value; e.target.blur(); restart(); });
+  $("hp").addEventListener("change", (e) => { set.hp = +e.target.value; e.target.blur(); restart(); });
+  $("pack").addEventListener("change", (e) => { set.pack = +e.target.value; e.target.blur(); restart(); });
+  $("start").addEventListener("change", (e) => { set.start = e.target.value; e.target.blur(); restart(); });
+  $("restart").addEventListener("click", (e) => { e.target.blur(); restart(); });
+
+  // ---- people ----
+  const WALK = 52, RUN = 96; // px per second, as in the town walk
+  const DIRS = { "0,1": "S", "1,1": "SE", "1,0": "E", "1,-1": "NE", "0,-1": "N", "-1,-1": "NW", "-1,0": "W", "-1,1": "SW" };
+  const VEC = Object.fromEntries(Object.entries(DIRS).map(([k, d]) => { const [x, y] = k.split(",").map(Number), n = Math.hypot(x, y); return [d, { x: x / n, y: y / n }]; }));
+  const dirOf = (dx, dy) => { const o = Math.round(Math.atan2(dy, dx) / (Math.PI / 4)); return DIRS[`${Math.round(Math.cos(o * Math.PI / 4))},${Math.round(Math.sin(o * Math.PI / 4))}`]; };
+  const person = (sprite, x, y) => ({ sprite, x, y, dir: "S", anim: "walk", animT: 0, t: 0, moving: false, flash: 0, kx: 0, ky: 0 });
+  const me = { ...person(PLAYER, SPAWN.x, SPAWN.y), inv: 0, hit: false, queued: false, streak: 0, since: 0 };
+  // a streak: hits landed in a row without being hit. At the threshold, basic enemies go down in one hit. It's lost
+  // when you're hit, or when you go this long without landing one, so running away to make distance gives it up
+  const STREAK_LAPSE = 2.5;
+  const powered = () => set.streak > 0 && me.streak >= set.streak;
+  let foes = [], civs = [], wave = null, waveNo = 0, hitstop = 0, shake = 0, nextWaveAt = 0;
+
+  const spawn = () => {
+    const f = fieldTo(me.x, me.y), spots = [], near = [];
+    for (let c = 0; c < f.length; c++) {
+      if (f[c] < 0) continue;
+      const x = (c % GW) * C + 4, y = ((c / GW) | 0) * C + 5;
+      if (Math.hypot(x - me.x, y - me.y) > 150) spots.push({ x, y });
+      else if (Math.hypot(x - me.x, y - me.y) > 30) near.push({ x, y });
+    }
+    foes = [];
+    const packs = Math.round((set.count * set.pack) / 100), warys = Math.round((set.count * set.wary) / 100);
+    for (let i = 0; i < set.count; i++) {
+      const pack = i < packs, wary = i >= set.count - warys, pool = wary ? WARY : pack ? PACK : LONE;
+      let s = spots[(Math.random() * spots.length) | 0];
+      for (let tries = 0; tries < 20 && foes.some((o) => Math.hypot(o.x - s.x, o.y - s.y) < 24); tries++) s = spots[(Math.random() * spots.length) | 0];
+      const e = { ...person(pool[i % pool.length], s.x, s.y), pack, wary, basic: !wary, wind: pack ? WIND.pack : WIND.lone, hp: set.hp, home: { x: s.x, y: s.y }, state: set.start === "hunt" ? "chase" : "idle",
+        last: { x: me.x, y: me.y }, lost: 0, wait: Math.random() * 2, goal: null, token: false, atk: null, cool: 0, side: Math.random() < 0.5 ? 1 : -1, dead: false };
+      e.dir = ["S", "E", "W", "N"][i % 4];
+      foes.push(e);
+    }
+    civs = [];
+    const free = spots.concat(near);
+    for (let i = 0; i < set.crowd; i++) {
+      let s = free[(Math.random() * free.length) | 0];
+      for (let tries = 0; tries < 20 && civs.some((o) => Math.hypot(o.x - s.x, o.y - s.y) < 16); tries++) s = free[(Math.random() * free.length) | 0];
+      civs.push({ ...person(CIVS[i % CIVS.length], s.x, s.y), civ: true, hp: 2, home: { x: s.x, y: s.y }, wait: Math.random() * 2, goal: null, dead: false, side: Math.random() < 0.5 ? 1 : -1 });
+    }
+    waveNo++;
+    wave = { no: waveNo, n: set.count, speed: set.speed, tokens: set.tokens, hp: set.hp, streak: set.streak, pack: set.pack, wary: set.wary, start: set.start, hits: 0, downed: 0, best: 0, kos: 0, crowd: set.crowd, lost: 0, time: 0, over: false };
+    nextWaveAt = 0;
+    $("banner").hidden = true;
+  };
+  const restart = () => {
+    if (wave && !wave.over && wave.time > 1) logWave("restarted");
+    Object.assign(me, { x: SPAWN.x, y: SPAWN.y, anim: "walk", animT: 0, inv: 0, flash: 0, kx: 0, ky: 0, queued: false, streak: 0, since: 0 });
+    spawn();
+  };
+
+  // ---- the log: one row per wave, kept in this browser ----
+  let log = [];
+  try { log = JSON.parse(localStorage.getItem("arena-log") || "[]"); } catch {}
+  const saveLog = () => { try { localStorage.setItem("arena-log", JSON.stringify(log)); } catch {} };
+  const rowCells = (r) => [r.no, r.n, r.speed + "%", r.tokens === 99 ? "ALL" : r.tokens, r.hp, r.streak ? r.streak : "OFF", (r.pack ?? (r.surround === false ? 0 : 100)) + "%", (r.wary ?? 0) + "%", r.start === "hunt" ? "HUNTING" : "ROAMING", r.hits, r.downed + "/" + r.n, r.best ?? 0, r.kos ?? 0, r.crowd ? r.lost + "/" + r.crowd : "-", r.time.toFixed(1) + "s", r.end];
+  const renderLog = () => {
+    $("rows").innerHTML = log.slice().reverse().map((r) => `<tr>${rowCells(r).map((c, i) => `<td${i === 9 ? ' class="hits"' : ""}>${c}</td>`).join("")}</tr>`).join("");
+  };
+  const logWave = (end) => { wave.over = true; log.push({ ...wave, end }); saveLog(); renderLog(); };
+  renderLog();
+  $("logBtn").addEventListener("click", (e) => { const on = $("log").hidden; $("log").hidden = !on; e.target.setAttribute("aria-pressed", String(on)); e.target.blur(); });
+  $("clear").addEventListener("click", (e) => { log = []; saveLog(); renderLog(); e.target.blur(); });
+  $("copy").addEventListener("click", async (e) => {
+    const head = ["#", "enemies", "speed", "at once", "hits to down", "streak", "pack", "wary", "start", "hits taken", "downed", "best streak", "one-hit kos", "crowd lost", "time", "end"].join("\t");
+    const text = [head, ...log.map((r) => rowCells(r).join("\t"))].join("\n");
+    try { await navigator.clipboard.writeText(text); e.target.textContent = "COPIED"; } catch { e.target.textContent = "COPY FAILED"; }
+    setTimeout(() => (e.target.textContent = "COPY"), 1200);
+    e.target.blur();
+  });
+  if (matchMedia("(max-width: 640px)").matches) { $("log").hidden = true; $("logBtn").setAttribute("aria-pressed", "false"); }
+
+  // ---- input ----
+  const keys = new Set();
+  const isField = (t) => t instanceof HTMLInputElement || t instanceof HTMLSelectElement;
+  addEventListener("keydown", (e) => {
+    if (isField(e.target)) return;
+    const k = e.key.toLowerCase();
+    keys.add(k);
+    if (k === " " || k === "j") swing();
+    if (k === "r") restart();
+    if (e.key.startsWith("Arrow") || e.key === " ") e.preventDefault();
+  });
+  addEventListener("keyup", (e) => keys.delete(e.key.toLowerCase()));
+  addEventListener("blur", () => keys.clear());
+  const canvas = $("view"), ctx = canvas.getContext("2d");
+  let scale = 3, cam = { x: 0, y: 0 }, pointer = null, downAt = 0;
+  const toWorld = (e) => { const r = canvas.getBoundingClientRect(); return { x: cam.x + ((e.clientX - r.left) / r.width) * canvas.width, y: cam.y + ((e.clientY - r.top) / r.height) * canvas.height }; };
+  // a click swings toward the pointer; holding walks toward it
+  canvas.addEventListener("pointerdown", (e) => { canvas.setPointerCapture(e.pointerId); downAt = performance.now(); pointer = null; const p = toWorld(e); me.dir = dirOf(p.x - me.x, p.y - me.y); swing(); setTimeout(() => { if (downAt && performance.now() - downAt >= 200) pointer = toWorld(e); }, 200); });
+  canvas.addEventListener("pointermove", (e) => { if (pointer) pointer = toWorld(e); });
+  const up = () => { pointer = null; downAt = 0; };
+  canvas.addEventListener("pointerup", up);
+  canvas.addEventListener("pointercancel", up);
+  const resize = () => {
+    const r = canvas.getBoundingClientRect();
+    scale = Math.max(2, Math.round(Math.min(r.width / 360, r.height / 240)));
+    canvas.width = Math.ceil(r.width / scale);
+    canvas.height = Math.ceil(r.height / scale);
+    ctx.imageSmoothingEnabled = false;
+  };
+  new ResizeObserver(resize).observe(canvas);
+  resize();
+
+  // ---- the player's swing: the attack sheet's 4 frames at its fps; the blow lands on frame 2 ----
+  const REACH = 19, ARC = Math.cos((65 * Math.PI) / 180);
+  function swing() {
+    if (!wave || me.anim === "hurt") return;
+    if (me.anim === "attack") { if (me.animT * sheets[PLAYER].attack.fps >= 2) me.queued = true; return; }
+    me.anim = "attack"; me.animT = 0; me.hit = false;
+  }
+  const facingHit = (from, to, reach) => {
+    const dx = to.x - from.x, dy = to.y - from.y, d = Math.hypot(dx, dy);
+    if (d > reach) return false;
+    if (d < 4) return true;
+    const v = VEC[from.dir];
+    return (dx * v.x + dy * v.y) / d >= ARC;
+  };
+  function land() {
+    let any = 0;
+    const ko = powered();
+    for (const e of foes) {
+      if (e.dead || !facingHit(me, e, REACH) || between(me, e.x, e.y)) continue;
+      any++;
+      if (ko && e.basic) { e.hp = 0; wave.kos++; } else e.hp--; e.flash = 0.12; e.atk = null; e.token = false;
+      const d = Math.hypot(e.x - me.x, e.y - me.y) || 1;
+      e.kx = ((e.x - me.x) / d) * 90; e.ky = ((e.y - me.y) / d) * 90;
+      if (e.state !== "chase") { e.state = "chase"; shout(e); }
+      if (e.hp <= 0) { e.dead = true; e.anim = "death"; e.animT = 0; wave.downed++; } else { e.anim = "hurt"; e.animT = 0; }
+    }
+    if (any) { hitstop = ko ? 0.09 : 0.06; me.streak += any; me.since = 0; wave.best = Math.max(wave.best, me.streak); }
+    noise(me, any ? 120 : 70);
+  }
+  // an enemy who starts chasing tells the others near it
+  const shout = (e) => { for (const o of foes) if (!o.dead && o !== e && o.state !== "chase" && Math.hypot(o.x - e.x, o.y - e.y) < 70) { o.state = "alert"; o.goal = { x: me.x, y: me.y }; } };
+  const noise = (src, r) => { for (const o of foes) if (!o.dead && (o.state === "idle" || o.state === "return") && Math.hypot(o.x - src.x, o.y - src.y) < r) { o.state = "alert"; o.goal = { x: src.x, y: src.y }; } };
+  function hurtCiv(c, e) {
+    c.hp--; c.flash = 0.12;
+    const d = Math.hypot(c.x - e.x, c.y - e.y) || 1;
+    c.kx = ((c.x - e.x) / d) * 90; c.ky = ((c.y - e.y) / d) * 90;
+    if (c.hp <= 0) { c.dead = true; c.anim = "death"; c.animT = 0; wave.lost++; } else { c.anim = "hurt"; c.animT = 0; }
+  }
+  // bystanders wander near where they started. When an enemy that's after someone comes close they freeze for a
+  // moment, then about half run and the rest cower where they are, which is what puts them in the enemies' way
+  function civThink(c, dt) {
+    let th = null, td = 70;
+    for (const e of foes) if (!e.dead && e.state !== "idle" && e.state !== "return") { const q = Math.hypot(e.x - c.x, e.y - c.y); if (q < td) { td = q; th = e; } }
+    if (th) {
+      if (c.startle === undefined) { c.startle = 0.5 + Math.random() * 0.9; c.cower = Math.random() < 0.5; }
+      if (c.startle > 0 || c.cower) { c.startle -= dt; c.moving = false; c.dir = dirOf(th.x - c.x, th.y - c.y); return; }
+      const ux = (c.x - th.x) / (td || 1), uy = (c.y - th.y) / (td || 1), bx = c.x, by = c.y, v = WALK * 0.85 * dt;
+      moveBy(c, (ux - uy * c.side * 0.3) * v, (uy + ux * c.side * 0.3) * v);
+      if (Math.hypot(c.x - bx, c.y - by) < v * 0.3) c.side = -c.side;
+      c.moving = true; c.dir = dirOf(ux, uy); c.goal = null;
+      return;
+    }
+    if (c.wait > 0) { c.wait -= dt; c.moving = false; return; }
+    if (!c.goal) { const a = Math.random() * Math.PI * 2, r = 10 + Math.random() * 50; c.goal = { x: c.home.x + Math.cos(a) * r, y: c.home.y + Math.sin(a) * r }; if (blockedAt(c.goal.x, c.goal.y)) c.goal = null; return; }
+    const bx = c.x, by = c.y;
+    if (walkTo(c, c.goal.x, c.goal.y, WALK * 0.4, dt) || Math.hypot(c.x - bx, c.y - by) < 0.01) { c.goal = null; c.wait = 1 + Math.random() * 3; }
+  }
+  function hurtMe(e) {
+    if (me.inv > 0) return;
+    wave.hits++; me.streak = 0; me.inv = 0.5; me.flash = 0.15; shake = 0.15;
+    const d = Math.hypot(me.x - e.x, me.y - e.y) || 1;
+    me.kx = ((me.x - e.x) / d) * 110; me.ky = ((me.y - e.y) / d) * 110;
+    me.anim = "hurt"; me.animT = 0; me.queued = false;
+  }
+
+  // ---- enemies: roam, notice, chase, lose you, search, go home ----
+  const SIGHT = { idle: 130, alert: 150, search: 150, return: 140, chase: 230 };
+  const CONE = Math.cos((60 * Math.PI) / 180);
+  const sees = (e) => {
+    const dx = me.x - e.x, dy = me.y - e.y, d = Math.hypot(dx, dy);
+    if (d > SIGHT[e.state]) return false;
+    if (e.state === "idle" && d > 24) { const v = VEC[e.dir]; if ((dx * v.x + dy * v.y) / d < CONE) return false; }
+    return canSee(e, me);
+  };
+  const walkTo = (e, tx, ty, speed, dt, stopAt = 2) => {
+    const s = nextStep(e, tx, ty), dx = s.x - e.x, dy = s.y - e.y, d = Math.hypot(dx, dy);
+    if ((Math.hypot(tx - e.x, ty - e.y) <= stopAt && !between(e, tx, ty)) || d < 0.5) { e.moving = false; return true; }
+    const m = Math.min(d, speed * dt);
+    const bx = e.x, by = e.y;
+    moveBy(e, (dx / d) * m, (dy / d) * m);
+    e.moving = Math.hypot(e.x - bx, e.y - by) > 0.05;
+    e.dir = dirOf(dx, dy);
+    return false;
+  };
+  function think(e, dt) {
+    const base = (set.speed / 100) * WALK, d = Math.hypot(me.x - e.x, me.y - e.y), far = Math.max(d, pathD(e)), wall = between(e, me.x, me.y);
+    if (sees(e)) { if (e.state !== "chase") shout(e); e.state = "chase"; e.last = { x: me.x, y: me.y }; e.lost = 0; }
+    else if (e.state === "chase") { e.lost += dt; if (e.lost > 1.2) { e.state = "search"; e.goal = { ...e.last }; e.wait = 2; } }
+    e.cool = Math.max(0, e.cool - dt);
+    if (e.state === "idle") {
+      if (e.wait > 0) { e.wait -= dt; e.moving = false; return; }
+      if (!e.goal) { const a = Math.random() * Math.PI * 2, r = 12 + Math.random() * 40; e.goal = { x: e.home.x + Math.cos(a) * r, y: e.home.y + Math.sin(a) * r }; if (blockedAt(e.goal.x, e.goal.y)) e.goal = null; return; }
+      const bx = e.x, by = e.y;
+      if (walkTo(e, e.goal.x, e.goal.y, base * 0.35, dt) || (Math.hypot(e.x - bx, e.y - by) < 0.01)) { e.goal = null; e.wait = 1 + Math.random() * 2.5; }
+      return;
+    }
+    if (e.state === "alert" || e.state === "search") {
+      if (walkTo(e, e.goal.x, e.goal.y, base * 0.75, dt, 6)) {
+        e.state = "search"; e.wait -= dt;
+        if (((e.wait * 2) | 0) % 2) e.dir = ["N", "E", "S", "W"][((e.wait * 1.5) | 0) % 4]; // looking around
+        if (e.wait <= 0) e.state = "return";
+      }
+      return;
+    }
+    if (e.state === "return") { if (walkTo(e, e.home.x, e.home.y, base * 0.6, dt, 4)) { e.state = "idle"; e.wait = 1; } return; }
+    // chasing
+    if (e.atk) return; // committed to a swing (handled with the animation)
+    // wary enemies read the fight: they back off and wait out a streak, and they won't be drawn into a corridor or a
+    // doorway after you; they hold at its mouth instead
+    e.waiting = false;
+    if (e.target && e.target !== me && (e.target.dead || (e.tT -= dt) <= 0)) e.target = null;
+    if (!e.target || e.target === me) {
+      let c = null, cd = 22;
+      for (const o of civs) if (!o.dead) { const q = Math.hypot(o.x - e.x, o.y - e.y); if (q < cd && !between(e, o.x, o.y)) { cd = q; c = o; } }
+      e.target = c && cd + 6 < d ? c : me;
+      if (e.target !== me) e.tT = 3;
+    }
+    if (e.target !== me) {
+      const t = e.target, td = Math.hypot(t.x - e.x, t.y - e.y);
+      if (td <= 14 && e.cool <= 0 && !between(e, t.x, t.y)) { e.dir = dirOf(t.x - e.x, t.y - e.y); e.atk = { t: 0, landed: false, target: t }; e.anim = "attack"; e.animT = 0; e.moving = false; return; }
+      walkTo(e, t.x, t.y, base, dt, 10);
+      if (td <= 16) e.dir = dirOf(t.x - e.x, t.y - e.y);
+      return;
+    }
+    if (e.wary) {
+      if (powered()) {
+        if (d < 72) {
+          const ux = (e.x - me.x) / (d || 1), uy = (e.y - me.y) / (d || 1), bx = e.x, by = e.y;
+          moveBy(e, (ux - uy * e.side * 0.5) * base * 0.9 * dt, (uy + ux * e.side * 0.5) * base * 0.9 * dt);
+          if (Math.hypot(e.x - bx, e.y - by) < 0.01) e.side = -e.side;
+          e.moving = true;
+        } else e.moving = false;
+        e.dir = dirOf(me.x - e.x, me.y - e.y); e.waiting = true;
+        return;
+      }
+      if (inNarrows(me) && !narrow[cellOf(e.x, e.y)]) {
+        const st = nextStep(e, me.x, me.y);
+        if (narrow[cellOf(st.x, st.y)]) { e.moving = false; e.dir = dirOf(me.x - e.x, me.y - e.y); e.waiting = true; return; }
+      }
+    }
+    if (e.slot && e.lost === 0) {
+      // surrounding: go to your place on the ring, going around the player rather than through them
+      if (e.token) {
+        e.slotWait = d <= 18 ? (e.slotWait ?? 0) + dt : 0;
+        const at = Math.hypot(e.slot.x - e.x, e.slot.y - e.y) < 5 || e.slotWait > 0.8;
+        if (d <= 15 && at && e.cool <= 0 && !wall) { e.dir = dirOf(me.x - e.x, me.y - e.y); e.atk = { t: 0, landed: false }; e.anim = "attack"; e.animT = 0; e.moving = false; return; }
+        around(e, e.slot, base, dt);
+      } else around(e, e.slot, base * 0.7, dt);
+      if (d <= 44) e.dir = dirOf(me.x - e.x, me.y - e.y);
+      return;
+    }
+    if (e.token) {
+      if (d <= 14 && e.cool <= 0 && e.lost === 0 && !wall) { e.dir = dirOf(me.x - e.x, me.y - e.y); e.atk = { t: 0, landed: false }; e.anim = "attack"; e.animT = 0; e.moving = false; return; }
+      walkTo(e, me.x, me.y, base, dt, 12);
+      if (d <= 16) e.dir = dirOf(me.x - e.x, me.y - e.y);
+      return;
+    }
+    // waiting their turn: hold a ring around you and drift sideways
+    const ahead = crowdAhead(e), keep = 34 + 12 * Math.min(3, ahead);
+    if (far > keep + 6 || e.lost > 0 || wall) { walkTo(e, me.x, me.y, base * (ahead ? 0.75 : 1), dt, keep); return; }
+    const ux = (e.x - me.x) / (d || 1), uy = (e.y - me.y) / (d || 1);
+    let mx = -uy * e.side * 0.4, my = ux * e.side * 0.4;
+    if (d < keep - 6) { mx += ux; my += uy; }
+    const bx = e.x, by = e.y;
+    moveBy(e, mx * base * 0.6 * dt, my * base * 0.6 * dt);
+    if (Math.hypot(e.x - bx, e.y - by) < 0.01) e.side = -e.side;
+    e.moving = true; e.dir = dirOf(me.x - e.x, me.y - e.y);
+  }
+  // how many of the others stand between this one and you
+  const crowdAhead = (e) => {
+    const dx = me.x - e.x, dy = me.y - e.y, L = Math.hypot(dx, dy) || 1;
+    let n = 0;
+    for (const o of foes) {
+      if (o === e || o.dead) continue;
+      const t = ((o.x - e.x) * dx + (o.y - e.y) * dy) / (L * L);
+      if (t <= 0.05 || t >= 1) continue;
+      if (Math.abs((o.x - e.x) * dy - (o.y - e.y) * dx) / L < 9) n++;
+    }
+    return n;
+  };
+  // the player is in, or right at, a narrow passage
+  const inNarrows = (p) => { const c = cellOf(p.x, p.y); for (let oy = -2; oy <= 2; oy++) for (let ox = -2; ox <= 2; ox++) if (narrow[c + oy * GW + ox]) return true; return false; };
+  const around = (e, s, speed, dt) => {
+    const d = Math.hypot(e.x - me.x, e.y - me.y), a = Math.atan2(e.y - me.y, e.x - me.x);
+    const diff = Math.atan2(Math.sin(s.a - a), Math.cos(s.a - a));
+    if (Math.abs(diff) > 0.9 && d < 70) {
+      const r = Math.max(d, 24), na = a + Math.sign(diff) * 0.7;
+      walkTo(e, me.x + Math.cos(na) * r, me.y + Math.sin(na) * r, speed, dt, 1);
+    } else if (walkTo(e, s.x, s.y, speed, dt, 2)) e.moving = false;
+  };
+  // the enemy swing: hold the first frame as a wind-up you can see coming, then the swing; the blow lands on frame 2
+  const COOL = 0.7;
+  const LUNGE = { wind: 0.8, swing: 1.6 }; // share of the enemy's speed while winding up, and while swinging
+  function enemySwing(e, dt) {
+    const fps = sheets[e.sprite].attack.fps;
+    e.atk.t += dt;
+    const s = e.atk.t - e.wind;
+    e.animT = s < 0 ? 0 : s;
+    // the lunge: keep stepping in through the wind-up, turning to follow, then a burst forward as the swing comes
+    // round, so walking away from a faster enemy doesn't dodge every blow. Facing locks when the swing starts.
+    const tg0 = e.atk.target ?? me;
+    if (!e.atk.landed && !tg0.dead) {
+      const dx = tg0.x - e.x, dy = tg0.y - e.y, d = Math.hypot(dx, dy), v = (set.speed / 100) * WALK * (s < 0 ? LUNGE.wind : LUNGE.swing) * dt;
+      if (d > 10 && !between(e, tg0.x, tg0.y)) moveBy(e, (dx / d) * Math.min(v, d - 10), (dy / d) * Math.min(v, d - 10));
+      if (s < 0) e.dir = dirOf(dx, dy);
+    }
+    if (s >= 2 / fps && !e.atk.landed) { e.atk.landed = true; const tg = e.atk.target ?? me; if (!tg.dead && facingHit(e, tg, 17) && !between(e, tg.x, tg.y)) (tg === me ? hurtMe(e) : hurtCiv(tg, e)); }
+    if (s >= 4 / fps) { e.atk = null; e.anim = "walk"; e.cool = COOL; }
+  }
+
+  // ---- one step of the world ----
+  function step(dt) {
+    if (!wave) return;
+    if (hitstop > 0) { hitstop -= dt; return; }
+    if (!wave.over) wave.time += dt;
+    // the player
+    me.inv = Math.max(0, me.inv - dt); me.flash = Math.max(0, me.flash - dt);
+    me.since += dt; if (me.since > STREAK_LAPSE) me.streak = 0;
+    if (me.kx || me.ky) { moveBy(me, me.kx * dt, me.ky * dt); const k = Math.exp(-14 * dt); me.kx *= k; me.ky *= k; if (Math.abs(me.kx) + Math.abs(me.ky) < 2) me.kx = me.ky = 0; }
+    let dx = (keys.has("arrowright") || keys.has("d") ? 1 : 0) - (keys.has("arrowleft") || keys.has("a") ? 1 : 0);
+    let dy = (keys.has("arrowdown") || keys.has("s") ? 1 : 0) - (keys.has("arrowup") || keys.has("w") ? 1 : 0);
+    if (!dx && !dy && pointer) { const ax = pointer.x - me.x, ay = pointer.y - me.y; if (Math.hypot(ax, ay) > 4) { const v = VEC[dirOf(ax, ay)]; dx = Math.round(v.x * 1.4); dy = Math.round(v.y * 1.4); } }
+    if (me.anim === "attack") {
+      const fps = sheets[PLAYER].attack.fps;
+      me.animT += dt;
+      const f = me.animT * fps;
+      if (f >= 2 && !me.hit) { me.hit = true; land(); }
+      if (f >= 4) { me.anim = "walk"; me.animT = 0; if (me.queued) { me.queued = false; if (dx || dy) me.dir = DIRS[`${dx},${dy}`]; swing(); } }
+      if (f < 3) dx = dy = 0; // committed until the follow-through
+    } else if (me.anim === "hurt") {
+      me.animT += dt; dx = dy = 0;
+      if (me.animT >= 3 / sheets[PLAYER].hurt.fps) { me.anim = "walk"; me.animT = 0; }
+    }
+    me.moving = !!(dx || dy);
+    if (me.moving) {
+      if (me.anim === "walk") me.dir = DIRS[`${dx},${dy}`];
+      const run = keys.has("shift"), speed = (run ? RUN : WALK) * dt, n = Math.hypot(dx, dy);
+      moveBy(me, (dx / n) * speed, (dy / n) * speed);
+      me.t += dt;
+      if (run) noise(me, 50);
+    } else me.t = 0;
+
+    toMe = fieldTo(me.x, me.y);
+    // who gets to swing: the nearest chasers, holding on to a turn they already have
+    const live = foes.filter((e) => !e.dead);
+    const chasers = live.filter((e) => e.state === "chase" && e.anim !== "hurt" && !e.waiting && (!e.target || e.target === me) && (!e.atk || !e.atk.target)).map((e) => ({ e, k: Math.max(Math.hypot(e.x - me.x, e.y - me.y), pathD(e)) - (e.token ? 30 : 0) })).sort((a, b) => a.k - b.k);
+    live.forEach((e) => { if (!e.atk) e.token = false; });
+    let left = set.tokens - live.filter((e) => e.atk).length;
+    for (const { e } of chasers) if (!e.atk && left > 0) { e.token = true; left--; }
+    // pack enemies surround: the ones whose turn it is spread evenly around you, close in; the rest stand in looser
+    // rings further out, as many to a ring as fit. Each ring keeps everyone in the order they already stand, turned
+    // so the total walk is short. Rings are centred on where each enemy thinks you are, which catches up with you
+    // quickly for the attackers and slowly for the back of the crowd, so a crowd loosens and trails as you move.
+    live.forEach((e) => (e.slot = null));
+    for (const { e } of chasers) {
+      if (!e.seen) e.seen = { x: me.x, y: me.y };
+      const k = e.token || e.atk ? 12 : [3, 1.8, 1.2, 0.9][e.layer ?? 0], t = Math.min(1, k * dt);
+      e.seen.x += (me.x - e.seen.x) * t; e.seen.y += (me.y - e.seen.y) * t;
+    }
+    {
+      const ring = (list, r, layer) => {
+        if (!list.length) return;
+        const n = list.length, stepA = (Math.PI * 2) / n;
+        const sorted = list.map((e) => ({ e, a: Math.atan2(e.y - me.y, e.x - me.x) })).sort((p, q) => p.a - q.a);
+        let sx = 0, sy = 0;
+        sorted.forEach((o, i) => { sx += Math.cos(o.a - i * stepA); sy += Math.sin(o.a - i * stepA); });
+        const base = Math.atan2(sy, sx);
+        sorted.forEach((o, i) => {
+          const a = base + i * stepA, c = o.e.seen;
+          let rr = r, x = c.x + Math.cos(a) * rr, y = c.y + Math.sin(a) * rr;
+          // a place behind a wall or a car from you isn't a place on the ring: pull it in, or go without
+          while ((blockedAt(x, y) || between(me, x, y)) && rr > 8) { rr -= 3; x = c.x + Math.cos(a) * rr; y = c.y + Math.sin(a) * rr; }
+          o.e.slot = blockedAt(x, y) || between(me, x, y) ? null : { x, y, a };
+          o.e.layer = layer;
+        });
+      };
+      const near = chasers.map((c) => c.e).filter((e) => e.pack && e.lost === 0 && pathD(e) < 160 && pathD(e) <= Math.hypot(e.x - me.x, e.y - me.y) + 24);
+      ring(near.filter((e) => e.token || e.atk), 13, 0);
+      // the waiting crowd, nearest first, fills the rings from the inside out
+      let wait = near.filter((e) => !e.token && !e.atk).sort((p, q) => pathD(p) - pathD(q));
+      RINGS.forEach((r, layer) => { const cap = Math.floor((Math.PI * 2 * r) / 20); ring(wait.slice(0, cap), r, layer); wait = wait.slice(cap); });
+    }
+
+    for (const e of foes) {
+      e.flash = Math.max(0, e.flash - dt);
+      if (e.kx || e.ky) { moveBy(e, e.kx * dt, e.ky * dt); const k = Math.exp(-14 * dt); e.kx *= k; e.ky *= k; if (Math.abs(e.kx) + Math.abs(e.ky) < 2) e.kx = e.ky = 0; }
+      if (e.dead) { e.animT += dt; continue; }
+      if (e.anim === "hurt") { e.animT += dt; e.moving = false; if (e.animT >= 3 / sheets[e.sprite].hurt.fps) { e.anim = "walk"; e.animT = 0; } continue; }
+      if (e.atk) { enemySwing(e, dt); continue; }
+      think(e, dt);
+      if (e.moving) e.t += dt; else e.t = 0;
+    }
+    for (const c of civs) {
+      c.flash = Math.max(0, c.flash - dt);
+      if (c.kx || c.ky) { moveBy(c, c.kx * dt, c.ky * dt); const k = Math.exp(-14 * dt); c.kx *= k; c.ky *= k; if (Math.abs(c.kx) + Math.abs(c.ky) < 2) c.kx = c.ky = 0; }
+      if (c.dead) { c.animT += dt; continue; }
+      if (c.anim === "hurt") { c.animT += dt; c.moving = false; if (c.animT >= 3 / sheets[c.sprite].hurt.fps) { c.anim = "walk"; c.animT = 0; } continue; }
+      civThink(c, dt);
+      if (c.moving) c.t += dt; else c.t = 0;
+    }
+    // bystanders get jostled: by each other, by enemies, and out of your way as you push through
+    const crowd = civs.filter((c) => !c.dead);
+    for (const c of crowd) {
+      for (const o of [...live, ...crowd]) {
+        if (o === c) continue;
+        const ox = c.x - o.x, oy = c.y - o.y, d = Math.hypot(ox, oy);
+        if (d < 9 && d > 0.01) { const p = (9 - d) / 2; moveBy(c, (ox / d) * p, (oy / d) * p); if (!o.civ) moveBy(o, (-ox / d) * p, (-oy / d) * p); }
+      }
+      const ox = c.x - me.x, oy = c.y - me.y, d = Math.hypot(ox, oy);
+      if (d < 8 && d > 0.01) moveBy(c, (ox / d) * (8 - d), (oy / d) * (8 - d));
+    }
+    // keep bodies apart
+    for (let i = 0; i < live.length; i++) {
+      const a = live[i];
+      for (let j = i + 1; j < live.length; j++) {
+        const b = live[j], ox = b.x - a.x, oy = b.y - a.y, d = Math.hypot(ox, oy);
+        const gap = a.atk || b.atk || a.token || b.token ? 9 : 12; // the waiting crowd keeps a little more room
+        if (d < gap && d > 0.01) { const p = (gap - d) / 2; moveBy(a, (-ox / d) * p, (-oy / d) * p); moveBy(b, (ox / d) * p, (oy / d) * p); }
+      }
+      const ox = a.x - me.x, oy = a.y - me.y, d = Math.hypot(ox, oy);
+      if (d < 8 && d > 0.01) moveBy(a, (ox / d) * (8 - d), (oy / d) * (8 - d));
+    }
+    // the wave
+    if (!wave.over && live.length === 0) {
+      logWave("cleared");
+      const b = $("banner");
+      b.innerHTML = `WAVE ${wave.no} CLEARED<br>${wave.time.toFixed(1)}s · <span style="color:var(--hurt)">${wave.hits} HIT${wave.hits === 1 ? "" : "S"} TAKEN</span><br><span style="color:var(--dim)">NEXT WAVE IN A MOMENT</span>`;
+      b.hidden = false;
+      nextWaveAt = performance.now() + 2500;
+    }
+    if (nextWaveAt && performance.now() > nextWaveAt) spawn();
+  }
+
+  // ---- drawing ----
+  const white = new Map();
+  const whiteOf = (img) => {
+    if (white.has(img)) return white.get(img);
+    const c = document.createElement("canvas"); c.width = img.width; c.height = img.height;
+    const g = c.getContext("2d"); g.drawImage(img, 0, 0); g.globalCompositeOperation = "source-in"; g.fillStyle = "#fcfcfc"; g.fillRect(0, 0, c.width, c.height);
+    white.set(img, c); return c;
+  };
+  // which sheet, row and frame a person shows right now; every animation is placed so its feet match the walk frame's
+  const frameOf = (p) => {
+    const sh = sheets[p.sprite], a = sh[p.anim], walk = sh.walk;
+    let dir = p.dir;
+    if (!a.rows.includes(dir)) dir = a.fallback?.[dir] ?? a.rows[0];
+    let f;
+    if (p.anim === "walk") f = p.moving ? walk.loop[Math.floor(p.t * walk.fps * (p === me && keys.has("shift") ? 1.6 : 1)) % walk.loop.length] : walk.idle;
+    else f = Math.min(a.frames - 1, Math.floor(p.animT * a.fps));
+    return { a, row: a.rows.indexOf(dir), f, x: Math.round(p.x - walk.frame.w / 2 - a.walkAt.x - cam.x), y: Math.round(p.y - walk.frame.h + 2 - a.walkAt.y - cam.y) };
+  };
+  const drawPerson = (p, alpha = 1) => {
+    const { a, row, f, x, y } = frameOf(p);
+    if (p === me && alpha === 1 && powered()) {
+      ctx.strokeStyle = "#f8b800"; ctx.lineWidth = 1; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x) + 0.5, Math.round(p.y - cam.y) + 0.5, 8, 3, 0, 0, Math.PI * 2); ctx.stroke();
+    }
+    if (alpha === 1 && !p.dead) { ctx.fillStyle = "rgba(0,0,0,0.35)"; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x), Math.round(p.y - cam.y), 5, 2, 0, 0, Math.PI * 2); ctx.fill(); }
+    ctx.globalAlpha = alpha * (p === me && me.inv > 0 && ((me.inv * 20) | 0) % 2 ? 0.5 : 1);
+    ctx.drawImage(a.img, f * a.frame.w, row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h);
+    if (p === me && alpha === 1 && powered()) { ctx.globalAlpha = 0.2 + 0.15 * Math.sin(performance.now() / 90); ctx.drawImage(whiteOf(a.img), f * a.frame.w, row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h); ctx.globalAlpha = 1; }
+    if (p.flash > 0) ctx.drawImage(whiteOf(a.img), f * a.frame.w, row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h);
+    ctx.globalAlpha = 1;
+    if (p !== me && !p.dead && alpha === 1) {
+      const mark = p.waiting ? ["~", "#bcbcbc"] : p.state === "chase" ? (p.atk && p.atk.t < p.wind ? ["!", "#f83800"] : ["!", "#f8b800"]) : p.state === "alert" || p.state === "search" ? ["?", "#bcbcbc"] : null;
+      if (mark) { ctx.fillStyle = mark[1]; ctx.font = '8px "Press Start 2P"'; ctx.textBaseline = "alphabetic"; ctx.fillText(mark[0], Math.round(p.x - cam.x - 3), Math.round(p.y - cam.y - sheets[p.sprite].walk.frame.h - 1)); }
+    }
+  };
+  // a box: its top face lifted by its height, its south face below that, cut into 8 px slices north to south so each
+  // slice sorts with the people on its own row
+  const pieces = [];
+  for (const b of boxes) for (let y = b.y; y < b.y + b.d; y += 8) pieces.push({ b, y0: y, y1: Math.min(b.y + b.d, y + 8) });
+  const drawPiece = ({ b, y0, y1 }) => {
+    const [top, front, light] = COLORS[b.kind], x = b.x - cam.x;
+    ctx.fillStyle = top; ctx.fillRect(x, y0 - b.h - cam.y, b.w, y1 - y0);
+    ctx.fillStyle = light; if (y0 === b.y) ctx.fillRect(x, y0 - b.h - cam.y, b.w, 1);
+    ctx.fillStyle = "#1c1c1c"; ctx.fillRect(x, y0 - b.h - cam.y, 1, y1 - y0); ctx.fillRect(x + b.w - 1, y0 - b.h - cam.y, 1, y1 - y0);
+    if (y0 === b.y) ctx.fillRect(x, y0 - b.h - cam.y - 1, b.w, 1);
+    if (y1 === b.y + b.d) {
+      const fy = y1 - b.h - cam.y;
+      ctx.fillStyle = front; ctx.fillRect(x, fy, b.w, b.h);
+      if (b.kind === "fence") { ctx.fillStyle = "#3c3c3c"; for (let sx = 2; sx < b.w; sx += 4) ctx.fillRect(x + sx, fy + 2, 1, b.h - 2); }
+      if (b.kind === "car") { ctx.fillStyle = "#a4e4fc"; ctx.fillRect(x + 3, fy + 2, b.w - 6, 4); ctx.fillStyle = "#1c1c1c"; ctx.fillRect(x + 3, fy + b.h - 2, 6, 2); ctx.fillRect(x + b.w - 9, fy + b.h - 2, 6, 2); }
+      if (b.kind === "crate") { ctx.fillStyle = top; ctx.fillRect(x + 2, fy + b.h / 2, b.w - 4, 1); }
+      if (b.kind === "wall") { ctx.fillStyle = top; for (let ry = 4; ry < b.h; ry += 5) ctx.fillRect(x, fy + ry, b.w, 1); }
+      ctx.fillStyle = "#1c1c1c"; ctx.fillRect(x, fy, b.w, 1); ctx.fillRect(x, fy + b.h - 1, b.w, 1); ctx.fillRect(x, fy, 1, b.h); ctx.fillRect(x + b.w - 1, fy, 1, b.h);
+    }
+  };
+  function draw() {
+    const vw = canvas.width, vh = canvas.height;
+    cam.x = Math.round(Math.min(Math.max(me.x - vw / 2, 0), Math.max(0, W - vw)) - (W < vw ? (vw - W) / 2 : 0));
+    cam.y = Math.round(Math.min(Math.max(me.y - 8 - vh / 2, -24), Math.max(0, H - vh)) - (H < vh ? (vh - H) / 2 : 0));
+    if (shake > 0) { shake -= 1 / 60; cam.x += Math.round(Math.random() * 4 - 2); cam.y += Math.round(Math.random() * 4 - 2); }
+    ctx.fillStyle = "#000"; ctx.fillRect(0, 0, vw, vh);
+    ctx.drawImage(ground, -cam.x, -cam.y);
+    for (const e of [...civs, ...foes]) if (e.dead) drawPerson(e);
+    const things = pieces.map((p) => ({ base: p.y1, draw: () => drawPiece(p) }));
+    for (const e of [...civs, ...foes]) if (!e.dead) things.push({ base: e.y, draw: () => drawPerson(e) });
+    things.push({ base: me.y, draw: () => drawPerson(me) });
+    things.sort((a, b) => a.base - b.base);
+    for (const t of things) t.draw();
+    drawPerson(me, 0.35); // so you can see yourself behind a wall
+  }
+
+  const status = $("status");
+  let shown = "";
+  const updateStatus = () => {
+    if (!wave) return;
+    const s = `<span><b>${PLAYER_NAME}</b></span><span>HEALTH: NO LIMIT</span><span class="hit">HITS TAKEN ${wave.hits}</span>${set.streak ? `<span>STREAK ${powered() ? me.streak + " · <b>ONE-HIT KO</b>" : me.streak + "/" + set.streak}</span>` : ""}<span>DOWNED ${wave.downed}/${wave.n}</span>${wave.crowd ? `<span>CROWD ${wave.crowd - wave.lost}/${wave.crowd}</span>` : ""}<span>WAVE ${wave.no} · ${wave.time.toFixed(0)}s</span>`;
+    if (s !== shown) { shown = s; status.innerHTML = s; }
+  };
+
+  window.__arena = { me, get foes() { return foes; }, get civs() { return civs; }, get wave() { return wave; }, set, boxes, step, draw, restart, canvas, nextStep, between, clearWalk, fieldTo, cellOf, open };
+  spawn();
+  let last = performance.now();
+  const loop = (now) => { const dt = Math.min(0.05, (now - last) / 1000); last = now; step(dt); draw(); updateStatus(); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+})().catch((e) => { const l = document.getElementById("loading"); l.hidden = false; l.textContent = "COULDN'T LOAD THE ARENA: " + e.message; });
+</script>

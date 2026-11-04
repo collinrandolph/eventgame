@@ -11,6 +11,9 @@ Each rule is marked:
 
 Where a rule came from is in [DECISIONS.md](DECISIONS.md); this file only says what the rule is.
 
+The story inside an event (acts, storylines, chapters, the endgame and secrets) is in
+[NARRATIVE.md](NARRATIVE.md). It's newer than §3 below, and its §14 lists the rules here that it replaces.
+
 ---
 
 ## 1. Who does what
