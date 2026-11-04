@@ -22,6 +22,12 @@ endings). Marked like those: **Built**, **Agreed**, **Proposed**.
 - **Wary enemies** (**Proposed**, being tested): harder types that read the fight. A streak doesn't one-hit them;
   they back off and wait it out, and they won't follow you into a corridor or doorway, holding at its mouth instead.
   So the corridor-and-streak tactic works on basic enemies and not on them.
+- **Allies have an aggression stat** (**Agreed**): it comes with the character (soldiers high,
+  a chef low) and sets how far they go for a fight and whether they'll cross in front of you. The cautious keep you
+  between them and the danger. When the playable character leads (a general, a sergeant), everyone's aggression is
+  damped and you lead the charge; a citizen among soldiers is the one swept along.
+- **Out of a fight the group walks in a column** (**Agreed**): a loose two by two on the path you walked, single
+  file where it's narrow. When an enemy near you is after someone, they spread out for the fight.
 - **Bystanders draw attacks** (**Agreed**): an enemy chasing you goes for a bystander who's in reach and closer than
   you, for a few seconds. Bystanders freeze when danger comes close, then some run and some cower, so running
   through a crowd is a defence, paid for in lives.

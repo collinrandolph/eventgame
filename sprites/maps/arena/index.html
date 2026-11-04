@@ -71,6 +71,9 @@
     <label for="hp">HITS TO DOWN <select id="hp"><option>1</option><option selected>2</option><option>3</option></select></label>
     <label for="streak" title="Land this many hits in a row without being hit, and basic enemies go down in one. Stop fighting for a moment, or get hit, and it's gone">STREAK <select id="streak"><option value="0">OFF</option><option value="3">3</option><option value="5" selected>5</option><option value="8">8</option></select></label>
     <label for="wary" title="Wary enemies (soldiers and guards) aren't basic: a streak doesn't one-hit them. They back off while you're on a streak and won't follow you into a corridor or a doorway">WARY <select id="wary"><option value="0">0%</option><option value="25" selected>25%</option><option value="50">50%</option><option value="100">100%</option></select></label>
+    <label for="allies" title="Friends who follow you and fight beside you. Enemies go for them too">ALLIES <select id="allies"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></label>
+    <label for="group" title="Who your group are. Military allies are more aggressive than civilians">GROUP <select id="group"><option value="civilians">CIVILIANS</option><option value="military">MILITARY</option></select></label>
+    <label for="lead" title="A citizen lets the group act on their own; a leader (a general, say) leads the charge and the group hangs back">YOU ARE <select id="lead"><option value="citizen">A CITIZEN</option><option value="leader">THE LEADER</option></select></label>
     <label for="crowd" title="Bystanders who wander, and run from enemies. An enemy chasing you goes for a bystander who's closer, so running through a crowd buys time">CROWD <select id="crowd"><option value="0">0</option><option value="10" selected>10</option><option value="20">20</option><option value="40">40</option></select></label>
     <label for="pack" title="Pack enemies (the ones dressed in black, and the grey-skinned ones) spread around you and attack from different sides, with a slower wind-up">PACK <select id="pack"><option value="0">0%</option><option value="25">25%</option><option value="50" selected>50%</option><option value="75">75%</option><option value="100">100%</option></select></label>
     <label for="start">START <select id="start"><option value="idle">ROAMING</option><option value="hunt">HUNTING</option></select></label>
@@ -84,7 +87,7 @@
     <div class="banner" id="banner" hidden></div>
     <div class="log" id="log">
       <div class="row"><span>WAVES</span><span><button id="copy" type="button">COPY</button> <button id="clear" type="button">CLEAR</button></span></div>
-      <table><thead><tr><th>#</th><th>ENEMIES</th><th>SPEED</th><th>AT ONCE</th><th>HITS TO DOWN</th><th>STREAK</th><th>PACK</th><th>WARY</th><th>START</th><th>HITS TAKEN</th><th>DOWNED</th><th>BEST STREAK</th><th>ONE-HIT KOS</th><th>CROWD LOST</th><th>TIME</th><th>END</th></tr></thead><tbody id="rows"></tbody></table>
+      <table><thead><tr><th>#</th><th>ENEMIES</th><th>SPEED</th><th>AT ONCE</th><th>HITS TO DOWN</th><th>STREAK</th><th>PACK</th><th>WARY</th><th>START</th><th>HITS TAKEN</th><th>DOWNED</th><th>BEST STREAK</th><th>ONE-HIT KOS</th><th>CROWD LOST</th><th>GROUP</th><th>YOU</th><th>ALLIES LOST</th><th>TIME</th><th>END</th></tr></thead><tbody id="rows"></tbody></table>
     </div>
     <div class="loading" id="loading">LOADING THE ARENA…</div>
   </div>
@@ -97,12 +100,19 @@
   const WARY = ["recipe-soldier", "recipe-security"]; // harder enemies: they read the fight (below)
   const FOES = [...LONE, ...PACK, ...WARY];
   const CIVS = ["recipe-civilian", "recipe-tourist", "recipe-office", "recipe-jogger", "recipe-dog-walker", "recipe-student"]; // bystanders
+  // your group, and how aggressive each of them is (0 hangs back, 1 charges in): a stat that comes with the character
+  const GROUPS = {
+    civilians: [["recipe-construction", 0.5], ["recipe-firefighter", 0.6], ["recipe-chef", 0.25], ["recipe-dock-worker", 0.45]],
+    military: [["recipe-ex-military", 0.9], ["recipe-officer", 0.8], ["recipe-coast-guard", 0.85], ["recipe-guard-medic", 0.6]],
+  };
+  const ALLY = Object.values(GROUPS).flat().map(([id]) => id);
+  const LEADER_DAMP = 0.35; // when you lead, your group follows your lead: everyone's aggression times this
   const RINGS = [34, 56, 78, 100]; // where the waiting pack stands, inside out
   const WIND = { lone: 0.35, pack: 0.5 }; // seconds of wind-up you can see coming
   const load = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
   const index = await (await fetch("sheets/index.json")).json();
   const sheets = {};
-  await Promise.all([PLAYER, ...FOES, ...CIVS].map(async (id) => {
+  await Promise.all([PLAYER, ...FOES, ...CIVS, ...ALLY].map(async (id) => {
     sheets[id] = {};
     await Promise.all(Object.entries(index[id].animations).map(async ([k, a]) => { sheets[id][k] = { ...a, img: await load("sheets/" + a.file) }; }));
   }));
@@ -238,12 +248,15 @@
 
   // ---- settings ----
   const $ = (id) => document.getElementById(id);
-  const set = { count: 8, speed: 100, tokens: 2, hp: 2, start: "idle", pack: 50, streak: 5, wary: 25, crowd: 10 };
+  const set = { count: 8, speed: 100, tokens: 2, hp: 2, start: "idle", pack: 50, streak: 5, wary: 25, crowd: 10, allies: 3, group: "civilians", lead: "citizen" };
   const bindRange = (id, key, fmt) => { const el = $(id), out = $(id + "Out"); el.addEventListener("input", () => { set[key] = +el.value; out.textContent = fmt(el.value); }); };
   bindRange("count", "count", (v) => v);
   bindRange("speed", "speed", (v) => v + "%");
   $("count").addEventListener("change", () => restart()); // a new count starts a new wave
   $("tokens").addEventListener("change", (e) => { set.tokens = +e.target.value; e.target.blur(); });
+  $("group").addEventListener("change", (e) => { set.group = e.target.value; e.target.blur(); restart(); });
+  $("lead").addEventListener("change", (e) => { set.lead = e.target.value; e.target.blur(); restart(); });
+  $("allies").addEventListener("change", (e) => { set.allies = +e.target.value; e.target.blur(); restart(); });
   $("crowd").addEventListener("change", (e) => { set.crowd = +e.target.value; e.target.blur(); restart(); });
   $("wary").addEventListener("change", (e) => { set.wary = +e.target.value; e.target.blur(); restart(); });
   $("streak").addEventListener("change", (e) => { set.streak = +e.target.value; e.target.blur(); restart(); });
@@ -263,7 +276,7 @@
   // when you're hit, or when you go this long without landing one, so running away to make distance gives it up
   const STREAK_LAPSE = 2.5;
   const powered = () => set.streak > 0 && me.streak >= set.streak;
-  let foes = [], civs = [], wave = null, waveNo = 0, hitstop = 0, shake = 0, nextWaveAt = 0;
+  let foes = [], civs = [], allies = [], wave = null, waveNo = 0, hitstop = 0, shake = 0, nextWaveAt = 0;
 
   const spawn = () => {
     const f = fieldTo(me.x, me.y), spots = [], near = [];
@@ -291,8 +304,16 @@
       for (let tries = 0; tries < 20 && civs.some((o) => Math.hypot(o.x - s.x, o.y - s.y) < 16); tries++) s = free[(Math.random() * free.length) | 0];
       civs.push({ ...person(CIVS[i % CIVS.length], s.x, s.y), civ: true, hp: 2, home: { x: s.x, y: s.y }, wait: Math.random() * 2, goal: null, dead: false, side: Math.random() < 0.5 ? 1 : -1 });
     }
+    allies = []; trail = [];
+    for (let i = 0; i < set.allies; i++) {
+      const a = Math.PI / 2 + (i - (set.allies - 1) / 2) * 0.8;
+      let x = me.x + Math.cos(a) * 20, y = me.y + Math.sin(a) * 20;
+      if (blockedAt(x, y)) { x = me.x; y = me.y + 8; }
+      const [id, aggr] = GROUPS[set.group][i % GROUPS[set.group].length];
+      allies.push({ ...person(id, x, y), ally: true, aggr: aggr * (set.lead === "leader" ? LEADER_DAMP : 1), hp: ALLY_HP, cool: 0, hit: false, dead: false });
+    }
     waveNo++;
-    wave = { no: waveNo, n: set.count, speed: set.speed, tokens: set.tokens, hp: set.hp, streak: set.streak, pack: set.pack, wary: set.wary, start: set.start, hits: 0, downed: 0, best: 0, kos: 0, crowd: set.crowd, lost: 0, time: 0, over: false };
+    wave = { no: waveNo, n: set.count, speed: set.speed, tokens: set.tokens, hp: set.hp, streak: set.streak, pack: set.pack, wary: set.wary, start: set.start, hits: 0, downed: 0, best: 0, kos: 0, crowd: set.crowd, lost: 0, allies: set.allies, group: set.group, lead: set.lead, alost: 0, time: 0, over: false };
     nextWaveAt = 0;
     $("banner").hidden = true;
   };
@@ -306,7 +327,7 @@
   let log = [];
   try { log = JSON.parse(localStorage.getItem("arena-log") || "[]"); } catch {}
   const saveLog = () => { try { localStorage.setItem("arena-log", JSON.stringify(log)); } catch {} };
-  const rowCells = (r) => [r.no, r.n, r.speed + "%", r.tokens === 99 ? "ALL" : r.tokens, r.hp, r.streak ? r.streak : "OFF", (r.pack ?? (r.surround === false ? 0 : 100)) + "%", (r.wary ?? 0) + "%", r.start === "hunt" ? "HUNTING" : "ROAMING", r.hits, r.downed + "/" + r.n, r.best ?? 0, r.kos ?? 0, r.crowd ? r.lost + "/" + r.crowd : "-", r.time.toFixed(1) + "s", r.end];
+  const rowCells = (r) => [r.no, r.n, r.speed + "%", r.tokens === 99 ? "ALL" : r.tokens, r.hp, r.streak ? r.streak : "OFF", (r.pack ?? (r.surround === false ? 0 : 100)) + "%", (r.wary ?? 0) + "%", r.start === "hunt" ? "HUNTING" : "ROAMING", r.hits, r.downed + "/" + r.n, r.best ?? 0, r.kos ?? 0, r.crowd ? r.lost + "/" + r.crowd : "-", (r.group ?? "civilians").toUpperCase(), (r.lead ?? "citizen").toUpperCase(), r.allies ? r.alost + "/" + r.allies : "-", r.time.toFixed(1) + "s", r.end];
   const renderLog = () => {
     $("rows").innerHTML = log.slice().reverse().map((r) => `<tr>${rowCells(r).map((c, i) => `<td${i === 9 ? ' class="hits"' : ""}>${c}</td>`).join("")}</tr>`).join("");
   };
@@ -315,7 +336,7 @@
   $("logBtn").addEventListener("click", (e) => { const on = $("log").hidden; $("log").hidden = !on; e.target.setAttribute("aria-pressed", String(on)); e.target.blur(); });
   $("clear").addEventListener("click", (e) => { log = []; saveLog(); renderLog(); e.target.blur(); });
   $("copy").addEventListener("click", async (e) => {
-    const head = ["#", "enemies", "speed", "at once", "hits to down", "streak", "pack", "wary", "start", "hits taken", "downed", "best streak", "one-hit kos", "crowd lost", "time", "end"].join("\t");
+    const head = ["#", "enemies", "speed", "at once", "hits to down", "streak", "pack", "wary", "start", "hits taken", "downed", "best streak", "one-hit kos", "crowd lost", "group", "you", "allies lost", "time", "end"].join("\t");
     const text = [head, ...log.map((r) => rowCells(r).join("\t"))].join("\n");
     try { await navigator.clipboard.writeText(text); e.target.textContent = "COPIED"; } catch { e.target.textContent = "COPY FAILED"; }
     setTimeout(() => (e.target.textContent = "COPY"), 1200);
@@ -391,7 +412,7 @@
     c.hp--; c.flash = 0.12;
     const d = Math.hypot(c.x - e.x, c.y - e.y) || 1;
     c.kx = ((c.x - e.x) / d) * 90; c.ky = ((c.y - e.y) / d) * 90;
-    if (c.hp <= 0) { c.dead = true; c.anim = "death"; c.animT = 0; wave.lost++; } else { c.anim = "hurt"; c.animT = 0; }
+    if (c.hp <= 0) { c.dead = true; c.anim = "death"; c.animT = 0; if (c.ally) wave.alost++; else wave.lost++; } else { c.anim = "hurt"; c.animT = 0; }
   }
   // bystanders wander near where they started. When an enemy that's after someone comes close they freeze for a
   // moment, then about half run and the rest cower where they are, which is what puts them in the enemies' way
@@ -411,6 +432,81 @@
     if (!c.goal) { const a = Math.random() * Math.PI * 2, r = 10 + Math.random() * 50; c.goal = { x: c.home.x + Math.cos(a) * r, y: c.home.y + Math.sin(a) * r }; if (blockedAt(c.goal.x, c.goal.y)) c.goal = null; return; }
     const bx = c.x, by = c.y;
     if (walkTo(c, c.goal.x, c.goal.y, WALK * 0.4, dt) || Math.hypot(c.x - bx, c.y - by) < 0.01) { c.goal = null; c.wait = 1 + Math.random() * 3; }
+  }
+  // allies: follow a little behind you; when an enemy is on you or on them, and you're not far off, go and fight it
+  const ALLY_HP = 5, ALLY_REACH = 16, ALLY_COOL = 0.9;
+  function allyLand(a) {
+    for (const e of foes) {
+      if (e.dead || !facingHit(a, e, ALLY_REACH) || between(a, e.x, e.y)) continue;
+      e.hp--; e.flash = 0.12; e.atk = null; e.token = false;
+      const d = Math.hypot(e.x - a.x, e.y - a.y) || 1;
+      e.kx = ((e.x - a.x) / d) * 90; e.ky = ((e.y - a.y) / d) * 90;
+      if (e.state !== "chase") { e.state = "chase"; shout(e); }
+      e.target = a; e.tT = 3; // and it turns on whoever hit it
+      if (e.hp <= 0) { e.dead = true; e.anim = "death"; e.animT = 0; wave.downed++; } else { e.anim = "hurt"; e.animT = 0; }
+      return; // one at a time
+    }
+  }
+  // the path you've walked, newest first, a point every 3 px; the group follows it in a column
+  let trail = [];
+  const trailAt = (dist) => {
+    let px = me.x, py = me.y, left = dist;
+    for (const t of trail) {
+      const d = Math.hypot(t.x - px, t.y - py);
+      if (d >= left) { const k = left / d; return { x: px + (t.x - px) * k, y: py + (t.y - py) * k, dx: (px - t.x) / d, dy: (py - t.y) / d }; }
+      left -= d; px = t.x; py = t.y;
+    }
+    const v = VEC[me.dir]; // not walked far enough yet: carry on straight behind you
+    return { x: px - v.x * left, y: py - v.y * left, dx: v.x, dy: v.y };
+  };
+  const narrowAhead = () => { for (let s = 0; s <= 48; s += 8) { const t = trailAt(s); if (narrow[cellOf(t.x, t.y)]) return true; } return false; };
+  // calm: no enemy near you is after anyone
+  const calm = () => !foes.some((e) => !e.dead && (e.state === "chase" || e.state === "alert") && Math.hypot(e.x - me.x, e.y - me.y) < 130);
+  function allyThink(a, i, n, dt) {
+    if (a.anim === "attack") {
+      const fps = sheets[a.sprite].attack.fps;
+      a.animT += dt; a.moving = false;
+      if (a.animT * fps >= 2 && !a.hit) { a.hit = true; allyLand(a); }
+      if (a.animT * fps >= 4) { a.anim = "walk"; a.animT = 0; a.cool = ALLY_COOL; }
+      return;
+    }
+    a.cool = Math.max(0, a.cool - dt);
+    const dme = Math.hypot(me.x - a.x, me.y - a.y);
+    let foe = null, fd = 1e9;
+    const g = a.aggr;
+    if (dme < 50 + 70 * g) for (const e of foes) {
+      if (e.dead) continue;
+      const q = Math.hypot(e.x - a.x, e.y - a.y), qm = Math.hypot(e.x - me.x, e.y - me.y);
+      // the cautious stay on their own side of you: they fight what comes at them or at you, never past you
+      const mySide = (e.x - me.x) * (a.x - me.x) + (e.y - me.y) * (a.y - me.y) >= 0;
+      if ((qm < 18 + 52 * g || q < 14 + 26 * g) && (g >= 0.5 || mySide || qm < 16) && q < fd && !between(a, e.x, e.y)) { fd = q; foe = e; }
+    }
+    if (foe) {
+      if (fd <= 15 && a.cool <= 0) { a.dir = dirOf(foe.x - a.x, foe.y - a.y); a.anim = "attack"; a.animT = 0; a.hit = false; a.moving = false; return; }
+      walkTo(a, foe.x, foe.y, RUN * 0.85, dt, 12);
+      if (fd <= 18) a.dir = dirOf(foe.x - a.x, foe.y - a.y);
+      return;
+    }
+    // out of a fight: a loose column on the path you walked, two by two, or single file where it's narrow
+    if (calm()) {
+      const p = trailAt(14);
+      const single = n === 1 || narrowAhead();
+      const rank = single ? i : i >> 1, side = single || (n % 2 && i === n - 1) ? 0 : i % 2 ? 1 : -1;
+      const q = trailAt(14 + rank * 12);
+      let tx = q.x - q.dy * side * 6, ty = q.y + q.dx * side * 6;
+      if (blockedAt(tx, ty)) { tx = q.x; ty = q.y; }
+      if (Math.hypot(tx - a.x, ty - a.y) > 3) walkTo(a, tx, ty, Math.hypot(tx - a.x, ty - a.y) > 24 ? RUN : WALK * 1.15, dt, 2);
+      else { a.moving = false; a.dir = dirOf(p.dx || VEC[me.dir].x, p.dy || VEC[me.dir].y); }
+      return;
+    }
+    // in a fight: spread out behind you
+    // the cautious keep you between them and the nearest danger; the rest just fall in behind the way you face
+    let threat = null, td = 120;
+    if (a.aggr < 0.6) for (const e of foes) if (!e.dead) { const q = Math.hypot(e.x - me.x, e.y - me.y); if (q < td) { td = q; threat = e; } }
+    const v = VEC[me.dir], back = threat ? Math.atan2(me.y - threat.y, me.x - threat.x) : Math.atan2(-v.y, -v.x), ang = back + (i - (n - 1) / 2) * 0.75;
+    const r = 20 + (1 - a.aggr) * 10, tx = me.x + Math.cos(ang) * r, ty = me.y + Math.sin(ang) * r;
+    if (Math.hypot(tx - a.x, ty - a.y) > 4) walkTo(a, tx, ty, dme > 30 ? RUN : WALK * 1.1, dt, 3);
+    else { a.moving = false; a.dir = me.dir; }
   }
   function hurtMe(e) {
     if (me.inv > 0) return;
@@ -468,7 +564,7 @@
     if (e.target && e.target !== me && (e.target.dead || (e.tT -= dt) <= 0)) e.target = null;
     if (!e.target || e.target === me) {
       let c = null, cd = 22;
-      for (const o of civs) if (!o.dead) { const q = Math.hypot(o.x - e.x, o.y - e.y); if (q < cd && !between(e, o.x, o.y)) { cd = q; c = o; } }
+      for (const o of [...civs, ...allies]) if (!o.dead) { const q = Math.hypot(o.x - e.x, o.y - e.y); if (q < cd && !between(e, o.x, o.y)) { cd = q; c = o; } }
       e.target = c && cd + 6 < d ? c : me;
       if (e.target !== me) e.tT = 3;
     }
@@ -596,6 +692,7 @@
       me.t += dt;
       if (run) noise(me, 50);
     } else me.t = 0;
+    if (!trail.length || Math.hypot(trail[0].x - me.x, trail[0].y - me.y) >= 3) { trail.unshift({ x: me.x, y: me.y }); if (trail.length > 80) trail.pop(); }
 
     toMe = fieldTo(me.x, me.y);
     // who gets to swing: the nearest chasers, holding on to a turn they already have
@@ -655,16 +752,35 @@
       civThink(c, dt);
       if (c.moving) c.t += dt; else c.t = 0;
     }
+    allies.filter((a) => !a.dead).forEach((a, i, list) => {
+      a.flash = Math.max(0, a.flash - dt);
+      if (a.kx || a.ky) { moveBy(a, a.kx * dt, a.ky * dt); const k = Math.exp(-14 * dt); a.kx *= k; a.ky *= k; if (Math.abs(a.kx) + Math.abs(a.ky) < 2) a.kx = a.ky = 0; }
+      if (a.anim === "hurt") { a.animT += dt; a.moving = false; if (a.animT >= 3 / sheets[a.sprite].hurt.fps) { a.anim = "walk"; a.animT = 0; } return; }
+      allyThink(a, i, list.length, dt);
+      if (a.moving) a.t += dt; else a.t = 0;
+    });
+    for (const a of allies) if (a.dead) { a.animT += dt; a.flash = Math.max(0, a.flash - dt); }
     // bystanders get jostled: by each other, by enemies, and out of your way as you push through
     const crowd = civs.filter((c) => !c.dead);
     for (const c of crowd) {
-      for (const o of [...live, ...crowd]) {
+      for (const o of [...live, ...crowd, ...allies.filter((a) => !a.dead)]) {
         if (o === c) continue;
         const ox = c.x - o.x, oy = c.y - o.y, d = Math.hypot(ox, oy);
         if (d < 9 && d > 0.01) { const p = (9 - d) / 2; moveBy(c, (ox / d) * p, (oy / d) * p); if (!o.civ) moveBy(o, (-ox / d) * p, (-oy / d) * p); }
       }
       const ox = c.x - me.x, oy = c.y - me.y, d = Math.hypot(ox, oy);
       if (d < 8 && d > 0.01) moveBy(c, (ox / d) * (8 - d), (oy / d) * (8 - d));
+    }
+    // the group keeps out of each other's way, and out of yours
+    const squad = allies.filter((a) => !a.dead);
+    for (const a of squad) {
+      for (const o of [...squad, ...live]) {
+        if (o === a) continue;
+        const ox = a.x - o.x, oy = a.y - o.y, d = Math.hypot(ox, oy);
+        if (d < 9 && d > 0.01) { const p = (9 - d) / 2; moveBy(a, (ox / d) * p, (oy / d) * p); if (!o.ally) moveBy(o, (-ox / d) * p, (-oy / d) * p); }
+      }
+      const ox = a.x - me.x, oy = a.y - me.y, d = Math.hypot(ox, oy);
+      if (d < 8 && d > 0.01) moveBy(a, (ox / d) * (8 - d), (oy / d) * (8 - d));
     }
     // keep bodies apart
     for (let i = 0; i < live.length; i++) {
@@ -711,6 +827,7 @@
     if (p === me && alpha === 1 && powered()) {
       ctx.strokeStyle = "#f8b800"; ctx.lineWidth = 1; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x) + 0.5, Math.round(p.y - cam.y) + 0.5, 8, 3, 0, 0, Math.PI * 2); ctx.stroke();
     }
+    if (p.ally && alpha === 1 && !p.dead) { ctx.strokeStyle = "#58d854"; ctx.lineWidth = 1; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x) + 0.5, Math.round(p.y - cam.y) + 0.5, 6, 2.5, 0, 0, Math.PI * 2); ctx.stroke(); }
     if (alpha === 1 && !p.dead) { ctx.fillStyle = "rgba(0,0,0,0.35)"; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x), Math.round(p.y - cam.y), 5, 2, 0, 0, Math.PI * 2); ctx.fill(); }
     ctx.globalAlpha = alpha * (p === me && me.inv > 0 && ((me.inv * 20) | 0) % 2 ? 0.5 : 1);
     ctx.drawImage(a.img, f * a.frame.w, row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h);
@@ -749,9 +866,9 @@
     if (shake > 0) { shake -= 1 / 60; cam.x += Math.round(Math.random() * 4 - 2); cam.y += Math.round(Math.random() * 4 - 2); }
     ctx.fillStyle = "#000"; ctx.fillRect(0, 0, vw, vh);
     ctx.drawImage(ground, -cam.x, -cam.y);
-    for (const e of [...civs, ...foes]) if (e.dead) drawPerson(e);
+    for (const e of [...civs, ...allies, ...foes]) if (e.dead) drawPerson(e);
     const things = pieces.map((p) => ({ base: p.y1, draw: () => drawPiece(p) }));
-    for (const e of [...civs, ...foes]) if (!e.dead) things.push({ base: e.y, draw: () => drawPerson(e) });
+    for (const e of [...civs, ...allies, ...foes]) if (!e.dead) things.push({ base: e.y, draw: () => drawPerson(e) });
     things.push({ base: me.y, draw: () => drawPerson(me) });
     things.sort((a, b) => a.base - b.base);
     for (const t of things) t.draw();
@@ -762,11 +879,11 @@
   let shown = "";
   const updateStatus = () => {
     if (!wave) return;
-    const s = `<span><b>${PLAYER_NAME}</b></span><span>HEALTH: NO LIMIT</span><span class="hit">HITS TAKEN ${wave.hits}</span>${set.streak ? `<span>STREAK ${powered() ? me.streak + " · <b>ONE-HIT KO</b>" : me.streak + "/" + set.streak}</span>` : ""}<span>DOWNED ${wave.downed}/${wave.n}</span>${wave.crowd ? `<span>CROWD ${wave.crowd - wave.lost}/${wave.crowd}</span>` : ""}<span>WAVE ${wave.no} · ${wave.time.toFixed(0)}s</span>`;
+    const s = `<span><b>${PLAYER_NAME}</b></span><span>HEALTH: NO LIMIT</span><span class="hit">HITS TAKEN ${wave.hits}</span>${set.streak ? `<span>STREAK ${powered() ? me.streak + " · <b>ONE-HIT KO</b>" : me.streak + "/" + set.streak}</span>` : ""}<span>DOWNED ${wave.downed}/${wave.n}</span>${wave.crowd ? `<span>CROWD ${wave.crowd - wave.lost}/${wave.crowd}</span>` : ""}${wave.allies ? `<span>ALLIES ${wave.allies - wave.alost}/${wave.allies}</span>` : ""}<span>WAVE ${wave.no} · ${wave.time.toFixed(0)}s</span>`;
     if (s !== shown) { shown = s; status.innerHTML = s; }
   };
 
-  window.__arena = { me, get foes() { return foes; }, get civs() { return civs; }, get wave() { return wave; }, set, boxes, step, draw, restart, canvas, nextStep, between, clearWalk, fieldTo, cellOf, open };
+  window.__arena = { me, get foes() { return foes; }, get civs() { return civs; }, get allies() { return allies; }, get wave() { return wave; }, set, boxes, step, draw, restart, canvas, nextStep, between, clearWalk, fieldTo, cellOf, open };
   spawn();
   let last = performance.now();
   const loop = (now) => { const dt = Math.min(0.05, (now - last) / 1000); last = now; step(dt); draw(); updateStatus(); requestAnimationFrame(loop); };
