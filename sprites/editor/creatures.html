@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Creature Frame Editor: the Sprite Frame Editor for quadrupeds and winged creatures. Same layout and tools; bigger
+/* Creature Frame Editor: the Sprite Frame Editor for quadrupeds, winged creatures and giants. Same layout and tools; bigger
    canvases, a person for scale, a highlighted ground row and a fly cycle. Creatures are saved apart from characters. */
 :root {
   --bg: #eef0ea;
@@ -125,7 +125,7 @@ table.sheet { border-collapse: separate; border-spacing: 5px; font-family: var(-
       <input type="text" id="charname" aria-label="Creature name" maxlength="40" size="14">
       <select id="stacksel" aria-label="Where this layer sits, back to front" title="Where this layer sits, back to front: later ones cover earlier ones" hidden></select>
       <input type="text" id="newname" aria-label="New creature name" placeholder="New creature" maxlength="40" size="14">
-      <select id="bodysel" aria-label="Start from" title="Start from a base mesh, or a blank canvas"><option value="base-quadruped">Quadruped</option><option value="base-winged">Winged</option><option value="">Blank</option></select>
+      <select id="bodysel" aria-label="Start from" title="Start from a base mesh, or a blank canvas"><option value="base-quadruped">Quadruped</option><option value="base-winged">Winged</option><option value="base-giant">Giant (two legs)</option><option value="">Blank</option></select>
       <select id="sizesel" aria-label="Size" title="How big it is next to a person; the canvas has room to spare all round"><option value="small">Small (dog)</option><option value="medium" selected>Medium (wolf, eagle)</option><option value="large">Large (horse, bear)</option><option value="huge">Huge (car-sized)</option></select>
       <button type="button" id="newbtn">Add</button>
       <span id="status" role="status">Loading…</span>
@@ -140,7 +140,7 @@ table.sheet { border-collapse: separate; border-spacing: 5px; font-family: var(-
 
   <div id="empty" class="card" hidden>
     <h2>No creatures yet</h2>
-    <p>The quadruped and winged base meshes appear here once they're seeded. You can also start from a blank canvas and draw a creature yourself.</p>
+    <p>The quadruped, winged and giant base meshes appear here once they're seeded. You can also start from a blank canvas and draw a creature yourself.</p>
     <button type="button" id="emptybtn">Start a blank creature</button>
   </div>
 

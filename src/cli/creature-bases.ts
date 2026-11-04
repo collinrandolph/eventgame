@@ -1,7 +1,7 @@
 // Starter base meshes for creatures, in the sprite editor's format: a palette key per body part, like the human
 // bases, so they can be recoloured and dressed the same way.
 //
-//   npm run creature-bases     write sprites/data/base-quadruped.json and base-winged.json
+//   npm run creature-bases     write sprites/data/base-quadruped.json, base-winged.json and base-giant.json
 //
 // Drawn from rectangles per part, then outlined, so they're a rough start to correct in the Creature Frame Editor,
 // not finished art. Side views (E, W mirrored) have a walk cycle and, for the winged base, a fly cycle; front and
@@ -9,7 +9,7 @@
 // human base: lowercase the left side, capitals the right. Medium size (a wolf or large dog; an eagle), next to a
 // 13 x 16 person.
 
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 type Rect = [key: string, x0: number, y0: number, x1: number, y1: number];
 const DIRS = ["S", "SE", "E", "NE", "N", "NW", "W", "SW"] as const;
@@ -163,7 +163,106 @@ const WING = {
   fly: { w: WW, h: WH, ox: 0, oy: 0, frames: framesFrom(flySide, flyFrames("front"), flyFrames("back")) },
 };
 
-for (const [file, doc] of [["sprites/data/base-quadruped.json", QUAD], ["sprites/data/base-winged.json", WING]] as const) {
+// ---- the giant: the human base and all its animations, reproportioned ----
+// A bigfoot, yeti, giant or golem moves like a person, so it starts from the human base's frames (walk, attack, hurt,
+// death; all 8 directions) rather than new drawings. Each frame's outline is folded into the parts it borders, the
+// parts are resampled with giant proportions (the head kept near human size, the torso and arms stretched long and
+// broad, the legs short and thick), and a fresh one-pixel outline is drawn round the result. About 1.6 times a
+// person's height at medium (32 x 28, standing on row 26).
+const human = JSON.parse(readFileSync("sprites/data/base-male.json", "utf8"));
+const GW = 32, GH = 28, GG = 26, GCX = 16;
+const HCX = 6.5; // the human's centre line, in pixel edges
+// human rows (as pixel edges) -> giant rows: head, neck, torso and arms, legs, feet; straight lines past either end
+const HE = [1, 8, 9, 13, 15, 16], GE = [3, 10, 11, 21, 25, 27];
+const XS = [1.15, 1.5, 2, 1.8, 1.8]; // how much each band widens
+const OUT_SLOPE = 1.6;
+const rowToHuman = (gy: number) => {
+  if (gy < GE[0]) return HE[0] + (gy - GE[0]) / OUT_SLOPE;
+  for (let i = 0; i < GE.length - 1; i++) if (gy < GE[i + 1]) return HE[i] + ((gy - GE[i]) / (GE[i + 1] - GE[i])) * (HE[i + 1] - HE[i]);
+  return HE[HE.length - 1] + (gy - GE[GE.length - 1]) / OUT_SLOPE;
+};
+const rowToGiant = (hy: number) => {
+  if (hy < HE[0]) return GE[0] + (hy - HE[0]) * OUT_SLOPE;
+  for (let i = 0; i < HE.length - 1; i++) if (hy < HE[i + 1]) return GE[i] + ((hy - HE[i]) / (HE[i + 1] - HE[i])) * (GE[i + 1] - GE[i]);
+  return GE[GE.length - 1] + (hy - HE[HE.length - 1]) * OUT_SLOPE;
+};
+const widenAt = (hy: number) => { for (let i = 0; i < HE.length - 1; i++) if (hy < HE[i + 1]) return hy < HE[0] ? OUT_SLOPE : XS[i]; return XS[XS.length - 1]; };
+
+/** The outline folded into the nearest part, so thin limbs and the feet (drawn in outline) keep their pixels. */
+function unoutline(rows: string[]): string[][] {
+  const g = rows.map((r) => [...r]);
+  for (let pass = 0; pass < 4; pass++) {
+    const next = g.map((r) => r.slice());
+    for (let y = 0; y < g.length; y++) for (let x = 0; x < g[y].length; x++) {
+      if (g[y][x] !== "k") continue;
+      const n = [[0, -1], [-1, 0], [1, 0], [0, 1]].map(([dx, dy]) => g[y + dy]?.[x + dx]).find((v) => v && v !== "." && v !== "k");
+      if (n) next[y][x] = n;
+    }
+    g.splice(0, g.length, ...next);
+  }
+  return g.map((r) => r.map((v) => (v === "k" ? "." : v)));
+}
+function outline(g: string[][]): string[] {
+  const out = g.map((r) => r.slice());
+  for (let y = 0; y < g.length; y++) for (let x = 0; x < g[y].length; x++) {
+    if (g[y][x] !== ".") continue;
+    if ([[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => g[y + dy]?.[x + dx] && g[y + dy][x + dx] !== ".")) out[y][x] = "k";
+  }
+  return out.map((r) => r.join(""));
+}
+const BODY = 6.5; // the human's half-width
+/** Giant x (from the centre line) -> human x: widened by sx across the body, one to one past it. */
+const unwiden = (d: number, sx: number) => { const a = Math.abs(d), edge = BODY * sx; return HCX + Math.sign(d) * (a <= edge ? a / sx : BODY + (a - edge)); };
+type Anim = { w: number; h: number; ox: number; oy: number; frames: Record<string, string[]> };
+/** One human animation resampled. `uniform` scales evenly instead of by band (for the death fall, lying down). */
+function giantAnim(a: Anim, uniform = 0): Anim {
+  const toGy = (hy: number) => (uniform ? GE[GE.length - 1] + (hy - HE[HE.length - 1]) * uniform : rowToGiant(hy));
+  const toHy = (gy: number) => (uniform ? HE[HE.length - 1] + (gy - GE[GE.length - 1]) / uniform : rowToHuman(gy));
+  const wide = uniform || Math.max(...XS, OUT_SLOPE);
+  // the giant canvas: the human canvas's edges mapped across, in giant walk coordinates
+  // (always holding the whole walk canvas, so the dashed box fits)
+  const widen = (hx: number) => { const d = hx - HCX, a = Math.abs(d); return GCX + Math.sign(d) * (a <= BODY ? a * wide : BODY * wide + (a - BODY)); };
+  const x0 = Math.min(0, Math.floor(widen(-a.ox))), x1 = Math.max(GW, Math.ceil(widen(a.w - a.ox)));
+  const y0 = Math.min(0, Math.floor(toGy(-a.oy))), y1 = Math.max(GH, Math.ceil(toGy(a.h - a.oy)));
+  const w = Math.min(96, x1 - x0), h = Math.min(96, y1 - y0), ox = -x0, oy = -y0;
+  const frames: Record<string, string[]> = {};
+  for (const [d, list] of Object.entries(a.frames)) frames[d] = list.map((f) => {
+    const src = unoutline(f.split("/"));
+    const g = Array.from({ length: h }, (_, ay) => Array.from({ length: w }, (_, ax) => {
+      const gx = ax - ox, gy = ay - oy, hy = toHy(gy + 0.5), sx = uniform || widenAt(hy);
+      // past the body (a swung club, a fallen arm) it widens no more than a person, so a huge giant's swing fits
+      const hx = unwiden(gx + 0.5 - GCX, sx);
+      return src[Math.floor(hy) + a.oy]?.[Math.floor(hx) + a.ox] ?? ".";
+    }));
+    return outline(g).join("/");
+  });
+  return trim({ w, h, ox, oy, frames });
+}
+/** Cropped to what's drawn plus a pixel, always keeping the walk canvas, so it still fits the editor when scaled up. */
+function trim(an: Anim): Anim {
+  let x0 = an.ox, y0 = an.oy, x1 = an.ox + GW, y1 = an.oy + GH;
+  for (const list of Object.values(an.frames)) for (const f of list) f.split("/").forEach((r, y) => [...r].forEach((v, x) => {
+    if (v === ".") return;
+    x0 = Math.min(x0, x - 1); y0 = Math.min(y0, y - 1); x1 = Math.max(x1, x + 2); y1 = Math.max(y1, y + 2);
+  }));
+  x0 = Math.max(0, x0); y0 = Math.max(0, y0); x1 = Math.min(an.w, x1); y1 = Math.min(an.h, y1);
+  const frames = Object.fromEntries(Object.entries(an.frames).map(([d, list]) => [d, list.map((f) => f.split("/").slice(y0, y1).map((r) => r.slice(x0, x1)).join("/"))]));
+  return { w: x1 - x0, h: y1 - y0, ox: an.ox - x0, oy: an.oy - y0, frames };
+}
+const gWalk = giantAnim({ w: human.w, h: human.h, ox: 0, oy: 0, frames: human.frames });
+// the walk canvas is fixed at 32 x 28, standing on row 26: crop the resampled walk to it
+const crop = (f: string) => f.split("/").slice(gWalk.oy, gWalk.oy + GH).map((r) => r.slice(gWalk.ox, gWalk.ox + GW).padEnd(GW, ".")).join("/");
+const GIANT = {
+  name: "Base · Giant", body: "biped", size: "medium", ground: GG, w: GW, h: GH,
+  palette: { ...human.palette },
+  paletteNames: { ...human.paletteNames, B: "Club", G: "Club grip" },
+  frames: Object.fromEntries(Object.entries(gWalk.frames).map(([d, list]) => [d, list.map(crop)])),
+  attack: giantAnim(human.attack),
+  hurt: giantAnim(human.hurt),
+  death: giantAnim(human.death, 1.6),
+};
+
+for (const [file, doc] of [["sprites/data/base-quadruped.json", QUAD], ["sprites/data/base-winged.json", WING], ["sprites/data/base-giant.json", GIANT]] as const) {
   writeFileSync(file, JSON.stringify({ ...doc, by: "claude", savedAt: Date.now() }) + "\n");
   console.log(`${file}: ${doc.w} x ${doc.h}, ground row ${doc.ground}`);
 }
