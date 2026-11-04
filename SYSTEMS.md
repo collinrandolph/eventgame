@@ -33,6 +33,16 @@ endings). Marked like those: **Built**, **Agreed**, **Proposed**.
   ally who's hit fights back and can get separated, then sprints to catch up once that fight is over.
 - **You can tell the group to hold** (**Agreed**): they stay where they are and fight only what comes to them, until
   you call them to follow again.
+- **Who an enemy goes after is a trait of its type** (**Agreed**; the three kinds are **Proposed**):
+
+  | Kind | Goes after | Examples |
+  |---|---|---|
+  | **Indiscriminate** | Every living person it notices, from the start, whether or not you're there | Zombies, the infected, the brood |
+  | **Threat-driven** | Only whoever fights it, or is in its way while it's after them | Soldiers, guards, most human enemies |
+  | **Predatory** | The weakest it can reach first: the unarmed, the hurt, the separated | Raiders, a slasher, pack hunters |
+
+  It changes how a place feels before you arrive (a street of indiscriminate enemies is already a massacre), what a
+  crowd is worth (cover against threat-driven ones, bait for predators), and how dangerous an escort is.
 - **Bystanders draw attacks** (**Agreed**): an enemy chasing you goes for a bystander who's in reach and closer than
   you, for a few seconds. Bystanders freeze when danger comes close, then some run and some cower, so running
   through a crowd is a defence, paid for in lives.
@@ -78,7 +88,45 @@ Open: how specials and bosses differ from foot soldiers.
 - **Done is visible when it happens**: the vault door shuts, the generator starts; then the orb
   leaves.
 
-## 5. Still to design
+## 5. Escorts (**Agreed**)
+
+Two kinds, played the same way:
+
+| | Random escorts | Story escorts |
+|---|---|---|
+| Who | Survivors who aren't in any storyline, come across by chance | Named NPCs or playable characters a storyline needs moved (Sam's mother, the witness, the scientist) |
+| Toughness | Fragile: go down in a couple of hits | Robust: hits knock them down or slow them, and you get them back on their feet; they don't die to a stray blow |
+| If they die | Costs nothing, and it can be fun to try with a group of strangers | Only when the story means it to happen (a scripted death or a planned sacrifice), never because a blow got through. Losing your own child to a random hit is just frustrating |
+| If they make it | Stay as background characters where you left them | Carry on in their storyline |
+
+**Helping them up** (**Agreed**): a story escort who takes enough hits goes down and stays down until someone helps
+them up. They don't follow while they're down, so you have to go back for them. **Someone who's down is marked**
+so they're never mistaken for dead: an indicator over them, visible from a distance, that the dead don't get
+(**Proposed**: a pulsing icon, plus a slow struggle animation rather than lying still). (**Proposed**: helping up takes
+about a second, standing over them, open to attack; an ally can do it too; enemies lose interest in someone who's
+down and turn on whoever's near.) The cost of a bad escort is time and danger to you, not the person.
+
+The rest of this section is about random escorts: optional challenge, not story. In the course of a chapter you
+can come across survivors who aren't part of any storyline, and escort them to safety.
+
+- **They join you when you come close.** A bystander you walk up to joins the group for protection and follows at
+  the back: in the column when it's calm, huddled behind you, away from the danger, in a fight, and holding when the
+  group holds. They're more vulnerable than your group: frailer, looser in the line and slower to keep up, and slow
+  to get round to the safe side when the danger moves, so they're the ones who get caught. (**Proposed**: up to 8 at
+  a time; 1 hit; about 2 s to come round when the danger swings to the other side.)
+- **They're unarmed.** They follow you, and when danger comes close they cower or run; they never fight. Enemies go
+  for them as they do any bystander.
+- **The play:** lead them to cover, tell them to hold, clear the way, come back for them, deliver them somewhere
+  safe. That can be any shelter the map has, not one central place: the event's main gathering place (its "hold" in
+  [SHORTLIST.md](events/SHORTLIST.md); Haldane's Department Store in Pine Hollow), or another that's secure, like
+  a barricaded church or a locked house. Leaving them close to a fight, or in sight, is the risk. (**Proposed**: cover is a
+  place enemies can't see into, and panicking survivors make noise.)
+- **Saved survivors stay.** If they're alive when your chapter ends, they remain in the world as background
+  characters where you left them, so the shelter fills with people you brought in.
+- **Losing them costs nothing.** Their deaths don't touch any storyline, ending or secret. It's a challenge you can
+  take or leave.
+
+## 6. Still to design
 
 | System | The question |
 |---|---|

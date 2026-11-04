@@ -1,0 +1,13704 @@
+{
+ "atlas": "atlas.png",
+ "sprites": {
+  "player-bartender": {
+   "name": "Bartender",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1183,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 90,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1938,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-gang-member-1": {
+   "name": "Gang Member",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1274,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 135,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 0,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-gang-member-2": {
+   "name": "Gang Member",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1365,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 180,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 102,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-inmate-1": {
+   "name": "Escaped Inmate",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1456,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 225,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 204,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-inmate-2": {
+   "name": "Escaped Inmate",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1547,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 270,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 306,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-smuggler-1": {
+   "name": "Smuggler",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1638,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 315,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 408,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-smuggler-2": {
+   "name": "Smuggler",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1729,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 360,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 510,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-construction-1": {
+   "name": "Construction Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1170,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 140,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1456,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-construction-2": {
+   "name": "Construction Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1261,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 185,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1558,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-janitor-1": {
+   "name": "Building Superintendent",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1352,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 230,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1660,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-janitor-2": {
+   "name": "Building Superintendent",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1443,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 275,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1762,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-office-1": {
+   "name": "Office Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1820,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 405,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 612,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-office-2": {
+   "name": "Office Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1911,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 450,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 714,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-delivery-1": {
+   "name": "Delivery Driver",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1534,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 320,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1864,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-delivery-2": {
+   "name": "Delivery Driver",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1625,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 365,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 0,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-warehouse-1": {
+   "name": "Warehouse Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 0,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 495,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 816,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-warehouse-2": {
+   "name": "Warehouse Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 91,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 540,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 918,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-dock-worker-1": {
+   "name": "Dock Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 182,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 585,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1020,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-dock-worker-2": {
+   "name": "Dock Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 273,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 630,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1122,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-taxi-1": {
+   "name": "Taxi Driver",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 364,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 675,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1224,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-taxi-2": {
+   "name": "Taxi Driver",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 455,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 720,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1326,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-cook-1": {
+   "name": "Line Cook",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 546,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 765,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1428,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-cook-2": {
+   "name": "Line Cook",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 637,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 810,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1530,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-tourist-1": {
+   "name": "Tourist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1716,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 410,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 102,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-tourist-2": {
+   "name": "Tourist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1807,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 455,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 204,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-jogger-1": {
+   "name": "Jogger",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 728,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 855,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1632,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-jogger-2": {
+   "name": "Jogger",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 819,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 900,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1734,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-dad-1": {
+   "name": "Dad",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 910,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 945,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1836,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-dad-2": {
+   "name": "Dad",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1001,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 990,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1938,
+      "sy": 3328
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-grandpa-1": {
+   "name": "Grandpa",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1092,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1035,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 0,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-grandpa-2": {
+   "name": "Grandpa",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1183,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1080,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 102,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-elderly-woman-1": {
+   "name": "Elderly Resident (woman)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1898,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 500,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 306,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-elderly-woman-2": {
+   "name": "Elderly Resident (woman)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 0,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 545,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 408,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-student-1": {
+   "name": "Student",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1274,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1125,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 204,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-student-2": {
+   "name": "Student",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1365,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1170,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 306,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-teenager-1": {
+   "name": "Teenager",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1456,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 1024
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1215,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 408,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-teenager-2": {
+   "name": "Teenager",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1547,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1260,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 510,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-nurse-1": {
+   "name": "Nurse",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1638,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1305,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 612,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-nurse-2": {
+   "name": "Nurse",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1729,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1350,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 714,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-postal-1": {
+   "name": "Postal Carrier",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 91,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 590,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 510,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "lone-postal-2": {
+   "name": "Postal Carrier",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 182,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 635,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 612,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-thief-1": {
+   "name": "Burglar",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1820,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1395,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 816,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-thief-2": {
+   "name": "Burglar",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1911,
+      "sy": 2832
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1440,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 918,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-urbex-1": {
+   "name": "Urban Explorer",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 0,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1485,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1020,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-urbex-2": {
+   "name": "Urban Explorer",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 91,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1530,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1122,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-unhoused-1": {
+   "name": "Unhoused Person",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 273,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 680,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 714,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-unhoused-2": {
+   "name": "Unhoused Person",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 364,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 0
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 725,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 816,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-hipster-1": {
+   "name": "Hipster",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 182,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1575,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1224,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-hipster-2": {
+   "name": "Hipster",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 273,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1620,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1326,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-conspiracy-1": {
+   "name": "Conspiracy Theorist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 455,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 770,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 918,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "pack-conspiracy-2": {
+   "name": "Conspiracy Theorist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 546,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 815,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1020,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-soldier-1": {
+   "name": "Soldier",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 637,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 860,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1122,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-soldier-2": {
+   "name": "Soldier",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 728,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 905,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1224,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-security-1": {
+   "name": "Security Guard",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 819,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 950,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1326,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-security-2": {
+   "name": "Security Guard",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 910,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 995,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1428,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-corrections-1": {
+   "name": "Corrections Officer",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1001,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1040,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1530,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-corrections-2": {
+   "name": "Corrections Officer",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1092,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1085,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1632,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-officer-1": {
+   "name": "Police Officer (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1183,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1130,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1734,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-officer-2": {
+   "name": "Police Officer (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1274,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1175,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1836,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-ex-military-1": {
+   "name": "Retiree (ex-military)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 364,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1665,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1428,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-ex-military-2": {
+   "name": "Retiree (ex-military)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 455,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1710,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1530,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-containment-1": {
+   "name": "Containment Officer",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 546,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1755,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1632,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "wary-containment-2": {
+   "name": "Containment Officer",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 637,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1800,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1734,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-civilian-1": {
+   "name": "Civilian (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 728,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 1272
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1845,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1836,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-civilian-2": {
+   "name": "Civilian (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 819,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1890,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1938,
+      "sy": 3382
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-tourist-1": {
+   "name": "Tourist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1365,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1220,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1938,
+      "sy": 3216
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-tourist-2": {
+   "name": "Tourist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1456,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1265,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 0,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-office-1": {
+   "name": "Office Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 910,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1935,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 0,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-office-2": {
+   "name": "Office Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1001,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1980,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 102,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-jogger-1": {
+   "name": "Jogger",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1092,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 0,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 204,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-jogger-2": {
+   "name": "Jogger",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1183,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 45,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 306,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-dog-walker-1": {
+   "name": "Dog Walker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1274,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 90,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 408,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-dog-walker-2": {
+   "name": "Dog Walker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1365,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 135,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 510,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-student-1": {
+   "name": "Student",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1456,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 180,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 612,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-student-2": {
+   "name": "Student",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1547,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 225,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 714,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-teenager-1": {
+   "name": "Teenager",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1638,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 270,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 816,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-teenager-2": {
+   "name": "Teenager",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1729,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 315,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 918,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-dad-1": {
+   "name": "Dad",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1820,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 360,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1020,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-dad-2": {
+   "name": "Dad",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1911,
+      "sy": 2960
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 405,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1122,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-grandpa-1": {
+   "name": "Grandpa",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 0,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 1520
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 450,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1224,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-grandpa-2": {
+   "name": "Grandpa",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 91,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 495,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1326,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-elderly-woman-1": {
+   "name": "Elderly Resident (woman)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1547,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1310,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 102,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-elderly-woman-2": {
+   "name": "Elderly Resident (woman)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1638,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 256
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1355,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 204,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-shopkeeper-1": {
+   "name": "Shopkeeper",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1729,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1400,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 306,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-shopkeeper-2": {
+   "name": "Shopkeeper",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1820,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1445,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 408,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-librarian-1": {
+   "name": "Librarian",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1911,
+      "sy": 2560
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1490,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 510,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-librarian-2": {
+   "name": "Librarian",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 0,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1535,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 612,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-barista-1": {
+   "name": "Barista",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 182,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 540,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1428,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-barista-2": {
+   "name": "Barista",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 273,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 280,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 585,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1530,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-reporter-1": {
+   "name": "TV Reporter",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 364,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 420,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 630,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1632,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-reporter-2": {
+   "name": "TV Reporter",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 455,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 675,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1734,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-teacher-1": {
+   "name": "Teacher",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 91,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 560,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1580,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 714,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-teacher-2": {
+   "name": "Teacher",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 182,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1625,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 816,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-social-worker-1": {
+   "name": "Social Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 546,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 700,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 720,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1836,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-social-worker-2": {
+   "name": "Social Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 637,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 765,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1938,
+      "sy": 3436
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-daycare-1": {
+   "name": "Daycare Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 273,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 840,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1670,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 918,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-daycare-2": {
+   "name": "Daycare Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 364,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1715,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1020,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-vet-1": {
+   "name": "Veterinarian",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 728,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 980,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 810,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 0,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-vet-2": {
+   "name": "Veterinarian",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 819,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 855,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 102,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-pharmacist-1": {
+   "name": "Pharmacist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 455,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1120,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1760,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1122,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-pharmacist-2": {
+   "name": "Pharmacist",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 546,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1805,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1224,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-hipster-1": {
+   "name": "Hipster",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 910,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1260,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 900,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 204,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-hipster-2": {
+   "name": "Hipster",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1001,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 945,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 306,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-red-jacket-1": {
+   "name": "Red Jacket (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1092,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 990,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 408,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civ-red-jacket-2": {
+   "name": "Red Jacket (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1183,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1035,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 510,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civilians-construction-1": {
+   "name": "Construction Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 637,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1400,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1850,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1326,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civilians-firefighter-1": {
+   "name": "Firefighter",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 728,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1540,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1895,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1428,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civilians-chef-1": {
+   "name": "Chef (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 819,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1680,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1940,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1530,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "civilians-dock-worker-1": {
+   "name": "Dock Worker",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1274,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 1768
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1080,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 612,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "military-ex-military-1": {
+   "name": "Retiree (ex-military)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1365,
+      "sy": 3088
+     },
+     "frame": {
+      "w": 13,
+      "h": 16
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 35,
+      "h": 31
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 7
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1125,
+      "sy": 2416
+     },
+     "frame": {
+      "w": 15,
+      "h": 18
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 1
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 714,
+      "sy": 3490
+     },
+     "frame": {
+      "w": 17,
+      "h": 27
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 1
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "military-officer-1": {
+   "name": "Police Officer (layers)",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 910,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 1820,
+      "sy": 512
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 1985,
+      "sy": 2016
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1632,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "military-coast-guard-1": {
+   "name": "Coast Guard",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1001,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 0,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 0,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1734,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  },
+  "military-guard-medic-1": {
+   "name": "National Guard Medic",
+   "animations": {
+    "walk": {
+     "at": {
+      "sx": 1092,
+      "sy": 2696
+     },
+     "frame": {
+      "w": 13,
+      "h": 17
+     },
+     "walkAt": {
+      "x": 0,
+      "y": 0
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 7,
+     "fps": 8,
+     "idle": 0,
+     "loop": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "attack": {
+     "at": {
+      "sx": 140,
+      "sy": 768
+     },
+     "frame": {
+      "w": 35,
+      "h": 32
+     },
+     "walkAt": {
+      "x": 11,
+      "y": 8
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 4,
+     "fps": 12
+    },
+    "hurt": {
+     "at": {
+      "sx": 45,
+      "sy": 2264
+     },
+     "frame": {
+      "w": 15,
+      "h": 19
+     },
+     "walkAt": {
+      "x": 1,
+      "y": 2
+     },
+     "rows": [
+      "S",
+      "SE",
+      "E",
+      "NE",
+      "N",
+      "NW",
+      "W",
+      "SW"
+     ],
+     "frames": 3,
+     "fps": 10
+    },
+    "death": {
+     "at": {
+      "sx": 1836,
+      "sy": 3272
+     },
+     "frame": {
+      "w": 17,
+      "h": 28
+     },
+     "walkAt": {
+      "x": 2,
+      "y": 2
+     },
+     "rows": [
+      "E",
+      "W"
+     ],
+     "frames": 6,
+     "fps": 8,
+     "fallback": {
+      "S": "E",
+      "SE": "E",
+      "NE": "E",
+      "N": "W",
+      "SW": "W",
+      "NW": "W"
+     }
+    }
+   }
+  }
+ },
+ "groups": {
+  "player": [
+   "player-bartender"
+  ],
+  "lone": [
+   "lone-dad-2",
+   "lone-janitor-1",
+   "lone-dad-1",
+   "lone-postal-1",
+   "lone-postal-2",
+   "lone-elderly-woman-2",
+   "lone-tourist-1",
+   "lone-gang-member-1",
+   "lone-cook-1",
+   "lone-grandpa-2",
+   "lone-delivery-2",
+   "lone-construction-1",
+   "lone-gang-member-2",
+   "lone-jogger-1",
+   "lone-inmate-1",
+   "lone-elderly-woman-1",
+   "lone-nurse-2",
+   "lone-taxi-1",
+   "lone-warehouse-2",
+   "lone-delivery-1",
+   "lone-teenager-2",
+   "lone-dock-worker-2",
+   "lone-inmate-2",
+   "lone-smuggler-1",
+   "lone-warehouse-1",
+   "lone-taxi-2",
+   "lone-jogger-2",
+   "lone-tourist-2",
+   "lone-nurse-1",
+   "lone-office-1",
+   "lone-dock-worker-1",
+   "lone-construction-2",
+   "lone-cook-2",
+   "lone-janitor-2",
+   "lone-smuggler-2",
+   "lone-office-2",
+   "lone-student-1",
+   "lone-teenager-1",
+   "lone-grandpa-1",
+   "lone-student-2"
+  ],
+  "pack": [
+   "pack-hipster-2",
+   "pack-thief-1",
+   "pack-conspiracy-2",
+   "pack-unhoused-2",
+   "pack-thief-2",
+   "pack-urbex-1",
+   "pack-urbex-2",
+   "pack-hipster-1",
+   "pack-conspiracy-1",
+   "pack-unhoused-1"
+  ],
+  "wary": [
+   "wary-security-2",
+   "wary-containment-2",
+   "wary-ex-military-1",
+   "wary-officer-2",
+   "wary-security-1",
+   "wary-soldier-2",
+   "wary-corrections-1",
+   "wary-officer-1",
+   "wary-soldier-1",
+   "wary-containment-1",
+   "wary-corrections-2",
+   "wary-ex-military-2"
+  ],
+  "civ": [
+   "civ-hipster-1",
+   "civ-teacher-1",
+   "civ-pharmacist-2",
+   "civ-teacher-2",
+   "civ-reporter-2",
+   "civ-dad-2",
+   "civ-dad-1",
+   "civ-librarian-2",
+   "civ-vet-2",
+   "civ-student-1",
+   "civ-social-worker-1",
+   "civ-dog-walker-1",
+   "civ-tourist-2",
+   "civ-grandpa-2",
+   "civ-social-worker-2",
+   "civ-jogger-2",
+   "civ-reporter-1",
+   "civ-elderly-woman-2",
+   "civ-red-jacket-1",
+   "civ-red-jacket-2",
+   "civ-daycare-2",
+   "civ-teenager-1",
+   "civ-office-1",
+   "civ-daycare-1",
+   "civ-shopkeeper-2",
+   "civ-dog-walker-2",
+   "civ-office-2",
+   "civ-teenager-2",
+   "civ-vet-1",
+   "civ-tourist-1",
+   "civ-barista-2",
+   "civ-librarian-1",
+   "civ-civilian-2",
+   "civ-barista-1",
+   "civ-pharmacist-1",
+   "civ-civilian-1",
+   "civ-hipster-2",
+   "civ-jogger-1",
+   "civ-grandpa-1",
+   "civ-shopkeeper-1",
+   "civ-elderly-woman-1",
+   "civ-student-2"
+  ],
+  "civilians": [
+   "civilians-dock-worker-1",
+   "civilians-chef-1",
+   "civilians-construction-1",
+   "civilians-firefighter-1"
+  ],
+  "military": [
+   "military-ex-military-1",
+   "military-officer-1",
+   "military-coast-guard-1",
+   "military-guard-medic-1"
+  ]
+ },
+ "aggr": {
+  "civilians-construction-1": 0.5,
+  "civilians-firefighter-1": 0.6,
+  "civilians-chef-1": 0.25,
+  "civilians-dock-worker-1": 0.45,
+  "military-ex-military-1": 0.9,
+  "military-officer-1": 0.8,
+  "military-coast-guard-1": 0.85,
+  "military-guard-medic-1": 0.6
+ }
+}

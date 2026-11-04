@@ -19,7 +19,8 @@
     "ideas": "tsx src/cli/ideas.ts",
     "block": "tsx src/cli/block.ts",
     "block3d": "tsx src/cli/block3d.ts",
-    "town": "tsx src/cli/town.ts"
+    "town": "tsx src/cli/town.ts",
+    "arena:sprites": "tsx src/cli/variants.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

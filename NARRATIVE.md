@@ -87,7 +87,8 @@ developments, objectives, failure conditions, links to other storylines, and wha
 - **Named NPCs** are the people a scene gives a name and a relationship to. They're never played. They can have a
   fate and a part in an ending (the antiques dealer).
 - **Background characters** fill out the scene and the town. They take mass-casualty events without spending any
-  lives. Crowds of them can also be generated purely for encounters: bystanders the threat goes for, whose deaths
+  lives. Survivors you escort to safety as optional challenge are background characters too, and stay in the world
+  if they make it ([SYSTEMS.md](SYSTEMS.md) §5). Crowds of them can also be generated purely for encounters: bystanders the threat goes for, whose deaths
   are simulated in play ([SYSTEMS.md](SYSTEMS.md) §1).
 
 ### 5.2 Scenes generate their people
