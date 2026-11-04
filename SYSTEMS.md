@@ -126,12 +126,27 @@ can come across survivors who aren't part of any storyline, and escort them to s
 - **Losing them costs nothing.** Their deaths don't touch any storyline, ending or secret. It's a challenge you can
   take or leave.
 
-## 6. Still to design
+## 6. Climbing and elevation
+
+- **A level is half a storey** (**Agreed**): 1.5 m, 12 px in the view. A storey (3 m, as the buildings are drafted)
+  is two levels; a one-storey roof is level 2.
+- **One level you climb without help** (**Agreed**): a car, a dumpster, a low wall or a stack of crates is one level,
+  and that's the most anyone climbs bare-handed. Anything higher takes a ladder, stairs or a fire escape.
+- **Down follows the same rule** (**Agreed**): you drop one level at a time. Off a car, yes; off a roof, only by the
+  ladder or stairs.
+- **Height gives no combat bonus** (**Agreed**). The time it takes to climb up after you is the advantage.
+- **Basements come later** (**Agreed**).
+- **Proposed** (built in the arena to try): climbing takes time and makes noise, and you can't fight mid-climb;
+  climbing is an enemy-type trait (none, one level, ladders, or everything: scaling walls); stairs anyone can walk;
+  fights only happen on one level; from up high you see over walls and are hard to see from below; a ladder takes one
+  at a time, so a group goes up in a line. Arena timings: a one-level climb 0.5 s, a drop 0.25 s, a ladder 1.2 s,
+  scaling a wall 1 s.
+
+## 7. Still to design
 
 | System | The question |
 |---|---|
 | **Encounters and threat behaviour** | How enemies roam, notice you, chase, give up, nest and spread; the planned collision on each errand vs the ambient threat |
-| **Climbing and verticality** | Upper floors, roofs, basements and the climb points between them; which threats can follow |
 | **NPCs on screen** | Following, fleeing, hiding; how scripted fights and deaths play out beside you; how weight affects survival |
 | **Vehicles** | Driving in the 3/4 view, collisions, the plow |
 | **Light, water, fire, spread** | How each behaves; Mischief Night depends on light and water |
