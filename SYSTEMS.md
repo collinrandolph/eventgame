@@ -26,8 +26,13 @@ endings). Marked like those: **Built**, **Agreed**, **Proposed**.
   a chef low) and sets how far they go for a fight and whether they'll cross in front of you. The cautious keep you
   between them and the danger. When the playable character leads (a general, a sergeant), everyone's aggression is
   damped and you lead the charge; a citizen among soldiers is the one swept along.
-- **Out of a fight the group walks in a column** (**Agreed**): a loose two by two on the path you walked, single
-  file where it's narrow. When an enemy near you is after someone, they spread out for the fight.
+- **Out of a fight the group walks in a column** (**Agreed**): a loose, staggered two by two on the path you walked,
+  single file where it's narrow, moving smoothly. When an enemy near you is after someone, they spread out for the
+  fight.
+- **Allies only start fights while you walk or stand** (**Agreed**). While you sprint, keeping up comes first. An
+  ally who's hit fights back and can get separated, then sprints to catch up once that fight is over.
+- **You can tell the group to hold** (**Agreed**): they stay where they are and fight only what comes to them, until
+  you call them to follow again.
 - **Bystanders draw attacks** (**Agreed**): an enemy chasing you goes for a bystander who's in reach and closer than
   you, for a few seconds. Bystanders freeze when danger comes close, then some run and some cower, so running
   through a crowd is a defence, paid for in lives.

@@ -78,8 +78,9 @@
     <label for="pack" title="Pack enemies (the ones dressed in black, and the grey-skinned ones) spread around you and attack from different sides, with a slower wind-up">PACK <select id="pack"><option value="0">0%</option><option value="25">25%</option><option value="50" selected>50%</option><option value="75">75%</option><option value="100">100%</option></select></label>
     <label for="start">START <select id="start"><option value="idle">ROAMING</option><option value="hunt">HUNTING</option></select></label>
     <button id="restart" type="button">RESTART (R)</button>
+    <button id="follow" type="button" aria-pressed="true" title="Whether your group follows you, or holds where they stand (F)">GROUP: FOLLOW (F)</button>
     <button id="logBtn" type="button" aria-pressed="true">LOG</button>
-    <div class="keys">WASD MOVE · SHIFT RUN · SPACE / CLICK SWING</div>
+    <div class="keys">WASD MOVE · SHIFT RUN · SPACE / CLICK SWING · F GROUP</div>
   </div>
   <div class="stage">
     <canvas id="view"></canvas>
@@ -264,6 +265,7 @@
   $("pack").addEventListener("change", (e) => { set.pack = +e.target.value; e.target.blur(); restart(); });
   $("start").addEventListener("change", (e) => { set.start = e.target.value; e.target.blur(); restart(); });
   $("restart").addEventListener("click", (e) => { e.target.blur(); restart(); });
+  $("follow").addEventListener("click", (e) => { toggleFollow(); e.target.blur(); });
 
   // ---- people ----
   const WALK = 52, RUN = 96; // px per second, as in the town walk
@@ -310,7 +312,8 @@
       let x = me.x + Math.cos(a) * 20, y = me.y + Math.sin(a) * 20;
       if (blockedAt(x, y)) { x = me.x; y = me.y + 8; }
       const [id, aggr] = GROUPS[set.group][i % GROUPS[set.group].length];
-      allies.push({ ...person(id, x, y), ally: true, aggr: aggr * (set.lead === "leader" ? LEADER_DAMP : 1), hp: ALLY_HP, cool: 0, hit: false, dead: false });
+      allies.push({ ...person(id, x, y), ally: true, aggr: aggr * (set.lead === "leader" ? LEADER_DAMP : 1),
+        loose: { along: Math.random() * 14 - 4, side: Math.random() * 8 - 4 }, hp: ALLY_HP, cool: 0, hit: false, dead: false });
     }
     waveNo++;
     wave = { no: waveNo, n: set.count, speed: set.speed, tokens: set.tokens, hp: set.hp, streak: set.streak, pack: set.pack, wary: set.wary, start: set.start, hits: 0, downed: 0, best: 0, kos: 0, crowd: set.crowd, lost: 0, allies: set.allies, group: set.group, lead: set.lead, alost: 0, time: 0, over: false };
@@ -353,6 +356,7 @@
     keys.add(k);
     if (k === " " || k === "j") swing();
     if (k === "r") restart();
+    if (k === "f") toggleFollow();
     if (e.key.startsWith("Arrow") || e.key === " ") e.preventDefault();
   });
   addEventListener("keyup", (e) => keys.delete(e.key.toLowerCase()));
@@ -410,6 +414,7 @@
   const noise = (src, r) => { for (const o of foes) if (!o.dead && (o.state === "idle" || o.state === "return") && Math.hypot(o.x - src.x, o.y - src.y) < r) { o.state = "alert"; o.goal = { x: src.x, y: src.y }; } };
   function hurtCiv(c, e) {
     c.hp--; c.flash = 0.12;
+    if (c.ally) { c.provoked = e; c.provT = 4; }
     const d = Math.hypot(c.x - e.x, c.y - e.y) || 1;
     c.kx = ((c.x - e.x) / d) * 90; c.ky = ((c.y - e.y) / d) * 90;
     if (c.hp <= 0) { c.dead = true; c.anim = "death"; c.animT = 0; if (c.ally) wave.alost++; else wave.lost++; } else { c.anim = "hurt"; c.animT = 0; }
@@ -462,6 +467,13 @@
   const narrowAhead = () => { for (let s = 0; s <= 48; s += 8) { const t = trailAt(s); if (narrow[cellOf(t.x, t.y)]) return true; } return false; };
   // calm: no enemy near you is after anyone
   const calm = () => !foes.some((e) => !e.dead && (e.state === "chase" || e.state === "alert") && Math.hypot(e.x - me.x, e.y - me.y) < 130);
+  // whether the group follows you or holds where they stand
+  let follow = true;
+  const toggleFollow = () => {
+    follow = !follow;
+    for (const a of allies) a.hold = follow ? null : { x: a.x, y: a.y };
+    const b = $("follow"); b.setAttribute("aria-pressed", String(follow)); b.textContent = follow ? "GROUP: FOLLOW (F)" : "GROUP: HOLD (F)";
+  };
   function allyThink(a, i, n, dt) {
     if (a.anim === "attack") {
       const fps = sheets[a.sprite].attack.fps;
@@ -474,7 +486,13 @@
     const dme = Math.hypot(me.x - a.x, me.y - a.y);
     let foe = null, fd = 1e9;
     const g = a.aggr;
-    if (dme < 50 + 70 * g) for (const e of foes) {
+    // whoever hit them, they fight back, wherever you are; they come running once it's dead, gone, or a few seconds on
+    if (a.provoked && (a.provoked.dead || (a.provT -= dt) <= 0 || Math.hypot(a.provoked.x - a.x, a.provoked.y - a.y) > 70)) a.provoked = null;
+    if (a.provoked) { foe = a.provoked; fd = Math.hypot(foe.x - a.x, foe.y - a.y); }
+    // otherwise they only pick a fight while you walk or stand; while you sprint, keeping up comes first
+    // told to hold: they stay where they were and fight only what comes to them
+    else if (!follow) { for (const e of foes) { if (e.dead) continue; const q = Math.hypot(e.x - a.x, e.y - a.y); if (q < 24 + 26 * g && q < fd && !between(a, e.x, e.y)) { fd = q; foe = e; } } }
+    else if (!me.sprinting && dme < 50 + 70 * g) for (const e of foes) {
       if (e.dead) continue;
       const q = Math.hypot(e.x - a.x, e.y - a.y), qm = Math.hypot(e.x - me.x, e.y - me.y);
       // the cautious stay on their own side of you: they fight what comes at them or at you, never past you
@@ -487,15 +505,26 @@
       if (fd <= 18) a.dir = dirOf(foe.x - a.x, foe.y - a.y);
       return;
     }
+    if (!follow) {
+      if (!a.hold) a.hold = { x: a.x, y: a.y };
+      const gap = Math.hypot(a.hold.x - a.x, a.hold.y - a.y);
+      if (gap > 3) walkTo(a, a.hold.x, a.hold.y, Math.min(RUN, Math.max(16, gap * 6)), dt, 2); else a.moving = false;
+      return;
+    }
+    a.hold = null;
     // out of a fight: a loose column on the path you walked, two by two, or single file where it's narrow
-    if (calm()) {
+    if (calm() || me.sprinting) {
       const p = trailAt(14);
       const single = n === 1 || narrowAhead();
       const rank = single ? i : i >> 1, side = single || (n % 2 && i === n - 1) ? 0 : i % 2 ? 1 : -1;
-      const q = trailAt(14 + rank * 12);
-      let tx = q.x - q.dy * side * 6, ty = q.y + q.dx * side * 6;
+      // staggered places, not a grid: each of them stands a little ahead or behind their rank and off to one side,
+      // and the pairs aren't level. They move smoothly, easing into their place: the further out, the faster
+      const q = trailAt(14 + rank * 14 + a.loose.along);
+      const off = single ? a.loose.side * 0.4 : side * 8 + a.loose.side;
+      let tx = q.x - q.dy * off, ty = q.y + q.dx * off;
       if (blockedAt(tx, ty)) { tx = q.x; ty = q.y; }
-      if (Math.hypot(tx - a.x, ty - a.y) > 3) walkTo(a, tx, ty, Math.hypot(tx - a.x, ty - a.y) > 24 ? RUN : WALK * 1.15, dt, 2);
+      const gap = Math.hypot(tx - a.x, ty - a.y);
+      if (gap > 1.5) walkTo(a, tx, ty, Math.min(RUN * 1.12, Math.max(16, gap * 6)), dt, 1); // a little faster than you at most, so a straggler catches up
       else { a.moving = false; a.dir = dirOf(p.dx || VEC[me.dir].x, p.dy || VEC[me.dir].y); }
       return;
     }
@@ -505,7 +534,7 @@
     if (a.aggr < 0.6) for (const e of foes) if (!e.dead) { const q = Math.hypot(e.x - me.x, e.y - me.y); if (q < td) { td = q; threat = e; } }
     const v = VEC[me.dir], back = threat ? Math.atan2(me.y - threat.y, me.x - threat.x) : Math.atan2(-v.y, -v.x), ang = back + (i - (n - 1) / 2) * 0.75;
     const r = 20 + (1 - a.aggr) * 10, tx = me.x + Math.cos(ang) * r, ty = me.y + Math.sin(ang) * r;
-    if (Math.hypot(tx - a.x, ty - a.y) > 4) walkTo(a, tx, ty, dme > 30 ? RUN : WALK * 1.1, dt, 3);
+    if (Math.hypot(tx - a.x, ty - a.y) > 4) walkTo(a, tx, ty, dme > 40 ? RUN * 1.12 : dme > 30 ? RUN : WALK * 1.1, dt, 3);
     else { a.moving = false; a.dir = me.dir; }
   }
   function hurtMe(e) {
@@ -692,6 +721,8 @@
       me.t += dt;
       if (run) noise(me, 50);
     } else me.t = 0;
+    // sprinting is what you're asking for (Shift and a direction), so a stumble from a hit doesn't break it
+    me.sprinting = keys.has("shift") && ["arrowright", "arrowleft", "arrowup", "arrowdown", "w", "a", "s", "d"].some((k) => keys.has(k));
     if (!trail.length || Math.hypot(trail[0].x - me.x, trail[0].y - me.y) >= 3) { trail.unshift({ x: me.x, y: me.y }); if (trail.length > 80) trail.pop(); }
 
     toMe = fieldTo(me.x, me.y);
