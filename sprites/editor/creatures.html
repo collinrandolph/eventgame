@@ -218,8 +218,9 @@ table.sheet { border-collapse: separate; border-spacing: 5px; font-family: var(-
                 <button type="button" data-tool="eraser">Eraser <kbd>E</kbd></button>
                 <button type="button" data-tool="fill">Fill <kbd>F</kbd></button>
                 <button type="button" data-tool="picker">Pick <kbd>I</kbd></button>
+                <button type="button" data-tool="select">Select <kbd>M</kbd></button>
               </div>
-              <p class="hint">Right-click erases. Alt-click picks a color.</p>
+              <p class="hint" id="toolhint">Right-click erases. Alt-click picks a color.</p>
             </div>
             <div class="group">
               <span class="cap">Color</span>
@@ -239,7 +240,7 @@ table.sheet { border-collapse: separate; border-spacing: 5px; font-family: var(-
                 <button type="button" id="paste">Paste</button>
                 <button type="button" id="clear">Clear</button>
               </div>
-              <div class="seg" aria-label="Nudge the frame">
+              <div class="seg" aria-label="Nudge the frame, or the selection" id="nudgeseg">
                 <button type="button" data-nudge="-1,0" aria-label="Nudge left">←</button>
                 <button type="button" data-nudge="0,-1" aria-label="Nudge up">↑</button>
                 <button type="button" data-nudge="0,1" aria-label="Nudge down">↓</button>
@@ -900,6 +901,23 @@ function drawEditor() {
   }
   g.stroke();
   g.setLineDash([]);
+  if (sel.size) {
+    const inSel = (x, y) => sel.has(x + "," + y);
+    g.fillStyle = "rgba(64, 140, 255, 0.18)";
+    for (const k of sel) { const [x, y] = k.split(",").map(Number); if (x < lay.w && y < lay.h) g.fillRect(x * cs, y * cs, cs, cs); }
+    g.beginPath();
+    for (const k of sel) {
+      const [x, y] = k.split(",").map(Number);
+      if (!inSel(x, y - 1)) { g.moveTo(x * cs, y * cs + 0.5); g.lineTo((x + 1) * cs, y * cs + 0.5); }
+      if (!inSel(x, y + 1)) { g.moveTo(x * cs, (y + 1) * cs - 0.5); g.lineTo((x + 1) * cs, (y + 1) * cs - 0.5); }
+      if (!inSel(x - 1, y)) { g.moveTo(x * cs + 0.5, y * cs); g.lineTo(x * cs + 0.5, (y + 1) * cs); }
+      if (!inSel(x + 1, y)) { g.moveTo((x + 1) * cs - 0.5, y * cs); g.lineTo((x + 1) * cs - 0.5, (y + 1) * cs); }
+    }
+    g.lineWidth = 2; g.setLineDash([3, 3]);
+    g.strokeStyle = "#ffffff"; g.stroke();
+    g.lineDashOffset = 3; g.strokeStyle = "#1a5fd0"; g.stroke();
+    g.setLineDash([]); g.lineDashOffset = 0; g.lineWidth = 1;
+  }
   $("edlabel").textContent = (lay.key !== "walk" ? ANIMS[lay.key].label + " · " : "") + DIR_NAME[cur.dir] + " · " +
     (lay.labels[cur.idx] === "idle" || lay.labels[cur.idx] === "drawing" ? lay.labels[cur.idx] : "frame " + lay.labels[cur.idx]) +
     (ch.kind === "recipe" ? " · assembled, read-only" : "");
@@ -923,6 +941,34 @@ function cellAt(e) {
   return x < 0 || y < 0 || x >= lay.w || y >= lay.h ? null : [x, y];
 }
 let stroke = null;
+// the selection: cells as "x,y". Drag a box with the Select tool; Shift-drag adds a box; a click without a drag, or
+// Esc, clears it. It stays put as you change frame or direction, so the same part can be moved in each frame. While
+// there is one, the nudge buttons and the arrow keys move only the pixels inside it, and the box goes with them
+let sel = new Set(), selDrag = null;
+const selRect = (x0, y0, x1, y1) => { const o = []; for (let y = Math.min(y0, y1); y <= Math.max(y0, y1); y++) for (let x = Math.min(x0, x1); x <= Math.max(x0, x1); x++) o.push(x + "," + y); return o; };
+function clearSel() { if (!sel.size) return; sel = new Set(); drawEditor(); updateSelHint(); }
+function updateSelHint() {
+  const h = $("toolhint");
+  if (!h) return;
+  h.textContent = cur.tool === "select" || sel.size
+    ? (sel.size ? sel.size + " cells selected. The arrows (buttons or keys) move only what's inside. Esc clears." : "Drag a box to select. Shift-drag adds to it.")
+    : "Right-click erases. Alt-click picks a color.";
+}
+// the pixels inside the selection moved by (dx, dy): what they leave behind is cleared, what they land on is covered,
+// and anything moved off the canvas is lost
+function nudgeSel(rows, dx, dy, w, h) {
+  const g = rows.map(r => [...r]), moved = [];
+  for (const k of sel) { const [x, y] = k.split(",").map(Number); if (x < w && y < h && g[y][x] !== ".") moved.push([x, y, g[y][x]]); }
+  for (const [x, y] of moved) g[y][x] = ".";
+  for (const [x, y, c] of moved) { const nx = x + dx, ny = y + dy; if (nx >= 0 && ny >= 0 && nx < w && ny < h) g[ny][nx] = c; }
+  return g.map(r => r.join(""));
+}
+function nudge(dx, dy) {
+  if (!sel.size) { editFrame((rows, lay) => nudgeRows(rows, dx, dy, lay.w, lay.h)); return; }
+  editFrame((rows, lay) => nudgeSel(rows, dx, dy, lay.w, lay.h));
+  sel = new Set([...sel].map(k => { const [x, y] = k.split(",").map(Number); return (x + dx) + "," + (y + dy); }));
+  drawEditor();
+}
 function paintPixel(x, y, key) {
   const ch = curChar(), lay = L();
   const rows = lay.grids[cur.dir][cur.idx];
@@ -946,6 +992,13 @@ ed.addEventListener("pointerdown", e => {
   ed.focus();
   const [x, y] = at;
   const ch = curChar(), lay = L();
+  if (cur.tool === "select" && !e.altKey) {
+    ed.setPointerCapture(e.pointerId);
+    selDrag = { x0: x, y0: y, base: e.shiftKey ? new Set(sel) : new Set(), moved: false, add: e.shiftKey };
+    sel = new Set([...selDrag.base, ...selRect(x, y, x, y)]);
+    drawEditor();
+    return;
+  }
   if (e.altKey || cur.tool === "picker") { pickColor(x, y); return; }
   if (locked()) { $("animhint").textContent = "This is a recipe, assembled from its base and layers. To change it, open one of its layers."; return; }
   const erase = e.button === 2 || cur.tool === "eraser";
@@ -964,6 +1017,14 @@ ed.addEventListener("pointerdown", e => {
   paintPixel(x, y, stroke.key);
 });
 ed.addEventListener("pointermove", e => {
+  if (selDrag) {
+    const at = cellAt(e);
+    if (!at) return;
+    if (at[0] !== selDrag.x0 || at[1] !== selDrag.y0) selDrag.moved = true;
+    sel = new Set([...selDrag.base, ...selRect(selDrag.x0, selDrag.y0, at[0], at[1])]);
+    drawEditor(); updateSelHint();
+    return;
+  }
   if (!stroke) return;
   const at = cellAt(e);
   if (!at) return;
@@ -982,6 +1043,12 @@ ed.addEventListener("pointermove", e => {
   stroke.last = at;
 });
 const endStroke = () => {
+  if (selDrag) {
+    // a click without a drag clears the selection (or, with Shift, adds that one cell)
+    if (!selDrag.moved && !selDrag.add) sel = new Set();
+    selDrag = null; drawEditor(); updateSelHint();
+    return;
+  }
   if (!stroke) return;
   if (stroke.changed) { pushUndo([{ anim: cur.anim, dir: cur.dir, idx: cur.idx, rows: stroke.before }]); markDirty(); }
   stroke = null;
@@ -993,6 +1060,7 @@ ed.addEventListener("pointercancel", endStroke);
 function setTool(t) {
   cur.tool = t;
   document.querySelectorAll("#toolseg button").forEach(b => b.classList.toggle("on", b.dataset.tool === t));
+  updateSelHint();
 }
 function renderPalette() {
   const ch = curChar();
@@ -1062,7 +1130,7 @@ $("paste").addEventListener("click", () => { if (clip) editFrame((rows, lay) => 
 arm($("clear"), "Click to clear", () => editFrame((rows, lay) => rows.map(() => ".".repeat(lay.w))));
 document.querySelectorAll("[data-nudge]").forEach(b => b.addEventListener("click", () => {
   const [dx, dy] = b.dataset.nudge.split(",").map(Number);
-  editFrame((rows, lay) => nudgeRows(rows, dx, dy, lay.w, lay.h));
+  nudge(dx, dy);
 }));
 arm($("mirbtn"), "Click to overwrite row", () => mirrorRow($("mirsrc").value));
 arm($("resize"), "Click to resize", () => {
@@ -1233,7 +1301,7 @@ function rebuildAll() {
 function switchChar(id) {
   if (id === cur.id) return;
   saveNow();
-  cur.id = id; cur.dir = "S"; cur.idx = cur.anim === "walk" ? 1 : 0;
+  cur.id = id; cur.dir = "S"; cur.idx = cur.anim === "walk" ? 1 : 0; sel = new Set();
   p.act = null;
   undoStack = []; redoStack = []; remotePending = null; $("banner").hidden = true;
   try { localStorage.setItem("creatureEditor.last", id); } catch (e) {}
@@ -1293,7 +1361,7 @@ async function addBlank(name) {
   const ch = fromBase(id, name || "New creature", $("bodysel").value, $("sizesel").value);
   chars.set(id, ch);
   if (cur.id) await saveNow();
-  cur.id = id; cur.anim = "walk"; cur.dir = "S"; cur.idx = 1;
+  cur.id = id; cur.anim = "walk"; cur.dir = "S"; cur.idx = 1; sel = new Set();
   undoStack = []; redoStack = [];
   refreshSelect(); rebuildAll();
   dirty = true; await saveNow();
@@ -1732,6 +1800,12 @@ window.addEventListener("keydown", e => {
   else if (k === "e") setTool("eraser");
   else if (k === "f") setTool("fill");
   else if (k === "i") setTool("picker");
+  else if (k === "m") setTool("select");
+  else if (e.key === "Escape") clearSel();
+  else if (sel.size && e.key.startsWith("Arrow")) {
+    e.preventDefault();
+    nudge(e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0, e.key === "ArrowUp" ? -1 : e.key === "ArrowDown" ? 1 : 0);
+  }
   else if (e.key === "[") $("prevf").click();
   else if (e.key === "]") $("nextf").click();
 });
