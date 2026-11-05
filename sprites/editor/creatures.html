@@ -698,14 +698,24 @@ function setStatus(text, bad) {
 function markDirty() {
   if (locked()) return;                                  // a recipe is assembled here, never saved from here
   dirty = true;
-  setStatus(db ? "Unsaved changes" : "Not saved here");
+  setStatus(db ? "Unsaved changes" : "Not saved: this copy can't save", !db);
   clearTimeout(saveTimer);
   saveTimer = setTimeout(saveNow, 700);
+}
+// a history to restore from (no UI: it's there for Claude to read back with the artifact's database tools). Each
+// creature's first save in a session keeps a copy of the version it replaces, and while you draw a copy of the
+// current one is kept at most every few minutes. They're in the "history" collection as <id>~<time>
+const SNAP_EVERY = 5 * 60 * 1000;
+const loaded = new Map(), snapped = new Map();
+function keepHistory(id, body) {
+  const now = Date.now(), put = (doc, t) => db.doc("history/" + id + "~" + t).set({ ...doc, of: id, keptAt: now }).catch(() => {});
+  if (!snapped.has(id) && loaded.has(id)) put(loaded.get(id), "before-" + now);
+  if (now - (snapped.get(id) || 0) >= SNAP_EVERY) { put(body, now); snapped.set(id, now); }
 }
 async function saveNow() {
   clearTimeout(saveTimer);
   if (!dirty) return;
-  if (!db) { setStatus("Edits aren't saved in this view", true); return; }
+  if (!db) { setStatus("Not saved: this copy can't save", true); return; }
   if (saving) { saveTimer = setTimeout(saveNow, 300); return; }
   const ch = curChar();
   if (!ch || ch.kind === "recipe") { dirty = false; return; }
@@ -714,6 +724,7 @@ async function saveNow() {
   setStatus("Saving…");
   try {
     await db.doc("creatures/" + ch.id).set(body);
+    keepHistory(ch.id, body);
     setStatus(dirty ? "Unsaved changes" : "Saved");
   } catch (e) {
     dirty = true;
@@ -1732,7 +1743,7 @@ async function boot() {
   try { db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch (e) { db = null; }
   if (!db) {
     clearTimeout(timer);
-    setStatus("Saving isn't available in this view", true);
+    setStatus("This copy can't save: open the Creature Frame Editor on claude.ai to keep your work", true);
     refreshSelect();
     return;
   }
@@ -1746,6 +1757,7 @@ async function boot() {
       if (chg.type === "removed") { chars.delete(id); return; }
       const data = chg.doc.data();
       if (!data) return;
+      if (data.by !== clientId) loaded.set(id, data); // the version as saved elsewhere, not our own echo
       if (id === cur.id) {
         if (chg.doc.metadata.hasPendingWrites || data.by === clientId) return;
         if (dirty) { remotePending = data; $("banner").hidden = false; return; }
@@ -1763,7 +1775,7 @@ async function boot() {
       if (!id || !chars.has(id)) id = [...chars.keys()].sort()[0];
       cur.id = id;
       refreshSelect(); rebuildAll();
-      setStatus("Saved");
+      setStatus("Loaded");
     } else {
       refreshSelect();
       if (!chars.size) setStatus("Ready");
