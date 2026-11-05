@@ -746,17 +746,23 @@
   // while they're after you; the indiscriminate go for whoever is nearest; predators for the unarmed first, then
   // the hurt, even when you're closer
   const people = () => [...civs, ...allies].filter((o) => !o.dead);
+  const reach = (e, o) => ez(e) === ez(o) || fieldTo(o.x, o.y, capOf(e))[cellOf(e.x, e.y)] >= 0;
+  // how strongly someone pulls an enemy: nearer pulls harder. Someone out of reach (a survivor on a roof it can't
+  // climb) still pulls, so a crowd gathers beneath them, but as if they were OUT_OF_REACH px further off, so anyone it
+  // can get at who comes near takes it away
+  const OUT_OF_REACH = 90;
+  const pull = (e, o, q = Math.hypot(o.x - e.x, o.y - e.y)) => q + (reach(e, o) ? 0 : OUT_OF_REACH);
   function preyFor(e, d) {
     let best = null, bd = Infinity;
     for (const o of people()) {
       const q = Math.hypot(o.x - e.x, o.y - e.y);
-      if (set.prey === "threats") { if (q < (o.follow ? 32 : 22) && q + 6 < d && q < bd && !between(e, o.x, o.y)) { bd = q; best = o; } continue; }
+      if (set.prey === "threats") { if (q < (o.follow ? 32 : 22) && q + 6 < d && q < bd && ez(o) === ez(e) && !between(e, o.x, o.y)) { bd = q; best = o; } continue; }
       if (q > 160 || !canSee(e, o)) continue;
-      const score = set.prey === "weak" ? q - (o.civ ? 200 : 0) - (o.hp <= 2 ? 80 : 0) : q;
+      const p = pull(e, o, q), score = set.prey === "weak" ? p - (o.civ ? 200 : 0) - (o.hp <= 2 ? 80 : 0) : p;
       if (score < bd) { bd = score; best = o; }
     }
     if (!best) return null;
-    if (set.prey === "all" && Math.hypot(best.x - e.x, best.y - e.y) >= d) return null; // you're nearer: you
+    if (set.prey === "all" && bd >= d) return null; // you pull harder: you
     if (set.prey === "weak" && !best.civ && best.hp > 2) return null;                 // nobody weak in sight: you
     return best;
   }
@@ -803,12 +809,16 @@
     e.waiting = false;
     if (e.target && e.target !== me && (e.target.dead || (e.tT -= dt) <= 0)) e.target = null;
     if (!e.target || e.target === me) {
-      const c = preyFor(e, d);
+      const c = preyFor(e, set.prey === "all" ? pull(e, me, d) : d);
       e.target = c ?? me;
       if (c) e.tT = 3;
     }
     // the indiscriminate go for whoever is nearest: someone else falling behind closer than the one they're after
-    else if (set.prey === "all") { const c = preyFor(e, Math.hypot(e.target.x - e.x, e.target.y - e.y) - 12); if (c && c !== e.target) { e.target = c; e.tT = 3; } }
+    else if (set.prey === "all") {
+      const td = pull(e, e.target), c = preyFor(e, td - 12);
+      if (c && c !== e.target) { e.target = c; e.tT = 3; }
+      else if (pull(e, me, d) + 12 < td) e.target = me;
+    }
     if (e.target !== me && !e.target.dead && canSee(e, e.target)) e.tT = Math.max(e.tT, 1); // still in sight: stay on them
     if (e.target !== me) {
       const t = e.target, td = Math.hypot(t.x - e.x, t.y - e.y);

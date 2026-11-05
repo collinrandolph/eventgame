@@ -158,8 +158,8 @@ can come across survivors who aren't part of any storyline, and escort them to s
 - **Basements come later** (**Agreed**).
 - **Proposed** (built in the arena to try): climbing takes time and makes noise, and you can't fight mid-climb;
   climbing is an enemy-type trait (none, one level, ladders, or everything: scaling walls); stairs anyone can walk;
-  fights only happen on one level; from up high you see over walls and are hard to see from below; a ladder takes one
-  at a time, so a group goes up in a line, each quicker than you (0.6 s) and the next starting when the one ahead
+  fights only happen on one level; from up high you see over walls and are hard to see from below; someone an enemy can't reach still draws it, so zombies gather beneath
+  a survivor on a roof, but anyone it can get at who comes near (within about 90 px, 7 m) takes it away, you included; a ladder takes one at a time, so a group goes up in a line, each quicker than you (0.6 s) and the next starting when the one ahead
   is halfway. The group always heads for a place on your level, so they climb after you rather than wait below. Arena timings: a one-level climb 0.5 s, a drop 0.25 s, a ladder 1.2 s,
   scaling a wall 1 s.
 
