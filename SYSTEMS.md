@@ -112,8 +112,12 @@ can come across survivors who aren't part of any storyline, and escort them to s
 - **They join you when you come close.** A bystander you walk up to joins the group for protection and follows at
   the back: in the column when it's calm, huddled behind you, away from the danger, in a fight, and holding when the
   group holds. They're more vulnerable than your group: frailer, looser in the line and slower to keep up, and slow
-  to get round to the safe side when the danger moves, so they're the ones who get caught. (**Proposed**: up to 8 at
-  a time; 1 hit; about 2 s to come round when the danger swings to the other side.)
+  to get round to the safe side when the danger moves, so they're the ones who get caught. When you sprint, each runs as fast as they can, and that varies: some keep
+  up, some barely outrun a zombie, some can't, and the chase catches those stragglers (an indiscriminate enemy turns
+  on whoever falls behind nearest it). (**Proposed**: up to 8 at
+  a time; sturdier than the crowd and frailer than your group, below; about 2 s to come round when the danger swings
+  to the other side.) A survivor who joins while the group is holding follows you anyway, until you next call the
+  group.
 - **They're unarmed.** They follow you, and when danger comes close they cower or run; they never fight. Enemies go
   for them as they do any bystander.
 - **The play:** lead them to cover, tell them to hold, clear the way, come back for them, deliver them somewhere
@@ -123,6 +127,22 @@ can come across survivors who aren't part of any storyline, and escort them to s
   place enemies can't see into, and panicking survivors make noise.)
 - **Saved survivors stay.** If they're alive when your chapter ends, they remain in the world as background
   characters where you left them, so the shelter fills with people you brought in.
+- **Nobody dies off screen** (**Proposed**): bystanders and survivors can't be hurt where you can't see them.
+  Enemies still close in on them, so you arrive to a survivor surrounded, not a body.
+- **How much time you get to save people is set per encounter** (**Proposed**). After a hit, the next can't land
+  for a moment, longer the further off they are (from within 64 px of you, about 5 m, to the edge of the screen); with
+  it, how many hits the crowd and the survivors with you take. A rescue mission is generous; a setpiece meant to feel
+  hopeless isn't, and more die. Nobody is hurt off screen in any of them. The arena's RESCUES setting:
+
+  | | Crowd | Survivors with you | Gap near you | Gap at the screen edge |
+  |---|---|---|---|---|
+  | **Hopeless** | 2 hits | 2 hits | 0.6 s | 0.9 s |
+  | **Fair** | 3 | 4 | 1.2 s | 2.2 s |
+  | **Generous** | 3 | 4 | 1.2 s | 3.5 s |
+
+  Your group always takes 5 hits, 1.2 s apart.
+- **A moment between hits** (**Proposed**): after a hit, anyone other than you can't be hit again for a moment
+  (above), and blinks while it lasts.
 - **Losing them costs nothing.** Their deaths don't touch any storyline, ending or secret. It's a challenge you can
   take or leave.
 
@@ -139,7 +159,8 @@ can come across survivors who aren't part of any storyline, and escort them to s
 - **Proposed** (built in the arena to try): climbing takes time and makes noise, and you can't fight mid-climb;
   climbing is an enemy-type trait (none, one level, ladders, or everything: scaling walls); stairs anyone can walk;
   fights only happen on one level; from up high you see over walls and are hard to see from below; a ladder takes one
-  at a time, so a group goes up in a line. Arena timings: a one-level climb 0.5 s, a drop 0.25 s, a ladder 1.2 s,
+  at a time, so a group goes up in a line, each quicker than you (0.6 s) and the next starting when the one ahead
+  is halfway. The group always heads for a place on your level, so they climb after you rather than wait below. Arena timings: a one-level climb 0.5 s, a drop 0.25 s, a ladder 1.2 s,
   scaling a wall 1 s.
 
 ## 7. Still to design

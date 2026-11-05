@@ -77,6 +77,7 @@
     <label for="climbers" title="How high the enemies can climb: shamblers can't climb at all; one level is onto a car; ladders reach roofs; everything scales walls">CLIMBERS <select id="climbers"><option value="0" selected>NONE</option><option value="1">ONE LEVEL</option><option value="2">LADDERS</option><option value="3">EVERYTHING</option></select></label>
     <label for="prey" title="Who the enemies go after. Zombies attack every living person they notice; human enemies only those who fight them; predators go for the weakest first">TARGETS <select id="prey"><option value="all" selected>ANYONE</option><option value="threats">THREATS ONLY</option><option value="weak">THE WEAKEST</option></select></label>
     <label for="crowd" title="Bystanders who wander, and run from enemies. Walk up to one and they join you for protection. Enemies go for them too">CROWD <select id="crowd"><option value="0">0</option><option value="10" selected>10</option><option value="20">20</option><option value="40">40</option></select></label>
+    <label for="mercy" title="How much time you get to save bystanders and survivors, set per encounter: a rescue mission is generous, a setpiece meant to feel hopeless isn't. Nobody is hurt off screen in any of them">RESCUES <select id="mercy"><option value="hopeless">HOPELESS</option><option value="fair" selected>FAIR</option><option value="generous">GENEROUS</option></select></label>
     <label for="pack" title="Pack enemies (zombies in hoods and street clothes) spread around you and attack from different sides, with a slower wind-up">PACK <select id="pack"><option value="0">0%</option><option value="25">25%</option><option value="50" selected>50%</option><option value="75">75%</option><option value="100">100%</option></select></label>
     <label for="start">START <select id="start"><option value="idle">ROAMING</option><option value="hunt">HUNTING</option></select></label>
     <button id="restart" type="button">RESTART (R)</button>
@@ -90,7 +91,7 @@
     <div class="banner" id="banner" hidden></div>
     <div class="log" id="log">
       <div class="row"><span>WAVES</span><span><button id="copy" type="button">COPY</button> <button id="clear" type="button">CLEAR</button></span></div>
-      <table><thead><tr><th>#</th><th>ENEMIES</th><th>SPEED</th><th>AT ONCE</th><th>HITS TO DOWN</th><th>STREAK</th><th>PACK</th><th>WARY</th><th>START</th><th>HITS TAKEN</th><th>DOWNED</th><th>BEST STREAK</th><th>ONE-HIT KOS</th><th>TARGETS</th><th>CLIMBERS</th><th>CROWD LOST</th><th>GROUP</th><th>YOU</th><th>ALLIES LOST</th><th>TIME</th><th>END</th></tr></thead><tbody id="rows"></tbody></table>
+      <table><thead><tr><th>#</th><th>ENEMIES</th><th>SPEED</th><th>AT ONCE</th><th>HITS TO DOWN</th><th>STREAK</th><th>PACK</th><th>WARY</th><th>START</th><th>HITS TAKEN</th><th>DOWNED</th><th>BEST STREAK</th><th>ONE-HIT KOS</th><th>TARGETS</th><th>CLIMBERS</th><th>CROWD LOST</th><th>RESCUES</th><th>GROUP</th><th>YOU</th><th>ALLIES LOST</th><th>TIME</th><th>END</th></tr></thead><tbody id="rows"></tbody></table>
     </div>
     <div class="loading" id="loading">LOADING THE ARENA…</div>
   </div>
@@ -190,6 +191,8 @@
   // how high each kind of person can go: 0 nothing, 1 one level, 2 ladders too, 3 anything (they scale walls)
   const capOf = (e) => (e === me || e.ally || e.civ ? 2 : set.climbers);
   const CLIMB = { stair: 0.15, drop: 0.25, up: 0.5, ladder: 1.2, scale: 1.0 };
+  // your group goes up a ladder in a quick line: each of them quicker than you, the next on as the one ahead is halfway
+  const GROUP_LADDER = 0.6;
   const ladderAt = (x, y, dz) => LADDERS.find((l) => x >= l.x && x < l.x + l.w && (dz > 0 ? y >= l.wall.y + l.wall.d - 2 && y < l.wall.y + l.wall.d + 14 : y >= l.wall.y + l.wall.d - 12));
   // what it takes to go from where e stands to (x, y) at level L, or null if e can't
   function climbFor(e, x, y, L) {
@@ -199,7 +202,7 @@
     if (dz === 1 && cap >= 1) return { dur: CLIMB.up };
     if (Math.abs(dz) === 2) {
       const l = ladderAt(e.x, e.y, dz);
-      if (l && cap >= 2) return { dur: CLIMB.ladder, ladder: l };
+      if (l && cap >= 2) return { dur: e === me || !(e.ally || e.civ) ? CLIMB.ladder : GROUP_LADDER, ladder: l };
       if (cap >= 3) return { dur: CLIMB.scale };
     }
     return null;
@@ -223,6 +226,7 @@
   function stepClimb(e, dt) {
     const c = e.climb, k = Math.min(1, (c.t += dt) / c.dur);
     e.x = c.fx + (c.tx - c.fx) * k; e.y = c.fy + (c.ty - c.fy) * k; e.t += dt; e.moving = true;
+    if (c.ladder && c.ladder.busy === e && e !== me && k >= 0.5) c.ladder.busy = null;
     if (k >= 1) { e.x = c.tx; e.y = c.ty; e.z = c.tz; if (c.ladder && c.ladder.busy === e) c.ladder.busy = null; e.climb = null; }
   }
   // a move that means it: blocked by a change of level for a moment, they climb or drop
@@ -345,7 +349,7 @@
 
   // ---- settings ----
   const $ = (id) => document.getElementById(id);
-  const set = { count: 8, speed: 100, tokens: 2, hp: 2, start: "idle", pack: 50, streak: 5, wary: 25, crowd: 10, allies: 3, group: "civilians", lead: "citizen", prey: "all", climbers: 0 };
+  const set = { count: 8, speed: 100, tokens: 2, hp: 2, start: "idle", pack: 50, streak: 5, wary: 25, crowd: 10, allies: 3, group: "civilians", lead: "citizen", prey: "all", climbers: 0, mercy: "fair" };
   const bindRange = (id, key, fmt) => { const el = $(id), out = $(id + "Out"); el.addEventListener("input", () => { set[key] = +el.value; out.textContent = fmt(el.value); }); };
   bindRange("count", "count", (v) => v);
   bindRange("speed", "speed", (v) => v + "%");
@@ -357,6 +361,7 @@
   $("climbers").addEventListener("change", (e) => { set.climbers = +e.target.value; e.target.blur(); restart(); });
   $("prey").addEventListener("change", (e) => { set.prey = e.target.value; e.target.blur(); restart(); });
   $("crowd").addEventListener("change", (e) => { set.crowd = +e.target.value; e.target.blur(); restart(); });
+  $("mercy").addEventListener("change", (e) => { set.mercy = e.target.value; e.target.blur(); restart(); });
   $("wary").addEventListener("change", (e) => { set.wary = +e.target.value; e.target.blur(); restart(); });
   $("streak").addEventListener("change", (e) => { set.streak = +e.target.value; e.target.blur(); restart(); });
   $("hp").addEventListener("change", (e) => { set.hp = +e.target.value; e.target.blur(); restart(); });
@@ -369,7 +374,7 @@
   const WALK = 52, RUN = 96; // px per second, as in the town walk
   const DIRS = { "0,1": "S", "1,1": "SE", "1,0": "E", "1,-1": "NE", "0,-1": "N", "-1,-1": "NW", "-1,0": "W", "-1,1": "SW" };
   const VEC = Object.fromEntries(Object.entries(DIRS).map(([k, d]) => { const [x, y] = k.split(",").map(Number), n = Math.hypot(x, y); return [d, { x: x / n, y: y / n }]; }));
-  const dirOf = (dx, dy) => { const o = Math.round(Math.atan2(dy, dx) / (Math.PI / 4)); return DIRS[`${Math.round(Math.cos(o * Math.PI / 4))},${Math.round(Math.sin(o * Math.PI / 4))}`]; };
+  const dirOf = (dx, dy) => { const o = Math.round(Math.atan2(dy, dx) / (Math.PI / 4)); return DIRS[`${Math.round(Math.cos(o * Math.PI / 4))},${Math.round(Math.sin(o * Math.PI / 4))}`] || "S"; };
   const person = (sprite, x, y) => ({ sprite, x, y, z: levelAt(x, y), dir: "S", anim: "walk", animT: 0, t: 0, moving: false, flash: 0, kx: 0, ky: 0 });
   const me = { ...person(PLAYER, SPAWN.x, SPAWN.y), inv: 0, hit: false, queued: false, streak: 0, since: 0 };
   // a streak: hits landed in a row without being hit. At the threshold, basic enemies go down in one hit. It's lost
@@ -384,6 +389,7 @@
       if (f[c] < 0) continue;
       const x = (c % GW) * C + 4, y = ((c / GW) | 0) * C + 5;
       if (LV[c]) continue; // everyone starts at street level
+      if (!open[c] || blockedAt(x, y)) continue; // and in the open: never inside a wall, where nobody can reach them
       if (Math.hypot(x - me.x, y - me.y) > 150) spots.push({ x, y });
       else if (Math.hypot(x - me.x, y - me.y) > 30) near.push({ x, y });
     }
@@ -404,7 +410,7 @@
     for (let i = 0; i < set.crowd; i++) {
       let s = free[(Math.random() * free.length) | 0];
       for (let tries = 0; tries < 20 && civs.some((o) => Math.hypot(o.x - s.x, o.y - s.y) < 16); tries++) s = free[(Math.random() * free.length) | 0];
-      civs.push({ ...person(CIVS[(i + turn) % CIVS.length], s.x, s.y), civ: true, hp: 2, home: { x: s.x, y: s.y }, wait: Math.random() * 2, goal: null, dead: false, side: Math.random() < 0.5 ? 1 : -1 });
+      civs.push({ ...person(CIVS[(i + turn) % CIVS.length], s.x, s.y), civ: true, hp: mercy().civ, home: { x: s.x, y: s.y }, wait: Math.random() * 2, goal: null, dead: false, side: Math.random() < 0.5 ? 1 : -1 });
     }
     allies = []; trail = [];
     for (let i = 0; i < set.allies; i++) {
@@ -416,7 +422,7 @@
         loose: { along: Math.random() * 14 - 4, side: Math.random() * 8 - 4 }, hp: ALLY_HP, cool: 0, hit: false, dead: false });
     }
     waveNo++;
-    wave = { no: waveNo, n: set.count, speed: set.speed, tokens: set.tokens, hp: set.hp, streak: set.streak, pack: set.pack, wary: set.wary, start: set.start, hits: 0, downed: 0, best: 0, kos: 0, prey: set.prey, climbers: set.climbers, crowd: set.crowd, lost: 0, allies: set.allies, group: set.group, lead: set.lead, alost: 0, time: 0, over: false };
+    wave = { no: waveNo, n: set.count, speed: set.speed, tokens: set.tokens, hp: set.hp, streak: set.streak, pack: set.pack, wary: set.wary, start: set.start, hits: 0, downed: 0, best: 0, kos: 0, prey: set.prey, climbers: set.climbers, crowd: set.crowd, mercy: set.mercy, lost: 0, allies: set.allies, group: set.group, lead: set.lead, alost: 0, time: 0, over: false };
     nextWaveAt = 0;
     $("banner").hidden = true;
   };
@@ -431,7 +437,7 @@
   let log = [];
   try { log = JSON.parse(localStorage.getItem("arena-log") || "[]"); } catch {}
   const saveLog = () => { try { localStorage.setItem("arena-log", JSON.stringify(log)); } catch {} };
-  const rowCells = (r) => [r.no, r.n, r.speed + "%", r.tokens === 99 ? "ALL" : r.tokens, r.hp, r.streak ? r.streak : "OFF", (r.pack ?? (r.surround === false ? 0 : 100)) + "%", (r.wary ?? 0) + "%", r.start === "hunt" ? "HUNTING" : "ROAMING", r.hits, r.downed + "/" + r.n, r.best ?? 0, r.kos ?? 0, { all: "ANYONE", threats: "THREATS", weak: "WEAKEST" }[r.prey ?? "threats"], ["NONE", "ONE LEVEL", "LADDERS", "EVERYTHING"][r.climbers ?? 0], r.crowd ? r.lost + "/" + r.crowd : "-", (r.group ?? "civilians").toUpperCase(), (r.lead ?? "citizen").toUpperCase(), r.allies ? r.alost + "/" + r.allies : "-", r.time.toFixed(1) + "s", r.end];
+  const rowCells = (r) => [r.no, r.n, r.speed + "%", r.tokens === 99 ? "ALL" : r.tokens, r.hp, r.streak ? r.streak : "OFF", (r.pack ?? (r.surround === false ? 0 : 100)) + "%", (r.wary ?? 0) + "%", r.start === "hunt" ? "HUNTING" : "ROAMING", r.hits, r.downed + "/" + r.n, r.best ?? 0, r.kos ?? 0, { all: "ANYONE", threats: "THREATS", weak: "WEAKEST" }[r.prey ?? "threats"], ["NONE", "ONE LEVEL", "LADDERS", "EVERYTHING"][r.climbers ?? 0], r.crowd ? r.lost + "/" + r.crowd : "-", (r.mercy ?? "-").toUpperCase(), (r.group ?? "civilians").toUpperCase(), (r.lead ?? "citizen").toUpperCase(), r.allies ? r.alost + "/" + r.allies : "-", r.time.toFixed(1) + "s", r.end];
   const renderLog = () => {
     $("rows").innerHTML = log.slice().reverse().map((r) => `<tr>${rowCells(r).map((c, i) => `<td${i === 9 ? ' class="hits"' : ""}>${c}</td>`).join("")}</tr>`).join("");
   };
@@ -440,7 +446,7 @@
   $("logBtn").addEventListener("click", (e) => { const on = $("log").hidden; $("log").hidden = !on; e.target.setAttribute("aria-pressed", String(on)); e.target.blur(); });
   $("clear").addEventListener("click", (e) => { log = []; saveLog(); renderLog(); e.target.blur(); });
   $("copy").addEventListener("click", async (e) => {
-    const head = ["#", "enemies", "speed", "at once", "hits to down", "streak", "pack", "wary", "start", "hits taken", "downed", "best streak", "one-hit kos", "targets", "climbers", "crowd lost", "group", "you", "allies lost", "time", "end"].join("\t");
+    const head = ["#", "enemies", "speed", "at once", "hits to down", "streak", "pack", "wary", "start", "hits taken", "downed", "best streak", "one-hit kos", "targets", "climbers", "crowd lost", "rescues", "group", "you", "allies lost", "time", "end"].join("\t");
     const text = [head, ...log.map((r) => rowCells(r).join("\t"))].join("\n");
     try { await navigator.clipboard.writeText(text); e.target.textContent = "COPIED"; } catch { e.target.textContent = "COPY FAILED"; }
     setTimeout(() => (e.target.textContent = "COPY"), 1200);
@@ -513,8 +519,29 @@
   // an enemy who starts chasing tells the others near it
   const shout = (e) => { for (const o of foes) if (!o.dead && o !== e && o.state !== "chase" && Math.hypot(o.x - e.x, o.y - e.y) < 70) { o.state = "alert"; o.goal = { x: me.x, y: me.y }; } };
   const noise = (src, r) => { for (const o of foes) if (!o.dead && (o.state === "idle" || o.state === "return") && Math.hypot(o.x - src.x, o.y - src.y) < r) { o.state = "alert"; o.goal = { x: src.x, y: src.y }; } };
+  const nearMe = (tx, ty) => {
+    const L = ez(me);
+    for (let k = 0; k <= 8; k++) { const x = tx + (me.x - tx) * (k / 8), y = ty + (me.y - ty) * (k / 8); if (levelAt(x, y) === L && !blockedAt(x, y)) return [x, y]; }
+    return [me.x, me.y];
+  };
+  // how much time you get to save people, an encounter setting (SYSTEMS.md §5): hits for the crowd and for
+  // survivors with you (your group always has ALLY_HP), and the gap after a hit before the next can land, near you and
+  // at the edge of the screen
+  const MERCY = {
+    hopeless: { civ: 2, join: 2, near: 0.6, far: 0.9 },
+    fair: { civ: 3, join: 4, near: 1.2, far: 2.2 },
+    generous: { civ: 3, join: 4, near: 1.2, far: 3.5 },
+  };
+  const mercy = () => MERCY[set.mercy] || MERCY.fair;
+  // after a hit, a moment before the next can land: 1.2 s close to you, stretching to 3.5 s at the edge of the
+  // screen, so the further they are the longer you have to get there. Off screen, bystanders and survivors aren't hurt
+  const NPC_INV = 1.2, RESCUE_R = 64, FAR_R = 240;
+  const onScreen = (o, m = 4) => o.x > cam.x - m && o.x < cam.x + canvas.width + m && o.y > cam.y - m && o.y < cam.y + canvas.height + m;
   function hurtCiv(c, e) {
-    c.hp--; c.flash = 0.12;
+    if ((c.inv ?? 0) > 0 || (c.civ && !onScreen(c))) return;
+    const far = c.civ ? Math.min(1, Math.max(0, (Math.hypot(c.x - me.x, c.y - me.y) - RESCUE_R) / (FAR_R - RESCUE_R))) : 0;
+    const m = mercy();
+    c.hp--; c.flash = 0.12; c.inv = c.civ ? m.near + (m.far - m.near) * far : NPC_INV;
     if (c.ally) { c.provoked = e; c.provT = 4; }
     const d = Math.hypot(c.x - e.x, c.y - e.y) || 1;
     c.kx = ((c.x - e.x) / d) * 90; c.ky = ((c.y - e.y) / d) * 90;
@@ -526,13 +553,15 @@
   // behind you in a fight, and hold when the group holds. Up to JOIN_MAX at a time; they stay until the wave ends.
   // They're frailer than your group, looser in the line, slower to keep up, and slow to get round you when the
   // danger moves: the people you protect are the ones who get caught
-  const JOIN_REACH = 20, JOIN_MAX = 8, JOIN_HP = 1, JOIN_TURN = 1.4;
+  const JOIN_REACH = 20, JOIN_MAX = 8, JOIN_TURN = 1.4;
   // how fast they can go: a little over your walk when it's calm, short of your sprint, and slower than a zombie
   // in a fight, so whoever falls behind can be run down
-  const joinPace = () => (me.sprinting ? RUN * 0.8 : calm() ? WALK * 1.2 : WALK * 0.9);
+  // When you sprint, each runs as fast as they can, and that varies: some keep up, some barely outrun a zombie, and
+  // some can't, and those are the stragglers the chase catches
+  const joinPace = (c) => (me.sprinting ? RUN * c.pace : calm() ? WALK * 1.2 : WALK * 0.9);
   function followerThink(c, dt) {
     const list = civs.filter((o) => !o.dead && o.follow), j = list.indexOf(c), squad = allies.filter((a) => !a.dead).length;
-    if (!follow) {
+    if (!follow && !c.tagAlong) {
       if (!c.hold) c.hold = { x: c.x, y: c.y };
       const gap = Math.hypot(c.hold.x - c.x, c.hold.y - c.y);
       if (gap > 3) walkTo(c, c.hold.x, c.hold.y, Math.min(RUN, Math.max(16, gap * 6)), dt, 2); else c.moving = false;
@@ -557,15 +586,17 @@
       const r = 22 + (j % 3) * 8;
       tx = me.x + Math.cos(c.ang) * r; ty = me.y + Math.sin(c.ang) * r;
     }
-    if (blockedAt(tx, ty)) { tx = me.x; ty = me.y; }
+    [tx, ty] = nearMe(tx, ty);
     const gap = Math.hypot(tx - c.x, ty - c.y);
     if (calm() || me.sprinting) c.ang = undefined;
-    if (gap > 1.5) walkTo(c, tx, ty, Math.min(joinPace(), Math.max(14, gap * 4)), dt, 1); else { c.moving = false; c.dir = me.dir; }
+    if (gap > 1.5) walkTo(c, tx, ty, Math.min(joinPace(c), Math.max(14, gap * 4)), dt, 1); else { c.moving = false; c.dir = me.dir; }
   }
   function civThink(c, dt) {
     if (!c.follow && Math.hypot(c.x - me.x, c.y - me.y) < JOIN_REACH && civs.filter((o) => !o.dead && o.follow).length < JOIN_MAX) {
-      c.follow = true; c.goal = null; c.startle = undefined; c.hp = Math.min(c.hp, JOIN_HP);
+      c.follow = true; c.goal = null; c.startle = undefined; c.hp = Math.max(c.hp, mercy().join); // with you they hold up better than in the crowd
+      c.tagAlong = !follow; // joined while the group holds: they stick with you, not the group, until you toggle
       c.loose = { along: Math.random() * 14 - 4, side: Math.random() * 8 - 4 };
+      c.pace = 0.45 + Math.random() * 0.4; // their sprint, as a share of yours: 43 to 82 px/s against a zombie's 52
     }
     if (c.follow) return followerThink(c, dt);
     let th = null, td = 70;
@@ -617,7 +648,7 @@
   let follow = true;
   const toggleFollow = () => {
     follow = !follow;
-    for (const a of [...allies, ...civs.filter((c) => c.follow)]) a.hold = follow ? null : { x: a.x, y: a.y };
+    for (const a of [...allies, ...civs.filter((c) => c.follow)]) { a.hold = follow ? null : { x: a.x, y: a.y }; a.tagAlong = false; }
     const b = $("follow"); b.setAttribute("aria-pressed", String(follow)); b.textContent = follow ? "GROUP: FOLLOW (F)" : "GROUP: HOLD (F)";
   };
   function allyThink(a, i, n, dt) {
@@ -669,6 +700,7 @@
       const off = single ? a.loose.side * 0.4 : side * 8 + a.loose.side;
       let tx = q.x - q.dy * off, ty = q.y + q.dx * off;
       if (blockedAt(tx, ty)) { tx = q.x; ty = q.y; }
+      [tx, ty] = nearMe(tx, ty);
       const gap = Math.hypot(tx - a.x, ty - a.y);
       if (gap > 1.5) walkTo(a, tx, ty, Math.min(RUN * 1.12, Math.max(16, gap * 6)), dt, 1); // a little faster than you at most, so a straggler catches up
       else { a.moving = false; a.dir = dirOf(p.dx || VEC[me.dir].x, p.dy || VEC[me.dir].y); }
@@ -679,7 +711,7 @@
     let threat = null, td = 120;
     if (a.aggr < 0.6) for (const e of foes) if (!e.dead) { const q = Math.hypot(e.x - me.x, e.y - me.y); if (q < td) { td = q; threat = e; } }
     const v = VEC[me.dir], back = threat ? Math.atan2(me.y - threat.y, me.x - threat.x) : Math.atan2(-v.y, -v.x), ang = back + (i - (n - 1) / 2) * 0.75;
-    const r = 20 + (1 - a.aggr) * 10, tx = me.x + Math.cos(ang) * r, ty = me.y + Math.sin(ang) * r;
+    const r = 20 + (1 - a.aggr) * 10, [tx, ty] = nearMe(me.x + Math.cos(ang) * r, me.y + Math.sin(ang) * r);
     if (Math.hypot(tx - a.x, ty - a.y) > 4) walkTo(a, tx, ty, dme > 40 ? RUN * 1.12 : dme > 30 ? RUN : WALK * 1.1, dt, 3);
     else { a.moving = false; a.dir = me.dir; }
   }
@@ -775,6 +807,8 @@
       e.target = c ?? me;
       if (c) e.tT = 3;
     }
+    // the indiscriminate go for whoever is nearest: someone else falling behind closer than the one they're after
+    else if (set.prey === "all") { const c = preyFor(e, Math.hypot(e.target.x - e.x, e.target.y - e.y) - 12); if (c && c !== e.target) { e.target = c; e.tT = 3; } }
     if (e.target !== me && !e.target.dead && canSee(e, e.target)) e.tT = Math.max(e.tT, 1); // still in sight: stay on them
     if (e.target !== me) {
       const t = e.target, td = Math.hypot(t.x - e.x, t.y - e.y);
@@ -959,7 +993,7 @@
       if (e.moving) e.t += dt; else e.t = 0;
     }
     for (const c of civs) {
-      c.flash = Math.max(0, c.flash - dt);
+      c.flash = Math.max(0, c.flash - dt); c.inv = Math.max(0, (c.inv ?? 0) - dt);
       if (c.kx || c.ky) { moveBy(c, c.kx * dt, c.ky * dt); const k = Math.exp(-14 * dt); c.kx *= k; c.ky *= k; if (Math.abs(c.kx) + Math.abs(c.ky) < 2) c.kx = c.ky = 0; }
       if (c.dead) { c.animT += dt; continue; }
       if (c.climb) { stepClimb(c, dt); continue; }
@@ -968,7 +1002,7 @@
       if (c.moving) c.t += dt; else c.t = 0;
     }
     allies.filter((a) => !a.dead).forEach((a, i, list) => {
-      a.flash = Math.max(0, a.flash - dt);
+      a.flash = Math.max(0, a.flash - dt); a.inv = Math.max(0, (a.inv ?? 0) - dt);
       if (a.kx || a.ky) { moveBy(a, a.kx * dt, a.ky * dt); const k = Math.exp(-14 * dt); a.kx *= k; a.ky *= k; if (Math.abs(a.kx) + Math.abs(a.ky) < 2) a.kx = a.ky = 0; }
       if (a.climb) { stepClimb(a, dt); return; }
       if (a.anim === "hurt") { a.animT += dt; a.moving = false; if (a.animT >= 3 / sheets[a.sprite].hurt.fps) { a.anim = "walk"; a.animT = 0; } return; }
@@ -1054,7 +1088,7 @@
     if (p.follow && alpha === 1 && !p.dead) { ctx.strokeStyle = "#6888fc"; ctx.lineWidth = 1; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x) + 0.5, Math.round(p.y - cam.y) + 0.5, 6, 2.5, 0, 0, Math.PI * 2); ctx.stroke(); }
     if (p.ally && alpha === 1 && !p.dead) { ctx.strokeStyle = "#58d854"; ctx.lineWidth = 1; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x) + 0.5, Math.round(p.y - cam.y) + 0.5, 6, 2.5, 0, 0, Math.PI * 2); ctx.stroke(); }
     if (alpha === 1 && !p.dead) { ctx.fillStyle = "rgba(0,0,0,0.35)"; ctx.beginPath(); ctx.ellipse(Math.round(p.x - cam.x), Math.round(p.y - cam.y), 5, 2, 0, 0, Math.PI * 2); ctx.fill(); }
-    ctx.globalAlpha = alpha * (p === me && me.inv > 0 && ((me.inv * 20) | 0) % 2 ? 0.5 : 1);
+    ctx.globalAlpha = alpha * (!p.dead && (p.inv ?? 0) > 0 && ((p.inv * 20) | 0) % 2 ? 0.5 : 1);
     ctx.drawImage(a.img, a.at.sx + f * a.frame.w, a.at.sy + row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h);
     if (p === me && alpha === 1 && powered()) { ctx.globalAlpha = 0.2 + 0.15 * Math.sin(performance.now() / 90); ctx.drawImage(whiteOf(a.img), a.at.sx + f * a.frame.w, a.at.sy + row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h); ctx.globalAlpha = 1; }
     if (p.flash > 0) ctx.drawImage(whiteOf(a.img), a.at.sx + f * a.frame.w, a.at.sy + row * a.frame.h, a.frame.w, a.frame.h, x, y, a.frame.w, a.frame.h);
