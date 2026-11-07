@@ -43,6 +43,7 @@ h1, h2 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacin
 h1 { font-size: clamp(20px, 3.6vw, 28px); line-height: 1.15; }
 h2 { font-size: 15px; }
 .muted { color: var(--muted); }
+.charid { font: 12px "IBM Plex Mono", ui-monospace, monospace; }
 .top { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
 .top .who { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-width: 0; }
 #status { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 9ch; }
@@ -123,6 +124,7 @@ table.sheet { border-collapse: separate; border-spacing: 5px; font-family: var(-
       <label class="muted" for="charsel">Creature</label>
       <select id="charsel" aria-label="Creature"></select>
       <input type="text" id="charname" aria-label="Creature name" maxlength="40" size="14">
+      <span id="charid" class="muted charid" title="The id it's saved under. Set from the name when it was made; renaming changes only the name"></span>
       <select id="stacksel" aria-label="Where this layer sits, back to front" title="Where this layer sits, back to front: later ones cover earlier ones" hidden></select>
       <input type="text" id="newname" aria-label="New creature name" placeholder="New creature" maxlength="40" size="14">
       <select id="bodysel" aria-label="Start from" title="Start from a base mesh, or a blank canvas"><option value="base-quadruped">Quadruped</option><option value="base-winged">Winged</option><option value="base-giant">Giant (two legs)</option><option value="">Blank</option></select>
@@ -1261,7 +1263,8 @@ function refreshSelect() {
     grp.label = label;
     list.forEach(c => {
       const o = document.createElement("option");
-      o.value = c.id; o.textContent = c.name;
+      // the id too, so two with the same name can be told apart
+      o.value = c.id; o.textContent = c.name + " · " + c.id;
       grp.appendChild(o);
     });
     sel.appendChild(grp);
@@ -1282,6 +1285,7 @@ function rebuildAll() {
   cur.dir = drawnDir(lay, cur.dir);                      // a diagonal on an animation drawn without one
   if (cur.idx >= lay.count) cur.idx = 0;
   $("charname").value = ch.name;
+  $("charid").textContent = "id: " + ch.id;
   $("charname").disabled = ch.kind === "recipe";
   const ss = $("stacksel");
   ss.hidden = ch.kind !== "layer";
