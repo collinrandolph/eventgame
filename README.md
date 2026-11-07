@@ -4,6 +4,9 @@ The rules of EVENT as data plus a solver. No rendering. A world is a JSON file
 built on shared game systems; the kernel plays it, hands lives off, and proves
 what is still possible.
 
+**Sister project:** [EPIC.md](EPIC.md) describes a later fantasy game built on this engine, and the tie-breakers
+that keep EVENT usable for it without adding work.
+
 ```
 npm test          # grid compiler, systems, triggers, threats, lives, gating, endings, mission breaks
 npm run check     # endings (both modes, deadline margin), skills-as-shortcuts, life plans, story events, mission-break search
